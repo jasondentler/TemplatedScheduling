@@ -65,6 +65,12 @@ namespace ISIS.Domain.Tests
             DomainHelper.When(new DeactivateCourse(courseId));
         }
 
+        [When(@"I make the course obsolete")]
+        public void WhenIMakeTheCourseObsolete()
+        {
+            var courseId = DomainHelper.Id<Course>();
+            DomainHelper.When(new MakeCourseObsolete(courseId));
+        }
 
 
     }

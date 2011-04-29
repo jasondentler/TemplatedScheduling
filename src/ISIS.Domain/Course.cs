@@ -12,6 +12,7 @@ namespace ISIS.Domain
             Pending = 0,
             Activated = 1,
             Deactivated = 2,
+            Obsolete = 3
         }
 
         private string _title;
@@ -81,6 +82,12 @@ namespace ISIS.Domain
                 ApplyEvent(new CourseDeactivated(EventSourceId));
         }
 
+        public void MakeObsolete()
+        {
+            if (_status != CourseStatuses.Obsolete)
+                ApplyEvent(new CourseMadeObsolete(EventSourceId));
+        }
+
         protected void On(CourseCreated @event)
         {
             _title = @event.Title;
@@ -114,6 +121,11 @@ namespace ISIS.Domain
         protected void On(CourseDeactivated @event)
         {
             _status = CourseStatuses.Deactivated;
+        }
+
+        protected void On(CourseMadeObsolete @event)
+        {
+            _status = CourseStatuses.Obsolete;
         }
 
     }

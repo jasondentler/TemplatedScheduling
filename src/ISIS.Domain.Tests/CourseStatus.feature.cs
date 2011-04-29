@@ -262,11 +262,122 @@ this.ScenarioSetup(scenarioInfo);
                         "domain"});
 #line 74
 this.ScenarioSetup(scenarioInfo);
+#line 75
+ testRunner.Given("I have created a course");
 #line 76
  testRunner.And("I have deactivated a course");
 #line 77
  testRunner.When("I deactivate the course");
 #line 78
+ testRunner.Then("it does nothing");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Deactivate an obsolete course")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void DeactivateAnObsoleteCourse()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Deactivate an obsolete course", new string[] {
+                        "domain"});
+#line 81
+this.ScenarioSetup(scenarioInfo);
+#line 82
+ testRunner.Given("I have created a course");
+#line 83
+ testRunner.And("I have made the course obsolete");
+#line 84
+ testRunner.When("I deactivate the course");
+#line 85
+ testRunner.Then("the course is deactivated");
+#line 86
+ testRunner.And("it does nothing else");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Make a pending course obsolete")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void MakeAPendingCourseObsolete()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Make a pending course obsolete", new string[] {
+                        "domain"});
+#line 89
+this.ScenarioSetup(scenarioInfo);
+#line 90
+ testRunner.Given("I have created a course");
+#line 91
+ testRunner.When("I make the course obsolete");
+#line 92
+ testRunner.Then("the course is made obsolete");
+#line 93
+ testRunner.And("it does nothing else");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Make an active course obsolete")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void MakeAnActiveCourseObsolete()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Make an active course obsolete", new string[] {
+                        "domain"});
+#line 96
+this.ScenarioSetup(scenarioInfo);
+#line 97
+ testRunner.Given("I have created and activated a course");
+#line 98
+ testRunner.When("I make the course obsolete");
+#line 99
+ testRunner.Then("the course is made obsolete");
+#line 100
+ testRunner.And("it does nothing else");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Make a deactive course obsolete")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void MakeADeactiveCourseObsolete()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Make a deactive course obsolete", new string[] {
+                        "domain"});
+#line 103
+this.ScenarioSetup(scenarioInfo);
+#line 104
+ testRunner.Given("I have created a course");
+#line 105
+ testRunner.And("I have deactivated a course");
+#line 106
+ testRunner.When("I make the course obsolete");
+#line 107
+ testRunner.Then("the course is made obsolete");
+#line 108
+ testRunner.Then("it does nothing else");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Make an obsolete course obsolete")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void MakeAnObsoleteCourseObsolete()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Make an obsolete course obsolete", new string[] {
+                        "domain"});
+#line 111
+this.ScenarioSetup(scenarioInfo);
+#line 112
+ testRunner.Given("I have created a course");
+#line 113
+ testRunner.And("I have made the course obsolete");
+#line 114
+ testRunner.When("I make the course obsolete");
+#line 115
  testRunner.Then("it does nothing");
 #line hidden
             testRunner.CollectScenarioErrors();

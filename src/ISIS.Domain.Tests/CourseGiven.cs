@@ -79,6 +79,13 @@ namespace ISIS.Domain.Tests
             DomainHelper.Given<Course>(new CourseDeactivated(courseId));
         }
 
+        [Given(@"I have made the course obsolete")]
+        public void GivenIHaveMadeTheCourseObsolete()
+        {
+            var courseId = DomainHelper.Id<Course>();
+            DomainHelper.Given<Course>(new CourseMadeObsolete(courseId));
+        }
+
 
     }
 }

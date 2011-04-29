@@ -74,6 +74,12 @@ namespace ISIS.Domain.Tests
             e.Should().Not.Be.Null();
         }
 
+        [Then(@"the course is made obsolete")]
+        public void ThenTheCourseIsMadeObsolete()
+        {
+            var e = DomainHelper.Then<CourseMadeObsolete>();
+            e.Should().Not.Be.Null();
+        }
 
     }
 }

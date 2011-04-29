@@ -72,7 +72,44 @@ Scenario: Deactivate an active course
 
 @domain 
 Scenario: Deactivate a deactive course
-	Give I have created a course
+	Given I have created a course
 	And I have deactivated a course
 	When I deactivate the course
+	Then it does nothing
+
+@domain 
+Scenario: Deactivate an obsolete course
+	Given I have created a course
+	And I have made the course obsolete
+	When I deactivate the course
+	Then the course is deactivated
+	And it does nothing else 
+
+@domain
+Scenario: Make a pending course obsolete
+	Given I have created a course
+	When I make the course obsolete
+	Then the course is made obsolete
+	And it does nothing else
+
+@domain
+Scenario: Make an active course obsolete
+	Given I have created and activated a course
+	When I make the course obsolete
+	Then the course is made obsolete
+	And it does nothing else
+
+@domain 
+Scenario: Make a deactive course obsolete
+	Given I have created a course
+	And I have deactivated a course
+	When I make the course obsolete
+	Then the course is made obsolete
+	Then it does nothing else
+
+@domain 
+Scenario: Make an obsolete course obsolete
+	Given I have created a course
+	And I have made the course obsolete
+	When I make the course obsolete
 	Then it does nothing
