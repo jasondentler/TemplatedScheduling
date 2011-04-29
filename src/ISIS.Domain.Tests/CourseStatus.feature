@@ -47,10 +47,32 @@ Scenario: Make a course pending
 	Given I have created and activated a course
 	When I make the course pending
 	Then the course is made pending
+	And it does nothing else
 
 @domain
 Scenario: Make a pending course pending
 	Given I have created and activated a course
 	And I make the course pending
 	When I make the course pending
+	Then it does nothing
+
+@domain
+Scenario: Deactivate a pending course
+	Given I have created a course
+	When I deactivate the course
+	Then the course is deactivated
+	And it does nothing else
+
+@domain
+Scenario: Deactivate an active course
+	Given I have created and activated a course
+	When I deactivate the course
+	Then the course is deactivated
+	And it does nothing else
+
+@domain 
+Scenario: Deactivate a deactive course
+	Give I have created a course
+	And I have deactivated a course
+	When I deactivate the course
 	Then it does nothing

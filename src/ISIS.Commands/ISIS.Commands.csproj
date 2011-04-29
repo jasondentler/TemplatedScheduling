@@ -47,6 +47,7 @@
     <Compile Include="ChangeCourseCIP.cs" />
     <Compile Include="ChangeCourseDescription.cs" />
     <Compile Include="ActivateCourse.cs" />
+    <Compile Include="DeactivateCourse.cs" />
     <Compile Include="MakeCoursePending.cs" />
     <Compile Include="CreateCourse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

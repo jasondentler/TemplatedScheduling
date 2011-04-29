@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CourseDeactivated.cs" />
     <Compile Include="CourseMadePending.cs" />
     <Compile Include="CourseActivated.cs" />
     <Compile Include="CourseDescriptionChanged.cs" />

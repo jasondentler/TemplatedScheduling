@@ -67,6 +67,13 @@ namespace ISIS.Domain.Tests
             e.Should().Not.Be.Null();
         }
 
+        [Then(@"the course is deactivated")]
+        public void ThenTheCourseIsDeactivated()
+        {
+            var e = DomainHelper.Then<CourseDeactivated>();
+            e.Should().Not.Be.Null();
+        }
+
 
     }
 }

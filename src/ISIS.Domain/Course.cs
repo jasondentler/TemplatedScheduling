@@ -75,6 +75,12 @@ namespace ISIS.Domain
                 ApplyEvent(new CourseMadePending(EventSourceId));
         }
 
+        public void Deactivate()
+        {
+            if (_status != CourseStatuses.Deactivated)
+                ApplyEvent(new CourseDeactivated(EventSourceId));
+        }
+
         protected void On(CourseCreated @event)
         {
             _title = @event.Title;
@@ -103,6 +109,11 @@ namespace ISIS.Domain
         protected void On(CourseMadePending @event)
         {
             _status = CourseStatuses.Pending;
+        }
+
+        protected void On(CourseDeactivated @event)
+        {
+            _status = CourseStatuses.Deactivated;
         }
 
     }

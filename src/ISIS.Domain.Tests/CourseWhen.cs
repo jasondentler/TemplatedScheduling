@@ -58,6 +58,14 @@ namespace ISIS.Domain.Tests
             DomainHelper.When(new MakeCoursePending(courseId));
         }
 
+        [When(@"I deactivate the course")]
+        public void WhenIDeactivateTheCourse()
+        {
+            var courseId = DomainHelper.Id<Course>();
+            DomainHelper.When(new DeactivateCourse(courseId));
+        }
+
+
 
     }
 }

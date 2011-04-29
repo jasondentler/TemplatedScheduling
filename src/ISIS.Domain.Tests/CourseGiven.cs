@@ -72,6 +72,13 @@ namespace ISIS.Domain.Tests
             DomainHelper.Given<Course>(new CourseMadePending(courseId));
         }
 
+        [Given(@"I have deactivated a course")]
+        public void GivenIHaveDeactivatedACourse()
+        {
+            var courseId = DomainHelper.Id<Course>();
+            DomainHelper.Given<Course>(new CourseDeactivated(courseId));
+        }
+
 
     }
 }

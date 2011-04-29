@@ -184,6 +184,8 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.When("I make the course pending");
 #line 49
  testRunner.Then("the course is made pending");
+#line 50
+ testRunner.And("it does nothing else");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -195,15 +197,76 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Make a pending course pending", new string[] {
                         "domain"});
-#line 52
-this.ScenarioSetup(scenarioInfo);
 #line 53
- testRunner.Given("I have created and activated a course");
+this.ScenarioSetup(scenarioInfo);
 #line 54
- testRunner.And("I make the course pending");
+ testRunner.Given("I have created and activated a course");
 #line 55
- testRunner.When("I make the course pending");
+ testRunner.And("I make the course pending");
 #line 56
+ testRunner.When("I make the course pending");
+#line 57
+ testRunner.Then("it does nothing");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Deactivate a pending course")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void DeactivateAPendingCourse()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Deactivate a pending course", new string[] {
+                        "domain"});
+#line 60
+this.ScenarioSetup(scenarioInfo);
+#line 61
+ testRunner.Given("I have created a course");
+#line 62
+ testRunner.When("I deactivate the course");
+#line 63
+ testRunner.Then("the course is deactivated");
+#line 64
+ testRunner.And("it does nothing else");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Deactivate an active course")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void DeactivateAnActiveCourse()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Deactivate an active course", new string[] {
+                        "domain"});
+#line 67
+this.ScenarioSetup(scenarioInfo);
+#line 68
+ testRunner.Given("I have created and activated a course");
+#line 69
+ testRunner.When("I deactivate the course");
+#line 70
+ testRunner.Then("the course is deactivated");
+#line 71
+ testRunner.And("it does nothing else");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Deactivate a deactive course")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void DeactivateADeactiveCourse()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Deactivate a deactive course", new string[] {
+                        "domain"});
+#line 74
+this.ScenarioSetup(scenarioInfo);
+#line 76
+ testRunner.And("I have deactivated a course");
+#line 77
+ testRunner.When("I deactivate the course");
+#line 78
  testRunner.Then("it does nothing");
 #line hidden
             testRunner.CollectScenarioErrors();
