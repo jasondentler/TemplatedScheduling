@@ -7,9 +7,17 @@ namespace ISIS.Domain
     public class Course : AggregateRootMappedByConvention
     {
 
+        public enum CourseStatuses
+        {
+            Pending = 0,
+            Activated = 1,
+            Deactivated = 2,
+        }
+
         private string _title;
         private string _cip;
         private string _description;
+        private CourseStatuses _status;
 
         private Course()
         {
@@ -57,7 +65,14 @@ namespace ISIS.Domain
             if (string.IsNullOrEmpty(_description))
                 throw new CourseMissingDescriptionException();
 
-            ApplyEvent(new CourseActivated(EventSourceId));
+            if (_status != CourseStatuses.Activated)
+                ApplyEvent(new CourseActivated(EventSourceId));
+        }
+
+        public void MakePending()
+        {
+            if (_status != CourseStatuses.Pending)
+                ApplyEvent(new CourseMadePending(EventSourceId));
         }
 
         protected void On(CourseCreated @event)
@@ -82,6 +97,12 @@ namespace ISIS.Domain
 
         protected void On(CourseActivated @event)
         {
+            _status = CourseStatuses.Activated;
+        }
+
+        protected void On(CourseMadePending @event)
+        {
+            _status = CourseStatuses.Pending;
         }
 
     }

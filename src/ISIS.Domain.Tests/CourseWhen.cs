@@ -51,6 +51,13 @@ namespace ISIS.Domain.Tests
             DomainHelper.When(new ActivateCourse(courseId));
         }
 
+        [When(@"I make the course pending")]
+        public void WhenIMakeTheCoursePending()
+        {
+            var courseId = DomainHelper.Id<Course>();
+            DomainHelper.When(new MakeCoursePending(courseId));
+        }
+
 
     }
 }

@@ -53,26 +53,70 @@ namespace ISIS.Domain.Tests
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Activate a course")]
+        [NUnit.Framework.DescriptionAttribute("New courses are pending")]
         [NUnit.Framework.CategoryAttribute("domain")]
-        public virtual void ActivateACourse()
+        public virtual void NewCoursesArePending()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Activate a course", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("New courses are pending", new string[] {
                         "domain"});
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
  testRunner.Given("I have created a course");
 #line 8
- testRunner.And("I have set the course CIP to 12.3456");
+ testRunner.When("I make the course pending");
 #line 9
- testRunner.And("I have set the course description to \"Description goes here\"");
-#line 10
- testRunner.When("I activate the course");
-#line 11
- testRunner.Then("the course is activated");
+ testRunner.Then("it does nothing");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Activate a course")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void ActivateACourse()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Activate a course", new string[] {
+                        "domain"});
 #line 12
+this.ScenarioSetup(scenarioInfo);
+#line 13
+ testRunner.Given("I have created a course");
+#line 14
+ testRunner.And("I have set the course CIP to 12.3456");
+#line 15
+ testRunner.And("I have set the course description to \"Description goes here\"");
+#line 16
+ testRunner.When("I activate the course");
+#line 17
+ testRunner.Then("the course is activated");
+#line 18
  testRunner.And("it does nothing else");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Activate an already-active course")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void ActivateAnAlready_ActiveCourse()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Activate an already-active course", new string[] {
+                        "domain"});
+#line 21
+this.ScenarioSetup(scenarioInfo);
+#line 22
+ testRunner.Given("I have created a course");
+#line 23
+ testRunner.And("I have set the course CIP to 12.3456");
+#line 24
+ testRunner.And("I have set the course description to \"Description goes here\"");
+#line 25
+ testRunner.And("I have activated the course");
+#line 26
+ testRunner.When("I activate the course");
+#line 27
+ testRunner.Then("it does nothing");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -84,17 +128,17 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Can\'t activate a course without a CIP", new string[] {
                         "domain"});
-#line 15
+#line 30
 this.ScenarioSetup(scenarioInfo);
-#line 16
+#line 31
  testRunner.Given("I have created a course");
-#line 17
+#line 32
  testRunner.And("I have set the course description to \"Description goes here\"");
-#line 18
+#line 33
  testRunner.When("I activate the course");
-#line 19
+#line 34
  testRunner.Then("the aggregate state is invalid");
-#line 20
+#line 35
  testRunner.And("the message is \"Your attempt to activate the course failed because the course is " +
                     "missing a CIP.\"");
 #line hidden
@@ -108,19 +152,38 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Can\'t activate a course without a description", new string[] {
                         "domain"});
-#line 23
+#line 38
 this.ScenarioSetup(scenarioInfo);
-#line 24
+#line 39
  testRunner.Given("I have created a course");
-#line 25
+#line 40
  testRunner.And("I have set the course CIP to 12.3456");
-#line 26
+#line 41
  testRunner.When("I activate the course");
-#line 27
+#line 42
  testRunner.Then("the aggregate state is invalid");
-#line 28
+#line 43
  testRunner.And("the message is \"Your attempt to activate the course failed because the course is " +
                     "missing a description.\"");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Make a course pending")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void MakeACoursePending()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Make a course pending", new string[] {
+                        "domain"});
+#line 46
+this.ScenarioSetup(scenarioInfo);
+#line 47
+ testRunner.Given("I have created and activated a course");
+#line 48
+ testRunner.When("I make the course pending");
+#line 49
+ testRunner.Then("the course is made pending");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

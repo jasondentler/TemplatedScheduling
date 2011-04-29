@@ -51,7 +51,21 @@ namespace ISIS.Domain.Tests
 
 
 
+        [Given(@"I have activated the course")]
+        public void GivenIHaveActivatedTheCourse()
+        {
+            var courseId = DomainHelper.Id<Course>();
+            DomainHelper.Given<Course>(new CourseActivated(courseId));
+        }
 
+        [Given(@"I have created and activated a course")]
+        public void GivenIHaveCreatedAndActivatedACourse()
+        {
+            GivenIHaveCreatedANewCourse();
+            GivenIHaveChangedTheCourseCIPTo("12.3456");
+            GivenIHaveChangedTheCourseDescriptionTo("Description goes here");
+            GivenIHaveActivatedTheCourse();
+        }
 
 
     }

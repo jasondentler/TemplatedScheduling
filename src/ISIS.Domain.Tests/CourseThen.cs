@@ -60,5 +60,13 @@ namespace ISIS.Domain.Tests
             e.Should().Not.Be.Null();
         }
 
+        [Then(@"the course is made pending")]
+        public void ThenTheCourseIsMadePending()
+        {
+            var e = DomainHelper.Then<CourseMadePending>();
+            e.Should().Not.Be.Null();
+        }
+
+
     }
 }
