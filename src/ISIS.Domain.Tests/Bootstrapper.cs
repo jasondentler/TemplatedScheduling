@@ -18,6 +18,9 @@ namespace ISIS.Domain.Tests
         [BeforeScenario("domain")]
         public void SetupDomain()
         {
+            if (NcqrsEnvironment.IsConfigured)
+                NcqrsEnvironment.Deconfigure();
+
             var kernel = new StandardKernel(new NcqrsModule());
             var cfg = new NinjectConfiguration(kernel);
             NcqrsEnvironment.Configure(cfg);

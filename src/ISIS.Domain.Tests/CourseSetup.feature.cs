@@ -70,6 +70,28 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             testRunner.CollectScenarioErrors();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Change course title")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void ChangeCourseTitle()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Change course title", new string[] {
+                        "domain"});
+#line 12
+this.ScenarioSetup(scenarioInfo);
+#line 13
+ testRunner.Given("I have created a new course BIOL 1301 \"Introductory Biology\"");
+#line 14
+ testRunner.When("I change the course title to \"Introduction to Biology\"");
+#line 15
+ testRunner.Then("the course title is changed from \"Introductory Biology\" to \"Introduction to Biolo" +
+                    "gy\"");
+#line 16
+ testRunner.And("it does nothing else");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
     }
 }
 #endregion

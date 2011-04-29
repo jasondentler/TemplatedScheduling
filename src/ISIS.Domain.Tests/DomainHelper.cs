@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ISIS.Commands;
 using Ncqrs;
 using Ncqrs.Commanding;
 using Ncqrs.Commanding.CommandExecution.Mapping.Attributes;
 using Ncqrs.Commanding.ServiceModel;
 using Ncqrs.Eventing;
+using Ncqrs.Eventing.Storage;
 using Ncqrs.Spec;
 using TechTalk.SpecFlow;
 
@@ -29,7 +29,26 @@ namespace ISIS.Domain.Tests
             public T Value { get { return _value; } }
         }
 
-        public static void Execute<TCommand>(TCommand command)
+        public static void Given<TAggregate>(object @event)
+        {
+            Given<TAggregate>(Id<TAggregate>(), @event);
+        }
+
+        public static void Given<TAggregate>(Guid id, object @event)
+        {
+            var store = NcqrsEnvironment.Get<IEventStore>();
+            var existingEvents = store.ReadFrom(id, 0, long.MaxValue);
+            long maxEventSequence = 0;
+            if (existingEvents.Any())
+                maxEventSequence = existingEvents.Max(e => e.EventSequence);
+
+            var stream = Prepare.Events(@event)
+                .ForSourceUncomitted(id, Guid.NewGuid(), (int) maxEventSequence + 1);
+
+            store.Store(stream);
+        }
+
+        public static void When<TCommand>(TCommand command)
             where TCommand : ICommand
         {
             var cmdService = NcqrsEnvironment.Get<ICommandService>();
@@ -75,7 +94,7 @@ namespace ISIS.Domain.Tests
                 .Select(e => e.Payload);
         }
 
-        public static TEvent Event<TEvent>()
+        public static TEvent Then<TEvent>()
         {
             var events = GetEvents();
             CheckedEventCount++;
@@ -102,8 +121,12 @@ namespace ISIS.Domain.Tests
         public static Guid Id<TAggregate>()
         {
             var aggregateType = typeof (TAggregate);
-            var wrappedId = ScenarioContext.Current.Get<ReferenceWrapper<Guid>>("AggregateRoot: " + aggregateType);
-            return wrappedId.Value;
+            var key = "AggregateRoot: " + aggregateType;
+            if (ScenarioContext.Current.ContainsKey(key))
+                return ScenarioContext.Current.Get<ReferenceWrapper<Guid>>(key).Value;
+            var id = Guid.NewGuid();
+            ScenarioContext.Current.Set(new ReferenceWrapper<Guid>(id), key);
+            return id;
         }
 
         public static bool AllEventsChecked()
