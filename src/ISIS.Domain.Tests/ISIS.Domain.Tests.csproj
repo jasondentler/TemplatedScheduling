@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>f89a066c-a83c-4ce4-b691-956fc6f60330</ProjectGuid>
+    <ProjectGuid>{32C437D6-6037-47CD-A949-BA29F7B84FC6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ISIS.Domain.Tests</RootNamespace>
@@ -31,6 +31,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ncqrs">
+      <HintPath>..\..\lib\ncqrs\Framework\Ncqrs.dll</HintPath>
+    </Reference>
+    <Reference Include="Ncqrs.Config.Ninject">
+      <HintPath>..\..\lib\ncqrs\Extensions\Ncqrs.Config.Ninject\Ncqrs.Config.Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ncqrs.Spec">
+      <HintPath>..\..\lib\ncqrs\Spec\Ncqrs.Spec.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\..\lib\ncqrs\Extensions\Ncqrs.Config.Ninject\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.5.7.10213, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\ncqrs\Spec\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpTestsEx">
+      <HintPath>..\packages\SharpTestsEx.1.1.1\lib\SharpTestsEx.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpTestsEx.Mvc">
+      <HintPath>..\packages\SharpTestsEx.1.1.1\lib\SharpTestsEx.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -38,10 +60,43 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="TechTalk.SpecFlow">
+      <HintPath>..\packages\SpecFlow.1.6.1\lib\net35\TechTalk.SpecFlow.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="CourseSetup.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CourseSetup.feature</DependentUpon>
+    </Compile>
+    <Compile Include="CourseSetupSteps.cs" />
+    <Compile Include="DomainHelper.cs" />
+    <Compile Include="DomainSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ISIS.Commands\ISIS.Commands.csproj">
+      <Project>{F54331F7-095D-4A20-8298-99BC38D273B5}</Project>
+      <Name>ISIS.Commands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ISIS.Domain\ISIS.Domain.csproj">
+      <Project>{49282460-F7F4-4441-926B-22E7C5C25BC9}</Project>
+      <Name>ISIS.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ISIS.Events\ISIS.Events.csproj">
+      <Project>{E3AD9637-CBDD-4167-ABBD-D49D5187051C}</Project>
+      <Name>ISIS.Events</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="CourseSetup.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CourseSetup.feature.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
