@@ -15,6 +15,8 @@ namespace ISIS.Domain.Tests
     public static class DomainHelper
     {
 
+        const string CheckedEventCountKey = "CheckedEventCount";
+
         private class ReferenceWrapper<T>
         {
             private readonly T _value;
@@ -69,12 +71,35 @@ namespace ISIS.Domain.Tests
             ScenarioContext.Current.Set(wrappedId, "AggregateRoot: " + aggregateType);
         }
 
-        public static TEvent Event<TEvent>()
+        private static IEnumerable<object> GetEvents()
         {
-            var events = ScenarioContext.Current
+            return ScenarioContext.Current
                 .Get<IEnumerable<UncommittedEvent>>()
                 .Select(e => e.Payload);
+        }
+
+        public static TEvent Event<TEvent>()
+        {
+            var events = GetEvents();
+            CheckedEventCount++;
             return events.OfType<TEvent>().Single();
+        }
+
+        private static int CheckedEventCount
+        {
+            get
+            {
+                var ctx = ScenarioContext.Current;
+
+                return ctx.ContainsKey(CheckedEventCountKey)
+                           ? ctx.Get<ReferenceWrapper<int>>(CheckedEventCountKey).Value
+                           : 0;
+            }
+            set
+            {
+                ScenarioContext.Current.Set(new ReferenceWrapper<int>(value),
+                                                                   CheckedEventCountKey);
+            }
         }
 
         public static Guid Id<TAggregate>()
@@ -83,6 +108,11 @@ namespace ISIS.Domain.Tests
             var wrappedId = ScenarioContext.Current.Get<ReferenceWrapper<Guid>>("AggregateRoot: " + aggregateType);
             return wrappedId.Value;
         }
-        
+
+        public static bool AllEventsChecked()
+        {
+            return GetEvents().Count() == CheckedEventCount;
+        }
+
     }
 }

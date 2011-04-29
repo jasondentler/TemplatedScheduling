@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using SharpTestsEx;
 using TechTalk.SpecFlow;
 
 namespace ISIS.Domain.Tests
@@ -12,7 +9,7 @@ namespace ISIS.Domain.Tests
         [Then(@"it does nothing else")]
         public void ThenItDoesNothingElse()
         {
-            ScenarioContext.Current.Pending();
+            DomainHelper.AllEventsChecked().Should().Be.True();
         }
     }
 }
