@@ -44,5 +44,13 @@ namespace ISIS.Domain.Tests
                 newDescription));
         }
 
+        [When(@"I activate the course")]
+        public void WhenIActivateTheCourse()
+        {
+            var courseId = DomainHelper.Id<Course>();
+            DomainHelper.When(new ActivateCourse(courseId));
+        }
+
+
     }
 }

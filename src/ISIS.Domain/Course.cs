@@ -49,6 +49,17 @@ namespace ISIS.Domain
                                description));
         }
 
+        public void Activate()
+        {
+            if (string.IsNullOrEmpty(_cip))
+                throw new CourseMissingCIPException();
+            
+            if (string.IsNullOrEmpty(_description))
+                throw new CourseMissingDescriptionException();
+
+            ApplyEvent(new CourseActivated(EventSourceId));
+        }
+
         protected void On(CourseCreated @event)
         {
             _title = @event.Title;
@@ -67,6 +78,10 @@ namespace ISIS.Domain
         protected void On(CourseDescriptionChanged @event)
         {
             _description = @event.NewDescription;
+        }
+
+        protected void On(CourseActivated @event)
+        {
         }
 
     }

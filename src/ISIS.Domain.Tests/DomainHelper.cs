@@ -46,6 +46,8 @@ namespace ISIS.Domain.Tests
                 .ForSourceUncomitted(id, Guid.NewGuid(), (int) maxEventSequence + 1);
 
             store.Store(stream);
+
+            DomainLogger.Given(@event);
         }
 
         public static void When<TCommand>(TCommand command)
@@ -54,10 +56,30 @@ namespace ISIS.Domain.Tests
             var cmdService = NcqrsEnvironment.Get<ICommandService>();
             using (var ctx = new EventContext())
             {
-                cmdService.Execute(command);
-                ScenarioContext.Current.Set(ctx.Events);
+                try
+                {
+                    cmdService.Execute(command);
+                    var events = ctx.Events;
+                    ScenarioContext.Current.Set(events);
+                    DomainLogger.When(command, events.Select(e => e.Payload));
+                } 
+                catch(Exception exception)
+                {
+                    SetException(command, exception);
+                }
             }
             SetAggregateId<TCommand>();
+        }
+
+        private static void SetException<TCommand>(TCommand command, Exception exception)
+        {
+            if (exception is System.Reflection.TargetInvocationException)
+            {
+                SetException(command, exception.InnerException);
+                return;
+            }
+            ScenarioContext.Current.Set(exception);
+            DomainLogger.When(command, exception);
         }
 
         private static void SetAggregateId<TCommand>()
@@ -98,7 +120,9 @@ namespace ISIS.Domain.Tests
         {
             var events = GetEvents();
             CheckedEventCount++;
-            return events.OfType<TEvent>().Single();
+            var @event = events.OfType<TEvent>().Single();
+            DomainLogger.Then(@event);
+            return @event;
         }
 
         private static int CheckedEventCount
@@ -137,6 +161,16 @@ namespace ISIS.Domain.Tests
         public static bool NoEvents()
         {
             return !GetEvents().Any();
+        }
+        
+        public static bool ExceptionThrown()
+        {
+            return ScenarioContext.Current.ContainsKey(typeof (Exception).ToString());
+        }
+
+        public static Exception GetException()
+        {
+            return ScenarioContext.Current.Get<Exception>();
         }
 
     }

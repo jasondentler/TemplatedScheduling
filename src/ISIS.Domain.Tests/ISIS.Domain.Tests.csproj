@@ -40,6 +40,10 @@
     <Reference Include="Ncqrs.Spec">
       <HintPath>..\..\lib\ncqrs\Spec\Ncqrs.Spec.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\ncqrs\Framework\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\..\lib\ncqrs\Extensions\Ncqrs.Config.Ninject\Ninject.dll</HintPath>
     </Reference>
@@ -66,15 +70,36 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Course.feature.cs">
+    <Compile Include="CourseCIP.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Course.feature</DependentUpon>
+      <DependentUpon>CourseCIP.feature</DependentUpon>
+    </Compile>
+    <Compile Include="CourseDescription.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CourseDescription.feature</DependentUpon>
+    </Compile>
+    <Compile Include="CourseSetup.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CourseSetup.feature</DependentUpon>
     </Compile>
     <Compile Include="CourseGiven.cs" />
+    <Compile Include="CourseStatus.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CourseStatus.feature</DependentUpon>
+    </Compile>
     <Compile Include="CourseThen.cs" />
+    <Compile Include="CourseTitle.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CourseTitle.feature</DependentUpon>
+    </Compile>
     <Compile Include="CourseWhen.cs" />
     <Compile Include="DomainHelper.cs" />
+    <Compile Include="DomainLogger.cs" />
     <Compile Include="DomainSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -94,9 +119,25 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Course.feature">
+    <None Include="CourseCIP.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Course.feature.cs</LastGenOutput>
+      <LastGenOutput>CourseCIP.feature.cs</LastGenOutput>
+    </None>
+    <None Include="CourseDescription.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CourseDescription.feature.cs</LastGenOutput>
+    </None>
+    <None Include="CourseSetup.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CourseSetup.feature.cs</LastGenOutput>
+    </None>
+    <None Include="CourseStatus.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CourseStatus.feature.cs</LastGenOutput>
+    </None>
+    <None Include="CourseTitle.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CourseTitle.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

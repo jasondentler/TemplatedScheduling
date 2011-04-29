@@ -17,6 +17,7 @@ namespace ISIS.Domain.Tests
         }
 
         [Given(@"I have created a new course")]
+        [Given(@"I have created a course")]
         public void GivenIHaveCreatedANewCourse()
         {
             GivenIHaveCreatedANewCourse("BIOL", "1301", "Introductory Biology");
@@ -24,6 +25,8 @@ namespace ISIS.Domain.Tests
 
         [Given(@"I have changed the course CIP to (\d{2}\.\d{4})")]
         [Given(@"I have changed the course CIP to (\d{10})")]
+        [Given(@"I have set the course CIP to (\d{2}\.\d{4})")]
+        [Given(@"I have set the course CIP to (\d{10})")]
         public void GivenIHaveChangedTheCourseCIPTo(
             string cip)
         {
@@ -35,6 +38,7 @@ namespace ISIS.Domain.Tests
         }
 
         [Given(@"I have changed the course description to ""(.*)""")]
+        [Given(@"I have set the course description to ""(.*)""")]
         public void GivenIHaveChangedTheCourseDescriptionTo(
             string description)
         {

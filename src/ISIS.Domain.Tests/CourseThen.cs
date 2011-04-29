@@ -53,6 +53,12 @@ namespace ISIS.Domain.Tests
             e.NewDescription.Should().Be.EqualTo(newDescription);
         }
 
+        [Then(@"the course is activated")]
+        public void ThenTheCourseIsActivated()
+        {
+            var e = DomainHelper.Then<CourseActivated>();
+            e.Should().Not.Be.Null();
+        }
 
     }
 }
