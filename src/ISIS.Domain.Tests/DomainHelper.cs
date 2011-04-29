@@ -32,37 +32,34 @@ namespace ISIS.Domain.Tests
         public static void Execute<TCommand>(TCommand command)
             where TCommand : ICommand
         {
-            SetAggregateId(command);
-
             var cmdService = NcqrsEnvironment.Get<ICommandService>();
             using (var ctx = new EventContext())
             {
                 cmdService.Execute(command);
                 ScenarioContext.Current.Set(ctx.Events);
             }
+            SetAggregateId<TCommand>();
         }
 
-        private static void SetAggregateId<TCommand>(TCommand command)
+        private static void SetAggregateId<TCommand>()
         {
             var commandType = typeof (TCommand);
 
             var aggregateAttribute = (MapsToAggregateRootConstructorAttribute)
-                commandType.GetCustomAttributes(typeof (MapsToAggregateRootConstructorAttribute), true).FirstOrDefault();
+                                     commandType
+                                         .GetCustomAttributes(typeof (MapsToAggregateRootConstructorAttribute), true)
+                                         .FirstOrDefault();
 
+            if (aggregateAttribute == null) return;
 
-            if (aggregateAttribute != null)
-            {
-                var aggregateType = aggregateAttribute.Type;
+            var aggregateType = aggregateAttribute.Type;
 
-                var idProperty = commandType
-                    .GetProperties()
-                    .Where(pi => pi.GetCustomAttributes(typeof (CreateAggregateWithIdAttribute), true).Any())
-                    .Single();
+            var id = (Guid) ScenarioContext.Current
+                                .Get<IEnumerable<UncommittedEvent>>()
+                                .First()
+                                .EventSourceId;
 
-                var id = (Guid) idProperty.GetValue(command, new object[0]);
-
-                SetAggregateId(aggregateType, id);
-            }
+            SetAggregateId(aggregateType, id);
         }
 
         private static void SetAggregateId(Type aggregateType, Guid id)

@@ -8,9 +8,7 @@ namespace ISIS.Commands
     [MapsToAggregateRootConstructor(typeof(Course))]
     public class CreateCourse : CommandBase 
     {
-        [CreateAggregateWithId]
         public Guid CourseId { get; private set; }
-
         public string Rubric { get; private set; }
         public string CourseNumber { get; private set; }
         public string Title { get; private set; }
