@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISIS.Domain", "ISIS.Domain\ISIS.Domain.csproj", "{49282460-F7F4-4441-926B-22E7C5C25BC9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISIS.Commands", "ISIS.Commands\ISIS.Commands.csproj", "{F54331F7-095D-4A20-8298-99BC38D273B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISIS.Events", "ISIS.Events\ISIS.Events.csproj", "{E3AD9637-CBDD-4167-ABBD-D49D5187051C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +17,14 @@ Global
 		{49282460-F7F4-4441-926B-22E7C5C25BC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49282460-F7F4-4441-926B-22E7C5C25BC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49282460-F7F4-4441-926B-22E7C5C25BC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F54331F7-095D-4A20-8298-99BC38D273B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F54331F7-095D-4A20-8298-99BC38D273B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F54331F7-095D-4A20-8298-99BC38D273B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F54331F7-095D-4A20-8298-99BC38D273B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3AD9637-CBDD-4167-ABBD-D49D5187051C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3AD9637-CBDD-4167-ABBD-D49D5187051C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3AD9637-CBDD-4167-ABBD-D49D5187051C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3AD9637-CBDD-4167-ABBD-D49D5187051C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
