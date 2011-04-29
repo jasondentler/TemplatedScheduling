@@ -47,3 +47,10 @@ Scenario: Make a course pending
 	Given I have created and activated a course
 	When I make the course pending
 	Then the course is made pending
+
+@domain
+Scenario: Make a pending course pending
+	Given I have created and activated a course
+	And I make the course pending
+	When I make the course pending
+	Then it does nothing

@@ -187,6 +187,27 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             testRunner.CollectScenarioErrors();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Make a pending course pending")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void MakeAPendingCoursePending()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Make a pending course pending", new string[] {
+                        "domain"});
+#line 52
+this.ScenarioSetup(scenarioInfo);
+#line 53
+ testRunner.Given("I have created and activated a course");
+#line 54
+ testRunner.And("I make the course pending");
+#line 55
+ testRunner.When("I make the course pending");
+#line 56
+ testRunner.Then("it does nothing");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
     }
 }
 #endregion

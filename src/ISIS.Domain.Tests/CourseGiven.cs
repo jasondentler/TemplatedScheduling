@@ -49,8 +49,6 @@ namespace ISIS.Domain.Tests
                                            description));
         }
 
-
-
         [Given(@"I have activated the course")]
         public void GivenIHaveActivatedTheCourse()
         {
@@ -65,6 +63,13 @@ namespace ISIS.Domain.Tests
             GivenIHaveChangedTheCourseCIPTo("12.3456");
             GivenIHaveChangedTheCourseDescriptionTo("Description goes here");
             GivenIHaveActivatedTheCourse();
+        }
+
+        [Given(@"I make the course pending")]
+        public void GivenIMakeTheCoursePending()
+        {
+            var courseId = DomainHelper.Id<Course>();
+            DomainHelper.Given<Course>(new CourseMadePending(courseId));
         }
 
 
