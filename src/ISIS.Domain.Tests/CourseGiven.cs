@@ -1,13 +1,10 @@
-﻿using System;
-using ISIS.Commands;
-using ISIS.Events;
-using SharpTestsEx;
+﻿using ISIS.Events;
 using TechTalk.SpecFlow;
 
 namespace ISIS.Domain.Tests
 {
     [Binding]
-    public class CourseSetupGiven
+    public class CourseGiven
     {
         [Given(@"I have created a new course ([A-Z]{4}) (\d{4}) ""(.*)""")]
         public void GivenIHaveCreatedANewCourse(

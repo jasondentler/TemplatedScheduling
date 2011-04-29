@@ -1,6 +1,6 @@
 ﻿Feature: CourseSetup
 	As a scheduler
-	I want to create new courses
+	I want to setup new courses
 
 @domain
 Scenario: Create a new course

@@ -66,14 +66,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="CourseSetup.feature.cs">
+    <Compile Include="Course.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CourseSetup.feature</DependentUpon>
+      <DependentUpon>Course.feature</DependentUpon>
     </Compile>
-    <Compile Include="CourseSetupGiven.cs" />
-    <Compile Include="CourseSetupThen.cs" />
-    <Compile Include="CourseSetupWhen.cs" />
+    <Compile Include="CourseGiven.cs" />
+    <Compile Include="CourseThen.cs" />
+    <Compile Include="CourseWhen.cs" />
     <Compile Include="DomainHelper.cs" />
     <Compile Include="DomainSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,9 +94,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="CourseSetup.feature">
+    <None Include="Course.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CourseSetup.feature.cs</LastGenOutput>
+      <LastGenOutput>Course.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

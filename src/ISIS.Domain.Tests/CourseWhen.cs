@@ -5,7 +5,7 @@ using TechTalk.SpecFlow;
 namespace ISIS.Domain.Tests
 {
     [Binding]
-    public class CourseSetupWhen
+    public class CourseWhen
     {
 
         [When(@"I create a new course ([A-Z]{4}) (\d{4}) ""(.*)""")]

@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ISIS.Events;
+﻿using ISIS.Events;
 using SharpTestsEx;
 using TechTalk.SpecFlow;
 
 namespace ISIS.Domain.Tests
 {
     [Binding]
-    public class CourseSetupThen
+    public class CourseThen
     {
         [Then(@"the course is created")]
         public void ThenTheCourseIsCreated()
