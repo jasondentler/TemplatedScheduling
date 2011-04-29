@@ -134,5 +134,10 @@ namespace ISIS.Domain.Tests
             return GetEvents().Count() == CheckedEventCount;
         }
 
+        public static bool NoEvents()
+        {
+            return !GetEvents().Any();
+        }
+
     }
 }

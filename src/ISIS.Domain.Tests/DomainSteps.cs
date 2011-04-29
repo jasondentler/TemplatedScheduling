@@ -11,5 +11,12 @@ namespace ISIS.Domain.Tests
         {
             DomainHelper.AllEventsChecked().Should().Be.True();
         }
+
+        [Then(@"it does nothing")]
+        public void ThenItDoesNothing()
+        {
+            DomainHelper.NoEvents().Should().Be.True();
+        }
+
     }
 }

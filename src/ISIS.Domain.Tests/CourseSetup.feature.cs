@@ -83,12 +83,159 @@ this.ScenarioSetup(scenarioInfo);
 #line 13
  testRunner.Given("I have created a new course BIOL 1301 \"Introductory Biology\"");
 #line 14
- testRunner.When("I change the course title to \"Introduction to Biology\"");
+ testRunner.When("I change the course title to \"New Title\"");
 #line 15
- testRunner.Then("the course title is changed from \"Introductory Biology\" to \"Introduction to Biolo" +
-                    "gy\"");
+ testRunner.Then("the course title is changed from \"Introductory Biology\" to \"New Title\"");
 #line 16
  testRunner.And("it does nothing else");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Change course title to the same title")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void ChangeCourseTitleToTheSameTitle()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Change course title to the same title", new string[] {
+                        "domain"});
+#line 19
+this.ScenarioSetup(scenarioInfo);
+#line 20
+ testRunner.Given("I have created a new course BIOL 1301 \"Introductory Biology\"");
+#line 21
+ testRunner.When("I change the course title to \"Introductory Biology\"");
+#line 22
+ testRunner.Then("it does nothing");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Set the course CIP")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void SetTheCourseCIP()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Set the course CIP", new string[] {
+                        "domain"});
+#line 25
+this.ScenarioSetup(scenarioInfo);
+#line 26
+ testRunner.Given("I have created a new course");
+#line 27
+ testRunner.When("I change the course CIP to 12.3456");
+#line 28
+ testRunner.Then("the course CIP is set to 12.3456");
+#line 29
+ testRunner.And("it does nothing else");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Set the course 10-digit CIP")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void SetTheCourse10_DigitCIP()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Set the course 10-digit CIP", new string[] {
+                        "domain"});
+#line 32
+this.ScenarioSetup(scenarioInfo);
+#line 33
+ testRunner.Given("I have created a new course");
+#line 34
+ testRunner.When("I change the course CIP to 1234567890");
+#line 35
+ testRunner.Then("the course CIP is set to 1234567890");
+#line 36
+ testRunner.And("it does nothing else");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Set the course CIP to the same thing")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void SetTheCourseCIPToTheSameThing()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Set the course CIP to the same thing", new string[] {
+                        "domain"});
+#line 39
+this.ScenarioSetup(scenarioInfo);
+#line 40
+ testRunner.Given("I have created a new course");
+#line 41
+ testRunner.And("I have changed the course CIP to 12.3456");
+#line 42
+ testRunner.When("I change the course CIP to 12.3456");
+#line 43
+ testRunner.Then("it does nothing");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Set the course description")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void SetTheCourseDescription()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Set the course description", new string[] {
+                        "domain"});
+#line 46
+this.ScenarioSetup(scenarioInfo);
+#line 47
+ testRunner.Given("I have created a new course");
+#line 48
+ testRunner.When("I change the course description to \"Description goes here\"");
+#line 49
+ testRunner.Then("the course description is set to \"Description goes here\"");
+#line 50
+ testRunner.And("it does nothing else");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Change the course description")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void ChangeTheCourseDescription()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Change the course description", new string[] {
+                        "domain"});
+#line 53
+this.ScenarioSetup(scenarioInfo);
+#line 54
+ testRunner.Given("I have created a new course");
+#line 55
+ testRunner.And("I have changed the course description to \"Description goes here\"");
+#line 56
+ testRunner.When("I change the course description to \"New description goes here\"");
+#line 57
+ testRunner.Then("the course description is changed from \"Description goes here\" to \"New descriptio" +
+                    "n goes here\"");
+#line 58
+ testRunner.And("it does nothing else");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Change the course description to the same thing")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void ChangeTheCourseDescriptionToTheSameThing()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Change the course description to the same thing", new string[] {
+                        "domain"});
+#line 61
+this.ScenarioSetup(scenarioInfo);
+#line 62
+ testRunner.Given("I have created a new course");
+#line 63
+ testRunner.And("I have changed the course description to \"Description goes here\"");
+#line 64
+ testRunner.When("I change the course description to \"Description goes here\"");
+#line 65
+ testRunner.Then("it does nothing");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

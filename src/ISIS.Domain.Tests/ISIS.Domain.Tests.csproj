@@ -71,7 +71,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CourseSetup.feature</DependentUpon>
     </Compile>
-    <Compile Include="CourseSetupSteps.cs" />
+    <Compile Include="CourseSetupGiven.cs" />
+    <Compile Include="CourseSetupThen.cs" />
+    <Compile Include="CourseSetupWhen.cs" />
     <Compile Include="DomainHelper.cs" />
     <Compile Include="DomainSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

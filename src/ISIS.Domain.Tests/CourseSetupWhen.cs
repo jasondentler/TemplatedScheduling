@@ -1,0 +1,48 @@
+﻿using System;
+using ISIS.Commands;
+using TechTalk.SpecFlow;
+
+namespace ISIS.Domain.Tests
+{
+    [Binding]
+    public class CourseSetupWhen
+    {
+
+        [When(@"I create a new course ([A-Z]{4}) (\d{4}) ""(.*)""")]
+        public void WhenICreateANewCourse(
+            string rubric,
+            string number,
+            string title)
+        {
+            DomainHelper.When(new CreateCourse(Guid.NewGuid(), rubric, number, title));
+        }
+
+        [When(@"I change the course title to ""(.*)""")]
+        public void WhenIChangeTheCourseTitleTo(
+            string newTitle)
+        {
+            var courseId = DomainHelper.Id<Course>();
+            DomainHelper.When(new ChangeCourseTitle(courseId, newTitle));
+        }
+
+        [When(@"I change the course CIP to (\d{2}\.\d{4})")]
+        [When(@"I change the course CIP to (\d{10})")]
+        public void WhenIChangeTheCourseCIPTo(
+            string cip)
+        {
+            var courseId = DomainHelper.Id<Course>();
+            DomainHelper.When(new ChangeCourseCIP(courseId, cip));
+        }
+
+        [When(@"I change the course description to ""(.*)""")]
+        public void WhenIChangeTheCourseDescriptionTo(
+            string newDescription)
+        {
+            var courseId = DomainHelper.Id<Course>();
+            DomainHelper.When(new ChangeCourseDescription(
+                courseId,
+                newDescription));
+        }
+
+    }
+}

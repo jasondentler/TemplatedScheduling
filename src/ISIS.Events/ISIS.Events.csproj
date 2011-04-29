@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CourseDescriptionChanged.cs" />
+    <Compile Include="CourseCIPChanged.cs" />
     <Compile Include="CourseTitleChanged.cs" />
     <Compile Include="CourseCreated.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
