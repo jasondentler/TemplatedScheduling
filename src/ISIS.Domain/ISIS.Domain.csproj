@@ -46,6 +46,7 @@
     <Compile Include="CourseMissingDescriptionException.cs" />
     <Compile Include="Course.cs" />
     <Compile Include="CourseMissingCIPException.cs" />
+    <Compile Include="CourseMissingTitleException.cs" />
     <Compile Include="CourseStatuses.cs" />
     <Compile Include="InvalidAggregateStateException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

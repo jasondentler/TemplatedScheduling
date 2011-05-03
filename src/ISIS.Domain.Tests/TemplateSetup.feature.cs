@@ -62,21 +62,43 @@ namespace ISIS.Domain.Tests
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
- testRunner.Given("I have created a course");
+ testRunner.Given("I have set up a new course");
 #line 8
- testRunner.And("I have set the course CIP to 12.3456");
-#line 9
- testRunner.And("I have set the course description to \"Description goes here\"");
-#line 10
  testRunner.When("I create the template \"Template Label Here\"");
-#line 11
+#line 9
  testRunner.Then("the template is created");
-#line 12
+#line 10
  testRunner.And("the template label is \"Template Label Here\"");
-#line 13
+#line 11
  testRunner.And("the template data matches the course data");
-#line 14
+#line 12
  testRunner.And("it does nothing else");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Template requires course title")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void TemplateRequiresCourseTitle()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Template requires course title", new string[] {
+                        "domain"});
+#line 15
+this.ScenarioSetup(scenarioInfo);
+#line 16
+ testRunner.Given("I have created a course");
+#line 17
+ testRunner.And("I have set the course CIP to 12.3456");
+#line 18
+ testRunner.And("I have set the course description to \"Description goes here\"");
+#line 19
+ testRunner.When("I create the template");
+#line 20
+ testRunner.Then("the aggregate state is invalid");
+#line 21
+ testRunner.And("the message is \"Your attempt to create a template failed because the course is mi" +
+                    "ssing a title.\"");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -88,17 +110,19 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Template requires course CIP", new string[] {
                         "domain"});
-#line 17
+#line 24
 this.ScenarioSetup(scenarioInfo);
-#line 18
+#line 25
  testRunner.Given("I have created a course");
-#line 19
+#line 26
+ testRunner.And("I have renamed the course to \"Course Title Here\"");
+#line 27
  testRunner.And("I have set the course description to \"Description goes here\"");
-#line 20
+#line 28
  testRunner.When("I create the template");
-#line 21
+#line 29
  testRunner.Then("the aggregate state is invalid");
-#line 22
+#line 30
  testRunner.And("the message is \"Your attempt to create a template failed because the course is mi" +
                     "ssing a CIP.\"");
 #line hidden
@@ -107,20 +131,24 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Template requires course description")]
+        [NUnit.Framework.CategoryAttribute("domain")]
         public virtual void TemplateRequiresCourseDescription()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Template requires course description", ((string[])(null)));
-#line 24
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Template requires course description", new string[] {
+                        "domain"});
+#line 33
 this.ScenarioSetup(scenarioInfo);
-#line 25
+#line 34
  testRunner.Given("I have created a course");
-#line 26
+#line 35
+ testRunner.And("I have renamed the course to \"Course Title Here\"");
+#line 36
  testRunner.And("I have set the course CIP to 12.3456");
-#line 27
+#line 37
  testRunner.When("I create the template");
-#line 28
+#line 38
  testRunner.Then("the aggregate state is invalid");
-#line 29
+#line 39
  testRunner.And("the message is \"Your attempt to create a template failed because the course is mi" +
                     "ssing a description.\"");
 #line hidden

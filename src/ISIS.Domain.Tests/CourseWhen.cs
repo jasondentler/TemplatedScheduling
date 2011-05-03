@@ -1,5 +1,4 @@
-﻿using System;
-using ISIS.Commands;
+﻿using ISIS.Commands;
 using TechTalk.SpecFlow;
 
 namespace ISIS.Domain.Tests
@@ -15,15 +14,15 @@ namespace ISIS.Domain.Tests
             string title)
         {
             var courseId = DomainHelper.Id<Course>(rubric, number);
-            DomainHelper.When(new CreateCourse(courseId, rubric, number, title));
+            DomainHelper.When(new CreateCourse(courseId, rubric, number));
         }
 
-        [When(@"I change the course title to ""(.*)""")]
+        [When(@"I rename the course to ""(.*)""")]
         public void WhenIChangeTheCourseTitleTo(
             string newTitle)
         {
             var courseId = DomainHelper.Id<Course>();
-            DomainHelper.When(new ChangeCourseTitle(courseId, newTitle));
+            DomainHelper.When(new RenameCourse(courseId, newTitle));
         }
 
         [When(@"I change the course CIP to (\d{2}\.\d{4})")]

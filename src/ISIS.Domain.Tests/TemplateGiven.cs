@@ -17,14 +17,14 @@ namespace ISIS.Domain.Tests
             var events = DomainHelper.GetEventStream(courseId);
 
             var courseCreatedEvent = events.OfType<CourseCreated>().Single();
-
+            var courseTitleEvent = events.OfType<CourseRenamed>().Last();
             var courseCIPEvent = events.OfType<CourseCIPChanged>().Last();
             var courseDescriptionEvent = events.OfType<CourseDescriptionChanged>().Last();
 
             DomainHelper.Given<Template>(
                 new TemplateCreated(templateId, templateLabel, courseId,
                                     courseCreatedEvent.Rubric, courseCreatedEvent.CourseNumber,
-                                    courseCreatedEvent.Title,
+                                    courseTitleEvent.NewTitle,
                                     courseCIPEvent.NewCIP,
                                     courseDescriptionEvent.NewDescription));
         }
@@ -36,9 +36,7 @@ namespace ISIS.Domain.Tests
             const string cip = "12.3456";
             const string description = "Description goes here";
             var courseGiven = new CourseGiven();
-            courseGiven.GivenIHaveCreatedANewCourse();
-            courseGiven.GivenIHaveChangedTheCourseCIPTo(cip);
-            courseGiven.GivenIHaveChangedTheCourseDescriptionTo(description);
+            courseGiven.GivenIHaveSetUpANewCourse();
             GivenIHaveCreatedTheTemplate("Template Label");
         }
 

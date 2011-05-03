@@ -17,17 +17,17 @@ namespace ISIS.Domain
         {
         }
         
-        public Course(Guid courseId, string rubric, string courseNumber, string title)
+        public Course(Guid courseId, string rubric, string courseNumber)
             : base(courseId)
         {
-            ApplyEvent(new CourseCreated(EventSourceId, rubric, courseNumber, title));
+            ApplyEvent(new CourseCreated(EventSourceId, rubric, courseNumber));
         }
 
 
         public void ChangeTitle(string newTitle)
         {
             if (_title != newTitle)
-                ApplyEvent(new CourseTitleChanged(
+                ApplyEvent(new CourseRenamed(
                                EventSourceId,
                                _title,
                                newTitle));
@@ -69,10 +69,9 @@ namespace ISIS.Domain
         {
             _rubric = @event.Rubric;
             _courseNumber = @event.CourseNumber;
-            _title = @event.Title;
         }
 
-        protected void On(CourseTitleChanged @event)
+        protected void On(CourseRenamed @event)
         {
             _title = @event.NewTitle;
         }

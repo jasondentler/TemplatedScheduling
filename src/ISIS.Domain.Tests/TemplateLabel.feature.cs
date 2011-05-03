@@ -62,18 +62,14 @@ namespace ISIS.Domain.Tests
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.Given("I have created a course");
+ testRunner.Given("I have set up a new course");
 #line 9
- testRunner.And("I have set the course CIP to 12.3456");
-#line 10
- testRunner.And("I have set the course description to \"Description goes here\"");
-#line 11
  testRunner.And("I have created the template \"Template Label Here\"");
-#line 12
+#line 10
  testRunner.When("I rename the template to \"New template label\"");
-#line 13
- testRunner.Then("the template label is changed");
-#line 14
+#line 11
+ testRunner.Then("the template is renamed from \"Template Label Here\" to \"New template label\"");
+#line 12
  testRunner.And("it does nothing else");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -86,19 +82,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Change the template label to the same", new string[] {
                         "domain"});
-#line 17
+#line 15
 this.ScenarioSetup(scenarioInfo);
-#line 18
- testRunner.Given("I have created a course");
-#line 19
- testRunner.And("I have set the course CIP to 12.3456");
-#line 20
- testRunner.And("I have set the course description to \"Description goes here\"");
-#line 21
+#line 16
+ testRunner.Given("I have set up a new course");
+#line 17
  testRunner.And("I have created the template \"Template Label Here\"");
-#line 22
+#line 18
  testRunner.When("I rename the template to \"Template Label Here\"");
-#line 23
+#line 19
  testRunner.Then("it does nothing");
 #line hidden
             testRunner.CollectScenarioErrors();

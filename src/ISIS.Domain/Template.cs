@@ -8,6 +8,7 @@ namespace ISIS.Domain
     {
 
         private CourseStatuses _status;
+        private string _label;
 
         private Template()
         {
@@ -17,6 +18,9 @@ namespace ISIS.Domain
             : base(templateId)
         {
             var courseData = course.GetCourseData();
+
+            if (string.IsNullOrEmpty(courseData.Title))
+                throw new CourseMissingTitleException();
 
             if (string.IsNullOrEmpty(courseData.CIP))
                 throw new CourseMissingCIPException();
@@ -38,6 +42,8 @@ namespace ISIS.Domain
 
         public void Rename(string newLabel)
         {
+            if (_label != newLabel)
+                ApplyEvent(new TemplateRenamed(EventSourceId, _label, newLabel));
         }
 
         public void Activate()
@@ -66,6 +72,12 @@ namespace ISIS.Domain
 
         protected void On(TemplateCreated @event)
         {
+            _label = @event.Label;
+        }
+
+        protected void On(TemplateRenamed @event)
+        {
+            _label = @event.NewLabel;
         }
 
         protected void On(TemplateActivated @event)

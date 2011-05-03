@@ -5,19 +5,15 @@
 
 @domain
 Scenario: Change the template label
-	Given I have created a course
-	And I have set the course CIP to 12.3456
-	And I have set the course description to "Description goes here"
+	Given I have set up a new course
 	And I have created the template "Template Label Here"
 	When I rename the template to "New template label"
-	Then the template label is changed
+	Then the template is renamed from "Template Label Here" to "New template label"
 	And it does nothing else
 
 @domain
 Scenario: Change the template label to the same 
-	Given I have created a course
-	And I have set the course CIP to 12.3456
-	And I have set the course description to "Description goes here"
+	Given I have set up a new course
 	And I have created the template "Template Label Here"
 	When I rename the template to "Template Label Here"
 	Then it does nothing

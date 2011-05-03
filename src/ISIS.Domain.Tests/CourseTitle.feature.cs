@@ -53,20 +53,20 @@ namespace ISIS.Domain.Tests
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Change course title")]
+        [NUnit.Framework.DescriptionAttribute("Rename the course")]
         [NUnit.Framework.CategoryAttribute("domain")]
-        public virtual void ChangeCourseTitle()
+        public virtual void RenameTheCourse()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Change course title", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Rename the course", new string[] {
                         "domain"});
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
- testRunner.Given("I have created a new course BIOL 1301 \"Introductory Biology\"");
+ testRunner.Given("I have created a new course BIOL 1301");
 #line 8
- testRunner.When("I change the course title to \"New Title\"");
+ testRunner.When("I rename the course to \"New Title\"");
 #line 9
- testRunner.Then("the course title is changed from \"Introductory Biology\" to \"New Title\"");
+ testRunner.Then("the course is renamed to \"New Title\"");
 #line 10
  testRunner.And("it does nothing else");
 #line hidden
@@ -74,19 +74,44 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Change course title to the same title")]
+        [NUnit.Framework.DescriptionAttribute("Rename the course to a different title")]
         [NUnit.Framework.CategoryAttribute("domain")]
-        public virtual void ChangeCourseTitleToTheSameTitle()
+        public virtual void RenameTheCourseToADifferentTitle()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Change course title to the same title", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Rename the course to a different title", new string[] {
                         "domain"});
 #line 13
 this.ScenarioSetup(scenarioInfo);
 #line 14
- testRunner.Given("I have created a new course BIOL 1301 \"Introductory Biology\"");
+ testRunner.Given("I have created a new course BIOL 1301");
 #line 15
- testRunner.When("I change the course title to \"Introductory Biology\"");
+ testRunner.And("I have renamed the course to \"Introductory Biology\"");
 #line 16
+ testRunner.When("I rename the course to \"New Title\"");
+#line 17
+ testRunner.Then("the course is renamed from \"Introductory Biology\" to \"New Title\"");
+#line 18
+ testRunner.And("it does nothing else");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Rename the course to the same")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void RenameTheCourseToTheSame()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Rename the course to the same", new string[] {
+                        "domain"});
+#line 21
+this.ScenarioSetup(scenarioInfo);
+#line 22
+ testRunner.Given("I have created a new course BIOL 1301");
+#line 23
+ testRunner.And("I have renamed the course to \"Introductory Biology\"");
+#line 24
+ testRunner.When("I rename the course to \"Introductory Biology\"");
+#line 25
  testRunner.Then("it does nothing");
 #line hidden
             testRunner.CollectScenarioErrors();

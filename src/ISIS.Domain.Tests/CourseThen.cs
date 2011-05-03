@@ -14,12 +14,20 @@ namespace ISIS.Domain.Tests
             e.CourseId.Should().Be.EqualTo(DomainHelper.Id<Course>());
         }
 
-        [Then(@"the course title is changed from ""(.*)"" to ""(.*)""")]
-        public void ThenTheCourseTitleIsChanged(
+        [Then(@"the course is renamed to ""(.*)""")]
+        public void ThenTheCourseIsRenamedTo(
+            string newTitle)
+        {
+            ThenTheCourseIsRenamedFromTo(null, newTitle);
+        }
+
+
+        [Then(@"the course is renamed from ""(.*)"" to ""(.*)""")]
+        public void ThenTheCourseIsRenamedFromTo(
             string oldTitle,
             string newTitle)
         {
-            var e = DomainHelper.Then<CourseTitleChanged>();
+            var e = DomainHelper.Then<CourseRenamed>();
             e.OldTitle.Should().Be.EqualTo(oldTitle);
             e.NewTitle.Should().Be.EqualTo(newTitle);
         }

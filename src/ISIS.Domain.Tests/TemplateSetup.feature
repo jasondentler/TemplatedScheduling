@@ -4,9 +4,7 @@
 
 @domain
 Scenario: Create a template
-	Given I have created a course
-	And I have set the course CIP to 12.3456
-	And I have set the course description to "Description goes here"
+	Given I have set up a new course
 	When I create the template "Template Label Here"
 	Then the template is created
 	And the template label is "Template Label Here"
@@ -14,15 +12,27 @@ Scenario: Create a template
 	And it does nothing else
 
 @domain
+Scenario: Template requires course title
+	Given I have created a course
+	And I have set the course CIP to 12.3456
+	And I have set the course description to "Description goes here"
+	When I create the template
+	Then the aggregate state is invalid
+	And the message is "Your attempt to create a template failed because the course is missing a title."
+
+@domain
 Scenario: Template requires course CIP
 	Given I have created a course
+	And I have renamed the course to "Course Title Here"
 	And I have set the course description to "Description goes here"
 	When I create the template
 	Then the aggregate state is invalid
 	And the message is "Your attempt to create a template failed because the course is missing a CIP."
 
+@domain
 Scenario: Template requires course description
 	Given I have created a course
+	And I have renamed the course to "Course Title Here"
 	And I have set the course CIP to 12.3456
 	When I create the template
 	Then the aggregate state is invalid

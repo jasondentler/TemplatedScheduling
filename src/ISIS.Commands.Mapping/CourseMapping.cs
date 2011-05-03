@@ -20,10 +20,10 @@ namespace ISIS.Commands.Mapping
 
             Map.Command<CreateCourse>()
                 .ToAggregateRoot<Course>()
-                .CreateNew(cmd => new Course(cmd.CourseId, cmd.Rubric, cmd.CourseNumber, cmd.Title))
+                .CreateNew(cmd => new Course(cmd.CourseId, cmd.Rubric, cmd.CourseNumber))
                 .RegisterWith(_commandService);
 
-            Map.Command<ChangeCourseTitle>()
+            Map.Command<RenameCourse>()
                 .ToAggregateRoot<Course>()
                 .WithId(cmd => cmd.CourseId)
                 .ToCallOn((cmd, course) => course.ChangeTitle(cmd.NewTitle))

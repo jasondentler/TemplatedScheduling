@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TemplateRenamed.cs" />
     <Compile Include="CourseData.cs" />
     <Compile Include="TemplateCreated.cs" />
     <Compile Include="TemplateMadeObsolete.cs" />
@@ -48,7 +49,7 @@
     <Compile Include="TemplateActivated.cs" />
     <Compile Include="CourseDescriptionChanged.cs" />
     <Compile Include="CourseCIPChanged.cs" />
-    <Compile Include="CourseTitleChanged.cs" />
+    <Compile Include="CourseRenamed.cs" />
     <Compile Include="CourseCreated.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

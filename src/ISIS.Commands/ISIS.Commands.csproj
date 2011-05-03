@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChangeCourseTitle.cs" />
+    <Compile Include="RenameCourse.cs" />
     <Compile Include="ChangeCourseCIP.cs" />
     <Compile Include="ChangeCourseDescription.cs" />
     <Compile Include="ActivateTemplate.cs" />

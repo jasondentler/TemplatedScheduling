@@ -24,6 +24,15 @@ namespace ISIS.Domain.Tests
             e.Label.Should().Be.EqualTo(templateLabel);
         }
 
+        [Then(@"the template is renamed from ""(.*)"" to ""(.*)""")]
+        public void ThenTheTemplateIsRenamed(
+            string oldLabel, string newLabel)
+        {
+            var e = DomainHelper.Then<TemplateRenamed>();
+            e.OldLabel.Should().Be.EqualTo(oldLabel);
+            e.NewLabel.Should().Be.EqualTo(newLabel);
+        }
+
 
         [Then(@"the template is activated")]
         public void ThenTheCourseIsActivated()
@@ -59,12 +68,13 @@ namespace ISIS.Domain.Tests
             var e = DomainHelper.Then<TemplateCreated>();
             var events = DomainHelper.GetEventStream(e.CourseId);
             var courseCreatedEvent = events.OfType<CourseCreated>().Single();
-            var courseCIPEvent = events.OfType<CourseCIPChanged>().Single();
-            var courseDescriptionEvent = events.OfType<CourseDescriptionChanged>().Single();
+            var courseRenamedEvent = events.OfType<CourseRenamed>().Last();
+            var courseCIPEvent = events.OfType<CourseCIPChanged>().Last();
+            var courseDescriptionEvent = events.OfType<CourseDescriptionChanged>().Last();
 
             e.Rubric.Should().Be.EqualTo(courseCreatedEvent.Rubric);
             e.CourseNumber.Should().Be.EqualTo(courseCreatedEvent.CourseNumber);
-            e.Title.Should().Be.EqualTo(courseCreatedEvent.Title);
+            e.Title.Should().Be.EqualTo(courseRenamedEvent.NewTitle);
             e.CIP.Should().Be.EqualTo(courseCIPEvent.NewCIP);
             e.Description.Should().Be.EqualTo(courseDescriptionEvent.NewDescription);
         }

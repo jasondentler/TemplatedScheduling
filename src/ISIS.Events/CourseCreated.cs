@@ -8,14 +8,12 @@ namespace ISIS.Events
         public Guid CourseId { get; private set; }
         public string Rubric { get; private set; }
         public string CourseNumber { get; private set; }
-        public string Title { get; private set; }
 
-        public CourseCreated(Guid courseId, string rubric, string courseNumber, string title)
+        public CourseCreated(Guid courseId, string rubric, string courseNumber)
         {
             CourseId = courseId;
             Rubric = rubric;
             CourseNumber = courseNumber;
-            Title = title;
         }
     }
 }
