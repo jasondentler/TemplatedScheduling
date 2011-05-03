@@ -76,6 +76,16 @@ namespace ISIS.Domain.Tests
             DomainHelper.When(cmd);
         }
 
+        [When(@"I change the template's course type to ""(.*)""")]
+        public void WhenIChangeTheTemplateSCourseTypeTo(
+            string courseTypeString)
+        {
+            var map = new EnumData<CourseTypes>().GetReverseDictionary();
+            var creditType = (CourseTypes)map[courseTypeString];
+            var templateId = DomainHelper.Id<Template>();
+            var cmd = new ChangeTemplateCourseType(templateId, creditType);
+            DomainHelper.When(cmd);
+        }
 
 
     }

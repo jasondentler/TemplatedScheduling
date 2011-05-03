@@ -1,4 +1,4 @@
-﻿namespace ISIS
+﻿namespace ISIS.Exceptions.ChangeTemplateCreditType
 {
     public class CourseIsNotCEException : InvalidAggregateStateException
     {

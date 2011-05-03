@@ -1,4 +1,5 @@
-﻿using SharpTestsEx;
+﻿using ISIS.Exceptions;
+using SharpTestsEx;
 using TechTalk.SpecFlow;
 
 namespace ISIS.Domain.Tests

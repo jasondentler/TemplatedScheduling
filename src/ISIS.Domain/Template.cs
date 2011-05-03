@@ -1,5 +1,9 @@
 ﻿using System;
 using ISIS.Events;
+using ISIS.Exceptions;
+using ISIS.Exceptions.ChangeTemplateCourseType;
+using ISIS.Exceptions.ChangeTemplateCreditType;
+using ISIS.Exceptions.CreateTemplate;
 using Ncqrs.Domain;
 
 namespace ISIS.Domain
@@ -101,6 +105,14 @@ namespace ISIS.Domain
 
         public void ChangeCourseType(CourseTypes courseType)
         {
+            if (_isContinuingEducation)
+                throw new CourseIsContinuingEducationException();
+
+            if (courseType == CourseTypes.CE || courseType == CourseTypes.CWECM)
+                throw new ReservedCourseTypeException();
+
+            if (_courseType != courseType)
+                ApplyEvent(new TemplateCourseTypeChanged(EventSourceId, courseType));
         }
 
 

@@ -40,15 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CourseIsNotCEException.cs" />
-    <Compile Include="CourseMissingCIPException.cs" />
-    <Compile Include="CourseMissingDescriptionException.cs" />
-    <Compile Include="CourseMissingTitleException.cs" />
+    <Compile Include="Exceptions\ChangeTemplateCourseType\CourseIsContinuingEducationException.cs" />
+    <Compile Include="Exceptions\ChangeTemplateCourseType\ReservedCourseTypeException.cs" />
+    <Compile Include="Exceptions\ChangeTemplateCreditType\CourseIsNotCEException.cs" />
+    <Compile Include="Exceptions\CreateTemplate\CourseMissingCIPException.cs" />
+    <Compile Include="Exceptions\CreateTemplate\CourseMissingDescriptionException.cs" />
+    <Compile Include="Exceptions\CreateTemplate\CourseMissingTitleException.cs" />
     <Compile Include="CourseStatuses.cs" />
     <Compile Include="CourseTypes.cs" />
     <Compile Include="CreditTypes.cs" />
     <Compile Include="EnumData.cs" />
-    <Compile Include="InvalidAggregateStateException.cs" />
+    <Compile Include="Exceptions\InvalidAggregateStateException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

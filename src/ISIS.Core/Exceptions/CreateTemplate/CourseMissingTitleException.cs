@@ -1,4 +1,4 @@
-﻿namespace ISIS
+﻿namespace ISIS.Exceptions.CreateTemplate
 {
     public class CourseMissingTitleException : InvalidAggregateStateException
     {

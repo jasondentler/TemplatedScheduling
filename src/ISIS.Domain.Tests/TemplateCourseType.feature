@@ -5,7 +5,7 @@
 @domain
 Scenario: Cant set course type on a CE template
 	Given I have created a CE course and template
-	When I change the template's course type to "ACAD"
+	When I change the template's course type to "General Academic"
 	Then the aggregate state is invalid
 	And the message is "Your attempt to change the course type failed because this is a continuing education course."
 	

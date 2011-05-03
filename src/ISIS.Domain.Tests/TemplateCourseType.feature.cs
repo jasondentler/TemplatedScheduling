@@ -64,7 +64,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 7
  testRunner.Given("I have created a CE course and template");
 #line 8
- testRunner.When("I change the template\'s course type to \"ACAD\"");
+ testRunner.When("I change the template\'s course type to \"General Academic\"");
 #line 9
  testRunner.Then("the aggregate state is invalid");
 #line 10
