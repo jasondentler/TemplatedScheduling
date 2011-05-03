@@ -13,6 +13,7 @@ namespace ISIS.Domain
         private string _shortTitle;
         private string _cip;
         private string _description;
+        private bool _isContinuingEducation;
 
         private Course()
         {
@@ -21,9 +22,8 @@ namespace ISIS.Domain
         public Course(Guid courseId, string rubric, string courseNumber)
             : base(courseId)
         {
-            ApplyEvent(new CourseCreated(EventSourceId, rubric, courseNumber));
+            ApplyEvent(new CourseCreated(EventSourceId, rubric, courseNumber, IsContinuingEducation(courseNumber)));
         }
-
 
         public void ChangeTitle(string newTitle, string newShortTitle)
         {
@@ -63,7 +63,8 @@ namespace ISIS.Domain
                            CourseNumber = _courseNumber,
                            Title = _title,
                            CIP = _cip,
-                           Description = _description
+                           Description = _description,
+                           IsContinuingEducation = _isContinuingEducation
                        };
         }
 
@@ -72,6 +73,7 @@ namespace ISIS.Domain
         {
             _rubric = @event.Rubric;
             _courseNumber = @event.CourseNumber;
+            _isContinuingEducation = @event.IsContinuingEducation;
         }
 
         protected void On(CourseRenamed @event)
@@ -88,6 +90,16 @@ namespace ISIS.Domain
         protected void On(CourseDescriptionChanged @event)
         {
             _description = @event.NewDescription;
+        }
+
+        private static int GetCreditHours(string courseNumber)
+        {
+            return int.Parse(courseNumber.Substring(1, 1));
+        }
+
+        private static bool IsContinuingEducation(string courseNumber)
+        {
+            return GetCreditHours(courseNumber) == 0;
         }
 
     }

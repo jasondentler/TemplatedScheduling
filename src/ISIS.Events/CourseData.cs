@@ -12,6 +12,7 @@ namespace ISIS.Events
         public string Title;
         public string CIP;
         public string Description;
+        public bool IsContinuingEducation;
 
     }
 

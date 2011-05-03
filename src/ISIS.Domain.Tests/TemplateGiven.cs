@@ -26,7 +26,8 @@ namespace ISIS.Domain.Tests
                                     courseCreatedEvent.Rubric, courseCreatedEvent.CourseNumber,
                                     courseTitleEvent.NewTitle,
                                     courseCIPEvent.NewCIP,
-                                    courseDescriptionEvent.NewDescription));
+                                    courseDescriptionEvent.NewDescription,
+                                    courseCreatedEvent.IsContinuingEducation));
         }
 
 
@@ -37,6 +38,15 @@ namespace ISIS.Domain.Tests
             courseGiven.GivenIHaveSetUpANewCourse();
             GivenIHaveCreatedTheTemplate("Template Label");
         }
+
+        [Given(@"I have created a CE course and template")]
+        public void GivenIHaveCreatedACECourseAndTemplate()
+        {
+            var courseGiven = new CourseGiven();
+            courseGiven.GivenIHaveSetUpANewCECourse();
+            GivenIHaveCreatedTheTemplate("Template Label");
+        }
+
 
         [Given(@"I have activated the template")]
         public void GivenIHaveActivatedTheTemplate()
@@ -72,6 +82,30 @@ namespace ISIS.Domain.Tests
             var templateId = DomainHelper.Id<Template>();
             DomainHelper.Given<Template>(new TemplateMadeObsolete(templateId));
         }
+
+        [Given(@"I have changed the template's credit type to ""(.*)""")]
+        public void GivenIHaveChangedTheTemplateSCreditTypeTo(
+            string creditTypeString)
+        {
+            var map = new EnumData<CreditTypes>().GetReverseDictionary();
+            var creditType = (CreditTypes)map[creditTypeString];
+            var templateId = DomainHelper.Id<Template>();
+            var @event = new TemplateCreditTypeChanged(templateId, creditType);
+            DomainHelper.Given<Template>(@event);
+        }
+
+
+        [Given(@"I have changed the template's course type to ""(.*)""")]
+        public void GivenIHaveChangedTheTemplateSCourseTypeTo(
+            string courseTypeString)
+        {
+            var map = new EnumData<CourseTypes>().GetReverseDictionary();
+            var courseType = (CourseTypes)map[courseTypeString];
+            var templateId = DomainHelper.Id<Template>();
+            var @event = new TemplateCourseTypeChanged(templateId, courseType);
+            DomainHelper.Given<Template>(@event);
+        }
+
 
     }
 }

@@ -7,11 +7,10 @@ namespace ISIS.Domain.Tests
     public class CourseWhen
     {
 
-        [When(@"I create a new course ([A-Z]{4}) (\d{4}) ""(.*)""")]
+        [When(@"I create a new course ([A-Z]{4}) (\d{4})")]
         public void WhenICreateANewCourse(
             string rubric,
-            string number,
-            string title)
+            string number)
         {
             var courseId = DomainHelper.Id<Course>(rubric, number);
             DomainHelper.When(new CreateCourse(courseId, rubric, number));

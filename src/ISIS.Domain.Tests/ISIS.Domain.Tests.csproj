@@ -86,6 +86,11 @@
       <DependentUpon>CourseSetup.feature</DependentUpon>
     </Compile>
     <Compile Include="CourseGiven.cs" />
+    <Compile Include="TemplateCreditType.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TemplateCreditType.feature</DependentUpon>
+    </Compile>
     <Compile Include="TemplateGiven.cs" />
     <Compile Include="TemplateLabel.feature.cs">
       <AutoGen>True</AutoGen>
@@ -115,6 +120,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemplateThen.cs" />
     <Compile Include="TemplateWhen.cs" />
+    <Compile Include="TermGiven.cs" />
+    <Compile Include="TermRename.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TermRename.feature</DependentUpon>
+    </Compile>
+    <Compile Include="TermSetup.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TermSetup.feature</DependentUpon>
+    </Compile>
+    <Compile Include="TermThen.cs" />
+    <Compile Include="TermWhen.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ISIS.Commands.Mapping\ISIS.Commands.Mapping.csproj">
@@ -124,6 +142,10 @@
     <ProjectReference Include="..\ISIS.Commands\ISIS.Commands.csproj">
       <Project>{F54331F7-095D-4A20-8298-99BC38D273B5}</Project>
       <Name>ISIS.Commands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ISIS.Core\ISIS.Core.csproj">
+      <Project>{81142778-6119-4204-BCEE-229BCDDE9413}</Project>
+      <Name>ISIS.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\ISIS.Domain\ISIS.Domain.csproj">
       <Project>{49282460-F7F4-4441-926B-22E7C5C25BC9}</Project>
@@ -148,6 +170,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CourseSetup.feature.cs</LastGenOutput>
     </None>
+    <None Include="TemplateCreditType.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>TemplateCreditType.feature.cs</LastGenOutput>
+    </None>
     <None Include="TemplateLabel.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>TemplateLabel.feature.cs</LastGenOutput>
@@ -165,6 +191,14 @@
       <LastGenOutput>CourseTitle.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="TermRename.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>TermRename.feature.cs</LastGenOutput>
+    </None>
+    <None Include="TermSetup.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>TermSetup.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -12,7 +12,17 @@ namespace ISIS.Domain.Tests
         {
             var e = DomainHelper.Then<CourseCreated>();
             e.CourseId.Should().Be.EqualTo(DomainHelper.Id<Course>());
+            e.IsContinuingEducation.Should().Be.False();
         }
+
+        [Then(@"the CE course is created")]
+        public void ThenTheCECourseIsCreated()
+        {
+            var e = DomainHelper.Then<CourseCreated>();
+            e.CourseId.Should().Be.EqualTo(DomainHelper.Id<Course>());
+            e.IsContinuingEducation.Should().Be.True();
+        }
+
 
         [Then(@"the course is renamed to ""([^""]*)""")]
         public void ThenTheCourseIsRenamedTo(

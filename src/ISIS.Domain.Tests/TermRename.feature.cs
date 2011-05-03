@@ -17,20 +17,20 @@ namespace ISIS.Domain.Tests
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.5.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("New Course Setup")]
-    public partial class NewCourseSetupFeature
+    [NUnit.Framework.DescriptionAttribute("Term Rename")]
+    public partial class TermRenameFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CourseSetup.feature"
+#line 1 "TermRename.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "New Course Setup", "As a scheduler\nI want to setup new courses", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Term Rename", "As a scheduler\nI want to rename terms", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -53,39 +53,41 @@ namespace ISIS.Domain.Tests
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create a new course")]
+        [NUnit.Framework.DescriptionAttribute("Rename a term")]
         [NUnit.Framework.CategoryAttribute("domain")]
-        public virtual void CreateANewCourse()
+        public virtual void RenameATerm()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a new course", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Rename a term", new string[] {
                         "domain"});
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
- testRunner.When("I create a new course BIOL 1301");
+ testRunner.Given("I created a term 211FA \"2011 Fall 16-week\" from 9/1/2011 to 12/1/2011");
 #line 8
- testRunner.Then("the course is created");
+ testRunner.When("I rename the term to \"Fall 2011 16-week\"");
 #line 9
+ testRunner.Then("the term is renamed from \"2011 Fall 16-week\" to \"Fall 2011 16-week\"");
+#line 10
  testRunner.And("it does nothing else");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create a new CE course")]
+        [NUnit.Framework.DescriptionAttribute("Rename a term to the same")]
         [NUnit.Framework.CategoryAttribute("domain")]
-        public virtual void CreateANewCECourse()
+        public virtual void RenameATermToTheSame()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a new CE course", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Rename a term to the same", new string[] {
                         "domain"});
-#line 12
-this.ScenarioSetup(scenarioInfo);
 #line 13
- testRunner.When("I create a new course BIOL 1001");
+this.ScenarioSetup(scenarioInfo);
 #line 14
- testRunner.Then("the CE course is created");
+ testRunner.Given("I created a term 211FA \"2011 Fall 16-week\" from 9/1/2011 to 12/1/2011");
 #line 15
- testRunner.And("it does nothing else");
+ testRunner.When("I rename the term to \"2011 Fall 16-week\"");
+#line 16
+ testRunner.Then("it does nothing");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

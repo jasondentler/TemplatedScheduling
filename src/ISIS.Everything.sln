@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISIS.Domain.Tests", "ISIS.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISIS.Commands.Mapping", "ISIS.Commands.Mapping\ISIS.Commands.Mapping.csproj", "{8FF9D584-856D-4E6A-AC99-F1D677893909}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISIS.Core", "ISIS.Core\ISIS.Core.csproj", "{81142778-6119-4204-BCEE-229BCDDE9413}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{8FF9D584-856D-4E6A-AC99-F1D677893909}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FF9D584-856D-4E6A-AC99-F1D677893909}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FF9D584-856D-4E6A-AC99-F1D677893909}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81142778-6119-4204-BCEE-229BCDDE9413}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81142778-6119-4204-BCEE-229BCDDE9413}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81142778-6119-4204-BCEE-229BCDDE9413}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81142778-6119-4204-BCEE-229BCDDE9413}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

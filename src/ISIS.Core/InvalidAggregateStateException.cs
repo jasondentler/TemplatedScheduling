@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ISIS.Domain
+namespace ISIS
 {
     public class InvalidAggregateStateException : ApplicationException
     {

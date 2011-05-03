@@ -13,10 +13,11 @@ namespace ISIS.Events
         public string Title { get; private set; }
         public string CIP { get; private set; }
         public string Description { get; private set; }
+        public bool IsContinuingEducation { get; private set; }
 
         public TemplateCreated(Guid templateId, string label, Guid courseId, 
             string rubric, string courseNumber, string title,
-            string cip, string description)
+            string cip, string description, bool isContinuingEducation)
         {
             TemplateId = templateId;
             Label = label;
@@ -26,6 +27,7 @@ namespace ISIS.Events
             Title = title;
             CIP = cip;
             Description = description;
+            IsContinuingEducation = isContinuingEducation;
         }
 
    }

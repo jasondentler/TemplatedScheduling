@@ -17,20 +17,20 @@ namespace ISIS.Domain.Tests
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.5.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("New Course Setup")]
-    public partial class NewCourseSetupFeature
+    [NUnit.Framework.DescriptionAttribute("Term Setup")]
+    public partial class TermSetupFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CourseSetup.feature"
+#line 1 "TermSetup.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "New Course Setup", "As a scheduler\nI want to setup new courses", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Term Setup", "As a scheduler\nI want to set up new terms", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -53,38 +53,27 @@ namespace ISIS.Domain.Tests
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create a new course")]
+        [NUnit.Framework.DescriptionAttribute("Create a term")]
         [NUnit.Framework.CategoryAttribute("domain")]
-        public virtual void CreateANewCourse()
+        public virtual void CreateATerm()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a new course", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a term", new string[] {
                         "domain"});
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
- testRunner.When("I create a new course BIOL 1301");
+ testRunner.When("I create a term 211FA \"2011 Fall 16-week\" from 9/1/2011 to 12/1/2011");
 #line 8
- testRunner.Then("the course is created");
+ testRunner.Then("the term is created");
 #line 9
- testRunner.And("it does nothing else");
-#line hidden
-            testRunner.CollectScenarioErrors();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create a new CE course")]
-        [NUnit.Framework.CategoryAttribute("domain")]
-        public virtual void CreateANewCECourse()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a new CE course", new string[] {
-                        "domain"});
+ testRunner.And("the term abbreviation is 211FA");
+#line 10
+ testRunner.And("the term name is \"2011 Fall 16-week\"");
+#line 11
+ testRunner.And("the term start date is 9/1/2011");
 #line 12
-this.ScenarioSetup(scenarioInfo);
+ testRunner.And("the term end date is 12/1/2011");
 #line 13
- testRunner.When("I create a new course BIOL 1001");
-#line 14
- testRunner.Then("the CE course is created");
-#line 15
  testRunner.And("it does nothing else");
 #line hidden
             testRunner.CollectScenarioErrors();

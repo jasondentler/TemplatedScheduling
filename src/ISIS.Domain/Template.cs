@@ -9,6 +9,9 @@ namespace ISIS.Domain
 
         private CourseStatuses _status;
         private string _label;
+        private CourseTypes _courseType;
+        private CreditTypes _creditType;
+        private bool _isContinuingEducation;
 
         private Template()
         {
@@ -27,7 +30,7 @@ namespace ISIS.Domain
 
             if (string.IsNullOrEmpty(courseData.Description))
                 throw new CourseMissingDescriptionException();
-            
+
             var @event = new TemplateCreated(
                 EventSourceId,
                 label,
@@ -36,7 +39,8 @@ namespace ISIS.Domain
                 courseData.CourseNumber,
                 courseData.Title,
                 courseData.CIP,
-                courseData.Description);
+                courseData.Description,
+                courseData.IsContinuingEducation);
             ApplyEvent(@event);
         }
 
@@ -70,9 +74,36 @@ namespace ISIS.Domain
                 ApplyEvent(new TemplateMadeObsolete(EventSourceId));
         }
 
+        public void ChangeCreditType(CreditTypes creditType)
+        {
+            if (_creditType == creditType)
+                return;
+
+            if (!_isContinuingEducation)
+                throw new CourseIsNotCEException();
+
+            switch (creditType)
+            {
+                case CreditTypes.ContractTrainingFunded:
+                case CreditTypes.GrantFunded:
+                case CreditTypes.WorkforceFunded:
+                    ApplyEvent(new TemplateCreditTypeChanged(EventSourceId, creditType));
+                    if (_courseType != CourseTypes.CWECM)
+                        ApplyEvent(new TemplateCourseTypeChanged(EventSourceId, CourseTypes.CWECM));
+                    break;
+                default:
+                    ApplyEvent(new TemplateCreditTypeChanged(EventSourceId, creditType));
+                    if (_courseType != CourseTypes.CE)
+                        ApplyEvent(new TemplateCourseTypeChanged(EventSourceId, CourseTypes.CE));
+                    break;
+            }
+        }
+
+
         protected void On(TemplateCreated @event)
         {
             _label = @event.Label;
+            _isContinuingEducation = @event.IsContinuingEducation;
         }
 
         protected void On(TemplateRenamed @event)
@@ -100,6 +131,15 @@ namespace ISIS.Domain
             _status = CourseStatuses.Obsolete;
         }
 
+        protected void On(TemplateCreditTypeChanged @event)
+        {
+            _creditType = @event.CreditType;
+        }
+
+        protected void On(TemplateCourseTypeChanged @event)
+        {
+            _courseType = @event.CourseType;
+        }
 
     }
 }

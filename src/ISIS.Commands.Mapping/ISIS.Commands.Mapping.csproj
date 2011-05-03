@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TermMapping.cs" />
     <Compile Include="CourseMapping.cs" />
     <Compile Include="IMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -52,6 +53,10 @@
     <ProjectReference Include="..\ISIS.Commands\ISIS.Commands.csproj">
       <Project>{F54331F7-095D-4A20-8298-99BC38D273B5}</Project>
       <Name>ISIS.Commands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ISIS.Core\ISIS.Core.csproj">
+      <Project>{81142778-6119-4204-BCEE-229BCDDE9413}</Project>
+      <Name>ISIS.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\ISIS.Domain\ISIS.Domain.csproj">
       <Project>{49282460-F7F4-4441-926B-22E7C5C25BC9}</Project>

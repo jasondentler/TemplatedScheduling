@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{E3AD9637-CBDD-4167-ABBD-D49D5187051C}</ProjectGuid>
+    <ProjectGuid>{81142778-6119-4204-BCEE-229BCDDE9413}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ISIS.Events</RootNamespace>
-    <AssemblyName>ISIS.Events</AssemblyName>
+    <RootNamespace>ISIS</RootNamespace>
+    <AssemblyName>ISIS.Core</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,28 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TemplateCourseTypeChanged.cs" />
-    <Compile Include="TemplateCreditTypeChanged.cs" />
-    <Compile Include="TermRenamed.cs" />
-    <Compile Include="TermCreated.cs" />
-    <Compile Include="TemplateRenamed.cs" />
-    <Compile Include="CourseData.cs" />
-    <Compile Include="TemplateCreated.cs" />
-    <Compile Include="TemplateMadeObsolete.cs" />
-    <Compile Include="TemplateDeactivated.cs" />
-    <Compile Include="TemplateMadePending.cs" />
-    <Compile Include="TemplateActivated.cs" />
-    <Compile Include="CourseDescriptionChanged.cs" />
-    <Compile Include="CourseCIPChanged.cs" />
-    <Compile Include="CourseRenamed.cs" />
-    <Compile Include="CourseCreated.cs" />
+    <Compile Include="CourseIsNotCEException.cs" />
+    <Compile Include="CourseMissingCIPException.cs" />
+    <Compile Include="CourseMissingDescriptionException.cs" />
+    <Compile Include="CourseMissingTitleException.cs" />
+    <Compile Include="CourseStatuses.cs" />
+    <Compile Include="CourseTypes.cs" />
+    <Compile Include="CreditTypes.cs" />
+    <Compile Include="EnumData.cs" />
+    <Compile Include="InvalidAggregateStateException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ISIS.Core\ISIS.Core.csproj">
-      <Project>{81142778-6119-4204-BCEE-229BCDDE9413}</Project>
-      <Name>ISIS.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -65,6 +65,17 @@ namespace ISIS.Domain.Tests
             DomainHelper.When(cmd);
         }
 
+        [When(@"I change the template's credit type to ""(.*)""")]
+        public void WhenIChangeTheTemplateSCreditTypeTo(
+            string creditTypeString)
+        {
+            var map = new EnumData<CreditTypes>().GetReverseDictionary();
+            var creditType = (CreditTypes) map[creditTypeString];
+            var templateId = DomainHelper.Id<Template>();
+            var cmd = new ChangeTemplateCreditType(templateId, creditType);
+            DomainHelper.When(cmd);
+        }
+
 
 
     }

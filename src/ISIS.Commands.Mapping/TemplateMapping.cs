@@ -58,6 +58,12 @@ namespace ISIS.Commands.Mapping
                 .ToCallOn((cmd, template) => template.MakeObsolete())
                 .RegisterWith(_commandService);
 
+            Map.Command<ChangeTemplateCreditType>()
+                .ToAggregateRoot<Template>()
+                .WithId(cmd => cmd.TemplateId)
+                .ToCallOn((cmd, template) => template.ChangeCreditType(cmd.CreditType))
+                .RegisterWith(_commandService);
+
         }
     }
 

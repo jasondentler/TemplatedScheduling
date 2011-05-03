@@ -1,4 +1,4 @@
-﻿namespace ISIS.Domain
+﻿namespace ISIS
 {
     public class CourseMissingDescriptionException : InvalidAggregateStateException
     {

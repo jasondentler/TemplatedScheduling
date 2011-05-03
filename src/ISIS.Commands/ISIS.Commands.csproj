@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChangeTemplateCreditType.cs" />
+    <Compile Include="RenameTerm.cs" />
+    <Compile Include="CreateTerm.cs" />
     <Compile Include="RenameCourse.cs" />
     <Compile Include="ChangeCourseCIP.cs" />
     <Compile Include="ChangeCourseDescription.cs" />
@@ -54,6 +57,12 @@
     <Compile Include="MakeTemplatePending.cs" />
     <Compile Include="CreateCourse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ISIS.Core\ISIS.Core.csproj">
+      <Project>{81142778-6119-4204-BCEE-229BCDDE9413}</Project>
+      <Name>ISIS.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

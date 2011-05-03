@@ -79,6 +79,26 @@ namespace ISIS.Domain.Tests
             e.Description.Should().Be.EqualTo(courseDescriptionEvent.NewDescription);
         }
 
-    
+        [Then(@"the template's credit type is changed to ""(.*)""")]
+        public void ThenTheTemplateSCreditTypeIsChangedTo(
+            string creditTypeString)
+        {
+            var map = new EnumData<CreditTypes>().GetReverseDictionary();
+            var creditType = (CreditTypes) map[creditTypeString];
+            var e = DomainHelper.Then<TemplateCreditTypeChanged>();
+            e.CreditType.Should().Be.EqualTo(creditType);
+        }
+
+        [Then(@"the template's course type is changed to ""(.*)""")]
+        public void ThenTheTemplateSCourseTypeIsChangedTo(
+            string courseTypeString)
+        {
+            var map = new EnumData<CourseTypes>().GetReverseDictionary();
+            var courseType = (CourseTypes) map[courseTypeString];
+            var e = DomainHelper.Then<TemplateCourseTypeChanged>();
+            e.CourseType.Should().Be.EqualTo(courseType);
+        }
+
+
     }
 }

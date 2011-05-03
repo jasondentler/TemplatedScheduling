@@ -12,8 +12,10 @@ namespace ISIS.Domain.Tests
             string rubric,
             string number)
         {
+            var creditHours = number.Substring(1, 1);
+            var isCE = int.Parse(creditHours) == 0;
             var courseId = DomainHelper.Id<Course>(rubric, number);
-            DomainHelper.Given<Course>(new CourseCreated(courseId, rubric, number));
+            DomainHelper.Given<Course>(new CourseCreated(courseId, rubric, number, isCE));
         }
 
         [Given(@"I have created a new course")]
@@ -79,6 +81,15 @@ namespace ISIS.Domain.Tests
         {
             GivenIHaveCreatedANewCourse("BIOL", "1301");
             GivenIHaveRenamedTheCourseTo("Introductory Biology");
+            GivenIHaveChangedTheCourseCIPTo("12.3456");
+            GivenIHaveChangedTheCourseDescriptionTo("Cuttin' up frogs");
+        }
+
+        [Given(@"I have set up a new CE course")]
+        public void GivenIHaveSetUpANewCECourse()
+        {
+            GivenIHaveCreatedANewCourse("BIOL", "1001");
+            GivenIHaveRenamedTheCourseTo("Biology for Continuing Education");
             GivenIHaveChangedTheCourseCIPTo("12.3456");
             GivenIHaveChangedTheCourseDescriptionTo("Cuttin' up frogs");
         }
