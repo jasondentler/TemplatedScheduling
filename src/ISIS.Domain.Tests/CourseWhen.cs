@@ -14,7 +14,8 @@ namespace ISIS.Domain.Tests
             string number,
             string title)
         {
-            DomainHelper.When(new CreateCourse(Guid.NewGuid(), rubric, number, title));
+            var courseId = DomainHelper.Id<Course>(rubric, number);
+            DomainHelper.When(new CreateCourse(courseId, rubric, number, title));
         }
 
         [When(@"I change the course title to ""(.*)""")]

@@ -1,11 +1,8 @@
 ﻿using System;
-using ISIS.Domain;
 using Ncqrs.Commanding;
-using Ncqrs.Commanding.CommandExecution.Mapping.Attributes;
 
 namespace ISIS.Commands
 {
-    [MapsToAggregateRootConstructor(typeof(Course))]
     public class CreateCourse : CommandBase 
     {
         public Guid CourseId { get; private set; }

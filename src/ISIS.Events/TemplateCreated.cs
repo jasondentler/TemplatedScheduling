@@ -6,6 +6,7 @@ namespace ISIS.Events
     {
 
         public Guid TemplateId { get; private set; }
+        public string Label { get; private set; }
         public Guid CourseId { get; private set; }
         public string Rubric { get; private set; }
         public string CourseNumber { get; private set; }
@@ -13,11 +14,12 @@ namespace ISIS.Events
         public string CIP { get; private set; }
         public string Description { get; private set; }
 
-        public TemplateCreated(Guid templateId, Guid courseId, 
+        public TemplateCreated(Guid templateId, string label, Guid courseId, 
             string rubric, string courseNumber, string title,
             string cip, string description)
         {
             TemplateId = templateId;
+            Label = label;
             CourseId = courseId;
             Rubric = rubric;
             CourseNumber = courseNumber;

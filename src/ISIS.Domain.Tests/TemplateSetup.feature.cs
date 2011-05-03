@@ -68,12 +68,14 @@ this.ScenarioSetup(scenarioInfo);
 #line 9
  testRunner.And("I have set the course description to \"Description goes here\"");
 #line 10
- testRunner.When("I create the template");
+ testRunner.When("I create the template \"Template Label Here\"");
 #line 11
  testRunner.Then("the template is created");
 #line 12
- testRunner.And("the template data matches the course data");
+ testRunner.And("the template label is \"Template Label Here\"");
 #line 13
+ testRunner.And("the template data matches the course data");
+#line 14
  testRunner.And("it does nothing else");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -86,17 +88,17 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Template requires course CIP", new string[] {
                         "domain"});
-#line 16
-this.ScenarioSetup(scenarioInfo);
 #line 17
- testRunner.Given("I have created a course");
+this.ScenarioSetup(scenarioInfo);
 #line 18
- testRunner.And("I have set the course description to \"Description goes here\"");
+ testRunner.Given("I have created a course");
 #line 19
- testRunner.When("I create the template");
+ testRunner.And("I have set the course description to \"Description goes here\"");
 #line 20
- testRunner.Then("the aggregate state is invalid");
+ testRunner.When("I create the template");
 #line 21
+ testRunner.Then("the aggregate state is invalid");
+#line 22
  testRunner.And("the message is \"Your attempt to create a template failed because the course is mi" +
                     "ssing a CIP.\"");
 #line hidden
@@ -108,17 +110,17 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void TemplateRequiresCourseDescription()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Template requires course description", ((string[])(null)));
-#line 23
-this.ScenarioSetup(scenarioInfo);
 #line 24
- testRunner.Given("I have created a course");
+this.ScenarioSetup(scenarioInfo);
 #line 25
- testRunner.And("I have set the course CIP to 12.3456");
+ testRunner.Given("I have created a course");
 #line 26
- testRunner.When("I create the template");
+ testRunner.And("I have set the course CIP to 12.3456");
 #line 27
- testRunner.Then("the aggregate state is invalid");
+ testRunner.When("I create the template");
 #line 28
+ testRunner.Then("the aggregate state is invalid");
+#line 29
  testRunner.And("the message is \"Your attempt to create a template failed because the course is mi" +
                     "ssing a description.\"");
 #line hidden

@@ -7,13 +7,29 @@ namespace ISIS.Domain.Tests
     public class TemplateWhen
     {
 
+        [When(@"I create the template ""(.*)""")]
+        public void WhenICreateTheTemplate(
+            string templateLabel)
+        {
+            var courseId = DomainHelper.Id<Course>();
+            var templateId = DomainHelper.Id<Template>(templateLabel);
+
+            var cmd = new CreateTemplate(templateId, templateLabel, courseId);
+            DomainHelper.When(cmd);
+        }
+
         [When(@"I create the template")]
         public void WhenICreateTheTemplate()
         {
-            var courseId = DomainHelper.Id<Course>();
-            var templateId = DomainHelper.Id<Template>();
+            WhenICreateTheTemplate("Template Label");
+        }
 
-            var cmd = new CreateTemplate(templateId, courseId);
+        [When(@"I rename the template to ""(.*)""")]
+        public void WhenIChangeTheTemplateLabelToTemplateLabelHere(
+            string templateLabel)
+        {
+            var templateId = DomainHelper.Id<Template>();
+            var cmd = new RenameTemplate(templateId, templateLabel);
             DomainHelper.When(cmd);
         }
 

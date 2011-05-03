@@ -7,8 +7,9 @@ Scenario: Create a template
 	Given I have created a course
 	And I have set the course CIP to 12.3456
 	And I have set the course description to "Description goes here"
-	When I create the template
+	When I create the template "Template Label Here"
 	Then the template is created
+	And the template label is "Template Label Here"
 	And the template data matches the course data
 	And it does nothing else
 

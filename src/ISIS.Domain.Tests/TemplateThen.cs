@@ -1,7 +1,5 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using ISIS.Events;
-using Ncqrs.Domain;
 using SharpTestsEx;
 using TechTalk.SpecFlow;
 
@@ -16,6 +14,14 @@ namespace ISIS.Domain.Tests
         {
             var e = DomainHelper.Then<TemplateCreated>();
             e.Should().Not.Be.Null();
+        }
+
+        [Then(@"the template label is ""(.*)""")]
+        public void ThenTheTemplateLabelIs(
+            string templateLabel)
+        {
+            var e = DomainHelper.Then<TemplateCreated>();
+            e.Label.Should().Be.EqualTo(templateLabel);
         }
 
 

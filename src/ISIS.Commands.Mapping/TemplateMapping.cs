@@ -24,9 +24,40 @@ namespace ISIS.Commands.Mapping
                                {
                                    var ctx = UnitOfWorkContext.Current;
                                    var course = ctx.GetById<Course>(cmd.CourseId);
-                                   return new Template(cmd.TemplateId, course);
+                                   return new Template(cmd.TemplateId, cmd.Label, course);
                                })
                 .RegisterWith(_commandService);
+
+            Map.Command<RenameTemplate>()
+                .ToAggregateRoot<Template>()
+                .WithId(cmd => cmd.TemplateId)
+                .ToCallOn((cmd, template) => template.Rename(cmd.NewLabel))
+                .RegisterWith(_commandService);
+
+            Map.Command<ActivateTemplate>()
+                .ToAggregateRoot<Template>()
+                .WithId(cmd => cmd.TemplateId)
+                .ToCallOn((cmd, template) => template.Activate())
+                .RegisterWith(_commandService);
+
+            Map.Command<MakeTemplatePending>()
+                .ToAggregateRoot<Template>()
+                .WithId(cmd => cmd.TemplateId)
+                .ToCallOn((cmd, template) => template.MakePending())
+                .RegisterWith(_commandService);
+
+            Map.Command<DeactivateTemplate>()
+                .ToAggregateRoot<Template>()
+                .WithId(cmd => cmd.TemplateId)
+                .ToCallOn((cmd, template) => template.Deactivate())
+                .RegisterWith(_commandService);
+
+            Map.Command<MakeTemplateObsolete>()
+                .ToAggregateRoot<Template>()
+                .WithId(cmd => cmd.TemplateId)
+                .ToCallOn((cmd, template) => template.MakeObsolete())
+                .RegisterWith(_commandService);
+
         }
     }
 

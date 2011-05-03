@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Ncqrs;
 using Ncqrs.Commanding;
-using Ncqrs.Commanding.CommandExecution.Mapping.Attributes;
 using Ncqrs.Commanding.ServiceModel;
 using Ncqrs.Eventing;
 using Ncqrs.Eventing.Storage;
@@ -70,7 +69,6 @@ namespace ISIS.Domain.Tests
                     SetException(command, exception);
                 }
             }
-            SetAggregateId<TCommand>();
         }
 
         private static void SetException<TCommand>(TCommand command, Exception exception)
@@ -82,33 +80,6 @@ namespace ISIS.Domain.Tests
             }
             ScenarioContext.Current.Set(exception);
             DomainLogger.When(command, exception);
-        }
-
-        private static void SetAggregateId<TCommand>()
-        {
-            var commandType = typeof (TCommand);
-
-            var aggregateAttribute = (MapsToAggregateRootConstructorAttribute)
-                                     commandType
-                                         .GetCustomAttributes(typeof (MapsToAggregateRootConstructorAttribute), true)
-                                         .FirstOrDefault();
-
-            if (aggregateAttribute == null) return;
-
-            var aggregateType = aggregateAttribute.Type;
-
-            var id = (Guid) ScenarioContext.Current
-                                .Get<IEnumerable<UncommittedEvent>>()
-                                .First()
-                                .EventSourceId;
-
-            SetAggregateId(aggregateType, id);
-        }
-
-        private static void SetAggregateId(Type aggregateType, Guid id)
-        {
-            var wrappedId = new ReferenceWrapper<Guid>(id);
-            ScenarioContext.Current.Set(wrappedId, "AggregateRoot: " + aggregateType);
         }
 
         private static IEnumerable<object> GetEvents()
@@ -142,12 +113,23 @@ namespace ISIS.Domain.Tests
         
         public static Guid Id<TAggregate>()
         {
-            var aggregateType = typeof (TAggregate);
-            var key = "AggregateRoot: " + aggregateType;
+            return Id<TAggregate>(new string[0]);
+        }
+
+        public static Guid Id<TAggregate>(params string[] naturalId)
+        {
+            if (naturalId == null)
+                naturalId = new string[0];
+            var aggregateType = typeof(TAggregate);
+
+            var elements = new string[] {aggregateType.ToString()}.Union(naturalId);
+            var key = string.Join(",", elements);
+
             if (ScenarioContext.Current.ContainsKey(key))
                 return ScenarioContext.Current.Get<ReferenceWrapper<Guid>>(key).Value;
             var id = Guid.NewGuid();
             ScenarioContext.Current.Set(new ReferenceWrapper<Guid>(id), key);
+            ScenarioContext.Current.Set(new ReferenceWrapper<Guid>(id), aggregateType.ToString());
             return id;
         }
 

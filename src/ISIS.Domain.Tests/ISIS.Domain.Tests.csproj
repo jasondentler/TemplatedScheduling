@@ -87,6 +87,11 @@
     </Compile>
     <Compile Include="CourseGiven.cs" />
     <Compile Include="TemplateGiven.cs" />
+    <Compile Include="TemplateLabel.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TemplateLabel.feature</DependentUpon>
+    </Compile>
     <Compile Include="TemplateSetup.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -142,6 +147,10 @@
     <None Include="CourseSetup.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CourseSetup.feature.cs</LastGenOutput>
+    </None>
+    <None Include="TemplateLabel.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>TemplateLabel.feature.cs</LastGenOutput>
     </None>
     <None Include="TemplateSetup.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

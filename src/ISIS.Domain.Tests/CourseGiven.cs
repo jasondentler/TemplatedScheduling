@@ -12,7 +12,7 @@ namespace ISIS.Domain.Tests
             string number,
             string title)
         {
-            var courseId = DomainHelper.Id<Course>();
+            var courseId = DomainHelper.Id<Course>(rubric, number);
             DomainHelper.Given<Course>(new CourseCreated(courseId, rubric, number, title));
         }
 

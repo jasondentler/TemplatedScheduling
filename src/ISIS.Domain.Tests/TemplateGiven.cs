@@ -8,6 +8,28 @@ namespace ISIS.Domain.Tests
     public class TemplateGiven
     {
 
+        [Given(@"I have created the template ""(.*)""")]
+        public void GivenIHaveCreatedTheTemplate(
+            string templateLabel)
+        {
+            var courseId = DomainHelper.Id<Course>();
+            var templateId = DomainHelper.Id<Template>(templateLabel);
+            var events = DomainHelper.GetEventStream(courseId);
+
+            var courseCreatedEvent = events.OfType<CourseCreated>().Single();
+
+            var courseCIPEvent = events.OfType<CourseCIPChanged>().Last();
+            var courseDescriptionEvent = events.OfType<CourseDescriptionChanged>().Last();
+
+            DomainHelper.Given<Template>(
+                new TemplateCreated(templateId, templateLabel, courseId,
+                                    courseCreatedEvent.Rubric, courseCreatedEvent.CourseNumber,
+                                    courseCreatedEvent.Title,
+                                    courseCIPEvent.NewCIP,
+                                    courseDescriptionEvent.NewDescription));
+        }
+
+
         [Given(@"I have created a course and template")]
         public void GivenIHaveCreatedACourseAndTemplate()
         {
@@ -17,20 +39,7 @@ namespace ISIS.Domain.Tests
             courseGiven.GivenIHaveCreatedANewCourse();
             courseGiven.GivenIHaveChangedTheCourseCIPTo(cip);
             courseGiven.GivenIHaveChangedTheCourseDescriptionTo(description);
-
-            var courseId = DomainHelper.Id<Course>();
-            var templateId = DomainHelper.Id<Template>();
-
-            var courseCreatedEvent = DomainHelper.GetEventStream(courseId)
-                .OfType<CourseCreated>().Single();
-
-            DomainHelper.Given<Template>(
-                new TemplateCreated(templateId, courseId,
-                                    courseCreatedEvent.Rubric, courseCreatedEvent.CourseNumber,
-                                    courseCreatedEvent.Title,
-                                    cip,
-                                    description));
-
+            GivenIHaveCreatedTheTemplate("Template Label");
         }
 
         [Given(@"I have activated the template")]

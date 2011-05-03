@@ -8,14 +8,12 @@ namespace ISIS.Domain
     {
 
         private CourseStatuses _status;
-        private string _cip;
-        private string _description;
 
         private Template()
         {
         }
 
-        public Template(Guid templateId, Course course)
+        public Template(Guid templateId, string label, Course course)
             : base(templateId)
         {
             var courseData = course.GetCourseData();
@@ -28,6 +26,7 @@ namespace ISIS.Domain
             
             var @event = new TemplateCreated(
                 EventSourceId,
+                label,
                 courseData.CourseId,
                 courseData.Rubric,
                 courseData.CourseNumber,
@@ -37,6 +36,9 @@ namespace ISIS.Domain
             ApplyEvent(@event);
         }
 
+        public void Rename(string newLabel)
+        {
+        }
 
         public void Activate()
         {
