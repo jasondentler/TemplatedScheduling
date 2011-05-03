@@ -64,6 +64,12 @@ namespace ISIS.Commands.Mapping
                 .ToCallOn((cmd, template) => template.ChangeCreditType(cmd.CreditType))
                 .RegisterWith(_commandService);
 
+            Map.Command<ChangeTemplateCourseType>()
+                .ToAggregateRoot<Template>()
+                .WithId(cmd => cmd.TemplateId)
+                .ToCallOn((cmd, template) => template.ChangeCourseType(cmd.CourseType))
+                .RegisterWith(_commandService);
+          
         }
     }
 

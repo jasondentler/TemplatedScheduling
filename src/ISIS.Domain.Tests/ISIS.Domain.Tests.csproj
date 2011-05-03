@@ -86,6 +86,11 @@
       <DependentUpon>CourseSetup.feature</DependentUpon>
     </Compile>
     <Compile Include="CourseGiven.cs" />
+    <Compile Include="TemplateCourseType.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TemplateCourseType.feature</DependentUpon>
+    </Compile>
     <Compile Include="TemplateCreditType.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -169,6 +174,10 @@
     <None Include="CourseSetup.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CourseSetup.feature.cs</LastGenOutput>
+    </None>
+    <None Include="TemplateCourseType.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>TemplateCourseType.feature.cs</LastGenOutput>
     </None>
     <None Include="TemplateCreditType.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

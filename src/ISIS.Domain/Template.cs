@@ -99,6 +99,10 @@ namespace ISIS.Domain
             }
         }
 
+        public void ChangeCourseType(CourseTypes courseType)
+        {
+        }
+
 
         protected void On(TemplateCreated @event)
         {
