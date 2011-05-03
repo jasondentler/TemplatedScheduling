@@ -33,8 +33,6 @@ namespace ISIS.Domain.Tests
         [Given(@"I have created a course and template")]
         public void GivenIHaveCreatedACourseAndTemplate()
         {
-            const string cip = "12.3456";
-            const string description = "Description goes here";
             var courseGiven = new CourseGiven();
             courseGiven.GivenIHaveSetUpANewCourse();
             GivenIHaveCreatedTheTemplate("Template Label");

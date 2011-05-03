@@ -23,14 +23,27 @@ namespace ISIS.Domain.Tests
             GivenIHaveCreatedANewCourse("BIOL", "1301");
         }
 
-        [Given(@"I have renamed the course to ""(.*)""")]
+        [Given(@"I have renamed the course to ""([^""]*)""")]
         public void GivenIHaveRenamedTheCourseTo(
             string newTitle)
         {
+            GivenIHaveRenamedTheCourseTo(newTitle, newTitle);
+        }
+
+        [Given(@"I have renamed the course to ""([^""]*)"" with short title ""([^""]*)""")]
+        public void GivenIHaveRenamedTheCourseTo(
+            string newTitle,
+            string newShortTitle)
+        {
             var courseId = DomainHelper.Id<Course>();
-            var oldTitle = DomainHelper.GetEventStream(courseId)
-                .OfType<CourseRenamed>().Select(e => e.NewTitle).LastOrDefault();
-            DomainHelper.Given<Course>(new CourseRenamed(courseId, oldTitle, newTitle));
+            var renameEvents = DomainHelper.GetEventStream(courseId)
+                .OfType<CourseRenamed>();
+
+            var oldTitle = renameEvents.Select(e => e.NewTitle).LastOrDefault();
+            var oldShortTitle = renameEvents.Select(e => e.NewShortTitle).LastOrDefault();
+            DomainHelper.Given<Course>(new CourseRenamed(courseId,
+                                                         oldTitle, newTitle,
+                                                         oldShortTitle, newShortTitle));
         }
 
 

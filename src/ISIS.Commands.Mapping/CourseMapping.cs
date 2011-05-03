@@ -26,7 +26,7 @@ namespace ISIS.Commands.Mapping
             Map.Command<RenameCourse>()
                 .ToAggregateRoot<Course>()
                 .WithId(cmd => cmd.CourseId)
-                .ToCallOn((cmd, course) => course.ChangeTitle(cmd.NewTitle))
+                .ToCallOn((cmd, course) => course.ChangeTitle(cmd.NewTitle, cmd.NewShortTitle))
                 .RegisterWith(_commandService);
 
             Map.Command<ChangeCourseDescription>()

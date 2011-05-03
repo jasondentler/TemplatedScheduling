@@ -17,13 +17,22 @@ namespace ISIS.Domain.Tests
             DomainHelper.When(new CreateCourse(courseId, rubric, number));
         }
 
-        [When(@"I rename the course to ""(.*)""")]
+        [When(@"I rename the course to ""([^""]*)""")]
         public void WhenIChangeTheCourseTitleTo(
             string newTitle)
         {
-            var courseId = DomainHelper.Id<Course>();
-            DomainHelper.When(new RenameCourse(courseId, newTitle));
+            WhenIRenameTheCourseTo(newTitle, newTitle);
         }
+
+        [When(@"I rename the course to ""([^""]*)"" with short title ""([^""]*)""")]
+        public void WhenIRenameTheCourseTo(
+            string newTitle,
+            string newShortTitle)
+        {
+            var courseId = DomainHelper.Id<Course>();
+            DomainHelper.When(new RenameCourse(courseId, newTitle, newShortTitle));
+        }
+
 
         [When(@"I change the course CIP to (\d{2}\.\d{4})")]
         [When(@"I change the course CIP to (\d{10})")]

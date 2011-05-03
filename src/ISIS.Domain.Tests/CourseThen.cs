@@ -14,23 +14,43 @@ namespace ISIS.Domain.Tests
             e.CourseId.Should().Be.EqualTo(DomainHelper.Id<Course>());
         }
 
-        [Then(@"the course is renamed to ""(.*)""")]
+        [Then(@"the course is renamed to ""([^""]*)""")]
         public void ThenTheCourseIsRenamedTo(
             string newTitle)
         {
-            ThenTheCourseIsRenamedFromTo(null, newTitle);
+            ThenTheCourseIsRenamedTo(newTitle, newTitle);
         }
 
-
-        [Then(@"the course is renamed from ""(.*)"" to ""(.*)""")]
+        [Then(@"the course is renamed to ""([^""]*)"" with short title ""([^""]*)""")]
+        public void ThenTheCourseIsRenamedTo(
+            string newTitle,
+            string newShortTitle)
+        {
+            ThenTheCourseIsRenamed(null, null, newTitle, newShortTitle);
+        }
+        
+        [Then(@"the course is renamed from ""([^""]*)"" to ""([^""]*)""")]
         public void ThenTheCourseIsRenamedFromTo(
             string oldTitle,
             string newTitle)
         {
+            ThenTheCourseIsRenamed(oldTitle, oldTitle, newTitle, newTitle);
+        }
+
+        [Then(@"the course is renamed from ""([^""]*)"" with short title ""([^""]*)"" to ""([^""]*)"" with short title ""([^""]*)""")]
+        public void ThenTheCourseIsRenamed(
+            string oldTitle,
+            string oldShortTitle,
+            string newTitle,
+            string newShortTitle)
+        {
             var e = DomainHelper.Then<CourseRenamed>();
             e.OldTitle.Should().Be.EqualTo(oldTitle);
+            e.OldShortTitle.Should().Be.EqualTo(oldShortTitle);
             e.NewTitle.Should().Be.EqualTo(newTitle);
+            e.NewShortTitle.Should().Be.EqualTo(newShortTitle);
         }
+
 
         [Then(@"the course CIP is set to (\d{2}\.\d{4})")]
         [Then(@"the course CIP is set to (\d{10})")]

@@ -10,6 +10,7 @@ namespace ISIS.Domain
         private string _rubric;
         private string _courseNumber;
         private string _title;
+        private string _shortTitle;
         private string _cip;
         private string _description;
 
@@ -24,13 +25,15 @@ namespace ISIS.Domain
         }
 
 
-        public void ChangeTitle(string newTitle)
+        public void ChangeTitle(string newTitle, string newShortTitle)
         {
-            if (_title != newTitle)
+            if (_title != newTitle || _shortTitle != newShortTitle)
                 ApplyEvent(new CourseRenamed(
                                EventSourceId,
                                _title,
-                               newTitle));
+                               newTitle,
+                               _shortTitle,
+                               newShortTitle));
         }
 
         public void ChangeCIP(string cip)
@@ -74,6 +77,7 @@ namespace ISIS.Domain
         protected void On(CourseRenamed @event)
         {
             _title = @event.NewTitle;
+            _shortTitle = @event.NewShortTitle;
         }
 
         protected void On(CourseCIPChanged @event)
