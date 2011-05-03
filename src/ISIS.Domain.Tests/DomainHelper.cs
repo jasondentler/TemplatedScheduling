@@ -14,9 +14,7 @@ namespace ISIS.Domain.Tests
 {
     public static class DomainHelper
     {
-
-        const string CheckedEventCountKey = "CheckedEventCount";
-
+        
         private class ReferenceWrapper<T>
         {
             private readonly T _value;
@@ -62,8 +60,12 @@ namespace ISIS.Domain.Tests
                     var events = ctx.Events;
                     ScenarioContext.Current.Set(events);
                     DomainLogger.When(command, events.Select(e => e.Payload));
-                } 
-                catch(Exception exception)
+                }
+                catch (Ncqrs.Commanding.CommandExecution.Mapping.CommandMappingException)
+                {
+                    throw;
+                }
+                catch (Exception exception)
                 {
                     SetException(command, exception);
                 }
@@ -116,32 +118,28 @@ namespace ISIS.Domain.Tests
                 .Select(e => e.Payload);
         }
 
+        private static HashSet<object> CheckedEvents
+        {
+            get { 
+                const string key = "CheckedEventsKey";
+                var ctx = ScenarioContext.Current;
+                if (ctx.ContainsKey(key))
+                    return ctx.Get<HashSet<object>>(key);
+                var set = new HashSet<object>();
+                ctx.Set(set, key);
+                return set;
+            }
+        }
+
         public static TEvent Then<TEvent>()
         {
             var events = GetEvents();
-            CheckedEventCount++;
             var @event = events.OfType<TEvent>().Single();
             DomainLogger.Then(@event);
+            CheckedEvents.Add(@event);
             return @event;
         }
-
-        private static int CheckedEventCount
-        {
-            get
-            {
-                var ctx = ScenarioContext.Current;
-
-                return ctx.ContainsKey(CheckedEventCountKey)
-                           ? ctx.Get<ReferenceWrapper<int>>(CheckedEventCountKey).Value
-                           : 0;
-            }
-            set
-            {
-                ScenarioContext.Current.Set(new ReferenceWrapper<int>(value),
-                                                                   CheckedEventCountKey);
-            }
-        }
-
+        
         public static Guid Id<TAggregate>()
         {
             var aggregateType = typeof (TAggregate);
@@ -155,7 +153,7 @@ namespace ISIS.Domain.Tests
 
         public static bool AllEventsChecked()
         {
-            return GetEvents().Count() == CheckedEventCount;
+            return !GetEvents().Except(CheckedEvents).Any();
         }
 
         public static bool NoEvents()
@@ -171,6 +169,13 @@ namespace ISIS.Domain.Tests
         public static Exception GetException()
         {
             return ScenarioContext.Current.Get<Exception>();
+        }
+
+        public static IEnumerable<object> GetEventStream(Guid eventSourceId)
+        {
+            var store = NcqrsEnvironment.Get<IEventStore>();
+            var existingEvents = store.ReadFrom(eventSourceId, 0, long.MaxValue);
+            return existingEvents.Select(e => e.Payload);
         }
 
     }

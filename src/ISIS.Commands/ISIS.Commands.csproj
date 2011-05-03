@@ -46,10 +46,11 @@
     <Compile Include="ChangeCourseTitle.cs" />
     <Compile Include="ChangeCourseCIP.cs" />
     <Compile Include="ChangeCourseDescription.cs" />
-    <Compile Include="ActivateCourse.cs" />
-    <Compile Include="MakeCourseObsolete.cs" />
-    <Compile Include="DeactivateCourse.cs" />
-    <Compile Include="MakeCoursePending.cs" />
+    <Compile Include="ActivateTemplate.cs" />
+    <Compile Include="CreateTemplate.cs" />
+    <Compile Include="MakeTemplateObsolete.cs" />
+    <Compile Include="DeactivateTemplate.cs" />
+    <Compile Include="MakeTemplatePending.cs" />
     <Compile Include="CreateCourse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

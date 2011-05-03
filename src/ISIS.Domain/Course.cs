@@ -7,18 +7,11 @@ namespace ISIS.Domain
     public class Course : AggregateRootMappedByConvention
     {
 
-        public enum CourseStatuses
-        {
-            Pending = 0,
-            Activated = 1,
-            Deactivated = 2,
-            Obsolete = 3
-        }
-
+        private string _rubric;
+        private string _courseNumber;
         private string _title;
         private string _cip;
         private string _description;
-        private CourseStatuses _status;
 
         private Course()
         {
@@ -58,38 +51,24 @@ namespace ISIS.Domain
                                description));
         }
 
-        public void Activate()
+        internal CourseData GetCourseData()
         {
-            if (string.IsNullOrEmpty(_cip))
-                throw new CourseMissingCIPException();
-            
-            if (string.IsNullOrEmpty(_description))
-                throw new CourseMissingDescriptionException();
-
-            if (_status != CourseStatuses.Activated)
-                ApplyEvent(new CourseActivated(EventSourceId));
+            return new CourseData()
+                       {
+                           CourseId = EventSourceId,
+                           Rubric = _rubric,
+                           CourseNumber = _courseNumber,
+                           Title = _title,
+                           CIP = _cip,
+                           Description = _description
+                       };
         }
 
-        public void MakePending()
-        {
-            if (_status != CourseStatuses.Pending)
-                ApplyEvent(new CourseMadePending(EventSourceId));
-        }
-
-        public void Deactivate()
-        {
-            if (_status != CourseStatuses.Deactivated)
-                ApplyEvent(new CourseDeactivated(EventSourceId));
-        }
-
-        public void MakeObsolete()
-        {
-            if (_status != CourseStatuses.Obsolete)
-                ApplyEvent(new CourseMadeObsolete(EventSourceId));
-        }
 
         protected void On(CourseCreated @event)
         {
+            _rubric = @event.Rubric;
+            _courseNumber = @event.CourseNumber;
             _title = @event.Title;
         }
 
@@ -106,26 +85,6 @@ namespace ISIS.Domain
         protected void On(CourseDescriptionChanged @event)
         {
             _description = @event.NewDescription;
-        }
-
-        protected void On(CourseActivated @event)
-        {
-            _status = CourseStatuses.Activated;
-        }
-
-        protected void On(CourseMadePending @event)
-        {
-            _status = CourseStatuses.Pending;
-        }
-
-        protected void On(CourseDeactivated @event)
-        {
-            _status = CourseStatuses.Deactivated;
-        }
-
-        protected void On(CourseMadeObsolete @event)
-        {
-            _status = CourseStatuses.Obsolete;
         }
 
     }

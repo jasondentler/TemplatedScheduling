@@ -53,33 +53,6 @@ namespace ISIS.Domain.Tests
             e.NewDescription.Should().Be.EqualTo(newDescription);
         }
 
-        [Then(@"the course is activated")]
-        public void ThenTheCourseIsActivated()
-        {
-            var e = DomainHelper.Then<CourseActivated>();
-            e.Should().Not.Be.Null();
-        }
-
-        [Then(@"the course is made pending")]
-        public void ThenTheCourseIsMadePending()
-        {
-            var e = DomainHelper.Then<CourseMadePending>();
-            e.Should().Not.Be.Null();
-        }
-
-        [Then(@"the course is deactivated")]
-        public void ThenTheCourseIsDeactivated()
-        {
-            var e = DomainHelper.Then<CourseDeactivated>();
-            e.Should().Not.Be.Null();
-        }
-
-        [Then(@"the course is made obsolete")]
-        public void ThenTheCourseIsMadeObsolete()
-        {
-            var e = DomainHelper.Then<CourseMadeObsolete>();
-            e.Should().Not.Be.Null();
-        }
 
     }
 }

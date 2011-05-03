@@ -86,10 +86,16 @@
       <DependentUpon>CourseSetup.feature</DependentUpon>
     </Compile>
     <Compile Include="CourseGiven.cs" />
-    <Compile Include="CourseStatus.feature.cs">
+    <Compile Include="TemplateGiven.cs" />
+    <Compile Include="TemplateSetup.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CourseStatus.feature</DependentUpon>
+      <DependentUpon>TemplateSetup.feature</DependentUpon>
+    </Compile>
+    <Compile Include="TemplateStatus.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TemplateStatus.feature</DependentUpon>
     </Compile>
     <Compile Include="CourseThen.cs" />
     <Compile Include="CourseTitle.feature.cs">
@@ -102,8 +108,14 @@
     <Compile Include="DomainLogger.cs" />
     <Compile Include="DomainSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TemplateThen.cs" />
+    <Compile Include="TemplateWhen.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ISIS.Commands.Mapping\ISIS.Commands.Mapping.csproj">
+      <Project>{8FF9D584-856D-4E6A-AC99-F1D677893909}</Project>
+      <Name>ISIS.Commands.Mapping</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ISIS.Commands\ISIS.Commands.csproj">
       <Project>{F54331F7-095D-4A20-8298-99BC38D273B5}</Project>
       <Name>ISIS.Commands</Name>
@@ -131,9 +143,13 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CourseSetup.feature.cs</LastGenOutput>
     </None>
-    <None Include="CourseStatus.feature">
+    <None Include="TemplateSetup.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CourseStatus.feature.cs</LastGenOutput>
+      <LastGenOutput>TemplateSetup.feature.cs</LastGenOutput>
+    </None>
+    <None Include="TemplateStatus.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>TemplateStatus.feature.cs</LastGenOutput>
     </None>
     <None Include="CourseTitle.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

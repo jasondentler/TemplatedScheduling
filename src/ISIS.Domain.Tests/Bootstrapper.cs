@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using ISIS.Commands;
+using ISIS.Commands.Mapping;
 using Ncqrs;
 using Ncqrs.Commanding.ServiceModel;
 using Ncqrs.Config.Ninject;
@@ -21,7 +23,7 @@ namespace ISIS.Domain.Tests
             if (NcqrsEnvironment.IsConfigured)
                 NcqrsEnvironment.Deconfigure();
 
-            var kernel = new StandardKernel(new NcqrsModule());
+            var kernel = new StandardKernel(new NcqrsModule(), new CommandMappingModule());
             var cfg = new NinjectConfiguration(kernel);
             NcqrsEnvironment.Configure(cfg);
         }
@@ -37,8 +39,32 @@ namespace ISIS.Domain.Tests
                 Kernel.Bind<ICommandService>()
                     .ToConstant(commandService);
 
+                Kernel.Bind<CommandService>()
+                    .ToConstant(commandService);
+
                 Kernel.Bind<IEventStore>()
                     .ToConstant(new InMemoryEventStore());
+            }
+        }
+
+        private class CommandMappingModule : NinjectModule
+        {
+            public override void Load()
+            {
+                var mappingAsm = typeof (IMapping).Assembly;
+                var mappingTypes = mappingAsm.GetTypes()
+                    .Where(t => t.IsClass && !t.IsAbstract &&
+                                typeof (IMapping).IsAssignableFrom(t))
+                    .ToArray();
+
+
+                foreach (var mappingType in mappingTypes)
+                    Kernel.Bind<IMapping>().To(mappingType);
+
+                foreach (var mapping in Kernel.GetAll<IMapping>())
+                    mapping.Register();
+
+                return;
             }
         }
 

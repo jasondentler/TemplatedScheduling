@@ -49,42 +49,7 @@ namespace ISIS.Domain.Tests
                                            description));
         }
 
-        [Given(@"I have activated the course")]
-        public void GivenIHaveActivatedTheCourse()
-        {
-            var courseId = DomainHelper.Id<Course>();
-            DomainHelper.Given<Course>(new CourseActivated(courseId));
-        }
 
-        [Given(@"I have created and activated a course")]
-        public void GivenIHaveCreatedAndActivatedACourse()
-        {
-            GivenIHaveCreatedANewCourse();
-            GivenIHaveChangedTheCourseCIPTo("12.3456");
-            GivenIHaveChangedTheCourseDescriptionTo("Description goes here");
-            GivenIHaveActivatedTheCourse();
-        }
-
-        [Given(@"I make the course pending")]
-        public void GivenIMakeTheCoursePending()
-        {
-            var courseId = DomainHelper.Id<Course>();
-            DomainHelper.Given<Course>(new CourseMadePending(courseId));
-        }
-
-        [Given(@"I have deactivated a course")]
-        public void GivenIHaveDeactivatedACourse()
-        {
-            var courseId = DomainHelper.Id<Course>();
-            DomainHelper.Given<Course>(new CourseDeactivated(courseId));
-        }
-
-        [Given(@"I have made the course obsolete")]
-        public void GivenIHaveMadeTheCourseObsolete()
-        {
-            var courseId = DomainHelper.Id<Course>();
-            DomainHelper.Given<Course>(new CourseMadeObsolete(courseId));
-        }
 
 
     }

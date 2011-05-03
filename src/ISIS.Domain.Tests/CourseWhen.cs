@@ -44,34 +44,6 @@ namespace ISIS.Domain.Tests
                 newDescription));
         }
 
-        [When(@"I activate the course")]
-        public void WhenIActivateTheCourse()
-        {
-            var courseId = DomainHelper.Id<Course>();
-            DomainHelper.When(new ActivateCourse(courseId));
-        }
-
-        [When(@"I make the course pending")]
-        public void WhenIMakeTheCoursePending()
-        {
-            var courseId = DomainHelper.Id<Course>();
-            DomainHelper.When(new MakeCoursePending(courseId));
-        }
-
-        [When(@"I deactivate the course")]
-        public void WhenIDeactivateTheCourse()
-        {
-            var courseId = DomainHelper.Id<Course>();
-            DomainHelper.When(new DeactivateCourse(courseId));
-        }
-
-        [When(@"I make the course obsolete")]
-        public void WhenIMakeTheCourseObsolete()
-        {
-            var courseId = DomainHelper.Id<Course>();
-            DomainHelper.When(new MakeCourseObsolete(courseId));
-        }
-
 
     }
 }
