@@ -4,8 +4,7 @@
 
 @domain
 Scenario: Create a section from a template
-	Given I have set up a course and template
-	And I have activated the template
+	Given I have set up a course and template and activated the template
 	When I create a section 01 from the template
 	Then section 01 is created
 	And the section data matches the basic template data

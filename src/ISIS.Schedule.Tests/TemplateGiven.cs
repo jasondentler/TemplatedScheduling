@@ -54,6 +54,8 @@ namespace ISIS.Schedule
             DomainHelper.Given<Template>(new TemplateActivated(templateId));
         }
 
+
+        [Given(@"I have set up a course and template and activated the template")]
         [Given(@"I have created a course and template and activated the template")]
         public void GivenIHaveCreatedACourseAndTemplateAndActivatedTheTemplate()
         {

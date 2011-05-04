@@ -1,5 +1,4 @@
-﻿using ISIS.Commands;
-using ISIS.Scheduling;
+﻿using ISIS.Scheduling;
 using TechTalk.SpecFlow;
 
 namespace ISIS.Schedule

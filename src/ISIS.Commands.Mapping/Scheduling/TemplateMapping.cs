@@ -1,6 +1,4 @@
-﻿using ISIS.Commands;
-using ISIS.Commands.Mapping;
-using Ncqrs.Commanding.CommandExecution;
+﻿using Ncqrs.Commanding.CommandExecution;
 using Ncqrs.Commanding.CommandExecution.Mapping.Fluent;
 using Ncqrs.Commanding.ServiceModel;
 using Ncqrs.Domain;

@@ -52,6 +52,7 @@ namespace ISIS.Scheduling
             {
                 TemplateId = EventSourceId,
                 CourseId = _courseId,
+                TermId = _termId,
                 Rubric = _rubric,
                 CourseNumber = _courseNumber,
                 Title = _title,

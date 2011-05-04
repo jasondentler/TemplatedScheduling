@@ -1,4 +1,4 @@
-﻿namespace ISIS.Commands.Mapping
+﻿namespace ISIS
 {
 
     public interface IMapping

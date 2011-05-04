@@ -62,16 +62,14 @@ namespace ISIS.Schedule
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
- testRunner.Given("I have set up a course and template");
+ testRunner.Given("I have set up a course and template and activated the template");
 #line 8
- testRunner.And("I have activated the template");
-#line 9
  testRunner.When("I create a section 01 from the template");
-#line 10
+#line 9
  testRunner.Then("section 01 is created");
-#line 11
+#line 10
  testRunner.And("the section data matches the basic template data");
-#line 12
+#line 11
  testRunner.And("it does nothing else");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -84,17 +82,17 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cant create a section from a non-active template", new string[] {
                         "domain"});
-#line 15
+#line 14
 this.ScenarioSetup(scenarioInfo);
-#line 16
+#line 15
  testRunner.Given("I have set up a course and template");
-#line 17
+#line 16
  testRunner.And("I have made the template pending");
-#line 18
+#line 17
  testRunner.When("I create a section 01 from the template");
-#line 19
+#line 18
  testRunner.Then("the aggregate state is invalid");
-#line 20
+#line 19
  testRunner.And("the message is \"Your attempt to create a section failed. The template is not acti" +
                     "ve.\"");
 #line hidden

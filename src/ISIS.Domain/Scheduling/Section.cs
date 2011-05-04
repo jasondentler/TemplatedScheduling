@@ -22,6 +22,7 @@ namespace ISIS.Scheduling
                 EventSourceId,
                 templateData.TemplateId,
                 templateData.CourseId,
+                templateData.TermId,
                 templateData.Rubric,
                 templateData.CourseNumber,
                 sectionNumber,

@@ -7,6 +7,7 @@ namespace ISIS.Scheduling
         public Guid SectionId { get; private set; }
         public Guid TemplateId { get; private set; }
         public Guid CourseId { get; private set; }
+        public Guid TermId { get; private set; }
         public string Rubric { get; private set; }
         public string CourseNumber { get; private set; }
         public string SectionNumber { get; private set; }
@@ -17,6 +18,7 @@ namespace ISIS.Scheduling
             Guid sectionId, 
             Guid templateId,
             Guid courseId,
+            Guid termId,
             string rubric,
             string courseNumber,
             string sectionNumber,
@@ -26,6 +28,7 @@ namespace ISIS.Scheduling
             SectionId = sectionId;
             TemplateId = templateId;
             CourseId = courseId;
+            TermId = termId;
             Rubric = rubric;
             CourseNumber = courseNumber;
             SectionNumber = sectionNumber;
