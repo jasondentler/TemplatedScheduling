@@ -8,7 +8,7 @@
     <ProjectGuid>{8FF9D584-856D-4E6A-AC99-F1D677893909}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ISIS.Commands.Mapping</RootNamespace>
+    <RootNamespace>ISIS</RootNamespace>
     <AssemblyName>ISIS.Commands.Mapping</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -43,11 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TermMapping.cs" />
-    <Compile Include="CourseMapping.cs" />
+    <Compile Include="Scheduling\TermMapping.cs" />
+    <Compile Include="Scheduling\CourseMapping.cs" />
     <Compile Include="IMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TemplateMapping.cs" />
+    <Compile Include="Scheduling\TemplateMapping.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ISIS.Commands\ISIS.Commands.csproj">

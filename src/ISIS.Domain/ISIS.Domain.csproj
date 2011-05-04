@@ -8,7 +8,7 @@
     <ProjectGuid>{49282460-F7F4-4441-926B-22E7C5C25BC9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ISIS.Domain</RootNamespace>
+    <RootNamespace>ISIS</RootNamespace>
     <AssemblyName>ISIS.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -43,10 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Course.cs" />
+    <Compile Include="Scheduling\Course.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Template.cs" />
-    <Compile Include="Term.cs" />
+    <Compile Include="Scheduling\Template.cs" />
+    <Compile Include="Scheduling\Term.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ISIS.Core\ISIS.Core.csproj">

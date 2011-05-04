@@ -40,19 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exceptions\ChangeTemplateCourseType\CourseIsContinuingEducationException.cs" />
-    <Compile Include="Exceptions\ChangeTemplateCourseType\ReservedCourseTypeException.cs" />
-    <Compile Include="Exceptions\ChangeTemplateCreditType\CourseIsNotCEException.cs" />
-    <Compile Include="Exceptions\CreateTemplate\CourseMissingCIPException.cs" />
-    <Compile Include="Exceptions\CreateTemplate\CourseMissingDescriptionException.cs" />
-    <Compile Include="Exceptions\CreateTemplate\CourseMissingTitleException.cs" />
-    <Compile Include="CourseStatuses.cs" />
-    <Compile Include="CourseTypes.cs" />
-    <Compile Include="CreditTypes.cs" />
+    <Compile Include="Scheduling\CourseData.cs" />
+    <Compile Include="Scheduling\CreateTemplateExceptions\CourseMissingDescriptionException.cs" />
+    <Compile Include="Scheduling\CreateTemplateExceptions\CourseMissingTitleException.cs" />
+    <Compile Include="Scheduling\TemplateStatuses.cs" />
     <Compile Include="EnumData.cs" />
-    <Compile Include="Exceptions\InvalidAggregateStateException.cs" />
+    <Compile Include="InvalidAggregateStateException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

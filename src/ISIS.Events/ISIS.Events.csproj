@@ -8,7 +8,7 @@
     <ProjectGuid>{E3AD9637-CBDD-4167-ABBD-D49D5187051C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ISIS.Events</RootNamespace>
+    <RootNamespace>ISIS</RootNamespace>
     <AssemblyName>ISIS.Events</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -40,21 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TemplateCourseTypeChanged.cs" />
-    <Compile Include="TemplateCreditTypeChanged.cs" />
-    <Compile Include="TermRenamed.cs" />
-    <Compile Include="TermCreated.cs" />
-    <Compile Include="TemplateRenamed.cs" />
-    <Compile Include="CourseData.cs" />
-    <Compile Include="TemplateCreated.cs" />
-    <Compile Include="TemplateMadeObsolete.cs" />
-    <Compile Include="TemplateDeactivated.cs" />
-    <Compile Include="TemplateMadePending.cs" />
-    <Compile Include="TemplateActivated.cs" />
-    <Compile Include="CourseDescriptionChanged.cs" />
-    <Compile Include="CourseCIPChanged.cs" />
-    <Compile Include="CourseRenamed.cs" />
-    <Compile Include="CourseCreated.cs" />
+    <Compile Include="Scheduling\TermRenamed.cs" />
+    <Compile Include="Scheduling\TermCreated.cs" />
+    <Compile Include="Scheduling\TemplateRenamed.cs" />
+    <Compile Include="Scheduling\TemplateCreated.cs" />
+    <Compile Include="Scheduling\TemplateMadeObsolete.cs" />
+    <Compile Include="Scheduling\TemplateDeactivated.cs" />
+    <Compile Include="Scheduling\TemplateMadePending.cs" />
+    <Compile Include="Scheduling\TemplateActivated.cs" />
+    <Compile Include="Scheduling\CourseDescriptionChanged.cs" />
+    <Compile Include="Scheduling\CourseRenamed.cs" />
+    <Compile Include="Scheduling\CourseCreated.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
