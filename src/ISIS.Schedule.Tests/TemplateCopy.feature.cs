@@ -92,6 +92,36 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             testRunner.CollectScenarioErrors();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Cant copy an obsolete template")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void CantCopyAnObsoleteTemplate()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cant copy an obsolete template", new string[] {
+                        "domain"});
+#line 24
+this.ScenarioSetup(scenarioInfo);
+#line 25
+ testRunner.Given("I have set up a course");
+#line 26
+ testRunner.And("I have set up a term");
+#line 27
+ testRunner.And("I have created a template \"Source Template\"");
+#line 28
+ testRunner.And("I have assigned the term to the template");
+#line 29
+ testRunner.And("I have made the template obsolete");
+#line 30
+ testRunner.When("I copy the template \"Source Template\" to \"New Template\"");
+#line 31
+ testRunner.Then("the aggregate state is invalid");
+#line 32
+ testRunner.And("the message is \"Your attempt to copy the template failed. The source template is " +
+                    "obsolete.\"");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
     }
 }
 #endregion

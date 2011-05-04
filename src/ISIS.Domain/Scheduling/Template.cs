@@ -1,5 +1,6 @@
 ﻿using System;
 using ISIS.Scheduling.ActivateTemplateExceptions;
+using ISIS.Scheduling.CopyTemplateExceptions;
 using ISIS.Scheduling.CreateTemplateExceptions;
 using ISIS.Scheduling.TermAssignedToTemplateExceptions;
 using Ncqrs.Domain;
@@ -49,6 +50,9 @@ namespace ISIS.Scheduling
         public Template(Guid templateId, string newLabel, TemplateData sourceData, Term term, Course course)
             : this(templateId, newLabel, course)
         {
+            if (sourceData.Status == TemplateStatuses.Obsolete)
+                throw new SourceTemplateObsoleteException();
+
             AssignTerm(term);
 
             switch (sourceData.Status)

@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Scheduling\ActivateTemplateExceptions\TemplateMissingTermException.cs" />
+    <Compile Include="Scheduling\CopyTemplateExceptions\SourceTemplateObsoleteException.cs" />
     <Compile Include="Scheduling\TermAssignedToTemplateExceptions\TermIsNotContinuingEducationException.cs" />
     <Compile Include="Scheduling\TermAssignedToTemplateExceptions\TermIsContinuingEducationException.cs" />
     <Compile Include="Scheduling\TermData.cs" />

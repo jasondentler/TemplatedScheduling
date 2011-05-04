@@ -19,3 +19,15 @@ Scenario: Copy a template
 	And the template is activated
 	And the "Source Template" template is copied to "New Template"
 	And it does nothing else
+
+@domain
+Scenario: Cant copy an obsolete template
+	Given I have set up a course
+	And I have set up a term
+	And I have created a template "Source Template"
+	And I have assigned the term to the template
+	And I have made the template obsolete
+	When I copy the template "Source Template" to "New Template"
+	Then the aggregate state is invalid
+	And the message is "Your attempt to copy the template failed. The source template is obsolete."
+
