@@ -46,22 +46,33 @@ namespace ISIS.Scheduling
             ApplyEvent(@event);
         }
 
-        public Template(Guid templateId, string newLabel, Template source)
-            : base(templateId)
+        public Template(Guid templateId, string newLabel, TemplateData sourceData, Term term, Course course)
+            : this(templateId, newLabel, course)
         {
-            var templateData = source.GetTemplateData();
+            AssignTerm(term);
+
+            switch (sourceData.Status)
+            {
+                case TemplateStatuses.Pending:
+                    // Pending by default
+                    break;
+                case TemplateStatuses.Obsolete:
+                    MakeObsolete();
+                    break;
+                case TemplateStatuses.Deactivated:
+                    Deactivate();
+                    break;
+                case TemplateStatuses.Activated:
+                    Activate();
+                    break;
+            }
 
             var @event = new TemplateCopied(
-                EventSourceId, newLabel, templateData.TemplateId, 
-                templateData.Label, templateData.CourseId, templateData.Rubric,
-                templateData.CourseNumber, templateData.Title,
-                templateData.Description, templateData.IsContinuingEducation,
-                templateData.TermId, templateData.Status);
-
+                EventSourceId, newLabel, sourceData.TemplateId, sourceData.Label);
             ApplyEvent(@event);
         }
 
-        internal TemplateData GetTemplateData()
+        public TemplateData GetTemplateData()
         {
             return new TemplateData()
             {
@@ -172,15 +183,6 @@ namespace ISIS.Scheduling
 
         protected void On(TemplateCopied @event)
         {
-            _courseId = @event.CourseId;
-            _courseNumber = @event.CourseNumber;
-            _description = @event.Description;
-            _isContinuingEducation = @event.IsContinuingEducation;
-            _label = @event.NewLabel;
-            _rubric = @event.Rubric;
-            _status = @event.Status;
-            _termId = @event.TermId;
-            _title = @event.Title;
         }
 
     }

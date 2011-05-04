@@ -68,10 +68,26 @@ this.ScenarioSetup(scenarioInfo);
 #line 10
  testRunner.And("I have created a template \"Source Template\"");
 #line 11
- testRunner.When("I copy the template \"Source Template\" to \"New Template\"");
+ testRunner.And("I have assigned the term to the template");
 #line 12
- testRunner.Then("the template \"Source Template\" is copied to \"New Template\"");
+ testRunner.And("I have activated the template");
 #line 13
+ testRunner.When("I copy the template \"Source Template\" to \"New Template\"");
+#line 14
+ testRunner.Then("the template is created");
+#line 15
+ testRunner.And("the template label is \"New Template\"");
+#line 16
+ testRunner.And("the template data matches the course data");
+#line 17
+ testRunner.And("the term is assigned to the template");
+#line 18
+ testRunner.And("the template\'s start and end dates match the term");
+#line 19
+ testRunner.And("the template is activated");
+#line 20
+ testRunner.And("the \"Source Template\" template is copied to \"New Template\"");
+#line 21
  testRunner.And("it does nothing else");
 #line hidden
             testRunner.CollectScenarioErrors();

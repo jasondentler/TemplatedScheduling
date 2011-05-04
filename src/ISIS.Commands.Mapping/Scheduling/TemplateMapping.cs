@@ -74,7 +74,12 @@ namespace ISIS.Scheduling
                                {
                                    var ctx = UnitOfWorkContext.Current;
                                    var source = ctx.GetById<Template>(cmd.SourceTemplateId);
-                                   return new Template(cmd.NewTemplateId, cmd.NewTemplateLabel, source);
+                                   var sourceData = source.GetTemplateData();
+
+                                   var term = ctx.GetById<Term>(sourceData.TermId);
+                                   var course = ctx.GetById<Course>(sourceData.CourseId);
+
+                                   return new Template(cmd.NewTemplateId, cmd.NewTemplateLabel, sourceData, term, course);
                                })
                 .RegisterWith(_commandService);
 
