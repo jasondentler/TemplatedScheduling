@@ -1,13 +1,15 @@
 ﻿using System;
 using Ncqrs.Commanding;
 
-namespace ISIS.Commands
+namespace ISIS.Scheduling
 {
-    public class MakeTemplateObsolete : CommandBase 
+
+    public class ActivateTemplate : CommandBase 
     {
+
         public Guid TemplateId { get; private set; }
 
-        public MakeTemplateObsolete(Guid templateId)
+        public ActivateTemplate(Guid templateId)
         {
             TemplateId = templateId;
         }

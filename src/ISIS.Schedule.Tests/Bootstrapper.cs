@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using ISIS.Commands;
 using ISIS.Commands.Mapping;
+using ISIS.Scheduling;
 using Ncqrs;
 using Ncqrs.Commanding.ServiceModel;
 using Ncqrs.Config.Ninject;

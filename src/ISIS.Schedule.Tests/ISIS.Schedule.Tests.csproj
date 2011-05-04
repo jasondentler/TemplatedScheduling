@@ -91,6 +91,13 @@
     <Compile Include="DomainLogger.cs" />
     <Compile Include="DomainSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SectionSetup.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SectionSetup.feature</DependentUpon>
+    </Compile>
+    <Compile Include="SectionThen.cs" />
+    <Compile Include="SectionWhen.cs" />
     <Compile Include="TemplateGiven.cs" />
     <Compile Include="TemplateLabel.feature.cs">
       <AutoGen>True</AutoGen>
@@ -160,6 +167,10 @@
       <LastGenOutput>CourseTitle.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="SectionSetup.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SectionSetup.feature.cs</LastGenOutput>
+    </None>
     <None Include="TemplateLabel.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>TemplateLabel.feature.cs</LastGenOutput>

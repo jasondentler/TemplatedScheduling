@@ -144,7 +144,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 33
  testRunner.Given("I have created a course and template and activated the template");
 #line 34
- testRunner.And("I make the template pending");
+ testRunner.And("I have made the template pending");
 #line 35
  testRunner.When("I make the template pending");
 #line 36

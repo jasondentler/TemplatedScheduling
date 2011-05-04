@@ -30,6 +30,7 @@ namespace ISIS.Schedule
 
 
         [Given(@"I have created a course and template")]
+        [Given(@"I have set up a course and template")]
         public void GivenIHaveCreatedACourseAndTemplate()
         {
             var courseGiven = new CourseGiven();
@@ -60,8 +61,8 @@ namespace ISIS.Schedule
             GivenIHaveActivatedTheTemplate();
         }
         
-        [Given(@"I make the template pending")]
-        public void GivenIMakeTheTemplatePending()
+        [Given(@"I have made the template pending")]
+        public void GivenIHaveMadeTheTemplatePending()
         {
             var templateId = DomainHelper.Id<Template>();
             DomainHelper.Given<Template>(new TemplateMadePending(templateId));

@@ -10,6 +10,11 @@ namespace ISIS.Scheduling
         private TemplateStatuses _status;
         private string _label;
         private bool _isContinuingEducation;
+        private Guid _courseId;
+        private string _rubric;
+        private string _courseNumber;
+        private string _title;
+        private string _description;
 
         private Template()
         {
@@ -36,6 +41,21 @@ namespace ISIS.Scheduling
                 courseData.Description,
                 courseData.IsContinuingEducation);
             ApplyEvent(@event);
+        }
+
+        internal TemplateData GetTemplateData()
+        {
+            return new TemplateData()
+            {
+                TemplateId = EventSourceId,
+                CourseId = _courseId,
+                Rubric = _rubric,
+                CourseNumber = _courseNumber,
+                Title = _title,
+                Description = _description,
+                IsContinuingEducation = _isContinuingEducation,
+                Status = _status
+            };
         }
 
         public void Rename(string newLabel)
@@ -71,6 +91,11 @@ namespace ISIS.Scheduling
         protected void On(TemplateCreated @event)
         {
             _label = @event.Label;
+            _courseId = @event.CourseId;
+            _rubric = @event.Rubric;
+            _courseNumber = @event.CourseNumber;
+            _title = @event.Title;
+            _description = @event.Description;
             _isContinuingEducation = @event.IsContinuingEducation;
         }
 

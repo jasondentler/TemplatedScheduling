@@ -1,15 +1,13 @@
 ﻿using System;
 using Ncqrs.Commanding;
 
-namespace ISIS.Commands
+namespace ISIS.Scheduling
 {
-
-    public class DeactivateTemplate : CommandBase 
+    public class MakeTemplatePending : CommandBase 
     {
-
         public Guid TemplateId { get; private set; }
 
-        public DeactivateTemplate(Guid templateId)
+        public MakeTemplatePending(Guid templateId)
         {
             TemplateId = templateId;
         }

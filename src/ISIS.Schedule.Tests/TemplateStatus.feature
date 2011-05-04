@@ -31,7 +31,7 @@ Scenario: Make a template pending
 @domain
 Scenario: Make a pending template pending
 	Given I have created a course and template and activated the template
-	And I make the template pending
+	And I have made the template pending
 	When I make the template pending
 	Then it does nothing
 

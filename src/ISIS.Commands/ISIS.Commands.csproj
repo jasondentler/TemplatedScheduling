@@ -8,7 +8,7 @@
     <ProjectGuid>{F54331F7-095D-4A20-8298-99BC38D273B5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ISIS.Commands</RootNamespace>
+    <RootNamespace>ISIS</RootNamespace>
     <AssemblyName>ISIS.Commands</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -43,17 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RenameTerm.cs" />
-    <Compile Include="CreateTerm.cs" />
-    <Compile Include="RenameCourse.cs" />
-    <Compile Include="ChangeCourseDescription.cs" />
-    <Compile Include="ActivateTemplate.cs" />
-    <Compile Include="RenameTemplate.cs" />
-    <Compile Include="CreateTemplate.cs" />
-    <Compile Include="MakeTemplateObsolete.cs" />
-    <Compile Include="DeactivateTemplate.cs" />
-    <Compile Include="MakeTemplatePending.cs" />
-    <Compile Include="CreateCourse.cs" />
+    <Compile Include="Scheduling\CreateSection.cs" />
+    <Compile Include="Scheduling\RenameTerm.cs" />
+    <Compile Include="Scheduling\CreateTerm.cs" />
+    <Compile Include="Scheduling\RenameCourse.cs" />
+    <Compile Include="Scheduling\ChangeCourseDescription.cs" />
+    <Compile Include="Scheduling\ActivateTemplate.cs" />
+    <Compile Include="Scheduling\RenameTemplate.cs" />
+    <Compile Include="Scheduling\CreateTemplate.cs" />
+    <Compile Include="Scheduling\MakeTemplateObsolete.cs" />
+    <Compile Include="Scheduling\DeactivateTemplate.cs" />
+    <Compile Include="Scheduling\MakeTemplatePending.cs" />
+    <Compile Include="Scheduling\CreateCourse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

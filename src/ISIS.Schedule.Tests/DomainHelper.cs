@@ -64,6 +64,10 @@ namespace ISIS.Schedule
                 {
                     throw;
                 }
+                catch (Ncqrs.Commanding.CommandExecution.ExecutorForCommandNotFoundException)
+                {
+                    throw;
+                }
                 catch (Exception exception)
                 {
                     SetException(command, exception);
