@@ -21,7 +21,7 @@ namespace ISIS.Scheduling
 
             Map.Command<CreateTerm>()
                 .ToAggregateRoot<Term>()
-                .CreateNew(cmd => new Term(cmd.TermId, cmd.Abbreviation, cmd.Name, cmd.Start, cmd.End))
+                .CreateNew(cmd => new Term(cmd.TermId, cmd.Abbreviation, cmd.Name, cmd.Start, cmd.End, cmd.IsContinuingEducation))
                 .RegisterWith(_commandService);
 
             Map.Command<RenameTerm>()

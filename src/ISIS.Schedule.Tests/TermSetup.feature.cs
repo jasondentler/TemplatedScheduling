@@ -53,11 +53,11 @@ namespace ISIS.Schedule
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create a term")]
+        [NUnit.Framework.DescriptionAttribute("Create a credit term")]
         [NUnit.Framework.CategoryAttribute("domain")]
-        public virtual void CreateATerm()
+        public virtual void CreateACreditTerm()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a term", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a credit term", new string[] {
                         "domain"});
 #line 6
 this.ScenarioSetup(scenarioInfo);
@@ -74,6 +74,37 @@ this.ScenarioSetup(scenarioInfo);
 #line 12
  testRunner.And("the term end date is 12/1/2011");
 #line 13
+ testRunner.And("the term is not for continuing education");
+#line 14
+ testRunner.And("it does nothing else");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Create a CE term")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void CreateACETerm()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a CE term", new string[] {
+                        "domain"});
+#line 17
+this.ScenarioSetup(scenarioInfo);
+#line 18
+ testRunner.When("I create a CE term CE211Q1 \"2011 Quarter 1\" from 9/1/2011 to 12/1/2011");
+#line 19
+ testRunner.Then("the term is created");
+#line 20
+ testRunner.And("the term abbreviation is CE211Q1");
+#line 21
+ testRunner.And("the term name is \"2011 Quarter 1\"");
+#line 22
+ testRunner.And("the term start date is 9/1/2011");
+#line 23
+ testRunner.And("the term end date is 12/1/2011");
+#line 24
+ testRunner.And("the term is for continuing education");
+#line 25
  testRunner.And("it does nothing else");
 #line hidden
             testRunner.CollectScenarioErrors();

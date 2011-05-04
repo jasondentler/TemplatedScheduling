@@ -8,14 +8,17 @@ namespace ISIS.Scheduling
     {
 
         private string _name;
+        private DateTime _startDate;
+        private DateTime _endDate;
+        private bool _isContinuingEducation;
 
         private Term()
         {
         }
 
-        public Term(Guid termId, string abbreviation, string name, DateTime start, DateTime end)
+        public Term(Guid termId, string abbreviation, string name, DateTime start, DateTime end, bool isContinuingEducation)
         {
-            ApplyEvent(new TermCreated(termId, abbreviation, name, start, end));
+            ApplyEvent(new TermCreated(termId, abbreviation, name, start, end, isContinuingEducation));
         }
 
         public void Rename(string newName)
@@ -24,15 +27,31 @@ namespace ISIS.Scheduling
                 ApplyEvent(new TermRenamed(EventSourceId, _name, newName));
         }
 
+        internal TermData GetTermData()
+        {
+            return new TermData()
+                       {
+                           TermId = EventSourceId,
+                           Name = _name,
+                           StartDate = _startDate,
+                           EndDate = _endDate,
+                           IsContinuingEducation = _isContinuingEducation
+                       };
+        }
+
         protected void On(TermCreated @event)
         {
             _name = @event.Name;
+            _startDate = @event.StartDate;
+            _endDate = @event.EndDate;
+            _isContinuingEducation = @event.IsContinuingEducation;
         }
 
         protected void On(TermRenamed @event)
         {
             _name = @event.NewName;
         }
+
 
     }
 

@@ -19,9 +19,24 @@ namespace ISIS.Schedule
             var startDate = DateTime.Parse(startDateString);
             var endDate = DateTime.Parse(endDateString);
             var termId = DomainHelper.Id<Term>();
-            var cmd = new CreateTerm(termId, abbreviation, name, startDate, endDate);
+            var cmd = new CreateTerm(termId, abbreviation, name, startDate, endDate, false);
             DomainHelper.When(cmd);
         }
+
+        [When(@"I create a CE term ([^\s]*) ""(.*)"" from ([\d/]*) to ([\d/]*)")]
+        public void WhenICreateACETerm(
+            string abbreviation,
+            string name,
+            string startDateString,
+            string endDateString)
+        {
+            var startDate = DateTime.Parse(startDateString);
+            var endDate = DateTime.Parse(endDateString);
+            var termId = DomainHelper.Id<Term>();
+            var cmd = new CreateTerm(termId, abbreviation, name, startDate, endDate, true);
+            DomainHelper.When(cmd);
+        }
+
 
         [When(@"I rename the term to ""(.*)""")]
         public void WhenIRenameTheTermTo(

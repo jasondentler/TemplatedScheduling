@@ -40,6 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Scheduling\ActivateTemplateExceptions\TemplateMissingTermException.cs" />
+    <Compile Include="Scheduling\TermAssignedToTemplateExceptions\TermIsNotContinuingEducationException.cs" />
+    <Compile Include="Scheduling\TermAssignedToTemplateExceptions\TermIsContinuingEducationException.cs" />
+    <Compile Include="Scheduling\TermData.cs" />
     <Compile Include="Scheduling\CreateSectionExceptions\TemplateIsNotActiveException.cs" />
     <Compile Include="Scheduling\TemplateData.cs" />
     <Compile Include="Scheduling\CourseData.cs" />

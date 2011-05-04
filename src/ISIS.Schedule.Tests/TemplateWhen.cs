@@ -65,6 +65,16 @@ namespace ISIS.Schedule
             var cmd = new MakeTemplateObsolete(templateId);
             DomainHelper.When(cmd);
         }
-        
+
+        [When(@"I assign the term to the template")]
+        public void WhenIAssignTheTermToTheTemplate()
+        {
+            var templateId = DomainHelper.Id<Template>();
+            var termId = DomainHelper.Id<Term>();
+            var cmd = new AssignTermToTemplate(templateId, termId);
+            DomainHelper.When(cmd);
+        }
+
+
     }
 }

@@ -38,6 +38,7 @@ namespace ISIS.Schedule
             GivenIHaveCreatedTheTemplate("Template Label");
         }
 
+        [Given(@"I have set up a CE course and template")]
         [Given(@"I have created a CE course and template")]
         public void GivenIHaveCreatedACECourseAndTemplate()
         {
@@ -45,7 +46,6 @@ namespace ISIS.Schedule
             courseGiven.GivenIHaveSetUpANewCECourse();
             GivenIHaveCreatedTheTemplate("Template Label");
         }
-
 
         [Given(@"I have activated the template")]
         public void GivenIHaveActivatedTheTemplate()
@@ -57,7 +57,11 @@ namespace ISIS.Schedule
         [Given(@"I have created a course and template and activated the template")]
         public void GivenIHaveCreatedACourseAndTemplateAndActivatedTheTemplate()
         {
+            var termGiven = new TermGiven();
+
             GivenIHaveCreatedACourseAndTemplate();
+            termGiven.GivenIHaveCreatedATerm();
+            GivenIHaveAssignedTheTermToTheTemplate();
             GivenIHaveActivatedTheTemplate();
         }
         
@@ -81,6 +85,20 @@ namespace ISIS.Schedule
             var templateId = DomainHelper.Id<Template>();
             DomainHelper.Given<Template>(new TemplateMadeObsolete(templateId));
         }
+
+        [Given(@"I have assigned the term to the template")]
+        public void GivenIHaveAssignedTheTermToTheTemplate()
+        {
+            var templateId = DomainHelper.Id<Template>();
+            var termId = DomainHelper.Id<Term>();
+
+            var e = DomainHelper.GetEventStream(termId).OfType<TermCreated>().Single();
+
+            var @event = new TermAssignedToTemplate(templateId, termId,
+                                                    e.Name, e.StartDate, e.EndDate);
+            DomainHelper.Given<Template>(@event);
+        }
+
         
     }
 }

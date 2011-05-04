@@ -114,6 +114,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TemplateStatus.feature</DependentUpon>
     </Compile>
+    <Compile Include="TemplateTerm.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TemplateTerm.feature</DependentUpon>
+    </Compile>
     <Compile Include="TemplateThen.cs" />
     <Compile Include="TemplateWhen.cs" />
     <Compile Include="TermGiven.cs" />
@@ -182,6 +187,10 @@
     <None Include="TemplateStatus.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>TemplateStatus.feature.cs</LastGenOutput>
+    </None>
+    <None Include="TemplateTerm.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>TemplateTerm.feature.cs</LastGenOutput>
     </None>
     <None Include="TermRename.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

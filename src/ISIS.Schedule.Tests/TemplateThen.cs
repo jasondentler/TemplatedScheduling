@@ -76,6 +76,39 @@ namespace ISIS.Schedule
             e.Title.Should().Be.EqualTo(courseRenamedEvent.NewTitle);
             e.Description.Should().Be.EqualTo(courseDescriptionEvent.NewDescription);
         }
+
+        [Then(@"the term is assigned to the template")]
+        public void ThenTheTermIsAssignedToTheTemplate()
+        {
+            var templateId = DomainHelper.Id<Template>();
+            var termId = DomainHelper.Id<Term>();
+            var termCreated = DomainHelper.GetEventStream(termId).OfType<TermCreated>().Single();
+
+            var e = DomainHelper.Then<TermAssignedToTemplate>();
+            e.TemplateId.Should().Be.EqualTo(templateId);
+            e.TermId.Should().Be.EqualTo(termId);
+            e.TermName.Should().Be.EqualTo(termCreated.Name);
+        }
+
+        [Then(@"the template's start and end dates are blank")]
+        public void ThenTheTemplateSStartAndEndDatesAreBlank()
+        {
+            var e = DomainHelper.Then<TermAssignedToTemplate>();
+            e.StartDate.Should().Be.EqualTo(null);
+            e.EndDate.Should().Be.EqualTo(null);
+        }
+
+        [Then(@"the template's start and end dates match the term")]
+        public void ThenTheTemplateSStartAndEndDatesMatchTheTerm()
+        {
+            var termId = DomainHelper.Id<Term>();
+            var termCreated = DomainHelper.GetEventStream(termId).OfType<TermCreated>().Single();
+
+            var e = DomainHelper.Then<TermAssignedToTemplate>();
+            e.StartDate.Should().Be.EqualTo(termCreated.StartDate);
+            e.EndDate.Should().Be.EqualTo(termCreated.EndDate);
+        }
+
         
     }
 }

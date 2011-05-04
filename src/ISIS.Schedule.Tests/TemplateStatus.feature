@@ -11,9 +11,18 @@ Scenario: New templates are pending
 @domain
 Scenario: Activate a template
 	Given I have created a course and template
+	And I have created a term
+	And I have assigned the term to the template
 	When I activate the template
 	Then the template is activated
 	And it does nothing else
+
+@domain
+Scenario: Cant activate a template without a term
+	Given I have created a course and template
+	When I activate the template
+	Then the aggregate state is invalid
+	And the message is "Your attempt to activate the template failed. The template is missing a term."
 
 @domain
 Scenario: Activate an already-active template

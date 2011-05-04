@@ -60,6 +60,20 @@ namespace ISIS.Schedule
             e.NewName.Should().Be.EqualTo(newName);
         }
 
+        [Then(@"the term is not for continuing education")]
+        public void ThenTheTermIsNotForContinuingEducation()
+        {
+            var e = DomainHelper.Then<TermCreated>();
+            e.IsContinuingEducation.Should().Be.False();
+        }
+
+        [Then(@"the term is for continuing education")]
+        public void ThenTheTermIsForContinuingEducation()
+        {
+            var e = DomainHelper.Then<TermCreated>();
+            e.IsContinuingEducation.Should().Be.True();
+        }
+
 
     }
 }

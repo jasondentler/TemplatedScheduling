@@ -10,15 +10,17 @@ namespace ISIS.Scheduling
         public string Name { get; private set; }
         public DateTime Start { get; private set; }
         public DateTime End { get; private set; }
+        public bool IsContinuingEducation { get; private set; }
 
         public CreateTerm(Guid termId, string abbreviation, string name, 
-            DateTime start, DateTime end)
+            DateTime start, DateTime end, bool isContinuingEducation)
         {
             TermId = termId;
             Abbreviation = abbreviation;
             Name = name;
             Start = start;
             End = end;
+            IsContinuingEducation = isContinuingEducation;
         }
     }
 }

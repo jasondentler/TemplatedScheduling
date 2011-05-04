@@ -83,11 +83,37 @@ this.ScenarioSetup(scenarioInfo);
 #line 13
  testRunner.Given("I have created a course and template");
 #line 14
- testRunner.When("I activate the template");
+ testRunner.And("I have created a term");
 #line 15
- testRunner.Then("the template is activated");
+ testRunner.And("I have assigned the term to the template");
 #line 16
+ testRunner.When("I activate the template");
+#line 17
+ testRunner.Then("the template is activated");
+#line 18
  testRunner.And("it does nothing else");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Cant activate a template without a term")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void CantActivateATemplateWithoutATerm()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cant activate a template without a term", new string[] {
+                        "domain"});
+#line 21
+this.ScenarioSetup(scenarioInfo);
+#line 22
+ testRunner.Given("I have created a course and template");
+#line 23
+ testRunner.When("I activate the template");
+#line 24
+ testRunner.Then("the aggregate state is invalid");
+#line 25
+ testRunner.And("the message is \"Your attempt to activate the template failed. The template is mis" +
+                    "sing a term.\"");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -99,13 +125,13 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Activate an already-active template", new string[] {
                         "domain"});
-#line 19
+#line 28
 this.ScenarioSetup(scenarioInfo);
-#line 20
+#line 29
  testRunner.Given("I have created a course and template and activated the template");
-#line 21
+#line 30
  testRunner.When("I activate the template");
-#line 22
+#line 31
  testRunner.Then("it does nothing");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -118,15 +144,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Make a template pending", new string[] {
                         "domain"});
-#line 25
+#line 34
 this.ScenarioSetup(scenarioInfo);
-#line 26
+#line 35
  testRunner.Given("I have created a course and template and activated the template");
-#line 27
+#line 36
  testRunner.When("I make the template pending");
-#line 28
+#line 37
  testRunner.Then("the template is made pending");
-#line 29
+#line 38
  testRunner.And("it does nothing else");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -139,15 +165,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Make a pending template pending", new string[] {
                         "domain"});
-#line 32
+#line 41
 this.ScenarioSetup(scenarioInfo);
-#line 33
+#line 42
  testRunner.Given("I have created a course and template and activated the template");
-#line 34
+#line 43
  testRunner.And("I have made the template pending");
-#line 35
+#line 44
  testRunner.When("I make the template pending");
-#line 36
+#line 45
  testRunner.Then("it does nothing");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -160,15 +186,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Deactivate a pending template", new string[] {
                         "domain"});
-#line 39
+#line 48
 this.ScenarioSetup(scenarioInfo);
-#line 40
+#line 49
  testRunner.Given("I have created a course and template");
-#line 41
+#line 50
  testRunner.When("I deactivate the template");
-#line 42
+#line 51
  testRunner.Then("the template is deactivated");
-#line 43
+#line 52
  testRunner.And("it does nothing else");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -181,15 +207,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Deactivate an active template", new string[] {
                         "domain"});
-#line 46
+#line 55
 this.ScenarioSetup(scenarioInfo);
-#line 47
+#line 56
  testRunner.Given("I have created a course and template and activated the template");
-#line 48
+#line 57
  testRunner.When("I deactivate the template");
-#line 49
+#line 58
  testRunner.Then("the template is deactivated");
-#line 50
+#line 59
  testRunner.And("it does nothing else");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -202,15 +228,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Deactivate a deactive template", new string[] {
                         "domain"});
-#line 53
+#line 62
 this.ScenarioSetup(scenarioInfo);
-#line 54
+#line 63
  testRunner.Given("I have created a course and template");
-#line 55
+#line 64
  testRunner.And("I have deactivated a template");
-#line 56
+#line 65
  testRunner.When("I deactivate the template");
-#line 57
+#line 66
  testRunner.Then("it does nothing");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -223,17 +249,17 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Deactivate an obsolete course", new string[] {
                         "domain"});
-#line 60
+#line 69
 this.ScenarioSetup(scenarioInfo);
-#line 61
+#line 70
  testRunner.Given("I have created a course and template");
-#line 62
+#line 71
  testRunner.And("I have made the template obsolete");
-#line 63
+#line 72
  testRunner.When("I deactivate the template");
-#line 64
+#line 73
  testRunner.Then("the template is deactivated");
-#line 65
+#line 74
  testRunner.And("it does nothing else");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -246,15 +272,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Make a pending template obsolete", new string[] {
                         "domain"});
-#line 68
+#line 77
 this.ScenarioSetup(scenarioInfo);
-#line 69
+#line 78
  testRunner.Given("I have created a course and template");
-#line 70
+#line 79
  testRunner.When("I make the template obsolete");
-#line 71
+#line 80
  testRunner.Then("the template is made obsolete");
-#line 72
+#line 81
  testRunner.And("it does nothing else");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -267,15 +293,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Make an active course obsolete", new string[] {
                         "domain"});
-#line 75
+#line 84
 this.ScenarioSetup(scenarioInfo);
-#line 76
+#line 85
  testRunner.Given("I have created a course and template and activated the template");
-#line 77
+#line 86
  testRunner.When("I make the template obsolete");
-#line 78
+#line 87
  testRunner.Then("the template is made obsolete");
-#line 79
+#line 88
  testRunner.And("it does nothing else");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -288,17 +314,17 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Make a deactive template obsolete", new string[] {
                         "domain"});
-#line 82
+#line 91
 this.ScenarioSetup(scenarioInfo);
-#line 83
+#line 92
  testRunner.Given("I have created a course and template");
-#line 84
+#line 93
  testRunner.And("I have deactivated a template");
-#line 85
+#line 94
  testRunner.When("I make the template obsolete");
-#line 86
+#line 95
  testRunner.Then("the template is made obsolete");
-#line 87
+#line 96
  testRunner.Then("it does nothing else");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -311,15 +337,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Make an obsolete template obsolete", new string[] {
                         "domain"});
-#line 90
+#line 99
 this.ScenarioSetup(scenarioInfo);
-#line 91
+#line 100
  testRunner.Given("I have created a course and template");
-#line 92
+#line 101
  testRunner.And("I have made the template obsolete");
-#line 93
+#line 102
  testRunner.When("I make the template obsolete");
-#line 94
+#line 103
  testRunner.Then("it does nothing");
 #line hidden
             testRunner.CollectScenarioErrors();

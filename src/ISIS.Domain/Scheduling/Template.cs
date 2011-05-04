@@ -1,5 +1,7 @@
 ﻿using System;
+using ISIS.Scheduling.ActivateTemplateExceptions;
 using ISIS.Scheduling.CreateTemplateExceptions;
+using ISIS.Scheduling.TermAssignedToTemplateExceptions;
 using Ncqrs.Domain;
 
 namespace ISIS.Scheduling
@@ -15,6 +17,7 @@ namespace ISIS.Scheduling
         private string _courseNumber;
         private string _title;
         private string _description;
+        private Guid _termId;
 
         private Template()
         {
@@ -66,6 +69,9 @@ namespace ISIS.Scheduling
 
         public void Activate()
         {
+            if (_termId == default(Guid))
+                throw new TemplateMissingTermException();
+
             if (_status != TemplateStatuses.Activated)
                 ApplyEvent(new TemplateActivated(EventSourceId));
         }
@@ -86,6 +92,24 @@ namespace ISIS.Scheduling
         {
             if (_status != TemplateStatuses.Obsolete)
                 ApplyEvent(new TemplateMadeObsolete(EventSourceId));
+        }
+
+        public void AssignTerm(Term term)
+        {
+            var termData = term.GetTermData();
+
+            if (!_isContinuingEducation && termData.IsContinuingEducation)
+                throw new TermIsContinuingEducationException();
+
+            if (_isContinuingEducation && !termData.IsContinuingEducation)
+                throw new TermIsNotContinuingEducationException();
+
+            var @event =
+                _isContinuingEducation
+                    ? new TermAssignedToTemplate(EventSourceId, termData.TermId, termData.Name)
+                    : new TermAssignedToTemplate(EventSourceId, termData.TermId, termData.Name, termData.StartDate,
+                                                 termData.EndDate);
+            ApplyEvent(@event);
         }
         
         protected void On(TemplateCreated @event)
@@ -123,6 +147,11 @@ namespace ISIS.Scheduling
         {
             _status = TemplateStatuses.Obsolete;
         }
-        
+
+        protected void On(TermAssignedToTemplate @event)
+        {
+            _termId = @event.TermId;
+        }
+
     }
 }

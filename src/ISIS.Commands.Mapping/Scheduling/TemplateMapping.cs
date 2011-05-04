@@ -59,6 +59,17 @@ namespace ISIS.Scheduling
                 .ToCallOn((cmd, template) => template.MakeObsolete())
                 .RegisterWith(_commandService);
             
+            Map.Command<AssignTermToTemplate>()
+                .ToAggregateRoot<Template>()
+                .WithId(cmd => cmd.TemplateId)
+                .ToCallOn((cmd, template) =>
+                              {
+                                  var ctx = UnitOfWorkContext.Current;
+                                  var term = ctx.GetById<Term>(cmd.TermId);
+                                  template.AssignTerm(term);
+                              })
+                .RegisterWith(_commandService);
+
         }
     }
 
