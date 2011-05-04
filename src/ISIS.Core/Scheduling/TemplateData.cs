@@ -15,7 +15,7 @@ namespace ISIS.Scheduling
         public string Description;
         public bool IsContinuingEducation;
         public TemplateStatuses Status;
-
+        public string Label;
     }
 
 }

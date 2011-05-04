@@ -98,6 +98,11 @@
     </Compile>
     <Compile Include="SectionThen.cs" />
     <Compile Include="SectionWhen.cs" />
+    <Compile Include="TemplateCopy.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TemplateCopy.feature</DependentUpon>
+    </Compile>
     <Compile Include="TemplateGiven.cs" />
     <Compile Include="TemplateLabel.feature.cs">
       <AutoGen>True</AutoGen>
@@ -175,6 +180,10 @@
     <None Include="SectionSetup.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SectionSetup.feature.cs</LastGenOutput>
+    </None>
+    <None Include="TemplateCopy.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>TemplateCopy.feature.cs</LastGenOutput>
     </None>
     <None Include="TemplateLabel.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

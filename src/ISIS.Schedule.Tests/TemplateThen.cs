@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using ISIS.Scheduling;
 using SharpTestsEx;
 using TechTalk.SpecFlow;
@@ -109,6 +111,72 @@ namespace ISIS.Schedule
             e.EndDate.Should().Be.EqualTo(termCreated.EndDate);
         }
 
-        
+        [Then(@"the template ""(.*)"" is copied to ""(.*)""")]
+        public void ThenTheTemplateIsCopied(
+            string sourceTemplateLabel,
+            string newTemplateLabel)
+        {
+            var sourceTemplateId = DomainHelper.Id<Template>(sourceTemplateLabel);
+            var newTemplateId = DomainHelper.Id<Template>(newTemplateLabel);
+            var sourceEvents = DomainHelper.GetEventStream(sourceTemplateId);
+            var sourceCreated = sourceEvents.OfType<TemplateCreated>().Single();
+            var sourceTermAssigned = sourceEvents.OfType<TermAssignedToTemplate>().LastOrDefault();
+            var sourceStatus = GetStatus(sourceEvents);
+
+            var data = new TemplateData()
+                                 {
+                                     CourseId = sourceCreated.CourseId,
+                                     CourseNumber = sourceCreated.CourseNumber,
+                                     Description = sourceCreated.Description,
+                                     IsContinuingEducation = sourceCreated.IsContinuingEducation,
+                                     Label = sourceCreated.Label,
+                                     Rubric = sourceCreated.Rubric,
+                                     Status = sourceStatus,
+                                     TemplateId = sourceTemplateId,
+                                     TermId = sourceTermAssigned == null ? default(Guid) : sourceTermAssigned.TermId,
+                                     Title = sourceCreated.Title
+                                 };
+
+            var e = DomainHelper.Then<TemplateCopied>();
+            e.CourseId.Should().Be.EqualTo(data.CourseId);
+            e.CourseNumber.Should().Be.EqualTo(data.CourseNumber);
+            e.Description.Should().Be.EqualTo(data.Description);
+            e.IsContinuingEducation.Should().Be.Equals(data.IsContinuingEducation);
+            e.NewLabel.Should().Be.EqualTo(newTemplateLabel);
+            e.NewTemplateId.Should().Be.EqualTo(newTemplateId);
+            e.Rubric.Should().Be.EqualTo(data.Rubric);
+            e.SourceLabel.Should().Be.EqualTo(sourceTemplateLabel);
+            e.SourceTemplateId.Should().Be.EqualTo(sourceTemplateId);
+            e.Status.Should().Be.EqualTo(sourceStatus);
+            e.TermId.Should().Be.EqualTo(data.TermId);
+            e.Title.Should().Be.EqualTo(data.Title);
+
+        }
+
+        private static TemplateStatuses GetStatus(IEnumerable<object> eventStream)
+        {
+            return GetStatus(
+                eventStream.Where(
+                    e =>
+                    e is ActivateTemplate || e is DeactivateTemplate || e is MakeTemplatePending ||
+                    e is MakeTemplateObsolete || e is TemplateCopied).LastOrDefault());
+        }
+
+        private static TemplateStatuses GetStatus(object statusEvent)
+        {
+            if (statusEvent == null)
+                return TemplateStatuses.Pending;
+            if (statusEvent is ActivateTemplate)
+                return TemplateStatuses.Activated;
+            if (statusEvent is DeactivateTemplate)
+                return TemplateStatuses.Deactivated;
+            if (statusEvent is MakeTemplatePending)
+                return TemplateStatuses.Pending;
+            if (statusEvent is MakeTemplateObsolete)
+                return TemplateStatuses.Obsolete;
+            throw new NotSupportedException();
+        }
+
+
     }
 }

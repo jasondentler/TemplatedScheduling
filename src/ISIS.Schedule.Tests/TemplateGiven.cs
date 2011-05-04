@@ -8,6 +8,7 @@ namespace ISIS.Schedule
     public class TemplateGiven
     {
 
+        [Given(@"I have created a template ""(.*)""")]
         [Given(@"I have created the template ""(.*)""")]
         public void GivenIHaveCreatedTheTemplate(
             string templateLabel)

@@ -68,6 +68,16 @@ namespace ISIS.Scheduling
                               })
                 .RegisterWith(_commandService);
 
+            Map.Command<CopyTemplate>()
+                .ToAggregateRoot<Template>()
+                .CreateNew(cmd =>
+                               {
+                                   var ctx = UnitOfWorkContext.Current;
+                                   var source = ctx.GetById<Template>(cmd.SourceTemplateId);
+                                   return new Template(cmd.NewTemplateId, cmd.NewTemplateLabel, source);
+                               })
+                .RegisterWith(_commandService);
+
         }
     }
 

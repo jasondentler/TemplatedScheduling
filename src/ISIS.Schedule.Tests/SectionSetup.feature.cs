@@ -87,12 +87,16 @@ this.ScenarioSetup(scenarioInfo);
 #line 15
  testRunner.Given("I have set up a course and template");
 #line 16
- testRunner.And("I have made the template pending");
+ testRunner.And("I have set up a term");
 #line 17
- testRunner.When("I create a section 01 from the template");
+ testRunner.And("I have assigned the term to the template");
 #line 18
- testRunner.Then("the aggregate state is invalid");
+ testRunner.And("I have made the template pending");
 #line 19
+ testRunner.When("I create a section 01 from the template");
+#line 20
+ testRunner.Then("the aggregate state is invalid");
+#line 21
  testRunner.And("the message is \"Your attempt to create a section failed. The template is not acti" +
                     "ve.\"");
 #line hidden

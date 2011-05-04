@@ -13,6 +13,8 @@ Scenario: Create a section from a template
 @domain
 Scenario: Cant create a section from a non-active template
 	Given I have set up a course and template
+	And I have set up a term
+	And I have assigned the term to the template
 	And I have made the template pending
 	When I create a section 01 from the template
 	Then the aggregate state is invalid

@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Scheduling\AssignTermToTemplate.cs" />
+    <Compile Include="Scheduling\CopyTemplate.cs" />
     <Compile Include="Scheduling\CreateSection.cs" />
     <Compile Include="Scheduling\RenameTerm.cs" />
     <Compile Include="Scheduling\CreateTerm.cs" />

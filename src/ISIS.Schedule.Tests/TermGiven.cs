@@ -36,6 +36,7 @@ namespace ISIS.Schedule
             DomainHelper.Given<Term>(@event);
         }
 
+        [Given(@"I have set up a term")]
         [Given(@"I have created a term")]
         public void GivenIHaveCreatedATerm()
         {

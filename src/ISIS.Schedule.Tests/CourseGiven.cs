@@ -61,6 +61,7 @@ namespace ISIS.Schedule
         }
 
 
+        [Given(@"I have set up a course")]
         [Given(@"I have set up a new course")]
         public void GivenIHaveSetUpANewCourse()
         {

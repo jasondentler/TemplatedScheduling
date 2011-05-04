@@ -74,6 +74,18 @@ namespace ISIS.Schedule
             DomainHelper.When(cmd);
         }
 
+        [When(@"I copy the template ""(.*)"" to ""(.*)""")]
+        public void WhenICopyTheTemplate(
+            string sourceLabel,
+            string newLabel)
+        {
+            var sourceTemplateId = DomainHelper.Id<Template>(sourceLabel);
+            var newTemplateId = DomainHelper.Id<Template>(newLabel);
+
+            var cmd = new CopyTemplate(newTemplateId, sourceTemplateId, newLabel);
+            DomainHelper.When(cmd);
+        }
+
 
     }
 }

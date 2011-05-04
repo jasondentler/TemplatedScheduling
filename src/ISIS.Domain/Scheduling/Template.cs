@@ -23,7 +23,7 @@ namespace ISIS.Scheduling
         {
         }
 
-        public Template(Guid templateId, string label, Course course)
+        public Template(Guid templateId, string newLabel, Course course)
             : base(templateId)
         {
             var courseData = course.GetCourseData();
@@ -36,7 +36,7 @@ namespace ISIS.Scheduling
 
             var @event = new TemplateCreated(
                 EventSourceId,
-                label,
+                newLabel,
                 courseData.CourseId,
                 courseData.Rubric,
                 courseData.CourseNumber,
@@ -46,11 +46,27 @@ namespace ISIS.Scheduling
             ApplyEvent(@event);
         }
 
+        public Template(Guid templateId, string newLabel, Template source)
+            : base(templateId)
+        {
+            var templateData = source.GetTemplateData();
+
+            var @event = new TemplateCopied(
+                EventSourceId, newLabel, templateData.TemplateId, 
+                templateData.Label, templateData.CourseId, templateData.Rubric,
+                templateData.CourseNumber, templateData.Title,
+                templateData.Description, templateData.IsContinuingEducation,
+                templateData.TermId, templateData.Status);
+
+            ApplyEvent(@event);
+        }
+
         internal TemplateData GetTemplateData()
         {
             return new TemplateData()
             {
                 TemplateId = EventSourceId,
+                Label = _label,
                 CourseId = _courseId,
                 TermId = _termId,
                 Rubric = _rubric,
@@ -152,6 +168,19 @@ namespace ISIS.Scheduling
         protected void On(TermAssignedToTemplate @event)
         {
             _termId = @event.TermId;
+        }
+
+        protected void On(TemplateCopied @event)
+        {
+            _courseId = @event.CourseId;
+            _courseNumber = @event.CourseNumber;
+            _description = @event.Description;
+            _isContinuingEducation = @event.IsContinuingEducation;
+            _label = @event.NewLabel;
+            _rubric = @event.Rubric;
+            _status = @event.Status;
+            _termId = @event.TermId;
+            _title = @event.Title;
         }
 
     }
