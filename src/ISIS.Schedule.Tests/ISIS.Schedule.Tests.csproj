@@ -90,6 +90,14 @@
     <Compile Include="DomainHelper.cs" />
     <Compile Include="DomainLogger.cs" />
     <Compile Include="DomainSteps.cs" />
+    <Compile Include="FacultyGiven.cs" />
+    <Compile Include="FacultySetup.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FacultySetup.feature</DependentUpon>
+    </Compile>
+    <Compile Include="FacultyThen.cs" />
+    <Compile Include="FacultyWhen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SectionSetup.feature.cs">
       <AutoGen>True</AutoGen>
@@ -175,6 +183,10 @@
     <None Include="CourseTitle.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CourseTitle.feature.cs</LastGenOutput>
+    </None>
+    <None Include="FacultySetup.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>FacultySetup.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="SectionSetup.feature">

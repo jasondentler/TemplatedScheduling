@@ -40,6 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Scheduling\FacultyUnassignedCourse.cs" />
+    <Compile Include="Scheduling\FacultyAssignedCourse.cs" />
+    <Compile Include="Scheduling\FacultyCreated.cs" />
+    <Compile Include="Scheduling\FacultyNameChanged.cs" />
     <Compile Include="Scheduling\SectionCreated.cs" />
     <Compile Include="Scheduling\TemplateCopied.cs" />
     <Compile Include="Scheduling\TermAssignedToTemplate.cs" />
