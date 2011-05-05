@@ -9,7 +9,7 @@ namespace ISIS.Scheduling
         public Guid TemplateId;
         public Guid CourseId;
         public Guid TermId;
-        public Guid FacultyId;
+        public Guid InstructorId;
         public string Rubric;
         public string CourseNumber;
         public string Title;

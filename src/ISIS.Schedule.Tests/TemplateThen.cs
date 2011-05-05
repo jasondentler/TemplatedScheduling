@@ -123,33 +123,33 @@ namespace ISIS.Schedule
             e.NewTemplateId.Should().Be.EqualTo(newTemplateId);
         }
 
-        [Then(@"the faculty member is assigned to the template")]
-        public void ThenTheFacultyMemberIsAssignedToTheTemplate()
+        [Then(@"the instructor is assigned to the template")]
+        public void ThenTheInstructorIsAssignedToTheTemplate()
         {
-            var facultyId = DomainHelper.Id<Faculty>();
+            var instructorId = DomainHelper.Id<Instructor>();
             var templateId = DomainHelper.Id<Template>();
 
-            var facultyCreated = DomainHelper.GetEventStream(facultyId).OfType<FacultyCreated>().Single();
+            var instructorCreated = DomainHelper.GetEventStream(instructorId).OfType<InstructorCreated>().Single();
             var templateCreated = DomainHelper.GetEventStream(templateId).OfType<TemplateCreated>().Single();
 
-            var e = DomainHelper.Then<FacultyAssignedToTemplate>();
-            e.FacultyId.Should().Be.EqualTo(facultyId);
-            e.FirstName.Should().Be.EqualTo(facultyCreated.FirstName);
-            e.LastName.Should().Be.EqualTo(facultyCreated.LastName);
+            var e = DomainHelper.Then<InstructorAssignedToTemplate>();
+            e.InstructorId.Should().Be.EqualTo(instructorId);
+            e.FirstName.Should().Be.EqualTo(instructorCreated.FirstName);
+            e.LastName.Should().Be.EqualTo(instructorCreated.LastName);
             e.TemplateId.Should().Be.EqualTo(templateCreated.TemplateId);
             e.Label.Should().Be.EqualTo(templateCreated.Label);
         }
 
-        [Then(@"the faculty member is unassigned from the template")]
-        public void ThenTheFacultyMemberIsUnassignedFromTheTemplate()
+        [Then(@"the instructor is unassigned from the template")]
+        public void ThenTheInstructorIsUnassignedFromTheTemplate()
         {
-            var facultyId = DomainHelper.Id<Faculty>();
+            var instructorId = DomainHelper.Id<Instructor>();
             var templateId = DomainHelper.Id<Template>();
 
             var templateCreated = DomainHelper.GetEventStream(templateId).OfType<TemplateCreated>().Single();
 
-            var e = DomainHelper.Then<FacultyUnassignedFromTemplate>();
-            e.FacultyId.Should().Be.EqualTo(facultyId);
+            var e = DomainHelper.Then<InstructorUnassignedFromTemplate>();
+            e.InstructorId.Should().Be.EqualTo(instructorId);
             e.TemplateId.Should().Be.EqualTo(templateId);
             e.Label.Should().Be.EqualTo(templateCreated.Label);
         }

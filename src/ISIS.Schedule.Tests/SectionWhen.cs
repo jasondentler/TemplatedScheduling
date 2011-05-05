@@ -25,6 +25,26 @@ namespace ISIS.Schedule
             DomainHelper.When(cmd);
         }
 
+        [When(@"I assign the instructor to the section")]
+        public void WhenIAssignTheInstructorToTheSection()
+        {
+            var sectionId = DomainHelper.Id<Section>();
+            var instructorId = DomainHelper.Id<Instructor>();
+
+            var cmd = new AssignInstructorToSection(sectionId, instructorId);
+            DomainHelper.When(cmd);
+        }
+
+        [When(@"I unassign the instructor from the section")]
+        public void WhenIUnassignTheInstructorFromTheSection()
+        {
+            var sectionId = DomainHelper.Id<Section>();
+
+            var cmd = new UnassignInstructorFromSection(sectionId);
+            DomainHelper.When(cmd);
+        }
+
+
 
     }
 }

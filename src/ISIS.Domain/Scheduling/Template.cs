@@ -19,7 +19,7 @@ namespace ISIS.Scheduling
         private string _title;
         private string _description;
         private Guid _termId;
-        private Guid _facultyId;
+        private Guid _instructorId;
 
         private Template()
         {
@@ -48,9 +48,21 @@ namespace ISIS.Scheduling
             ApplyEvent(@event);
         }
 
-        public Template(Guid templateId, string newLabel, TemplateData sourceData, Term term, Course course, Faculty faculty)
+        public Template(Guid templateId, string newLabel, TemplateData sourceData, Term term, Course course, Instructor instructor)
             : this(templateId, newLabel, course)
         {
+            if (term == null) throw new ArgumentNullException("term");
+            if (course == null) throw new ArgumentNullException("course");
+
+            if (instructor != null && instructor.EventSourceId != sourceData.InstructorId)
+                throw new ApplicationException("The instructor object provided doesn't match the source template data.");
+
+            if (term.EventSourceId != sourceData.TermId)
+                throw new ApplicationException("The term object provided doesn't match the source template data.");
+
+            if (course.EventSourceId != sourceData.CourseId)
+                throw new ApplicationException("The course object provided doesn't match the source template data.");
+            
             if (sourceData.Status == TemplateStatuses.Obsolete)
                 throw new SourceTemplateObsoleteException();
 
@@ -72,8 +84,8 @@ namespace ISIS.Scheduling
                     break;
             }
 
-            if (faculty != null)
-                AssignFaculty(faculty);
+            if (instructor != null)
+                AssignInstructor(instructor);
 
             var @event = new TemplateCopied(
                 EventSourceId, newLabel, sourceData.TemplateId, sourceData.Label);
@@ -88,7 +100,7 @@ namespace ISIS.Scheduling
                            Label = _label,
                            CourseId = _courseId,
                            TermId = _termId,
-                           FacultyId = _facultyId,
+                           InstructorId = _instructorId,
                            Rubric = _rubric,
                            CourseNumber = _courseNumber,
                            Title = _title,
@@ -149,26 +161,26 @@ namespace ISIS.Scheduling
             ApplyEvent(@event);
         }
 
-        public void AssignFaculty(Faculty faculty)
+        public void AssignInstructor(Instructor instructor)
         {
-            if (faculty.EventSourceId == _facultyId) return;
+            if (instructor.EventSourceId == _instructorId) return;
 
-            var facultyData = faculty.GetFacultyData();
-            var @event = new FacultyAssignedToTemplate(
-                facultyData.FacultyId,
-                facultyData.FirstName,
-                facultyData.LastName,
+            var instructorData = instructor.GetInstructorData();
+            var @event = new InstructorAssignedToTemplate(
+                instructorData.InstructorId,
+                instructorData.FirstName,
+                instructorData.LastName,
                 EventSourceId,
                 _label);
             ApplyEvent(@event);
         }
 
-        public void UnassignFaculty()
+        public void UnassignInstructor()
         {
-            if (_facultyId == default(Guid)) return;
+            if (_instructorId == default(Guid)) return;
 
-            var @event = new FacultyUnassignedFromTemplate(
-                _facultyId, EventSourceId, _label);
+            var @event = new InstructorUnassignedFromTemplate(
+                _instructorId, EventSourceId, _label);
             ApplyEvent(@event);
         }
 
@@ -217,14 +229,14 @@ namespace ISIS.Scheduling
         {
         }
 
-        protected void On(FacultyAssignedToTemplate @event)
+        protected void On(InstructorAssignedToTemplate @event)
         {
-            _facultyId = @event.FacultyId;
+            _instructorId = @event.InstructorId;
         }
 
-        protected void On(FacultyUnassignedFromTemplate @event)
+        protected void On(InstructorUnassignedFromTemplate @event)
         {
-            _facultyId = default(Guid);
+            _instructorId = default(Guid);
         }
 
     }

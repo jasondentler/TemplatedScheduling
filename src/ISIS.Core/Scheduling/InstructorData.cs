@@ -4,10 +4,10 @@ using System.Collections.Generic;
 namespace ISIS.Scheduling
 {
 
-    public struct FacultyData
+    public struct InstructorData
     {
 
-        public Guid FacultyId;
+        public Guid InstructorId;
         public string FirstName;
         public string LastName;
         public IEnumerable<Guid> AssignedCourses;

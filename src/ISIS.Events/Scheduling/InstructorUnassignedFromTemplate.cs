@@ -3,18 +3,18 @@
 namespace ISIS.Scheduling
 {
 
-    public class FacultyUnassignedFromTemplate 
+    public class InstructorUnassignedFromTemplate 
     {
-        public Guid FacultyId { get; private set; }
+        public Guid InstructorId { get; private set; }
         public Guid TemplateId { get; private set; }
         public string Label { get; private set; }
 
-        public FacultyUnassignedFromTemplate(
-            Guid facultyId,
+        public InstructorUnassignedFromTemplate(
+            Guid instructorId,
             Guid templateId,
             string label)
         {
-            FacultyId = facultyId;
+            InstructorId = instructorId;
             TemplateId = templateId;
             Label = label;
         }

@@ -17,20 +17,20 @@ namespace ISIS.Schedule
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.5.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Assign faculty to templates")]
-    public partial class AssignFacultyToTemplatesFeature
+    [NUnit.Framework.DescriptionAttribute("Assign instructors to templates")]
+    public partial class AssignInstructorsToTemplatesFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "TemplateFaculty.feature"
+#line 1 "TemplateInstructor.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Assign faculty to templates", "As a scheduler\nI want to assign faculty to templates", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Assign instructors to templates", "As a scheduler\nI want to assign instructors to templates", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -53,24 +53,24 @@ namespace ISIS.Schedule
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Assign a faculty member to a template")]
+        [NUnit.Framework.DescriptionAttribute("Assign a instructor to a template")]
         [NUnit.Framework.CategoryAttribute("domain")]
-        public virtual void AssignAFacultyMemberToATemplate()
+        public virtual void AssignAInstructorToATemplate()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Assign a faculty member to a template", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Assign a instructor to a template", new string[] {
                         "domain"});
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
- testRunner.Given("I have set up a new faculty member");
+ testRunner.Given("I have set up a new instructor");
 #line 8
  testRunner.And("I have set up a course and template and I have activated the template");
 #line 9
- testRunner.And("I have assigned the course to the faculty member");
+ testRunner.And("I have assigned the course to the instructor");
 #line 10
- testRunner.When("I assign the faculty member to the template");
+ testRunner.When("I assign the instructor to the template");
 #line 11
- testRunner.Then("the faculty member is assigned to the template");
+ testRunner.Then("the instructor is assigned to the template");
 #line 12
  testRunner.And("it does nothing else");
 #line hidden
@@ -78,26 +78,26 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Unassign a faculty member from a template")]
+        [NUnit.Framework.DescriptionAttribute("Unassign a instructor from a template")]
         [NUnit.Framework.CategoryAttribute("domain")]
-        public virtual void UnassignAFacultyMemberFromATemplate()
+        public virtual void UnassignAInstructorFromATemplate()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unassign a faculty member from a template", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unassign a instructor from a template", new string[] {
                         "domain"});
 #line 15
 this.ScenarioSetup(scenarioInfo);
 #line 16
- testRunner.Given("I have set up a new faculty member");
+ testRunner.Given("I have set up a new instructor");
 #line 17
  testRunner.And("I have set up a course and template and I have activated the template");
 #line 18
- testRunner.And("I have assigned the course to the faculty member");
+ testRunner.And("I have assigned the course to the instructor");
 #line 19
- testRunner.And("I have assigned the faculty member to the template");
+ testRunner.And("I have assigned the instructor to the template");
 #line 20
- testRunner.When("I unassign the faculty member from the template");
+ testRunner.When("I unassign the instructor from the template");
 #line 21
- testRunner.Then("the faculty member is unassigned from the template");
+ testRunner.Then("the instructor is unassigned from the template");
 #line 22
  testRunner.And("it does nothing else");
 #line hidden
@@ -105,24 +105,24 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Assign a faculty member to a template twice does nothing")]
+        [NUnit.Framework.DescriptionAttribute("Assign a instructor to a template twice does nothing")]
         [NUnit.Framework.CategoryAttribute("domain")]
-        public virtual void AssignAFacultyMemberToATemplateTwiceDoesNothing()
+        public virtual void AssignAInstructorToATemplateTwiceDoesNothing()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Assign a faculty member to a template twice does nothing", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Assign a instructor to a template twice does nothing", new string[] {
                         "domain"});
 #line 25
 this.ScenarioSetup(scenarioInfo);
 #line 26
- testRunner.Given("I have set up a new faculty member");
+ testRunner.Given("I have set up a new instructor");
 #line 27
  testRunner.And("I have set up a course and template and I have activated the template");
 #line 28
- testRunner.And("I have assigned the course to the faculty member");
+ testRunner.And("I have assigned the course to the instructor");
 #line 29
- testRunner.And("I have assigned the faculty member to the template");
+ testRunner.And("I have assigned the instructor to the template");
 #line 30
- testRunner.When("I assign the faculty member to the template");
+ testRunner.When("I assign the instructor to the template");
 #line 31
  testRunner.Then("it does nothing");
 #line hidden
@@ -130,22 +130,22 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Unassign an unassigned faculty member from a template")]
+        [NUnit.Framework.DescriptionAttribute("Unassign an unassigned instructor from a template")]
         [NUnit.Framework.CategoryAttribute("domain")]
-        public virtual void UnassignAnUnassignedFacultyMemberFromATemplate()
+        public virtual void UnassignAnUnassignedInstructorFromATemplate()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unassign an unassigned faculty member from a template", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unassign an unassigned instructor from a template", new string[] {
                         "domain"});
 #line 34
 this.ScenarioSetup(scenarioInfo);
 #line 35
- testRunner.Given("I have set up a new faculty member");
+ testRunner.Given("I have set up a new instructor");
 #line 36
  testRunner.And("I have set up a course and template and I have activated the template");
 #line 37
- testRunner.And("I have assigned the course to the faculty member");
+ testRunner.And("I have assigned the course to the instructor");
 #line 38
- testRunner.When("I unassign the faculty member from the template");
+ testRunner.When("I unassign the instructor from the template");
 #line 39
  testRunner.Then("it does nothing");
 #line hidden

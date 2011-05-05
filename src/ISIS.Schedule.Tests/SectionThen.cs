@@ -37,5 +37,44 @@ namespace ISIS.Schedule
             e.TermId.Should().Be.EqualTo(termAssigned.TermId);
         }
 
+        [Then(@"the instructor is assigned to the section")]
+        public void ThenTheInstructorIsAssignedToTheSection()
+        {
+            var instructorId = DomainHelper.Id<Instructor>();
+            var sectionId = DomainHelper.Id<Section>();
+            var sectionCreated = DomainHelper.GetEventStream(sectionId).OfType<SectionCreated>().Single();
+            var instructorCreated = DomainHelper.GetEventStream(instructorId).OfType<InstructorCreated>().Single();
+
+            var e = DomainHelper.Then<InstructorAssignedToSection>();
+            e.SectionId.Should().Be.EqualTo(sectionId);
+            e.CourseId.Should().Be.EqualTo(sectionCreated.CourseId);
+            e.Rubric.Should().Be.EqualTo(sectionCreated.Rubric);
+            e.CourseNumber.Should().Be.EqualTo(sectionCreated.CourseNumber);
+            e.SectionNumber.Should().Be.EqualTo(sectionCreated.SectionNumber);
+            e.Title.Should().Be.EqualTo(sectionCreated.Title);
+            e.Description.Should().Be.EqualTo(sectionCreated.Description);
+            e.InstructorId.Should().Be.EqualTo(instructorId);
+            e.FirstName.Should().Be.EqualTo(instructorCreated.FirstName);
+            e.LastName.Should().Be.EqualTo(instructorCreated.LastName);
+        }
+
+        [Then(@"the instructor is unassigned from the section")]
+        public void ThenTheInstructorIsUnassignedFromTheSection()
+        {
+            var instructorId = DomainHelper.Id<Instructor>();
+            var sectionId = DomainHelper.Id<Section>();
+            var sectionCreated = DomainHelper.GetEventStream(sectionId).OfType<SectionCreated>().Single();
+
+            var e = DomainHelper.Then<InstructorUnassignedFromSection>();
+            e.SectionId.Should().Be.EqualTo(sectionId);
+            e.CourseId.Should().Be.EqualTo(sectionCreated.CourseId);
+            e.Rubric.Should().Be.EqualTo(sectionCreated.Rubric);
+            e.CourseNumber.Should().Be.EqualTo(sectionCreated.CourseNumber);
+            e.SectionNumber.Should().Be.EqualTo(sectionCreated.SectionNumber);
+            e.Title.Should().Be.EqualTo(sectionCreated.Title);
+            e.Description.Should().Be.EqualTo(sectionCreated.Description);
+            e.InstructorId.Should().Be.EqualTo(instructorId);
+        }
+
     }
 }

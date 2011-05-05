@@ -72,11 +72,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 12
  testRunner.And("I have activated the template");
 #line 13
- testRunner.And("I have created a new faculty member");
+ testRunner.And("I have created a new instructor");
 #line 14
- testRunner.And("I have assigned the course to the faculty member");
+ testRunner.And("I have assigned the course to the instructor");
 #line 15
- testRunner.And("I have assigned the faculty member to the template");
+ testRunner.And("I have assigned the instructor to the template");
 #line 16
  testRunner.When("I copy the template \"Source Template\" to \"New Template\"");
 #line 17
@@ -94,7 +94,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 23
  testRunner.And("the \"Source Template\" template is copied to \"New Template\"");
 #line 24
- testRunner.And("the faculty member is assigned to the template");
+ testRunner.And("the instructor is assigned to the template");
 #line 25
  testRunner.And("it does nothing else");
 #line hidden

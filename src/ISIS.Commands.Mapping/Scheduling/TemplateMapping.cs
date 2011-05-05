@@ -85,30 +85,30 @@ namespace ISIS.Scheduling
                                                     ? null
                                                     : ctx.GetById<Course>(sourceData.CourseId);
 
-                                   var faculty = sourceData.FacultyId == default(Guid)
+                                   var instructor = sourceData.InstructorId == default(Guid)
                                                      ? null
-                                                     : ctx.GetById<Faculty>(sourceData.FacultyId);
+                                                     : ctx.GetById<Instructor>(sourceData.InstructorId);
 
                                    return new Template(cmd.NewTemplateId, cmd.NewTemplateLabel, sourceData, term, course,
-                                                       faculty);
+                                                       instructor);
                                })
                 .RegisterWith(_commandService);
 
-            Map.Command<AssignFacultyToTemplate>()
+            Map.Command<AssignInstructorToTemplate>()
                 .ToAggregateRoot<Template>()
                 .WithId(cmd => cmd.TemplateId)
                 .ToCallOn((cmd, template) =>
                               {
                                   var ctx = UnitOfWorkContext.Current;
-                                  var faculty = ctx.GetById<Faculty>(cmd.FacultyId);
-                                  template.AssignFaculty(faculty);
+                                  var instructor = ctx.GetById<Instructor>(cmd.InstructorId);
+                                  template.AssignInstructor(instructor);
                               })
                 .RegisterWith(_commandService);
 
-            Map.Command<UnassignFacultyFromTemplate>()
+            Map.Command<UnassignInstructorFromTemplate>()
                 .ToAggregateRoot<Template>()
                 .WithId(cmd => cmd.TemplateId)
-                .ToCallOn((cmd, template) => template.UnassignFaculty())
+                .ToCallOn((cmd, template) => template.UnassignInstructor())
                 .RegisterWith(_commandService);
 
         }

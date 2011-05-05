@@ -3,11 +3,11 @@ using Ncqrs.Commanding;
 
 namespace ISIS.Scheduling
 {
-    public class UnassignFacultyFromTemplate : CommandBase 
+    public class UnassignInstructorFromTemplate : CommandBase 
     {
         public Guid TemplateId { get; private set; }
 
-        public UnassignFacultyFromTemplate(Guid templateId)
+        public UnassignInstructorFromTemplate(Guid templateId)
         {
             TemplateId = templateId;
         }

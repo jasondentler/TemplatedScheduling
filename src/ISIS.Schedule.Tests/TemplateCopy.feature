@@ -10,9 +10,9 @@ Scenario: Copy a template
 	And I have created a template "Source Template"
 	And I have assigned the term to the template
 	And I have activated the template
-	And I have created a new faculty member
-	And I have assigned the course to the faculty member
-	And I have assigned the faculty member to the template
+	And I have created a new instructor
+	And I have assigned the course to the instructor
+	And I have assigned the instructor to the template
 	When I copy the template "Source Template" to "New Template"
 	Then the template is created
 	And the template label is "New Template"
@@ -21,7 +21,7 @@ Scenario: Copy a template
 	And the template's start and end dates match the term
 	And the template is activated
 	And the "Source Template" template is copied to "New Template"
-	And the faculty member is assigned to the template
+	And the instructor is assigned to the template
 	And it does nothing else
 
 @domain

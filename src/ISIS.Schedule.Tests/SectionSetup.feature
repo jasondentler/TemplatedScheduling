@@ -19,3 +19,13 @@ Scenario: Cant create a section from a non-active template
 	When I create a section 01 from the template
 	Then the aggregate state is invalid
 	And the message is "Your attempt to create a section failed. The template is not active."
+
+@domain
+Scenario: Instructor is copied from template to section
+	Given I have set up a course and template and activated the template
+	And I have created a instructor
+	And I have assigned the course to the instructor
+	And I have assigned the instructor to the template
+	When I create a section 01 from the template
+	Then the instructor is assigned to the section
+

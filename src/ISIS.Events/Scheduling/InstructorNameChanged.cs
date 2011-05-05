@@ -2,17 +2,17 @@
 
 namespace ISIS.Scheduling
 {
-    public class FacultyNameChanged
+    public class InstructorNameChanged
     {
-        public Guid FacultyId { get; private set; }
+        public Guid InstructorId { get; private set; }
         public string OldFirstName { get; private set; }
         public string OldLastName { get; private set; }
         public string NewFirstName { get; private set; }
         public string NewLastName { get; private set; }
 
-        public FacultyNameChanged(Guid facultyId, string oldFirstName, string oldLastName, string newFirstName, string newLastName)
+        public InstructorNameChanged(Guid instructorId, string oldFirstName, string oldLastName, string newFirstName, string newLastName)
         {
-            FacultyId = facultyId;
+            InstructorId = instructorId;
             OldFirstName = oldFirstName;
             OldLastName = oldLastName;
             NewFirstName = newFirstName;

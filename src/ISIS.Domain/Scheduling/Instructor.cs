@@ -5,26 +5,26 @@ using Ncqrs.Domain;
 
 namespace ISIS.Scheduling
 {
-    public class Faculty : AggregateRootMappedByConvention 
+    public class Instructor : AggregateRootMappedByConvention 
     {
         private string _firstName;
         private string _lastName;
         private HashSet<Guid> _courses = new HashSet<Guid>();
 
-        private Faculty()
+        private Instructor()
         {
         }
 
-        public Faculty(Guid facultyId, string firstName, string lastName)
-            : base(facultyId)
+        public Instructor(Guid instructorId, string firstName, string lastName)
+            : base(instructorId)
         {
-            ApplyEvent(new FacultyCreated(EventSourceId, firstName, lastName));
+            ApplyEvent(new InstructorCreated(EventSourceId, firstName, lastName));
         }
 
         public void ChangeName(string newFirstName, string newLastName)
         {
             if (_firstName != newFirstName || _lastName != newLastName)
-                ApplyEvent(new FacultyNameChanged(
+                ApplyEvent(new InstructorNameChanged(
                                EventSourceId,
                                _firstName,
                                _lastName,
@@ -37,7 +37,7 @@ namespace ISIS.Scheduling
             if (_courses.Contains(course.EventSourceId)) return;
 
             var courseData = course.GetCourseData();
-            var @event = new FacultyAssignedCourse(
+            var @event = new InstructorAssignedCourse(
                 EventSourceId,
                 _firstName,
                 _lastName,
@@ -53,7 +53,7 @@ namespace ISIS.Scheduling
             if (!_courses.Contains(course.EventSourceId)) return;
 
             var courseData = course.GetCourseData();
-            var @event = new FacultyUnassignedCourse(
+            var @event = new InstructorUnassignedCourse(
                 EventSourceId,
                 _firstName,
                 _lastName,
@@ -63,11 +63,11 @@ namespace ISIS.Scheduling
             ApplyEvent(@event);
         }
 
-        internal FacultyData GetFacultyData()
+        internal InstructorData GetInstructorData()
         {
-            return new FacultyData()
+            return new InstructorData()
                        {
-                           FacultyId = EventSourceId,
+                           InstructorId = EventSourceId,
                            FirstName = _firstName,
                            LastName = _lastName,
                            AssignedCourses = _courses.ToArray()
@@ -75,24 +75,24 @@ namespace ISIS.Scheduling
         }
 
 
-        protected void On(FacultyCreated @event)
+        protected void On(InstructorCreated @event)
         {
             _firstName = @event.FirstName;
             _lastName = @event.LastName;
         }
 
-        protected void On(FacultyNameChanged @event)
+        protected void On(InstructorNameChanged @event)
         {
             _firstName = @event.NewFirstName;
             _lastName = @event.NewLastName;
         }
 
-        protected void On(FacultyAssignedCourse @event)
+        protected void On(InstructorAssignedCourse @event)
         {
             _courses.Add(@event.CourseId);
         }
 
-        protected void On(FacultyUnassignedCourse @event)
+        protected void On(InstructorUnassignedCourse @event)
         {
             _courses.Remove(@event.CourseId);
         }

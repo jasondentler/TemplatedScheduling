@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="Scheduling\Course.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scheduling\Faculty.cs" />
+    <Compile Include="Scheduling\Instructor.cs" />
     <Compile Include="Scheduling\Section.cs" />
     <Compile Include="Scheduling\Template.cs" />
     <Compile Include="Scheduling\Term.cs" />

@@ -1,18 +1,17 @@
 ﻿using System;
-using Ncqrs.Commanding;
 
 namespace ISIS.Scheduling
 {
 
-    public class CreateFaculty : CommandBase 
+    public class InstructorCreated 
     {
-        public Guid FacultyId { get; private set; }
+        public Guid InstructorId { get; private set; }
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
 
-        public CreateFaculty(Guid facultyId, string firstName, string lastName)
+        public InstructorCreated(Guid instructorId, string firstName, string lastName)
         {
-            FacultyId = facultyId;
+            InstructorId = instructorId;
             FirstName = firstName;
             LastName = lastName;
         }

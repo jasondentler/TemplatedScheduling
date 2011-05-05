@@ -104,19 +104,19 @@ namespace ISIS.Schedule
             DomainHelper.Given<Template>(@event);
         }
 
-        [Given(@"I have assigned the faculty member to the template")]
-        public void GivenIHaveAssignedTheFacultyMemberToTheTemplate()
+        [Given(@"I have assigned the instructor to the template")]
+        public void GivenIHaveAssignedTheInstructorToTheTemplate()
         {
-            var facultyId = DomainHelper.Id<Faculty>();
+            var instructorId = DomainHelper.Id<Instructor>();
             var templateId = DomainHelper.Id<Template>();
 
-            var facultyCreated = DomainHelper.GetEventStream(facultyId).OfType<FacultyCreated>().Single();
+            var instructorCreated = DomainHelper.GetEventStream(instructorId).OfType<InstructorCreated>().Single();
             var templateCreated = DomainHelper.GetEventStream(templateId).OfType<TemplateCreated>().Single();
 
-            var @event = new FacultyAssignedToTemplate(
-                facultyId,
-                facultyCreated.FirstName,
-                facultyCreated.LastName,
+            var @event = new InstructorAssignedToTemplate(
+                instructorId,
+                instructorCreated.FirstName,
+                instructorCreated.LastName,
                 templateId,
                 templateCreated.Label);
 

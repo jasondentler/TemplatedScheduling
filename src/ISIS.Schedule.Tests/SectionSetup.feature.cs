@@ -102,6 +102,31 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             testRunner.CollectScenarioErrors();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Instructor is copied from template to section")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void InstructorIsCopiedFromTemplateToSection()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Instructor is copied from template to section", new string[] {
+                        "domain"});
+#line 24
+this.ScenarioSetup(scenarioInfo);
+#line 25
+ testRunner.Given("I have set up a course and template and activated the template");
+#line 26
+ testRunner.And("I have created a instructor");
+#line 27
+ testRunner.And("I have assigned the course to the instructor");
+#line 28
+ testRunner.And("I have assigned the instructor to the template");
+#line 29
+ testRunner.When("I create a section 01 from the template");
+#line 30
+ testRunner.Then("the instructor is assigned to the section");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
     }
 }
 #endregion

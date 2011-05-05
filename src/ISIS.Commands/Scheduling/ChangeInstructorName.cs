@@ -4,15 +4,15 @@ using Ncqrs.Commanding;
 namespace ISIS.Scheduling
 {
 
-    public class ChangeFacultyName : CommandBase 
+    public class ChangeInstructorName : CommandBase 
     {
-        public Guid FacultyId { get; private set; }
+        public Guid InstructorId { get; private set; }
         public string NewFirstName { get; private set; }
         public string NewLastName { get; private set; }
 
-        public ChangeFacultyName(Guid facultyId, string newFirstName, string newLastName)
+        public ChangeInstructorName(Guid instructorId, string newFirstName, string newLastName)
         {
-            FacultyId = facultyId;
+            InstructorId = instructorId;
             NewFirstName = newFirstName;
             NewLastName = newLastName;
         }

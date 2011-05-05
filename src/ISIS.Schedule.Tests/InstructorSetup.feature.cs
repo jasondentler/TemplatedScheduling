@@ -17,20 +17,20 @@ namespace ISIS.Schedule
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.5.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Faculty Setup")]
-    public partial class FacultySetupFeature
+    [NUnit.Framework.DescriptionAttribute("Instructor Setup")]
+    public partial class InstructorSetupFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "FacultySetup.feature"
+#line 1 "InstructorSetup.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Faculty Setup", "As a scheduler\nI want to set up new faculty members", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Instructor Setup", "As a scheduler\nI want to set up new instructors", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -53,22 +53,22 @@ namespace ISIS.Schedule
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Set up a new faculty member")]
+        [NUnit.Framework.DescriptionAttribute("Set up a new instructor")]
         [NUnit.Framework.CategoryAttribute("domain")]
-        public virtual void SetUpANewFacultyMember()
+        public virtual void SetUpANewInstructor()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Set up a new faculty member", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Set up a new instructor", new string[] {
                         "domain"});
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
- testRunner.When("I create a new faculty member with first name \"John\" and last name \"Smith\"");
+ testRunner.When("I create a new instructor with first name \"John\" and last name \"Smith\"");
 #line 8
- testRunner.Then("the faculty member is created");
+ testRunner.Then("the instructor is created");
 #line 9
- testRunner.And("the faculty member\'s first name is \"John\"");
+ testRunner.And("the instructor\'s first name is \"John\"");
 #line 10
- testRunner.And("the faculty member\'s last name is \"Smith\"");
+ testRunner.And("the instructor\'s last name is \"Smith\"");
 #line 11
  testRunner.And("it does nothing else");
 #line hidden
@@ -76,22 +76,22 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Change faculty name")]
+        [NUnit.Framework.DescriptionAttribute("Change instructor name")]
         [NUnit.Framework.CategoryAttribute("domain")]
-        public virtual void ChangeFacultyName()
+        public virtual void ChangeInstructorName()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Change faculty name", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Change instructor name", new string[] {
                         "domain"});
 #line 14
 this.ScenarioSetup(scenarioInfo);
 #line 15
- testRunner.Given("I create a new faculty member with first name \"James\" and last name \"Smith\"");
+ testRunner.Given("I create a new instructor with first name \"James\" and last name \"Smith\"");
 #line 16
- testRunner.When("I change the faculty name to \"Jimmy\" \"Smit\"");
+ testRunner.When("I change the instructor\'s name to \"Jimmy\" \"Smit\"");
 #line 17
- testRunner.Then("the faculty first name is changed from \"James\" to \"Jimmy\"");
+ testRunner.Then("the instructor\'s first name is changed from \"James\" to \"Jimmy\"");
 #line 18
- testRunner.And("the faculty last name is changed from \"Smith\" to \"Smit\"");
+ testRunner.And("the instructor\'s last name is changed from \"Smith\" to \"Smit\"");
 #line 19
  testRunner.And("it does nothing else");
 #line hidden
@@ -99,18 +99,18 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Change faculty name to the same")]
+        [NUnit.Framework.DescriptionAttribute("Change instructor name to the same")]
         [NUnit.Framework.CategoryAttribute("domain")]
-        public virtual void ChangeFacultyNameToTheSame()
+        public virtual void ChangeInstructorNameToTheSame()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Change faculty name to the same", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Change instructor name to the same", new string[] {
                         "domain"});
 #line 22
 this.ScenarioSetup(scenarioInfo);
 #line 23
- testRunner.Given("I create a new faculty member with first name \"James\" and last name \"Smith\"");
+ testRunner.Given("I create a new instructor with first name \"James\" and last name \"Smith\"");
 #line 24
- testRunner.When("I change the faculty name to \"James\" \"Smith\"");
+ testRunner.When("I change the instructor\'s name to \"James\" \"Smith\"");
 #line 25
  testRunner.Then("it does nothing");
 #line hidden
@@ -118,22 +118,22 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Assign a course to a faculty member")]
+        [NUnit.Framework.DescriptionAttribute("Assign a course to a instructor")]
         [NUnit.Framework.CategoryAttribute("domain")]
-        public virtual void AssignACourseToAFacultyMember()
+        public virtual void AssignACourseToAInstructor()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Assign a course to a faculty member", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Assign a course to a instructor", new string[] {
                         "domain"});
 #line 28
 this.ScenarioSetup(scenarioInfo);
 #line 29
- testRunner.Given("I have created a new faculty member");
+ testRunner.Given("I have created a new instructor");
 #line 30
  testRunner.And("I have set up a new course");
 #line 31
- testRunner.When("I assign the course to the faculty member");
+ testRunner.When("I assign the course to the instructor");
 #line 32
- testRunner.Then("the course is assigned to the faculty member");
+ testRunner.Then("the course is assigned to the instructor");
 #line 33
  testRunner.And("it does nothing else");
 #line hidden
@@ -141,24 +141,24 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Unassign a course from a faculty member")]
+        [NUnit.Framework.DescriptionAttribute("Unassign a course from a instructor")]
         [NUnit.Framework.CategoryAttribute("domain")]
-        public virtual void UnassignACourseFromAFacultyMember()
+        public virtual void UnassignACourseFromAInstructor()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unassign a course from a faculty member", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unassign a course from a instructor", new string[] {
                         "domain"});
 #line 36
 this.ScenarioSetup(scenarioInfo);
 #line 37
- testRunner.Given("I have created a new faculty member");
+ testRunner.Given("I have created a new instructor");
 #line 38
  testRunner.And("I have set up a new course");
 #line 39
- testRunner.And("I have assigned the course to the faculty member");
+ testRunner.And("I have assigned the course to the instructor");
 #line 40
- testRunner.When("I unassign the course from the faculty member");
+ testRunner.When("I unassign the course from the instructor");
 #line 41
- testRunner.Then("the course is unassigned from the faculty member");
+ testRunner.Then("the course is unassigned from the instructor");
 #line 42
  testRunner.And("it does nothing else");
 #line hidden
@@ -166,22 +166,22 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Assign an already-assigned course to a faculty member")]
+        [NUnit.Framework.DescriptionAttribute("Assign an already-assigned course to a instructor")]
         [NUnit.Framework.CategoryAttribute("domain")]
-        public virtual void AssignAnAlready_AssignedCourseToAFacultyMember()
+        public virtual void AssignAnAlready_AssignedCourseToAInstructor()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Assign an already-assigned course to a faculty member", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Assign an already-assigned course to a instructor", new string[] {
                         "domain"});
 #line 45
 this.ScenarioSetup(scenarioInfo);
 #line 46
- testRunner.Given("I have created a new faculty member");
+ testRunner.Given("I have created a new instructor");
 #line 47
  testRunner.And("I have set up a new course");
 #line 48
- testRunner.And("I have assigned the course to the faculty member");
+ testRunner.And("I have assigned the course to the instructor");
 #line 49
- testRunner.When("I assign the course to the faculty member");
+ testRunner.When("I assign the course to the instructor");
 #line 50
  testRunner.Then("it does nothing");
 #line hidden
@@ -189,20 +189,20 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Unassign an unassigned course from a faculty member")]
+        [NUnit.Framework.DescriptionAttribute("Unassign an unassigned course from a instructor")]
         [NUnit.Framework.CategoryAttribute("domain")]
-        public virtual void UnassignAnUnassignedCourseFromAFacultyMember()
+        public virtual void UnassignAnUnassignedCourseFromAInstructor()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unassign an unassigned course from a faculty member", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Unassign an unassigned course from a instructor", new string[] {
                         "domain"});
 #line 53
 this.ScenarioSetup(scenarioInfo);
 #line 54
- testRunner.Given("I have created a new faculty member");
+ testRunner.Given("I have created a new instructor");
 #line 55
  testRunner.And("I have set up a new course");
 #line 56
- testRunner.When("I unassign the course from the faculty member");
+ testRunner.When("I unassign the course from the instructor");
 #line 57
  testRunner.Then("it does nothing");
 #line hidden

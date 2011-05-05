@@ -90,15 +90,21 @@
     <Compile Include="DomainHelper.cs" />
     <Compile Include="DomainLogger.cs" />
     <Compile Include="DomainSteps.cs" />
-    <Compile Include="FacultyGiven.cs" />
-    <Compile Include="FacultySetup.feature.cs">
+    <Compile Include="InstructorGiven.cs" />
+    <Compile Include="InstructorSetup.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FacultySetup.feature</DependentUpon>
+      <DependentUpon>InstructorSetup.feature</DependentUpon>
     </Compile>
-    <Compile Include="FacultyThen.cs" />
-    <Compile Include="FacultyWhen.cs" />
+    <Compile Include="InstructorThen.cs" />
+    <Compile Include="InstructorWhen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SectionInstructor.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SectionInstructor.feature</DependentUpon>
+    </Compile>
+    <Compile Include="SectionGiven.cs" />
     <Compile Include="SectionSetup.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -111,10 +117,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TemplateCopy.feature</DependentUpon>
     </Compile>
-    <Compile Include="TemplateFaculty.feature.cs">
+    <Compile Include="TemplateInstructor.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TemplateFaculty.feature</DependentUpon>
+      <DependentUpon>TemplateInstructor.feature</DependentUpon>
     </Compile>
     <Compile Include="TemplateGiven.cs" />
     <Compile Include="TemplateLabel.feature.cs">
@@ -189,11 +195,15 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CourseTitle.feature.cs</LastGenOutput>
     </None>
-    <None Include="FacultySetup.feature">
+    <None Include="InstructorSetup.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>FacultySetup.feature.cs</LastGenOutput>
+      <LastGenOutput>InstructorSetup.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="SectionInstructor.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SectionInstructor.feature.cs</LastGenOutput>
+    </None>
     <None Include="SectionSetup.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SectionSetup.feature.cs</LastGenOutput>
@@ -202,9 +212,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>TemplateCopy.feature.cs</LastGenOutput>
     </None>
-    <None Include="TemplateFaculty.feature">
+    <None Include="TemplateInstructor.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>TemplateFaculty.feature.cs</LastGenOutput>
+      <LastGenOutput>TemplateInstructor.feature.cs</LastGenOutput>
     </None>
     <None Include="TemplateLabel.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
