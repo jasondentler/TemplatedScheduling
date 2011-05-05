@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Ncqrs.Domain;
 
 namespace ISIS.Scheduling
@@ -61,6 +62,18 @@ namespace ISIS.Scheduling
                 courseData.CourseNumber);
             ApplyEvent(@event);
         }
+
+        internal FacultyData GetFacultyData()
+        {
+            return new FacultyData()
+                       {
+                           FacultyId = EventSourceId,
+                           FirstName = _firstName,
+                           LastName = _lastName,
+                           AssignedCourses = _courses.ToArray()
+                       };
+        }
+
 
         protected void On(FacultyCreated @event)
         {

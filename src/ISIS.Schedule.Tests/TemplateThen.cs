@@ -123,6 +123,37 @@ namespace ISIS.Schedule
             e.NewTemplateId.Should().Be.EqualTo(newTemplateId);
         }
 
+        [Then(@"the faculty member is assigned to the template")]
+        public void ThenTheFacultyMemberIsAssignedToTheTemplate()
+        {
+            var facultyId = DomainHelper.Id<Faculty>();
+            var templateId = DomainHelper.Id<Template>();
+
+            var facultyCreated = DomainHelper.GetEventStream(facultyId).OfType<FacultyCreated>().Single();
+            var templateCreated = DomainHelper.GetEventStream(templateId).OfType<TemplateCreated>().Single();
+
+            var e = DomainHelper.Then<FacultyAssignedToTemplate>();
+            e.FacultyId.Should().Be.EqualTo(facultyId);
+            e.FirstName.Should().Be.EqualTo(facultyCreated.FirstName);
+            e.LastName.Should().Be.EqualTo(facultyCreated.LastName);
+            e.TemplateId.Should().Be.EqualTo(templateCreated.TemplateId);
+            e.Label.Should().Be.EqualTo(templateCreated.Label);
+        }
+
+        [Then(@"the faculty member is unassigned from the template")]
+        public void ThenTheFacultyMemberIsUnassignedFromTheTemplate()
+        {
+            var facultyId = DomainHelper.Id<Faculty>();
+            var templateId = DomainHelper.Id<Template>();
+
+            var templateCreated = DomainHelper.GetEventStream(templateId).OfType<TemplateCreated>().Single();
+
+            var e = DomainHelper.Then<FacultyUnassignedFromTemplate>();
+            e.FacultyId.Should().Be.EqualTo(facultyId);
+            e.TemplateId.Should().Be.EqualTo(templateId);
+            e.Label.Should().Be.EqualTo(templateCreated.Label);
+        }
+
 
 
     }

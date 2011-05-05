@@ -72,22 +72,30 @@ this.ScenarioSetup(scenarioInfo);
 #line 12
  testRunner.And("I have activated the template");
 #line 13
- testRunner.When("I copy the template \"Source Template\" to \"New Template\"");
+ testRunner.And("I have created a new faculty member");
 #line 14
- testRunner.Then("the template is created");
+ testRunner.And("I have assigned the course to the faculty member");
 #line 15
- testRunner.And("the template label is \"New Template\"");
+ testRunner.And("I have assigned the faculty member to the template");
 #line 16
- testRunner.And("the template data matches the course data");
+ testRunner.When("I copy the template \"Source Template\" to \"New Template\"");
 #line 17
- testRunner.And("the term is assigned to the template");
+ testRunner.Then("the template is created");
 #line 18
- testRunner.And("the template\'s start and end dates match the term");
+ testRunner.And("the template label is \"New Template\"");
 #line 19
- testRunner.And("the template is activated");
+ testRunner.And("the template data matches the course data");
 #line 20
- testRunner.And("the \"Source Template\" template is copied to \"New Template\"");
+ testRunner.And("the term is assigned to the template");
 #line 21
+ testRunner.And("the template\'s start and end dates match the term");
+#line 22
+ testRunner.And("the template is activated");
+#line 23
+ testRunner.And("the \"Source Template\" template is copied to \"New Template\"");
+#line 24
+ testRunner.And("the faculty member is assigned to the template");
+#line 25
  testRunner.And("it does nothing else");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -100,23 +108,23 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cant copy an obsolete template", new string[] {
                         "domain"});
-#line 24
-this.ScenarioSetup(scenarioInfo);
-#line 25
- testRunner.Given("I have set up a course");
-#line 26
- testRunner.And("I have set up a term");
-#line 27
- testRunner.And("I have created a template \"Source Template\"");
 #line 28
- testRunner.And("I have assigned the term to the template");
+this.ScenarioSetup(scenarioInfo);
 #line 29
- testRunner.And("I have made the template obsolete");
+ testRunner.Given("I have set up a course");
 #line 30
- testRunner.When("I copy the template \"Source Template\" to \"New Template\"");
+ testRunner.And("I have set up a term");
 #line 31
- testRunner.Then("the aggregate state is invalid");
+ testRunner.And("I have created a template \"Source Template\"");
 #line 32
+ testRunner.And("I have assigned the term to the template");
+#line 33
+ testRunner.And("I have made the template obsolete");
+#line 34
+ testRunner.When("I copy the template \"Source Template\" to \"New Template\"");
+#line 35
+ testRunner.Then("the aggregate state is invalid");
+#line 36
  testRunner.And("the message is \"Your attempt to copy the template failed. The source template is " +
                     "obsolete.\"");
 #line hidden

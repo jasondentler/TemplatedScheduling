@@ -21,6 +21,7 @@ namespace ISIS.Schedule
             DomainHelper.Given<Faculty>(facultyId, @event);
         }
 
+        [Given(@"I have set up a new faculty member")]
         [Given(@"I have created a new faculty member")]
         public void GivenIHaveCreatedANewFacultyMember()
         {

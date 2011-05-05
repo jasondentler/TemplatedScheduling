@@ -9,6 +9,7 @@ namespace ISIS.Scheduling
         public Guid TemplateId;
         public Guid CourseId;
         public Guid TermId;
+        public Guid FacultyId;
         public string Rubric;
         public string CourseNumber;
         public string Title;
@@ -16,6 +17,7 @@ namespace ISIS.Scheduling
         public bool IsContinuingEducation;
         public TemplateStatuses Status;
         public string Label;
+
     }
 
 }

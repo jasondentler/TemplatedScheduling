@@ -1,4 +1,5 @@
-﻿using Ncqrs.Commanding.CommandExecution;
+﻿using System;
+using Ncqrs.Commanding.CommandExecution;
 using Ncqrs.Commanding.CommandExecution.Mapping.Fluent;
 using Ncqrs.Commanding.ServiceModel;
 using Ncqrs.Domain;
@@ -76,11 +77,38 @@ namespace ISIS.Scheduling
                                    var source = ctx.GetById<Template>(cmd.SourceTemplateId);
                                    var sourceData = source.GetTemplateData();
 
-                                   var term = ctx.GetById<Term>(sourceData.TermId);
-                                   var course = ctx.GetById<Course>(sourceData.CourseId);
+                                   var term = sourceData.TermId == default(Guid)
+                                                  ? null
+                                                  : ctx.GetById<Term>(sourceData.TermId);
 
-                                   return new Template(cmd.NewTemplateId, cmd.NewTemplateLabel, sourceData, term, course);
+                                   var course = sourceData.CourseId == default(Guid)
+                                                    ? null
+                                                    : ctx.GetById<Course>(sourceData.CourseId);
+
+                                   var faculty = sourceData.FacultyId == default(Guid)
+                                                     ? null
+                                                     : ctx.GetById<Faculty>(sourceData.FacultyId);
+
+                                   return new Template(cmd.NewTemplateId, cmd.NewTemplateLabel, sourceData, term, course,
+                                                       faculty);
                                })
+                .RegisterWith(_commandService);
+
+            Map.Command<AssignFacultyToTemplate>()
+                .ToAggregateRoot<Template>()
+                .WithId(cmd => cmd.TemplateId)
+                .ToCallOn((cmd, template) =>
+                              {
+                                  var ctx = UnitOfWorkContext.Current;
+                                  var faculty = ctx.GetById<Faculty>(cmd.FacultyId);
+                                  template.AssignFaculty(faculty);
+                              })
+                .RegisterWith(_commandService);
+
+            Map.Command<UnassignFacultyFromTemplate>()
+                .ToAggregateRoot<Template>()
+                .WithId(cmd => cmd.TemplateId)
+                .ToCallOn((cmd, template) => template.UnassignFaculty())
                 .RegisterWith(_commandService);
 
         }

@@ -19,6 +19,7 @@ namespace ISIS.Scheduling
         private string _title;
         private string _description;
         private Guid _termId;
+        private Guid _facultyId;
 
         private Template()
         {
@@ -47,7 +48,7 @@ namespace ISIS.Scheduling
             ApplyEvent(@event);
         }
 
-        public Template(Guid templateId, string newLabel, TemplateData sourceData, Term term, Course course)
+        public Template(Guid templateId, string newLabel, TemplateData sourceData, Term term, Course course, Faculty faculty)
             : this(templateId, newLabel, course)
         {
             if (sourceData.Status == TemplateStatuses.Obsolete)
@@ -71,6 +72,9 @@ namespace ISIS.Scheduling
                     break;
             }
 
+            if (faculty != null)
+                AssignFaculty(faculty);
+
             var @event = new TemplateCopied(
                 EventSourceId, newLabel, sourceData.TemplateId, sourceData.Label);
             ApplyEvent(@event);
@@ -79,18 +83,19 @@ namespace ISIS.Scheduling
         public TemplateData GetTemplateData()
         {
             return new TemplateData()
-            {
-                TemplateId = EventSourceId,
-                Label = _label,
-                CourseId = _courseId,
-                TermId = _termId,
-                Rubric = _rubric,
-                CourseNumber = _courseNumber,
-                Title = _title,
-                Description = _description,
-                IsContinuingEducation = _isContinuingEducation,
-                Status = _status
-            };
+                       {
+                           TemplateId = EventSourceId,
+                           Label = _label,
+                           CourseId = _courseId,
+                           TermId = _termId,
+                           FacultyId = _facultyId,
+                           Rubric = _rubric,
+                           CourseNumber = _courseNumber,
+                           Title = _title,
+                           Description = _description,
+                           IsContinuingEducation = _isContinuingEducation,
+                           Status = _status
+                       };
         }
 
         public void Rename(string newLabel)
@@ -143,7 +148,30 @@ namespace ISIS.Scheduling
                                                  termData.EndDate);
             ApplyEvent(@event);
         }
-        
+
+        public void AssignFaculty(Faculty faculty)
+        {
+            if (faculty.EventSourceId == _facultyId) return;
+
+            var facultyData = faculty.GetFacultyData();
+            var @event = new FacultyAssignedToTemplate(
+                facultyData.FacultyId,
+                facultyData.FirstName,
+                facultyData.LastName,
+                EventSourceId,
+                _label);
+            ApplyEvent(@event);
+        }
+
+        public void UnassignFaculty()
+        {
+            if (_facultyId == default(Guid)) return;
+
+            var @event = new FacultyUnassignedFromTemplate(
+                _facultyId, EventSourceId, _label);
+            ApplyEvent(@event);
+        }
+
         protected void On(TemplateCreated @event)
         {
             _label = @event.Label;
@@ -187,6 +215,16 @@ namespace ISIS.Scheduling
 
         protected void On(TemplateCopied @event)
         {
+        }
+
+        protected void On(FacultyAssignedToTemplate @event)
+        {
+            _facultyId = @event.FacultyId;
+        }
+
+        protected void On(FacultyUnassignedFromTemplate @event)
+        {
+            _facultyId = default(Guid);
         }
 
     }

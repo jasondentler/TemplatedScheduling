@@ -44,8 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Scheduling\AssignCourseToFaculty.cs" />
+    <Compile Include="Scheduling\AssignFacultyToTemplate.cs" />
     <Compile Include="Scheduling\AssignTermToTemplate.cs" />
     <Compile Include="Scheduling\ChangeFacultyName.cs" />
+    <Compile Include="Scheduling\UnassignFacultyFromTemplate.cs" />
     <Compile Include="Scheduling\UnassignCourseFromFaculty.cs" />
     <Compile Include="Scheduling\CopyTemplate.cs" />
     <Compile Include="Scheduling\CreateFaculty.cs" />

@@ -86,6 +86,27 @@ namespace ISIS.Schedule
             DomainHelper.When(cmd);
         }
 
+        [When(@"I assign the faculty member to the template")]
+        public void WhenIAssignTheFacultyMemberToTheTemplate()
+        {
+            var templateId = DomainHelper.Id<Template>();
+            var facultyId = DomainHelper.Id<Faculty>();
+
+            var cmd = new AssignFacultyToTemplate(templateId, facultyId);
+            DomainHelper.When(cmd);
+
+        }
+
+        [When(@"I unassign the faculty member from the template")]
+        public void WhenIUnassignTheFacultyMemberFromTheTemplate()
+        {
+            var templateId = DomainHelper.Id<Template>();
+
+            var cmd = new UnassignFacultyFromTemplate(templateId);
+            DomainHelper.When(cmd);
+        }
+
+
 
     }
 }
