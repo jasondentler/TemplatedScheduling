@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISIS.Core", "ISIS.Core\ISIS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISIS.Schedule.Tests", "ISIS.Schedule.Tests\ISIS.Schedule.Tests.csproj", "{F12BEE38-1FC2-4221-A6D1-8CF86A8E7BF8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISIS.Schedule.CommandValidation.Tests", "ISIS.Schedule.CommandValidation.Tests\ISIS.Schedule.CommandValidation.Tests.csproj", "{79097CF5-8B13-411A-B67E-1B45047F89CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISIS.Commands.Validation", "ISIS.Commands.Validation\ISIS.Commands.Validation.csproj", "{31E545A1-C26A-4F81-B281-8C54812C3117}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,11 +49,20 @@ Global
 		{F12BEE38-1FC2-4221-A6D1-8CF86A8E7BF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F12BEE38-1FC2-4221-A6D1-8CF86A8E7BF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F12BEE38-1FC2-4221-A6D1-8CF86A8E7BF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79097CF5-8B13-411A-B67E-1B45047F89CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79097CF5-8B13-411A-B67E-1B45047F89CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79097CF5-8B13-411A-B67E-1B45047F89CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79097CF5-8B13-411A-B67E-1B45047F89CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31E545A1-C26A-4F81-B281-8C54812C3117}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31E545A1-C26A-4F81-B281-8C54812C3117}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31E545A1-C26A-4F81-B281-8C54812C3117}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31E545A1-C26A-4F81-B281-8C54812C3117}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F12BEE38-1FC2-4221-A6D1-8CF86A8E7BF8} = {64F58F00-4701-45F9-9087-2A3730C7126B}
+		{79097CF5-8B13-411A-B67E-1B45047F89CC} = {64F58F00-4701-45F9-9087-2A3730C7126B}
 	EndGlobalSection
 EndGlobal
