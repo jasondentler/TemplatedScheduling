@@ -111,6 +111,32 @@ namespace ISIS.Scheduling
                 .ToCallOn((cmd, template) => template.UnassignInstructor())
                 .RegisterWith(_commandService);
 
+
+
+            Map.Command<AddTemplateInstructorEquipment>()
+                .ToAggregateRoot<Template>()
+                .WithId(cmd => cmd.TemplateId)
+                .ToCallOn((cmd, template) => template.AddInstructorEquipment(cmd.Quantity, cmd.EquipmentName))
+                .RegisterWith(_commandService);
+
+            Map.Command<AddTemplateStudentEquipment>()
+                .ToAggregateRoot<Template>()
+                .WithId(cmd => cmd.TemplateId)
+                .ToCallOn((cmd, template) => template.AddStudentEquipment(cmd.Quantity, cmd.PerStudent, cmd.EquipmentName))
+                .RegisterWith(_commandService);
+
+            Map.Command<RemoveTemplateInstructorEquipment>()
+                .ToAggregateRoot<Template>()
+                .WithId(cmd => cmd.TemplateId)
+                .ToCallOn((cmd, template) => template.RemoveInstructorEquipment(cmd.Quantity, cmd.EquipmentName))
+                .RegisterWith(_commandService);
+
+            Map.Command<RemoveTemplateStudentEquipment>()
+                .ToAggregateRoot<Template>()
+                .WithId(cmd => cmd.TemplateId)
+                .ToCallOn((cmd, template) => template.RemoveStudentEquipment(cmd.Quantity, cmd.PerStudent, cmd.EquipmentName))
+                .RegisterWith(_commandService);
+
         }
     }
 

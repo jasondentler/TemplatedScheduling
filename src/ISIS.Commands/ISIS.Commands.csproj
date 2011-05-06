@@ -51,6 +51,10 @@
     <Compile Include="Scheduling\AssignTermToTemplate.cs" />
     <Compile Include="Scheduling\ChangeInstructorName.cs" />
     <Compile Include="Scheduling\AddCourseStudentEquipment.cs" />
+    <Compile Include="Scheduling\AddTemplateInstructorEquipment.cs" />
+    <Compile Include="Scheduling\AddTemplateStudentEquipment.cs" />
+    <Compile Include="Scheduling\RemoveTemplateStudentEquipment.cs" />
+    <Compile Include="Scheduling\RemoveTemplateInstructorEquipment.cs" />
     <Compile Include="Scheduling\RemoveCourseStudentEquipment.cs" />
     <Compile Include="Scheduling\RemoveCourseInstructorEquipment.cs" />
     <Compile Include="Scheduling\RemoveEquipmentFromRoom.cs" />

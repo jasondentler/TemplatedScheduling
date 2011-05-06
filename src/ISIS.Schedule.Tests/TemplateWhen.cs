@@ -107,6 +107,89 @@ namespace ISIS.Schedule
         }
 
 
+        [When(@"I no longer require (\d+) ""(.*)"" per student for the template")]
+        public void WhenINoLongerRequireEquipmentPerStudentForTheTemplate(
+            string quantityString,
+            string equipmentName)
+        {
+            WhenINoLongerRequireEquipmentPerStudentForTheTemplate(quantityString, equipmentName, "1");
+        }
+
+        [When(@"I no longer require (\d+) ""(.*)"" per (\d+) students for the template")]
+        public void WhenINoLongerRequireEquipmentPerStudentForTheTemplate(
+            string quantityString,
+            string equipmentName,
+            string perStudentsString)
+        {
+            var quantity = int.Parse(quantityString);
+            var perStudent = int.Parse(perStudentsString);
+
+            var templateId = DomainHelper.Id<Template>();
+
+            var cmd = new RemoveTemplateStudentEquipment(
+                templateId,
+                quantity,
+                equipmentName,
+                perStudent);
+            DomainHelper.When(cmd);
+        }
+
+        [When(@"I no longer require (\d+) ""(.*)"" for the template")]
+        public void WhenINoLongerRequireEquipmentForTheTemplate(
+            string quantityString,
+            string equipmentName)
+        {
+            var quantity = int.Parse(quantityString);
+            var templateId = DomainHelper.Id<Template>();
+
+            var cmd = new RemoveTemplateInstructorEquipment(
+                templateId,
+                quantity,
+                equipmentName);
+            DomainHelper.When(cmd);
+        }
+
+        [When(@"I require (\d+) ""(.*)"" per student for the template")]
+        public void WhenIRequireEquipmentPerStudentForTheTemplate(
+            string quantityString,
+            string equipmentName)
+        {
+            WhenIRequireEquipmentPerStudentForTheTemplate(quantityString, equipmentName, "1");
+        }
+
+        [When(@"I require (\d+) ""(.*)"" per (\d+) students for the template")]
+        public void WhenIRequireEquipmentPerStudentForTheTemplate(
+            string quantityString,
+            string equipmentName,
+            string perStudentsString)
+        {
+            var quantity = int.Parse(quantityString);
+            var perStudent = int.Parse(perStudentsString);
+
+            var templateId = DomainHelper.Id<Template>();
+
+            var cmd = new AddTemplateStudentEquipment(
+                templateId,
+                quantity,
+                equipmentName,
+                perStudent);
+            DomainHelper.When(cmd);
+        }
+
+        [When(@"I require (\d+) ""(.*)"" for the template")]
+        public void WhenIRequireEquipmentForTheTemplate(
+            string quantityString,
+            string equipmentName)
+        {
+            var quantity = int.Parse(quantityString);
+            var templateId = DomainHelper.Id<Template>();
+
+            var cmd = new AddTemplateInstructorEquipment(
+                templateId,
+                quantity,
+                equipmentName);
+            DomainHelper.When(cmd);
+        }
 
     }
 }

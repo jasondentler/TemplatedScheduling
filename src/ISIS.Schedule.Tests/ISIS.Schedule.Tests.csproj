@@ -130,6 +130,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TemplateCopy.feature</DependentUpon>
     </Compile>
+    <Compile Include="TemplateEquipment.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TemplateEquipment.feature</DependentUpon>
+    </Compile>
     <Compile Include="TemplateInstructor.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -232,6 +237,10 @@
     <None Include="TemplateCopy.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>TemplateCopy.feature.cs</LastGenOutput>
+    </None>
+    <None Include="TemplateEquipment.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>TemplateEquipment.feature.cs</LastGenOutput>
     </None>
     <None Include="TemplateInstructor.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

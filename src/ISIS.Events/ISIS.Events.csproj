@@ -40,6 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Scheduling\StudentEquipmentRemovedFromTemplate.cs" />
+    <Compile Include="Scheduling\StudentEquipmentAddedToTemplate.cs" />
+    <Compile Include="Scheduling\InstructorEquipmentRemovedFromTemplate.cs" />
+    <Compile Include="Scheduling\InstructorEquipmentAddedToTemplate.cs" />
     <Compile Include="Scheduling\StudentEquipmentRemovedFromCourse.cs" />
     <Compile Include="Scheduling\StudentEquipmentAddedToCourse.cs" />
     <Compile Include="Scheduling\InstructorEquipmentRemovedFromCourse.cs" />

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ISIS.Scheduling.ActivateTemplateExceptions;
 using ISIS.Scheduling.CopyTemplateExceptions;
 using ISIS.Scheduling.CreateTemplateExceptions;
@@ -20,6 +21,7 @@ namespace ISIS.Scheduling
         private string _description;
         private Guid _termId;
         private Guid _instructorId;
+        private readonly Dictionary<string, int> _instructorEquipment = new Dictionary<string, int>();
 
         private Template()
         {
@@ -184,6 +186,52 @@ namespace ISIS.Scheduling
             ApplyEvent(@event);
         }
 
+
+        public void AddInstructorEquipment(int quantity, string equipmentName)
+        {
+            var @event = new InstructorEquipmentAddedToTemplate(
+                EventSourceId,
+                quantity,
+                equipmentName,
+                GetInstructorQuantity(equipmentName) + quantity);
+            ApplyEvent(@event);
+        }
+
+        public void RemoveInstructorEquipment(int quantity, string equipmentName)
+        {
+            var @event = new InstructorEquipmentRemovedFromTemplate(
+                EventSourceId,
+                quantity,
+                equipmentName,
+                GetInstructorQuantity(equipmentName) - quantity);
+            ApplyEvent(@event);
+        }
+
+        public void AddStudentEquipment(int quantity, int perStudent, string equipmentName)
+        {
+            var @event = new StudentEquipmentAddedToTemplate(
+                EventSourceId,
+                quantity,
+                equipmentName,
+                perStudent);
+            ApplyEvent(@event);
+        }
+
+        public void RemoveStudentEquipment(int quantity, int perStudent, string equipmentName)
+        {
+            var @event = new StudentEquipmentRemovedFromTemplate(
+                EventSourceId,
+                quantity,
+                equipmentName,
+                perStudent);
+
+            ApplyEvent(@event);
+        }
+        protected int GetInstructorQuantity(string equipmentName)
+        {
+            return !_instructorEquipment.ContainsKey(equipmentName) ? 0 : _instructorEquipment[equipmentName];
+        }
+
         protected void On(TemplateCreated @event)
         {
             _label = @event.Label;
@@ -239,5 +287,22 @@ namespace ISIS.Scheduling
             _instructorId = default(Guid);
         }
 
+        protected void On(InstructorEquipmentAddedToTemplate @event)
+        {
+            _instructorEquipment[@event.EquipmentName] = @event.TotalRequired;
+        }
+
+        protected void On(InstructorEquipmentRemovedFromTemplate @event)
+        {
+            _instructorEquipment[@event.EquipmentName] = @event.TotalRequired;
+        }
+
+        protected void On(StudentEquipmentAddedToTemplate @event)
+        {
+        }
+
+        protected void On(StudentEquipmentRemovedFromTemplate @event)
+        {
+        }
     }
 }

@@ -155,6 +155,89 @@ namespace ISIS.Schedule
         }
 
 
+        [Then(@"(\d+) ""(.*)"" per student is no longer required for the template")]
+        public void ThenEquipmentIsNoLongerRequiredForTheTemplate(
+            string quantityString,
+            string equipmentName)
+        {
+            ThenEquipmentIsNoLongerRequiredForTheTemplate(quantityString, equipmentName, "1");
+        }
+
+        [Then(@"(\d+) ""(.*)"" per (\d+) students is no longer required for the template")]
+        public void ThenEquipmentIsNoLongerRequiredForTheTemplate(
+            string quantityString,
+            string equipmentName,
+            string perStudentString)
+        {
+            var templateId = DomainHelper.Id<Template>();
+            var quantity = int.Parse(quantityString);
+            var perStudent = int.Parse(perStudentString);
+
+            var e = DomainHelper.Then<StudentEquipmentRemovedFromTemplate>();
+            e.TemplateId.Should().Be.EqualTo(templateId);
+            e.EquipmentName.Should().Be.EqualTo(equipmentName);
+            e.QuantityRemoved.Should().Be.EqualTo(quantity);
+            e.PerStudent.Should().Be.EqualTo(perStudent);
+        }
+
+        [Then(@"(\d+) ""(.*)"" is no longer required for the template, for a total of (\d+)")]
+        public void ThenInstructorEquipmentIsNoLongerRequiredForTheTemplate(
+            string quantityString,
+            string equipmentName,
+            string totalString)
+        {
+            var templateId = DomainHelper.Id<Template>();
+            var quantity = int.Parse(quantityString);
+            var total = int.Parse(totalString);
+
+            var e = DomainHelper.Then<InstructorEquipmentRemovedFromTemplate>();
+            e.TemplateId.Should().Be.EqualTo(templateId);
+            e.EquipmentName.Should().Be.EqualTo(equipmentName);
+            e.QuantityRemoved.Should().Be.EqualTo(quantity);
+            e.TotalRequired.Should().Be.EqualTo(total);
+        }
+
+        [Then(@"(\d+) ""(.*)"" per student is required for the template")]
+        public void ThenEquipmentIsRequiredForTheTemplate(
+            string quantityString,
+            string equipmentName)
+        {
+            ThenEquipmentIsRequiredForTheTemplate(quantityString, equipmentName, "1");
+        }
+
+        [Then(@"(\d+) ""(.*)"" per (\d+) students is required for the template")]
+        public void ThenEquipmentIsRequiredForTheTemplate(
+            string quantityString,
+            string equipmentName,
+            string perStudentString)
+        {
+            var templateId = DomainHelper.Id<Template>();
+            var quantity = int.Parse(quantityString);
+            var perStudent = int.Parse(perStudentString);
+
+            var e = DomainHelper.Then<StudentEquipmentAddedToTemplate>();
+            e.TemplateId.Should().Be.EqualTo(templateId);
+            e.EquipmentName.Should().Be.EqualTo(equipmentName);
+            e.QuantityAdded.Should().Be.EqualTo(quantity);
+            e.PerStudent.Should().Be.EqualTo(perStudent);
+        }
+
+        [Then(@"(\d+) ""(.*)"" is required for the template, for a total of (\d+)")]
+        public void ThenInstructorEquipmentIsRequiredForTheTemplate(
+            string quantityString,
+            string equipmentName,
+            string totalString)
+        {
+            var templateId = DomainHelper.Id<Template>();
+            var quantity = int.Parse(quantityString);
+            var total = int.Parse(totalString);
+
+            var e = DomainHelper.Then<InstructorEquipmentAddedToTemplate>();
+            e.TemplateId.Should().Be.EqualTo(templateId);
+            e.EquipmentName.Should().Be.EqualTo(equipmentName);
+            e.QuantityAdded.Should().Be.EqualTo(quantity);
+            e.TotalRequired.Should().Be.EqualTo(total);
+        }
 
     }
 }

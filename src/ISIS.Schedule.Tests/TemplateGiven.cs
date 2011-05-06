@@ -123,6 +123,67 @@ namespace ISIS.Schedule
             DomainHelper.Given<Template>(@event);
         }
 
+
+        [Given(@"I require (\d+) ""(.*)"" for the template")]
+        public void GivenIRequireInstructorEquipmentForTheTemplate(
+            string quantityString,
+            string equipmentName)
+        {
+            var quantity = int.Parse(quantityString);
+            var templateId = DomainHelper.Id<Template>();
+
+            var templateEvents = DomainHelper.GetEventStream(templateId);
+            var addedQuantity = templateEvents
+                .OfType<InstructorEquipmentAddedToTemplate>()
+                .Where(e => e.EquipmentName == equipmentName)
+                .Sum(e => e.QuantityAdded);
+
+            var subtractedQuantity = templateEvents
+                .OfType<InstructorEquipmentRemovedFromTemplate>()
+                .Where(e => e.EquipmentName == equipmentName)
+                .Sum(e => e.QuantityRemoved);
+
+            var currentQuantity = addedQuantity - subtractedQuantity;
+
+            var @event = new InstructorEquipmentAddedToTemplate(
+                templateId,
+                quantity,
+                equipmentName,
+                currentQuantity + quantity);
+
+            DomainHelper.Given<Template>(@event);
+        }
+
+        [Given(@"I require (\d+) ""(.*)"" per student for the template")]
+        public void GivenIRequireEquipmentForTheTemplate(
+            string quantityString,
+            string equipmentName)
+        {
+            GivenIRequireEquipmentForTheTemplate(quantityString, equipmentName, "1");
+        }
+
+
+        [Given(@"I require (\d+) ""(.*)"" per (\d+) students for the template")]
+        public void GivenIRequireEquipmentForTheTemplate(
+            string quantityString,
+            string equipmentName,
+            string perStudentString)
+        {
+            var quantity = int.Parse(quantityString);
+            var perStudent = int.Parse(perStudentString);
+
+            var templateId = DomainHelper.Id<Template>();
+
+            var @event = new StudentEquipmentAddedToTemplate(
+                templateId,
+                quantity,
+                equipmentName,
+                perStudent);
+
+            DomainHelper.Given<Template>(@event);
+        }
+
+
         
     }
 }
