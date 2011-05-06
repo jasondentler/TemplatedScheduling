@@ -33,6 +33,33 @@ namespace ISIS.Scheduling
                 .WithId(cmd => cmd.CourseId)
                 .ToCallOn((cmd, course) => course.ChangeDescription(cmd.Description))
                 .RegisterWith(_commandService);
+
+            Map.Command<AddCourseInstructorEquipment>()
+                .ToAggregateRoot<Course>()
+                .WithId(cmd => cmd.CourseId)
+                .ToCallOn((cmd, course) => course.AddInstructorEquipment(cmd.Quantity, cmd.EquipmentName))
+                .RegisterWith(_commandService);
+
+            Map.Command<AddCourseStudentEquipment>()
+                .ToAggregateRoot<Course>()
+                .WithId(cmd => cmd.CourseId)
+                .ToCallOn((cmd, course) => course.AddStudentEquipment(cmd.Quantity, cmd.PerStudent, cmd.EquipmentName))
+                .RegisterWith(_commandService);
+
+            Map.Command<RemoveCourseInstructorEquipment>()
+                .ToAggregateRoot<Course>()
+                .WithId(cmd=> cmd.CourseId)
+                .ToCallOn((cmd, course) => course.RemoveInstructorEquipment(cmd.Quantity, cmd.EquipmentName))
+                .RegisterWith(_commandService);
+
+            Map.Command<RemoveCourseStudentEquipment>()
+                .ToAggregateRoot<Course>()
+                .WithId(cmd => cmd.CourseId)
+                .ToCallOn((cmd, course) => course.RemoveStudentEquipment(cmd.Quantity, cmd.PerStudent, cmd.EquipmentName))
+                .RegisterWith(_commandService);
+
+
+
         }
     }
 

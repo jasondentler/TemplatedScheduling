@@ -78,6 +78,66 @@ namespace ISIS.Schedule
             GivenIHaveChangedTheCourseDescriptionTo("Cuttin' up frogs");
         }
 
+        [Given(@"I require (\d+) ""(.*)"" for the course")]
+        public void GivenIRequireInstructorEquipmentForTheCourse(
+            string quantityString,
+            string equipmentName)
+        {
+            var quantity = int.Parse(quantityString);
+            var courseId = DomainHelper.Id<Course>();
+
+            var courseEvents = DomainHelper.GetEventStream(courseId);
+            var addedQuantity = courseEvents
+                .OfType<InstructorEquipmentAddedToCourse>()
+                .Where(e => e.EquipmentName == equipmentName)
+                .Sum(e => e.QuantityAdded);
+
+            var subtractedQuantity = courseEvents
+                .OfType<InstructorEquipmentRemovedFromCourse>()
+                .Where(e => e.EquipmentName == equipmentName)
+                .Sum(e => e.QuantityRemoved);
+
+            var currentQuantity = addedQuantity - subtractedQuantity;
+
+            var @event = new InstructorEquipmentAddedToCourse(
+                courseId,
+                quantity,
+                equipmentName,
+                currentQuantity + quantity);
+
+            DomainHelper.Given<Course>(@event);
+        }
+
+        [Given(@"I require (\d+) ""(.*)"" per student for the course")]
+        public void GivenIRequireEquipmentForTheCourse(
+            string quantityString,
+            string equipmentName)
+        {
+            GivenIRequireEquipmentForTheCourse(quantityString, equipmentName, "1");
+        }
+
+
+        [Given(@"I require (\d+) ""(.*)"" per (\d+) students for the course")]
+        public void GivenIRequireEquipmentForTheCourse(
+            string quantityString,
+            string equipmentName,
+            string perStudentString)
+        {
+            var quantity = int.Parse(quantityString);
+            var perStudent = int.Parse(perStudentString);
+
+            var courseId = DomainHelper.Id<Course>();
+
+            var @event = new StudentEquipmentAddedToCourse(
+                courseId,
+                quantity,
+                equipmentName,
+                perStudent);
+
+            DomainHelper.Given<Course>(@event);
+        }
+
+
 
     }
 }

@@ -74,6 +74,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CourseDescription.feature</DependentUpon>
     </Compile>
+    <Compile Include="CourseEquipment.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CourseEquipment.feature</DependentUpon>
+    </Compile>
     <Compile Include="CourseGiven.cs" />
     <Compile Include="CourseSetup.feature.cs">
       <AutoGen>True</AutoGen>
@@ -194,6 +199,10 @@
     <None Include="CourseDescription.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CourseDescription.feature.cs</LastGenOutput>
+    </None>
+    <None Include="CourseEquipment.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CourseEquipment.feature.cs</LastGenOutput>
     </None>
     <None Include="CourseSetup.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

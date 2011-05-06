@@ -40,8 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Scheduling\StudentEquipmentRemovedFromCourse.cs" />
+    <Compile Include="Scheduling\StudentEquipmentAddedToCourse.cs" />
+    <Compile Include="Scheduling\InstructorEquipmentRemovedFromCourse.cs" />
     <Compile Include="Scheduling\EquipmentRemovedFromRoom.cs" />
     <Compile Include="Scheduling\EquipmentAddedToRoom.cs" />
+    <Compile Include="Scheduling\InstructorEquipmentAddedToCourse.cs" />
     <Compile Include="Scheduling\InstructorUnassignedFromSection.cs" />
     <Compile Include="Scheduling\InstructorAssignedToSection.cs" />
     <Compile Include="Scheduling\InstructorUnassignedFromTemplate.cs" />

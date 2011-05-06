@@ -80,6 +80,91 @@ namespace ISIS.Schedule
             e.NewDescription.Should().Be.EqualTo(newDescription);
         }
 
+        [Then(@"(\d+) ""(.*)"" per student is no longer required for the course")]
+        public void ThenEquipmentIsNoLongerRequiredForTheCourse(
+            string quantityString,
+            string equipmentName)
+        {
+            ThenEquipmentIsNoLongerRequiredForTheCourse(quantityString, equipmentName, "1");
+        }
+
+        [Then(@"(\d+) ""(.*)"" per (\d+) students is no longer required for the course")]
+        public void ThenEquipmentIsNoLongerRequiredForTheCourse(
+            string quantityString,
+            string equipmentName,
+            string perStudentString)
+        {
+            var courseId = DomainHelper.Id<Course>();
+            var quantity = int.Parse(quantityString);
+            var perStudent = int.Parse(perStudentString);
+
+            var e = DomainHelper.Then<StudentEquipmentRemovedFromCourse>();
+            e.CourseId.Should().Be.EqualTo(courseId);
+            e.EquipmentName.Should().Be.EqualTo(equipmentName);
+            e.QuantityRemoved.Should().Be.EqualTo(quantity);
+            e.PerStudent.Should().Be.EqualTo(perStudent);
+        }
+
+        [Then(@"(\d+) ""(.*)"" is no longer required for the course, for a total of (\d+)")]
+        public void ThenInstructorEquipmentIsNoLongerRequiredForTheCourse(
+            string quantityString,
+            string equipmentName,
+            string totalString)
+        {
+            var courseId = DomainHelper.Id<Course>();
+            var quantity = int.Parse(quantityString);
+            var total = int.Parse(totalString);
+
+            var e = DomainHelper.Then<InstructorEquipmentRemovedFromCourse>();
+            e.CourseId.Should().Be.EqualTo(courseId);
+            e.EquipmentName.Should().Be.EqualTo(equipmentName);
+            e.QuantityRemoved.Should().Be.EqualTo(quantity);
+            e.TotalRequired.Should().Be.EqualTo(total);
+        }
+
+        [Then(@"(\d+) ""(.*)"" per student is required for the course")]
+        public void ThenEquipmentIsRequiredForTheCourse(
+            string quantityString,
+            string equipmentName)
+        {
+            ThenEquipmentIsRequiredForTheCourse(quantityString, equipmentName, "1");
+        }
+
+        [Then(@"(\d+) ""(.*)"" per (\d+) students is required for the course")]
+        public void ThenEquipmentIsRequiredForTheCourse(
+            string quantityString,
+            string equipmentName,
+            string perStudentString)
+        {
+            var courseId = DomainHelper.Id<Course>();
+            var quantity = int.Parse(quantityString);
+            var perStudent = int.Parse(perStudentString);
+
+            var e = DomainHelper.Then<StudentEquipmentAddedToCourse>();
+            e.CourseId.Should().Be.EqualTo(courseId);
+            e.EquipmentName.Should().Be.EqualTo(equipmentName);
+            e.QuantityAdded.Should().Be.EqualTo(quantity);
+            e.PerStudent.Should().Be.EqualTo(perStudent);
+        }
+
+        [Then(@"(\d+) ""(.*)"" is required for the course, for a total of (\d+)")]
+        public void ThenInstructorEquipmentIsRequiredForTheCourse(
+            string quantityString,
+            string equipmentName,
+            string totalString)
+        {
+            var courseId = DomainHelper.Id<Course>();
+            var quantity = int.Parse(quantityString);
+            var total = int.Parse(totalString);
+
+            var e = DomainHelper.Then<InstructorEquipmentAddedToCourse>();
+            e.CourseId.Should().Be.EqualTo(courseId);
+            e.EquipmentName.Should().Be.EqualTo(equipmentName);
+            e.QuantityAdded.Should().Be.EqualTo(quantity);
+            e.TotalRequired.Should().Be.EqualTo(total);
+        }
+
+
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Ncqrs.Domain;
 
 namespace ISIS.Scheduling
@@ -12,6 +13,7 @@ namespace ISIS.Scheduling
         private string _shortTitle;
         private string _description;
         private bool _isContinuingEducation;
+        private readonly Dictionary<string, int> _instructorEquipment = new Dictionary<string, int>();
 
         private Course()
         {
@@ -43,6 +45,47 @@ namespace ISIS.Scheduling
                                description));
         }
 
+        public void AddInstructorEquipment(int quantity, string equipmentName)
+        {
+            var @event = new InstructorEquipmentAddedToCourse(
+                EventSourceId,
+                quantity,
+                equipmentName,
+                GetInstructorQuantity(equipmentName) + quantity);
+            ApplyEvent(@event);
+        }
+
+        public void RemoveInstructorEquipment(int quantity, string equipmentName)
+        {
+            var @event = new InstructorEquipmentRemovedFromCourse(
+                EventSourceId,
+                quantity,
+                equipmentName,
+                GetInstructorQuantity(equipmentName) - quantity);
+            ApplyEvent(@event);
+        }
+
+        public void AddStudentEquipment(int quantity, int perStudent, string equipmentName)
+        {
+            var @event = new StudentEquipmentAddedToCourse(
+                EventSourceId,
+                quantity,
+                equipmentName,
+                perStudent);
+            ApplyEvent(@event);
+        }
+
+        public void RemoveStudentEquipment(int quantity, int perStudent, string equipmentName)
+        {
+            var @event = new StudentEquipmentRemovedFromCourse(
+                EventSourceId,
+                quantity,
+                equipmentName,
+                perStudent);
+
+            ApplyEvent(@event);
+        }
+        
         internal CourseData GetCourseData()
         {
             return new CourseData()
@@ -56,6 +99,10 @@ namespace ISIS.Scheduling
                        };
         }
 
+        protected int GetInstructorQuantity(string equipmentName)
+        {
+            return !_instructorEquipment.ContainsKey(equipmentName) ? 0 : _instructorEquipment[equipmentName];
+        }
 
         protected void On(CourseCreated @event)
         {
@@ -83,6 +130,24 @@ namespace ISIS.Scheduling
         private static bool IsContinuingEducation(string courseNumber)
         {
             return GetCreditHours(courseNumber) == 0;
+        }
+
+        protected void On(InstructorEquipmentAddedToCourse @event)
+        {
+            _instructorEquipment[@event.EquipmentName] = @event.TotalRequired;
+        }
+
+        protected void On(InstructorEquipmentRemovedFromCourse @event)
+        {
+            _instructorEquipment[@event.EquipmentName] = @event.TotalRequired;
+        }
+
+        protected void On(StudentEquipmentAddedToCourse @event)
+        {
+        }
+
+        protected void On(StudentEquipmentRemovedFromCourse @event)
+        {
         }
 
     }

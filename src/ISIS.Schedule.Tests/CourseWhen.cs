@@ -42,6 +42,93 @@ namespace ISIS.Schedule
                 newDescription));
         }
 
+        [When(@"I no longer require (\d+) ""(.*)"" per student for the course")]
+        public void WhenINoLongerRequireEquipmentPerStudentForTheCourse(
+            string quantityString,
+            string equipmentName)
+        {
+            WhenINoLongerRequireEquipmentPerStudentForTheCourse(quantityString, equipmentName, "1");
+        }
+
+        [When(@"I no longer require (\d+) ""(.*)"" per (\d+) students for the course")]
+        public void WhenINoLongerRequireEquipmentPerStudentForTheCourse(
+            string quantityString,
+            string equipmentName,
+            string perStudentsString)
+        {
+            var quantity = int.Parse(quantityString);
+            var perStudent = int.Parse(perStudentsString);
+
+            var courseId = DomainHelper.Id<Course>();
+
+            var cmd = new RemoveCourseStudentEquipment(
+                courseId,
+                quantity,
+                equipmentName,
+                perStudent);
+            DomainHelper.When(cmd);
+        }
+
+        [When(@"I no longer require (\d+) ""(.*)"" for the course")]
+        public void WhenINoLongerRequireEquipmentForTheCourse(
+            string quantityString,
+            string equipmentName)
+        {
+            var quantity = int.Parse(quantityString);
+            var courseId = DomainHelper.Id<Course>();
+
+            var cmd = new RemoveCourseInstructorEquipment(
+                courseId,
+                quantity,
+                equipmentName);
+            DomainHelper.When(cmd);
+        }
+
+        [When(@"I require (\d+) ""(.*)"" per student for the course")]
+        public void WhenIRequireEquipmentPerStudentForTheCourse(
+            string quantityString,
+            string equipmentName)
+        {
+            WhenIRequireEquipmentPerStudentForTheCourse(quantityString, equipmentName, "1");
+        }
+
+        [When(@"I require (\d+) ""(.*)"" per (\d+) students for the course")]
+        public void WhenIRequireEquipmentPerStudentForTheCourse(
+            string quantityString,
+            string equipmentName,
+            string perStudentsString)
+        {
+            var quantity = int.Parse(quantityString);
+            var perStudent = int.Parse(perStudentsString);
+
+            var courseId = DomainHelper.Id<Course>();
+
+            var cmd = new AddCourseStudentEquipment(
+                courseId,
+                quantity,
+                equipmentName,
+                perStudent);
+            DomainHelper.When(cmd);
+        }
+
+        [When(@"I require (\d+) ""(.*)"" for the course")]
+        public void WhenIRequireEquipmentForTheCourse(
+            string quantityString,
+            string equipmentName)
+        {
+            var quantity = int.Parse(quantityString);
+            var courseId = DomainHelper.Id<Course>();
+
+            var cmd = new AddCourseInstructorEquipment(
+                courseId,
+                quantity,
+                equipmentName);
+            DomainHelper.When(cmd);
+        }
+
+
+
+
 
     }
 }

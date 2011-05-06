@@ -43,12 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Scheduling\AddCourseInstructorEquipment.cs" />
     <Compile Include="Scheduling\AddEquipmentToRoom.cs" />
     <Compile Include="Scheduling\AssignCourseToInstructor.cs" />
     <Compile Include="Scheduling\AssignInstructorToSection.cs" />
     <Compile Include="Scheduling\AssignInstructorToTemplate.cs" />
     <Compile Include="Scheduling\AssignTermToTemplate.cs" />
     <Compile Include="Scheduling\ChangeInstructorName.cs" />
+    <Compile Include="Scheduling\AddCourseStudentEquipment.cs" />
+    <Compile Include="Scheduling\RemoveCourseStudentEquipment.cs" />
+    <Compile Include="Scheduling\RemoveCourseInstructorEquipment.cs" />
     <Compile Include="Scheduling\RemoveEquipmentFromRoom.cs" />
     <Compile Include="Scheduling\CreateRoom.cs" />
     <Compile Include="Scheduling\UnassignInstructorFromSection.cs" />
