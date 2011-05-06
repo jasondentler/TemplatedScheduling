@@ -48,6 +48,9 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schedule\ActivateTemplateValidator.cs" />
+    <Compile Include="Schedule\AddCourseInstructorEquipmentValidator.cs" />
+    <Compile Include="Schedule\AddCourseStudentEquipmentValidator.cs" />
+    <Compile Include="Schedule\AddEquipmentToRoomValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

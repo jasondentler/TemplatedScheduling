@@ -54,7 +54,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivateTemplateValidatorFixture.cs" />
+    <Compile Include="AddCourseInstructorEquipmentValidatorFixture.cs" />
     <Compile Include="ConventionValidationFixture.cs" />
+    <Compile Include="AddCourseStudentEquipmentValidatorFixture.cs" />
+    <Compile Include="AddEquipmentToRoomValidatorFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidationFixture.cs" />
   </ItemGroup>

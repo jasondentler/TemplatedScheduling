@@ -4,7 +4,6 @@ using Ncqrs.Spec;
 
 namespace ISIS.Schedule
 {
-    [Specification]
     public class ActivateTemplateValidatorFixture
         : ConventionValidationFixture<ActivateTemplate>
     {
@@ -14,10 +13,9 @@ namespace ISIS.Schedule
         }
 
         [Then]
-        public void TemplateIdIsRequired()
+        public void TemplateIdFollowsRules()
         {
-            GetFailure(new ActivateTemplate(default(Guid)),
-                       cmd => cmd.TemplateId);
+            FollowsEventSourceIdRules(id => new ActivateTemplate(id), cmd => cmd.TemplateId);
         }
     }
 }
