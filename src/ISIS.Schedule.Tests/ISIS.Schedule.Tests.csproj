@@ -99,6 +99,14 @@
     <Compile Include="InstructorThen.cs" />
     <Compile Include="InstructorWhen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoomGiven.cs" />
+    <Compile Include="RoomSetup.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RoomSetup.feature</DependentUpon>
+    </Compile>
+    <Compile Include="RoomThen.cs" />
+    <Compile Include="RoomWhen.cs" />
     <Compile Include="SectionInstructor.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -200,6 +208,10 @@
       <LastGenOutput>InstructorSetup.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="RoomSetup.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>RoomSetup.feature.cs</LastGenOutput>
+    </None>
     <None Include="SectionInstructor.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SectionInstructor.feature.cs</LastGenOutput>

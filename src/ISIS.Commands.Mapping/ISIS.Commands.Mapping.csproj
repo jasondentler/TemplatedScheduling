@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Scheduling\RoomMapping.cs" />
     <Compile Include="Scheduling\InstructorMapping.cs" />
     <Compile Include="Scheduling\SectionMapping.cs" />
     <Compile Include="Scheduling\TermMapping.cs" />

@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Scheduling\EquipmentRemovedFromRoom.cs" />
+    <Compile Include="Scheduling\EquipmentAddedToRoom.cs" />
     <Compile Include="Scheduling\InstructorUnassignedFromSection.cs" />
     <Compile Include="Scheduling\InstructorAssignedToSection.cs" />
     <Compile Include="Scheduling\InstructorUnassignedFromTemplate.cs" />
@@ -48,6 +50,7 @@
     <Compile Include="Scheduling\InstructorAssignedCourse.cs" />
     <Compile Include="Scheduling\InstructorCreated.cs" />
     <Compile Include="Scheduling\InstructorNameChanged.cs" />
+    <Compile Include="Scheduling\RoomCreated.cs" />
     <Compile Include="Scheduling\SectionCreated.cs" />
     <Compile Include="Scheduling\TemplateCopied.cs" />
     <Compile Include="Scheduling\TermAssignedToTemplate.cs" />
