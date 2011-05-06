@@ -75,11 +75,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Add required student equipement for template")]
+        [NUnit.Framework.DescriptionAttribute("Add required student equipment for template")]
         [NUnit.Framework.CategoryAttribute("domain")]
-        public virtual void AddRequiredStudentEquipementForTemplate()
+        public virtual void AddRequiredStudentEquipmentForTemplate()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add required student equipement for template", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add required student equipment for template", new string[] {
                         "domain"});
 #line 13
 this.ScenarioSetup(scenarioInfo);
@@ -96,11 +96,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Add required shared student equipement for template")]
+        [NUnit.Framework.DescriptionAttribute("Add required shared student equipment for template")]
         [NUnit.Framework.CategoryAttribute("domain")]
-        public virtual void AddRequiredSharedStudentEquipementForTemplate()
+        public virtual void AddRequiredSharedStudentEquipmentForTemplate()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add required shared student equipement for template", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add required shared student equipment for template", new string[] {
                         "domain"});
 #line 20
 this.ScenarioSetup(scenarioInfo);
@@ -140,42 +140,46 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Remove required student equipement for template")]
+        [NUnit.Framework.DescriptionAttribute("Remove required student equipment for template")]
         [NUnit.Framework.CategoryAttribute("domain")]
-        public virtual void RemoveRequiredStudentEquipementForTemplate()
+        public virtual void RemoveRequiredStudentEquipmentForTemplate()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Remove required student equipement for template", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Remove required student equipment for template", new string[] {
                         "domain"});
 #line 35
 this.ScenarioSetup(scenarioInfo);
 #line 36
  testRunner.Given("I have set up a course and template and activated the template");
 #line 37
- testRunner.When("I no longer require 1 \"PC\" per student for the template");
+ testRunner.And("I require 1 \"PC\" per student for the template");
 #line 38
- testRunner.Then("1 \"PC\" per student is no longer required for the template");
+ testRunner.When("I no longer require 1 \"PC\" per student for the template");
 #line 39
+ testRunner.Then("1 \"PC\" per student is no longer required for the template");
+#line 40
  testRunner.And("it does nothing else");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Remove required shared student equipement for template")]
+        [NUnit.Framework.DescriptionAttribute("Remove required shared student equipment for template")]
         [NUnit.Framework.CategoryAttribute("domain")]
-        public virtual void RemoveRequiredSharedStudentEquipementForTemplate()
+        public virtual void RemoveRequiredSharedStudentEquipmentForTemplate()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Remove required shared student equipement for template", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Remove required shared student equipment for template", new string[] {
                         "domain"});
-#line 42
-this.ScenarioSetup(scenarioInfo);
 #line 43
- testRunner.Given("I have set up a course and template and activated the template");
+this.ScenarioSetup(scenarioInfo);
 #line 44
- testRunner.When("I no longer require 1 \"lab sink\" per 2 students for the template");
+ testRunner.Given("I have set up a course and template and activated the template");
 #line 45
- testRunner.Then("1 \"lab sink\" per 2 students is no longer required for the template");
+ testRunner.And("I require 1 \"lab sink\" per 2 students for the template");
 #line 46
+ testRunner.When("I no longer require 1 \"lab sink\" per 2 students for the template");
+#line 47
+ testRunner.Then("1 \"lab sink\" per 2 students is no longer required for the template");
+#line 48
  testRunner.And("it does nothing else");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -188,17 +192,17 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add additional student equipment", new string[] {
                         "domain"});
-#line 49
-this.ScenarioSetup(scenarioInfo);
-#line 50
- testRunner.Given("I have set up a course and template and activated the template");
 #line 51
- testRunner.And("I require 1 \"PC\" per 2 students for the template");
+this.ScenarioSetup(scenarioInfo);
 #line 52
- testRunner.When("I require 1 \"PC\" per student for the template");
+ testRunner.Given("I have set up a course and template and activated the template");
 #line 53
- testRunner.Then("1 \"PC\" per student is required for the template");
+ testRunner.And("I require 1 \"PC\" per 2 students for the template");
 #line 54
+ testRunner.When("I require 1 \"PC\" per student for the template");
+#line 55
+ testRunner.Then("1 \"PC\" per student is required for the template");
+#line 56
  testRunner.And("it does nothing else");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -211,17 +215,17 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add additional instructor equipment", new string[] {
                         "domain"});
-#line 57
-this.ScenarioSetup(scenarioInfo);
-#line 58
- testRunner.Given("I have set up a course and template and activated the template");
 #line 59
- testRunner.And("I require 1 \"PC\" for the template");
+this.ScenarioSetup(scenarioInfo);
 #line 60
- testRunner.When("I require 2 \"PC\" for the template");
+ testRunner.Given("I have set up a course and template and activated the template");
 #line 61
- testRunner.Then("2 \"PC\" is required for the template, for a total of 3");
+ testRunner.And("I require 1 \"PC\" for the template");
 #line 62
+ testRunner.When("I require 2 \"PC\" for the template");
+#line 63
+ testRunner.Then("2 \"PC\" is required for the template, for a total of 3");
+#line 64
  testRunner.And("it does nothing else");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -234,18 +238,40 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Instructor equipment doesnt affect student equipment", new string[] {
                         "domain"});
-#line 65
-this.ScenarioSetup(scenarioInfo);
-#line 66
- testRunner.Given("I have set up a course and template and activated the template");
 #line 67
- testRunner.And("I require 1 \"PC\" per student for the template");
+this.ScenarioSetup(scenarioInfo);
 #line 68
- testRunner.When("I require 1 \"PC\" for the template");
+ testRunner.Given("I have set up a course and template and activated the template");
 #line 69
- testRunner.Then("1 \"PC\" is required for the template, for a total of 1");
+ testRunner.And("I require 1 \"PC\" per student for the template");
 #line 70
+ testRunner.When("I require 1 \"PC\" for the template");
+#line 71
+ testRunner.Then("1 \"PC\" is required for the template, for a total of 1");
+#line 72
  testRunner.And("it does nothing else");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Over-remove student equipment")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void Over_RemoveStudentEquipment()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Over-remove student equipment", new string[] {
+                        "domain"});
+#line 76
+this.ScenarioSetup(scenarioInfo);
+#line 77
+ testRunner.Given("I have set up a course and template and activated the template");
+#line 78
+ testRunner.When("I no longer require 1 \"PC\" per student for the template");
+#line 79
+ testRunner.Then("the aggregate state is invalid");
+#line 80
+ testRunner.And("the message is \"Your attempt to remove this equipment requirement failed. The tem" +
+                    "plate already doesn\'t require this equipment.\"");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

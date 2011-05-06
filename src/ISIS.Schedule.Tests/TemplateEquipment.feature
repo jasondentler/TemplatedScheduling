@@ -10,14 +10,14 @@ Scenario: Add required instructor equipment for template
 	And it does nothing else
 
 @domain
-Scenario: Add required student equipement for template
+Scenario: Add required student equipment for template
 	Given I have set up a course and template and activated the template
 	When I require 1 "PC" per student for the template
 	Then 1 "PC" per student is required for the template
 	And it does nothing else
 
 @domain
-Scenario: Add required shared student equipement for template
+Scenario: Add required shared student equipment for template
 	Given I have set up a course and template and activated the template
 	When I require 1 "lab sink" per 2 students for the template
 	Then 1 "lab sink" per 2 students is required for the template
@@ -32,15 +32,17 @@ Scenario: Remove required instructor equipment for template
 	And it does nothing else
 
 @domain
-Scenario: Remove required student equipement for template
+Scenario: Remove required student equipment for template
 	Given I have set up a course and template and activated the template
+	And I require 1 "PC" per student for the template
 	When I no longer require 1 "PC" per student for the template
 	Then 1 "PC" per student is no longer required for the template
 	And it does nothing else
 
 @domain
-Scenario: Remove required shared student equipement for template
+Scenario: Remove required shared student equipment for template
 	Given I have set up a course and template and activated the template
+	And I require 1 "lab sink" per 2 students for the template
 	When I no longer require 1 "lab sink" per 2 students for the template
 	Then 1 "lab sink" per 2 students is no longer required for the template
 	And it does nothing else
@@ -68,3 +70,12 @@ Scenario: Instructor equipment doesnt affect student equipment
 	When I require 1 "PC" for the template
 	Then 1 "PC" is required for the template, for a total of 1
 	And it does nothing else
+
+
+@domain
+Scenario: Over-remove student equipment
+	Given I have set up a course and template and activated the template
+	When I no longer require 1 "PC" per student for the template
+	Then the aggregate state is invalid
+	And the message is "Your attempt to remove this equipment requirement failed. The template already doesn't require this equipment."
+

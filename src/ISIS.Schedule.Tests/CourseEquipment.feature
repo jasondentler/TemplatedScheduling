@@ -10,14 +10,14 @@ Scenario: Add required instructor equipment for course
 	And it does nothing else
 
 @domain
-Scenario: Add required student equipement for course
+Scenario: Add required student equipment for course
 	Given I have set up a course
 	When I require 1 "PC" per student for the course
 	Then 1 "PC" per student is required for the course
 	And it does nothing else
 
 @domain
-Scenario: Add required shared student equipement for course
+Scenario: Add required shared student equipment for course
 	Given I have set up a course
 	When I require 1 "lab sink" per 2 students for the course
 	Then 1 "lab sink" per 2 students is required for the course
@@ -32,15 +32,17 @@ Scenario: Remove required instructor equipment for course
 	And it does nothing else
 
 @domain
-Scenario: Remove required student equipement for course
+Scenario: Remove required student equipment for course
 	Given I have set up a course
+	And I require 1 "PC" per student for the course
 	When I no longer require 1 "PC" per student for the course
 	Then 1 "PC" per student is no longer required for the course
 	And it does nothing else
 
 @domain
-Scenario: Remove required shared student equipement for course
+Scenario: Remove required shared student equipment for course
 	Given I have set up a course
+	And I require 1 "lab sink" per 2 students for the course
 	When I no longer require 1 "lab sink" per 2 students for the course
 	Then 1 "lab sink" per 2 students is no longer required for the course
 	And it does nothing else
@@ -68,3 +70,11 @@ Scenario: Instructor equipment doesnt affect student equipment
 	When I require 1 "PC" for the course
 	Then 1 "PC" is required for the course, for a total of 1
 	And it does nothing else
+
+@domain
+Scenario: Over-remove student equipment
+	Given I have set up a course
+	When I no longer require 1 "PC" per student for the course
+	Then the aggregate state is invalid
+	And the message is "Your attempt to remove this equipment requirement failed. The course already doesn't require this equipment."
+

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ISIS.Scheduling.RemoveCourseStudentEquipmentException;
 using Ncqrs.Domain;
 
 namespace ISIS.Scheduling
@@ -80,6 +81,9 @@ namespace ISIS.Scheduling
 
         public void RemoveStudentEquipment(string equipmentName)
         {
+            if (!_studentEquipment.ContainsKey(equipmentName))
+                throw new StudentEquipmentRequirementDoesntExist();
+
             var @event = new StudentEquipmentRemovedFromCourse(
                 EventSourceId,
                 equipmentName);

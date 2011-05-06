@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ISIS.Scheduling.ActivateTemplateExceptions;
 using ISIS.Scheduling.CopyTemplateExceptions;
 using ISIS.Scheduling.CreateTemplateExceptions;
+using ISIS.Scheduling.RemoveTemplateStudentEquipmentException;
 using ISIS.Scheduling.TermAssignedToTemplateExceptions;
 using Ncqrs.Domain;
 
@@ -236,6 +237,9 @@ namespace ISIS.Scheduling
 
         public void RemoveStudentEquipment(string equipmentName)
         {
+            if (!_studentEquipment.ContainsKey(equipmentName))
+                throw new StudentEquipmentRequirementDoesntExist();
+
             var @event = new StudentEquipmentRemovedFromTemplate(
                 EventSourceId,
                 equipmentName);
