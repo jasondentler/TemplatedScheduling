@@ -35,3 +35,16 @@ Scenario: Cant copy an obsolete template
 	Then the aggregate state is invalid
 	And the message is "Your attempt to copy the template failed. The source template is obsolete."
 
+@domain
+Scenario: Instructor equipment is copied with the template
+	Given I have set up a course and template and activated the template
+	And I require 1 "PC" for the template
+	When I copy the template
+	Then 1 "PC" is required for the template, for a total of 1
+
+@domain
+Scenario: Student equipment is copied with the template
+	Given I have set up a course and template and activated the template
+	And I require 1 "PC" per student for the template
+	When I copy the template
+	Then 1 "PC" per student is required for the template

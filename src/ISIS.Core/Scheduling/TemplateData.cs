@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ISIS.Scheduling
 {
@@ -17,6 +18,8 @@ namespace ISIS.Scheduling
         public bool IsContinuingEducation;
         public TemplateStatuses Status;
         public string Label;
+        public IDictionary<string, int> InstructorEquipment;
+        public IDictionary<string, StudentEquipmentQuantity> StudentEquipment;
 
     }
 

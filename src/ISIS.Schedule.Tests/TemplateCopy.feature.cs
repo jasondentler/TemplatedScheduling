@@ -130,6 +130,48 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             testRunner.CollectScenarioErrors();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Instructor equipment is copied with the template")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void InstructorEquipmentIsCopiedWithTheTemplate()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Instructor equipment is copied with the template", new string[] {
+                        "domain"});
+#line 39
+this.ScenarioSetup(scenarioInfo);
+#line 40
+ testRunner.Given("I have set up a course and template and activated the template");
+#line 41
+ testRunner.And("I require 1 \"PC\" for the template");
+#line 42
+ testRunner.When("I copy the template");
+#line 43
+ testRunner.Then("1 \"PC\" is required for the template, for a total of 1");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Student equipment is copied with the template")]
+        [NUnit.Framework.CategoryAttribute("domain")]
+        public virtual void StudentEquipmentIsCopiedWithTheTemplate()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Student equipment is copied with the template", new string[] {
+                        "domain"});
+#line 46
+this.ScenarioSetup(scenarioInfo);
+#line 47
+ testRunner.Given("I have set up a course and template and activated the template");
+#line 48
+ testRunner.And("I require 1 \"PC\" per student for the template");
+#line 49
+ testRunner.When("I copy the template");
+#line 50
+ testRunner.Then("1 \"PC\" per student is required for the template");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
     }
 }
 #endregion

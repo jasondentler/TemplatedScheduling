@@ -63,9 +63,7 @@ namespace ISIS.Schedule
 
             var cmd = new RemoveCourseStudentEquipment(
                 courseId,
-                quantity,
-                equipmentName,
-                perStudent);
+                equipmentName);
             DomainHelper.When(cmd);
         }
 

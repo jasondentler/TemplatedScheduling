@@ -1,4 +1,5 @@
-﻿using ISIS.Scheduling;
+﻿using System.Linq;
+using ISIS.Scheduling;
 using TechTalk.SpecFlow;
 
 namespace ISIS.Schedule
@@ -86,6 +87,20 @@ namespace ISIS.Schedule
             DomainHelper.When(cmd);
         }
 
+        [When(@"I copy the template")]
+        public void WhenICopyTheTemplate()
+        {
+            var sourceTemplateId = DomainHelper.Id<Template>();
+            var sourceCreated = DomainHelper
+                .GetEventStream(sourceTemplateId)
+                .OfType<TemplateCreated>()
+                .Single();
+            var sourceLabel = sourceCreated.Label;
+            var copyLabel = string.Format("Copy of {0}", sourceLabel);
+            WhenICopyTheTemplate(sourceLabel, copyLabel);
+        }
+
+
         [When(@"I assign the instructor to the template")]
         public void WhenIAssignTheInstructorToTheTemplate()
         {
@@ -128,9 +143,7 @@ namespace ISIS.Schedule
 
             var cmd = new RemoveTemplateStudentEquipment(
                 templateId,
-                quantity,
-                equipmentName,
-                perStudent);
+                equipmentName);
             DomainHelper.When(cmd);
         }
 

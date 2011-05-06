@@ -45,6 +45,7 @@
     <Compile Include="Scheduling\InstructorData.cs" />
     <Compile Include="Scheduling\CopyTemplateExceptions\SourceTemplateObsoleteException.cs" />
     <Compile Include="Scheduling\RemoveEquipmentFromRoomExceptions\InsufficientQuantityException.cs" />
+    <Compile Include="Scheduling\StudentEquipmentQuantity.cs" />
     <Compile Include="Scheduling\TermAssignedToTemplateExceptions\TermIsNotContinuingEducationException.cs" />
     <Compile Include="Scheduling\TermAssignedToTemplateExceptions\TermIsContinuingEducationException.cs" />
     <Compile Include="Scheduling\TermData.cs" />

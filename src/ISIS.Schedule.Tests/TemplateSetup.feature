@@ -27,3 +27,17 @@ Scenario: Template requires course description
 	Then the aggregate state is invalid
 	And the message is "Your attempt to create a template failed because the course is missing a description."
 
+@domain
+Scenario: Instructor equipment is copied from the course to the template
+	Given I have set up a new course
+	And I require 1 "PC" for the course
+	When I create the template
+	Then 1 "PC" is required for the template, for a total of 1
+
+@domain
+Scenario: Student equipment is copied from the course to the template
+	Given I have set up a new course
+	And I require 1 "PC" per student for the course
+	When I create the template
+	Then 1 "PC" per student is required for the template
+

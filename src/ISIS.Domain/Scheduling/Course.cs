@@ -15,6 +15,9 @@ namespace ISIS.Scheduling
         private bool _isContinuingEducation;
         private readonly Dictionary<string, int> _instructorEquipment = new Dictionary<string, int>();
 
+        private readonly Dictionary<string, StudentEquipmentQuantity> _studentEquipment =
+            new Dictionary<string, StudentEquipmentQuantity>();
+
         private Course()
         {
         }
@@ -75,13 +78,11 @@ namespace ISIS.Scheduling
             ApplyEvent(@event);
         }
 
-        public void RemoveStudentEquipment(int quantity, int perStudent, string equipmentName)
+        public void RemoveStudentEquipment(string equipmentName)
         {
             var @event = new StudentEquipmentRemovedFromCourse(
                 EventSourceId,
-                quantity,
-                equipmentName,
-                perStudent);
+                equipmentName);
 
             ApplyEvent(@event);
         }
@@ -95,7 +96,9 @@ namespace ISIS.Scheduling
                            CourseNumber = _courseNumber,
                            Title = _title,
                            Description = _description,
-                           IsContinuingEducation = _isContinuingEducation
+                           IsContinuingEducation = _isContinuingEducation,
+                           InstructorEquipment = new Dictionary<string, int>(_instructorEquipment),
+                           StudentEquipment = new Dictionary<string, StudentEquipmentQuantity>(_studentEquipment)
                        };
         }
 
@@ -144,10 +147,17 @@ namespace ISIS.Scheduling
 
         protected void On(StudentEquipmentAddedToCourse @event)
         {
+            _studentEquipment[@event.EquipmentName] =
+                new StudentEquipmentQuantity()
+                    {
+                        Quantity = @event.Quantity,
+                        PerStudent = @event.PerStudent
+                    };
         }
 
         protected void On(StudentEquipmentRemovedFromCourse @event)
         {
+            _studentEquipment.Remove(@event.EquipmentName);
         }
 
     }

@@ -22,6 +22,8 @@ namespace ISIS.Scheduling
         private Guid _termId;
         private Guid _instructorId;
         private readonly Dictionary<string, int> _instructorEquipment = new Dictionary<string, int>();
+        private readonly Dictionary<string, StudentEquipmentQuantity> _studentEquipment =
+            new Dictionary<string, StudentEquipmentQuantity>();
 
         private Template()
         {
@@ -48,6 +50,12 @@ namespace ISIS.Scheduling
                 courseData.Description,
                 courseData.IsContinuingEducation);
             ApplyEvent(@event);
+
+            foreach (var item in courseData.InstructorEquipment)
+                AddInstructorEquipment(item.Value, item.Key);
+
+            foreach (var item in courseData.StudentEquipment)
+                AddStudentEquipment(item.Value.Quantity, item.Value.PerStudent, item.Key);
         }
 
         public Template(Guid templateId, string newLabel, TemplateData sourceData, Term term, Course course, Instructor instructor)
@@ -89,6 +97,13 @@ namespace ISIS.Scheduling
             if (instructor != null)
                 AssignInstructor(instructor);
 
+            foreach (var item in sourceData.InstructorEquipment)
+                AddInstructorEquipment(item.Value, item.Key);
+
+            foreach (var item in sourceData.StudentEquipment)
+                AddStudentEquipment(item.Value.Quantity, item.Value.PerStudent, item.Key);
+
+
             var @event = new TemplateCopied(
                 EventSourceId, newLabel, sourceData.TemplateId, sourceData.Label);
             ApplyEvent(@event);
@@ -108,7 +123,9 @@ namespace ISIS.Scheduling
                            Title = _title,
                            Description = _description,
                            IsContinuingEducation = _isContinuingEducation,
-                           Status = _status
+                           Status = _status,
+                           InstructorEquipment = new Dictionary<string, int>(_instructorEquipment),
+                           StudentEquipment = new Dictionary<string, StudentEquipmentQuantity>(_studentEquipment)
                        };
         }
 
@@ -217,13 +234,11 @@ namespace ISIS.Scheduling
             ApplyEvent(@event);
         }
 
-        public void RemoveStudentEquipment(int quantity, int perStudent, string equipmentName)
+        public void RemoveStudentEquipment(string equipmentName)
         {
             var @event = new StudentEquipmentRemovedFromTemplate(
                 EventSourceId,
-                quantity,
-                equipmentName,
-                perStudent);
+                equipmentName);
 
             ApplyEvent(@event);
         }
@@ -299,10 +314,16 @@ namespace ISIS.Scheduling
 
         protected void On(StudentEquipmentAddedToTemplate @event)
         {
+            _studentEquipment[@event.EquipmentName] = new StudentEquipmentQuantity()
+                                                          {
+                                                              Quantity = @event.Quantity,
+                                                              PerStudent = @event.PerStudent
+                                                          };
         }
 
         protected void On(StudentEquipmentRemovedFromTemplate @event)
         {
+            _studentEquipment.Remove(@event.EquipmentName);
         }
     }
 }

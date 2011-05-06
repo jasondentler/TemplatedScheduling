@@ -176,8 +176,6 @@ namespace ISIS.Schedule
             var e = DomainHelper.Then<StudentEquipmentRemovedFromTemplate>();
             e.TemplateId.Should().Be.EqualTo(templateId);
             e.EquipmentName.Should().Be.EqualTo(equipmentName);
-            e.QuantityRemoved.Should().Be.EqualTo(quantity);
-            e.PerStudent.Should().Be.EqualTo(perStudent);
         }
 
         [Then(@"(\d+) ""(.*)"" is no longer required for the template, for a total of (\d+)")]
@@ -218,7 +216,7 @@ namespace ISIS.Schedule
             var e = DomainHelper.Then<StudentEquipmentAddedToTemplate>();
             e.TemplateId.Should().Be.EqualTo(templateId);
             e.EquipmentName.Should().Be.EqualTo(equipmentName);
-            e.QuantityAdded.Should().Be.EqualTo(quantity);
+            e.Quantity.Should().Be.EqualTo(quantity);
             e.PerStudent.Should().Be.EqualTo(perStudent);
         }
 

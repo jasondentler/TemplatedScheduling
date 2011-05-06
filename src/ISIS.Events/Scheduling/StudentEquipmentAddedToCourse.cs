@@ -5,18 +5,18 @@ namespace ISIS.Scheduling
     public class StudentEquipmentAddedToCourse
     {
         public Guid CourseId { get; private set; }
-        public int QuantityAdded { get; private set; }
+        public int Quantity { get; private set; }
         public string EquipmentName { get; private set; }
         public int PerStudent { get; private set; }
 
         public StudentEquipmentAddedToCourse(
             Guid courseId, 
-            int quantityAdded,
+            int quantity,
             string equipmentName,
             int perStudent)
         {
             CourseId = courseId;
-            QuantityAdded = quantityAdded;
+            Quantity = quantity;
             EquipmentName = equipmentName;
             PerStudent = perStudent;
         }

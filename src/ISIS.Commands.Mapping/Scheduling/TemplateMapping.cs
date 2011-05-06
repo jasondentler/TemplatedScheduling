@@ -134,7 +134,7 @@ namespace ISIS.Scheduling
             Map.Command<RemoveTemplateStudentEquipment>()
                 .ToAggregateRoot<Template>()
                 .WithId(cmd => cmd.TemplateId)
-                .ToCallOn((cmd, template) => template.RemoveStudentEquipment(cmd.Quantity, cmd.PerStudent, cmd.EquipmentName))
+                .ToCallOn((cmd, template) => template.RemoveStudentEquipment(cmd.EquipmentName))
                 .RegisterWith(_commandService);
 
         }

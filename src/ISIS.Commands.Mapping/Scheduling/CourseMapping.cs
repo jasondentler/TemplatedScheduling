@@ -55,7 +55,7 @@ namespace ISIS.Scheduling
             Map.Command<RemoveCourseStudentEquipment>()
                 .ToAggregateRoot<Course>()
                 .WithId(cmd => cmd.CourseId)
-                .ToCallOn((cmd, course) => course.RemoveStudentEquipment(cmd.Quantity, cmd.PerStudent, cmd.EquipmentName))
+                .ToCallOn((cmd, course) => course.RemoveStudentEquipment(cmd.EquipmentName))
                 .RegisterWith(_commandService);
 
 
