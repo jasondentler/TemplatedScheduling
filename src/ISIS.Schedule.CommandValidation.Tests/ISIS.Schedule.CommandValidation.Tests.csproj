@@ -55,9 +55,20 @@
   <ItemGroup>
     <Compile Include="ActivateTemplateValidatorFixture.cs" />
     <Compile Include="AddCourseInstructorEquipmentValidatorFixture.cs" />
+    <Compile Include="AllCommandsValidated.cs" />
     <Compile Include="ConventionValidationFixture.cs" />
     <Compile Include="AddCourseStudentEquipmentValidatorFixture.cs" />
     <Compile Include="AddEquipmentToRoomValidatorFixture.cs" />
+    <Compile Include="AddTemplateInstructorEquipmentValidatorFixture.cs" />
+    <Compile Include="AddTemplateStudentEquipmentValidatorFixture.cs" />
+    <Compile Include="AssignCourseToInstructorValidatorFixture.cs" />
+    <Compile Include="AssignInstructorToSectionValidatorFixture.cs" />
+    <Compile Include="AssignInstructorToTemplateValidatorFixture.cs" />
+    <Compile Include="AssignTermToTemplateValidatorFixture.cs" />
+    <Compile Include="ChangeCourseDescriptionValidatorFixture.cs" />
+    <Compile Include="ChangeInstructorNameValidatorFixture.cs" />
+    <Compile Include="CreateTermValidatorFixture.cs" />
+    <Compile Include="CopyTemplateValidatorFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidationFixture.cs" />
   </ItemGroup>

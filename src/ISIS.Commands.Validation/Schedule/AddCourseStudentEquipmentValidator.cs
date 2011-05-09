@@ -16,7 +16,7 @@ namespace ISIS.Schedule
                 .GreaterThan(0);
 
             RuleFor(cmd => cmd.EquipmentName)
-                .NotEmpty();
+                .EquipmentName();
 
             RuleFor(cmd => cmd.PerStudent)
                 .GreaterThan(0);

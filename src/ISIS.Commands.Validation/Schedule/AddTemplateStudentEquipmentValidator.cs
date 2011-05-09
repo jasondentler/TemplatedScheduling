@@ -4,12 +4,12 @@ using ISIS.Scheduling;
 
 namespace ISIS.Schedule
 {
-    public class AddEquipmentToRoomValidator : AbstractValidator<AddEquipmentToRoom>
+    public class AddTemplateStudentEquipmentValidator : AbstractValidator<AddTemplateStudentEquipment>
     {
 
-        public AddEquipmentToRoomValidator()
+        public AddTemplateStudentEquipmentValidator()
         {
-            RuleFor(cmd => cmd.RoomId)
+            RuleFor(cmd => cmd.TemplateId)
                 .NotEqual(default(Guid));
 
             RuleFor(cmd => cmd.Quantity)
@@ -17,6 +17,9 @@ namespace ISIS.Schedule
 
             RuleFor(cmd => cmd.EquipmentName)
                 .EquipmentName();
+
+            RuleFor(cmd => cmd.PerStudent)
+                .GreaterThan(0);
         }
 
     }

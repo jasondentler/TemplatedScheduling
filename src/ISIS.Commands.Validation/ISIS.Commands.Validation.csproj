@@ -51,6 +51,17 @@
     <Compile Include="Schedule\AddCourseInstructorEquipmentValidator.cs" />
     <Compile Include="Schedule\AddCourseStudentEquipmentValidator.cs" />
     <Compile Include="Schedule\AddEquipmentToRoomValidator.cs" />
+    <Compile Include="Schedule\AddTemplateInstructorEquipmentValidator.cs" />
+    <Compile Include="Schedule\AddTemplateStudentEquipmentValidator.cs" />
+    <Compile Include="Schedule\AssignCourseToInstructorValidator.cs" />
+    <Compile Include="Schedule\AssignInstructorToSectionValidator.cs" />
+    <Compile Include="Schedule\AssignInstructorToTemplateValidator.cs" />
+    <Compile Include="Schedule\AssignTermToTemplateValidator.cs" />
+    <Compile Include="Schedule\ChangeCourseDescriptionValidator.cs" />
+    <Compile Include="Schedule\ChangeInstructorNameValidator.cs" />
+    <Compile Include="Schedule\CreateTermValidator.cs" />
+    <Compile Include="Schedule\CopyTemplateValidator.cs" />
+    <Compile Include="Schedule\RuleClassExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
