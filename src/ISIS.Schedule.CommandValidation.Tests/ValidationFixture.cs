@@ -18,12 +18,16 @@ namespace ISIS.Schedule
         {
             return result.Errors
                 .Where(vf => vf.PropertyName == propertyName)
-                .First();
+                .FirstOrDefault();
         }
 
         protected ValidationResult GetResult(T instance)
         {
-            var validator = CreateValidator();
+            return GetResult(instance, CreateValidator());
+        }
+
+        protected ValidationResult GetResult(T instance, IValidator<T> validator)
+        {
             return validator.Validate(instance);
         }
 
@@ -38,6 +42,22 @@ namespace ISIS.Schedule
         {
             var result = GetResult(instance);
             return GetFailure(result, propertyName);
+        }
+        
+        protected bool IsValid(T instance,
+            IValidator<T> validator,
+            string propertyName)
+        {
+            var result = GetResult(instance, validator);
+            return !result.Errors
+                        .Any(vf => vf.PropertyName == propertyName);
+        }
+
+        protected string GetPropertyName<TProperty>(
+            Expression<Func<T, TProperty>> property)
+        {
+            var expressionBody = property.Body as MemberExpression;
+            return expressionBody.Member.Name;
         }
 
         protected void AssertIsValid(T instance)

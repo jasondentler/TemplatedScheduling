@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using System.Linq;
+using FluentValidation;
 
 namespace ISIS.Schedule
 {
@@ -22,22 +23,27 @@ namespace ISIS.Schedule
                 .NotEmpty()
                 .WithMessage(emptyNullOrWhitespaceMessage)
                 .Length(0, 255)
-                .WithMessage(lengthMessage);
+                .WithMessage(lengthMessage)
+                .Must(s => s != null && !s.Any(c => char.IsControl(c)))
+                .WithMessage("Illegal control characters.");
         }
 
         public static IRuleBuilderOptions<T, string>
             Abbreviation<T>(this IRuleBuilderInitial<T, string> rule,
             string emptyNullOrWhitespaceMessage,
             string lengthMessage,
-            string noWhitespaceMessage)
+            string noWhitespaceMessage,
+            string numbersAndUppercaseOnlyMessage)
         {
             return rule
                 .NotEmpty()
                 .WithMessage(emptyNullOrWhitespaceMessage)
                 .Length(0, 15)
                 .WithMessage(lengthMessage)
-                .Matches(@"^[^\s]*$")
-                .WithMessage(noWhitespaceMessage);
+                .Matches(@"^\S+$")
+                .WithMessage(noWhitespaceMessage)
+                .Matches(@"^[A-Z0-9]+$")
+                .WithMessage(numbersAndUppercaseOnlyMessage);
         }
 
     }

@@ -17,9 +17,11 @@ namespace ISIS.Schedule
         [Then]
         public void AllCommandsAreValidated()
         {
-            var unvalidatedCommands = GetUnvalidatedCommands().ToArray();
+            var unvalidatedCommands = GetUnvalidatedCommands()
+                .ToArray();
             var unvalidatedCommandList = unvalidatedCommands
-                .Select(t => t.ToString());
+                .Select(t => t.ToString())
+                .OrderBy(s => s);
             var message = string.Format(
                 "The following commands are not validated:\r\n\t{0}",
                 string.Join("\r\n\t", unvalidatedCommandList));

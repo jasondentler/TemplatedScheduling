@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using FluentValidation;
@@ -46,6 +47,12 @@ namespace ISIS.Schedule
         {
             FollowsStringRules(constructor, getter);
             MaxLength(255, constructor, getter);
+
+            TestAllCharacters(
+                "A{0}",
+                c => !char.IsControl(c),
+                constructor,
+                getter);
         }
 
         protected void FollowsStringRules(
@@ -60,8 +67,7 @@ namespace ISIS.Schedule
             GetFailure(constructor(null), getter);
             //String is not empty
             GetFailure(constructor(string.Empty), getter);
-            //String is not whitespace
-            GetFailure(constructor(" \t \r \n "), getter);
+
         }
 
         protected void FollowsAbbreviationRules(
@@ -69,7 +75,25 @@ namespace ISIS.Schedule
         {
             FollowsStringRules(constructor, getter);
             MaxLength(15, constructor, getter);
-            NoWhiteSpace(constructor, getter);
+            TestAllCharacters(
+                "A{0}A",
+                "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+                constructor,
+                getter);
+        }
+
+
+        protected void FollowsRubricRules(
+            Func<string, T> constructor,
+            Expression<Func<T, string>> getter)
+        {
+            FollowsStringRules(constructor, getter);
+            Length(4, constructor, getter);
+            TestAllCharacters(
+                "A{0}AA",
+                c => char.IsUpper(c),
+                constructor,
+                getter);
         }
 
         protected void MaxLength(int maxLength,
@@ -79,13 +103,18 @@ namespace ISIS.Schedule
             GetFailure(constructor(longString), getter);
         }
 
-        protected void NoWhiteSpace(
+        protected void MinLength(int minLength,
             Func<string, T> constructor, Expression<Func<T, string>> getter)
         {
-            GetFailure(constructor("A A"), getter);
-            GetFailure(constructor("A\tA"), getter);
-            GetFailure(constructor("A\rA"), getter);
-            GetFailure(constructor("A\nA"), getter);
+            var longString = "A".PadLeft(minLength - 1, 'A');
+            GetFailure(constructor(longString), getter);
+        }
+
+        protected void Length(int length,
+            Func<string, T> constructor, Expression<Func<T, string>> getter)
+        {
+            MaxLength(length, constructor, getter);
+            MinLength(length, constructor, getter);
         }
 
         protected void GreaterThan(
@@ -112,6 +141,85 @@ namespace ISIS.Schedule
             GetFailure(constructor(value - 1), getter);
         }
 
+        protected void TestAllCharacters(
+            string pattern,
+            IEnumerable<char> validCharacters,
+            Func<string, T> constructor,
+            Expression<Func<T, string>> getter)
+        {
+            var validCharactersArray = validCharacters.ToArray();
+            TestAllCharacters(
+                pattern,
+                c => validCharactersArray.Contains(c),
+                constructor,
+                getter);
+        }
+
+        protected void TestAllCharacters(
+            string pattern,
+            Func<char, bool> validCharacters,
+            Func<string, T> constructor,
+            Expression<Func<T, string>> getter)
+        {
+
+            var attempts = GetCharacters()
+                .Select(c => new
+                                 {
+                                     shouldBeValid = validCharacters(c),
+                                     value = string.Format(pattern, c)
+                                 })
+                .Select(item => new
+                                    {
+                                        item.shouldBeValid,
+                                        item.value,
+                                        charList = string.Join(", ", item.value.Select(Convert.ToInt64)),
+                                        instance = constructor(item.value)
+                                    })
+                .ToArray();
+
+            var validator = CreateValidator();
+            var propertyName = GetPropertyName(getter);
+
+            var failure = attempts
+                .Where(item => !IsCorrect(item.shouldBeValid, item.instance, validator, propertyName))
+                .FirstOrDefault();
+
+            if (failure == null) return;
+            var safeValue = failure.value.Replace("\0", "<null>");
+
+            Console.WriteLine("Failed value: {0} [{1}]",
+                              safeValue,
+                              failure.charList);
+            if (failure.shouldBeValid)
+                Assert.Fail("{0} {1} should have passed validation when set to {2} [{3}]",
+                            typeof (T),
+                            getter.ToString(),
+                            safeValue,
+                            failure.charList);
+            if (!failure.shouldBeValid)
+                Assert.Fail("{0} {1} should have failed validation when set to {2} [{3}]",
+                            typeof (T),
+                            getter.ToString(),
+                            safeValue,
+                            failure.charList);
+        }
+
+        protected bool IsCorrect(
+            bool shouldBeValid,
+            T instance,
+            IValidator<T> validator,
+            string propertyName)
+        {
+            return shouldBeValid
+                       ? IsValid(instance, validator, propertyName)
+                       : !IsValid(instance, validator, propertyName);
+        }
+        
+        private static IEnumerable<char> GetCharacters()
+        {
+            for (var c = char.MinValue; c < char.MaxValue; c++)
+                    yield return c;
+        }
     }
 
 }

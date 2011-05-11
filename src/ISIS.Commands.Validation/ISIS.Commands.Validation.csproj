@@ -59,6 +59,7 @@
     <Compile Include="Schedule\AssignTermToTemplateValidator.cs" />
     <Compile Include="Schedule\ChangeCourseDescriptionValidator.cs" />
     <Compile Include="Schedule\ChangeInstructorNameValidator.cs" />
+    <Compile Include="Schedule\CreateSectionValidator.cs" />
     <Compile Include="Schedule\CreateTermValidator.cs" />
     <Compile Include="Schedule\CopyTemplateValidator.cs" />
     <Compile Include="Schedule\RuleClassExtensions.cs" />

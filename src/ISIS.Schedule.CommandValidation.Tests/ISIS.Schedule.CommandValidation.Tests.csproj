@@ -67,6 +67,8 @@
     <Compile Include="AssignTermToTemplateValidatorFixture.cs" />
     <Compile Include="ChangeCourseDescriptionValidatorFixture.cs" />
     <Compile Include="ChangeInstructorNameValidatorFixture.cs" />
+    <Compile Include="CreateCourseValidatorFixture.cs" />
+    <Compile Include="CreateSectionValidatorFixture.cs" />
     <Compile Include="CreateTermValidatorFixture.cs" />
     <Compile Include="CopyTemplateValidatorFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

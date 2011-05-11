@@ -16,7 +16,8 @@ namespace ISIS.Schedule
                 .Abbreviation(
                     "Please provide a term abbreviation.",
                     "Term abbreviation can't longer than 15 characters.",
-                    "No spaces or tabs are allowed in the term abbreviation.");
+                    "No spaces or tabs are allowed in the term abbreviation.",
+                    "Term abbreviation can contain only numbers and uppercase letters.");
 
             RuleFor(cmd => cmd.Name)
                 .ShortString(
