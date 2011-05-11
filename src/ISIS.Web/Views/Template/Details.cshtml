@@ -1,0 +1,41 @@
+﻿@model ISIS.Web.Models.Template
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Template</legend>
+
+    <div class="display-label">Label</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Label)
+    </div>
+
+    <div class="display-label">Rubric</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Rubric)
+    </div>
+
+    <div class="display-label">CourseNumber</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CourseNumber)
+    </div>
+
+    <div class="display-label">Title</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">Max Capacity</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MaxCapacity)
+    </div>
+
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

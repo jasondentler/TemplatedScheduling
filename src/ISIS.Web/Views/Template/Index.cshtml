@@ -1,0 +1,16 @@
+﻿@model IEnumerable<ISIS.Web.Models.Template>
+
+@{
+    ViewBag.Title = "Templates";
+}
+
+<h2>Templates</h2>
+
+<ul>
+@foreach (var item in Model.OrderBy(t => t.Rubric).ThenBy(t => t.CourseNumber).ThenBy(t => t.Title).ThenBy(t => t.Label))
+{
+    <li>@string.Format("{0} {1} - {2}", item.Rubric, item.CourseNumber, item.Title) - @Html.ActionLink(item.Label, "Details", new { id = item.Id })
+        
+    </li>
+}
+</ul>
