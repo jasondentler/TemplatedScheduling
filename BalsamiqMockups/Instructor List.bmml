@@ -1,0 +1,29 @@
+<mockup version="1.0" skin="sketch" measuredW="931" measuredH="520" mockupW="924" mockupH="512">
+  <controls>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="7" y="8" w="-1" h="-1" measuredW="129" measuredH="25" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <hrefs>Home%26bm%3BHome.bmml%26bm%3BHome.bmml%26bm%3BHome.bmml%2C</hrefs>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%220%2C0%2C42%2C25%22%20href%3D%22Home.bmml%22%20alt%3D%22Home%22%20id%3D%221_0%22/%3E%0A</map>
+        <text>Home%2C%20Instructors</text>
+      </controlProperties>
+    </control>
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::Title" x="265" y="37" w="666" h="-1" measuredW="655" measuredH="62" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>false</bold>
+        <color>10066329</color>
+        <text>Choose%20an%20instructor%20from%20the%20left</text>
+      </controlProperties>
+    </control>
+    <control controlID="18" controlTypeID="com.balsamiq.mockups::FieldSet" x="9" y="40" w="200" h="480" measuredW="200" measuredH="170" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Instructors</text>
+      </controlProperties>
+    </control>
+    <control controlID="19" controlTypeID="com.balsamiq.mockups::Paragraph" x="22" y="65" w="172" h="140" measuredW="200" measuredH="140" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>Instructor%20Details%26bm%3BInstructor%20Details.bmml%26bm%3BInstructor%20Details.bmml%26bm%3BInstructor%20Details.bmml</href>
+        <text>John%20Smith%0AJane%20Smith%0AJanet%20Smith%0AJennifer%20Smith%0AJoe%20Smith%0AJeremy%20Smith%0AJeremiah%20Smith</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

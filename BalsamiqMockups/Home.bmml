@@ -1,0 +1,20 @@
+<mockup version="1.0" skin="sketch" measuredW="1040" measuredH="679" mockupW="829" mockupH="577">
+  <controls>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="226" y="183" w="-1" h="-1" measuredW="77" measuredH="25" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Home</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::LinkBar" x="226" y="208" w="-1" h="-1" measuredW="241" measuredH="25" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <hrefs>Instructor%20List%26bm%3BInstructor%20List.bmml%26bm%3BInstructor%20List.bmml%26bm%3BInstructor%20List.bmml%2CTemplate%20List%26bm%3BTemplate%20List.bmml%26bm%3BTemplate%20List.bmml%26bm%3BTemplate%20List.bmml%2CSection%20List%26bm%3BSection%20List.bmml%26bm%3BSection%20List.bmml%26bm%3BSection%20List.bmml</hrefs>
+        <text>Instructors%2C%20Templates%2C%20Sections</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="211" y="102" w="829" h="577" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Course%20Scheduling%0Ahttps%3A//app.alvincollege.edu/CourseScheduling</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

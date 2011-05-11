@@ -1,0 +1,55 @@
+<mockup version="1.0" skin="sketch" measuredW="698" measuredH="577" mockupW="691" mockupH="569">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="7" y="8" w="-1" h="-1" measuredW="367" measuredH="25" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <hrefs>Home%26bm%3BHome.bmml%26bm%3BHome.bmml%26bm%3BHome.bmml%2CTemplate%20List%26bm%3BTemplate%20List.bmml%26bm%3BTemplate%20List.bmml%26bm%3BTemplate%20List.bmml%2CTemplate%20Details%26bm%3BTemplate%20Details.bmml%26bm%3BTemplate%20Details.bmml%26bm%3BTemplate%20Details.bmml%2CTemplate%20Room%20Assignment%201%26bm%3BTemplate%20Room%20Assignment%201.bmml%26bm%3BTemplate%20Room%20Assignment%201.bmml%26bm%3BTemplate%20Room%20Assignment%201.bmml%2C</hrefs>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2254%2C0%2C125%2C25%22%20href%3D%22Template%2520List.bmml%22%20alt%3D%22Template%20List%22%20id%3D%220_0%22/%3E%0A%3Carea%20shape%3D%22rect%22%20coords%3D%22137%2C0%2C233%2C25%22%20href%3D%22Template%2520Details.bmml%22%20alt%3D%22Template%20Details%22%20id%3D%220_1%22/%3E%0A</map>
+        <text>Home%2C%20Templates%2C%20Basic%20Algebra%2C%20Rooms%2C%20D%20Building</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Accordion" x="12" y="37" w="-1" h="-1" measuredW="238" measuredH="508" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <hrefs>%2CTemplate%20Details%26bm%3BTemplate%20Details.bmml%26bm%3BTemplate%20Details.bmml%26bm%3BTemplate%20Details.bmml%2CTemplate%20Details%26bm%3BTemplate%20Details.bmml%26bm%3BTemplate%20Details.bmml%26bm%3BTemplate%20Details.bmml%2CTemplate%20Details%26bm%3BTemplate%20Details.bmml%26bm%3BTemplate%20Details.bmml%26bm%3BTemplate%20Details.bmml%2C%2C%2C%2C%2C%2C</hrefs>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2215%2C60.5%2C253%2C85.5%22%20href%3D%22Template%2520Details.bmml%22%20alt%3D%22Template%20Details%22%20id%3D%221_0%22/%3E%0A%3Carea%20shape%3D%22rect%22%20coords%3D%2215%2C89.5%2C253%2C114.5%22%20href%3D%22Template%2520Details.bmml%22%20alt%3D%22Template%20Details%22%20id%3D%221_1%22/%3E%0A%3Carea%20shape%3D%22rect%22%20coords%3D%2215%2C118.5%2C253%2C143.5%22%20href%3D%22Template%2520Details.bmml%22%20alt%3D%22Template%20Details%22%20id%3D%221_2%22/%3E%0A</map>
+        <selectedIndex>0</selectedIndex>
+        <text>MATH%201301%20College%20Algebra%0A-%20Basic%20Algebra%0A-%20Computer%20Lab%20Algebra%0A-%20Online%20Algebra%0AMATH%201302%20Trigonometry%0AMATH%202301%20Calculus%201%0AMATH%202301%20Calculus%202%0AMATH%200309%20Developmental%20Math%203%0AMATH%200308%20Developmental%20Math%202%0AMATH%200307%20Developmental%20Math%201</text>
+      </controlProperties>
+    </control>
+    <control controlID="10" controlTypeID="com.balsamiq.mockups::TextInput" x="265" y="68" w="217" h="-1" measuredW="46" measuredH="29" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>A164</text>
+      </controlProperties>
+    </control>
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::Label" x="265" y="43" w="-1" h="-1" measuredW="219" measuredH="25" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>false</bold>
+        <text>Enter%20a%20room%20number%20and%20click%20save</text>
+      </controlProperties>
+    </control>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::Button" x="490" y="69" w="-1" h="-1" measuredW="54" measuredH="28" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>Template%20Details%26bm%3BTemplate%20Details.bmml%26bm%3BTemplate%20Details.bmml%26bm%3BTemplate%20Details.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22483%2C61%2C537%2C89%22%20href%3D%22Template%2520Details.bmml%22%20alt%3D%22Template%20Details%22%20id%3D%2212%22/%3E</map>
+        <text>Save</text>
+      </controlProperties>
+    </control>
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::Label" x="265" y="112" w="-1" h="-1" measuredW="237" measuredH="25" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>false</bold>
+        <text>Now%20pick%20a%20room%20from%20the%20building%20map</text>
+      </controlProperties>
+    </control>
+    <control controlID="15" controlTypeID="com.balsamiq.mockups::TabBar" x="265" y="137" w="433" h="440" measuredW="234" measuredH="100" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>1st%20Floor%2C%202nd%20Floor</text>
+      </controlProperties>
+    </control>
+    <control controlID="16" controlTypeID="com.balsamiq.mockups::Image" x="273" y="170" w="410" h="400" measuredW="991" measuredH="766" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>Template%20Details%26bm%3BTemplate%20Details.bmml%26bm%3BTemplate%20Details.bmml%26bm%3BTemplate%20Details.bmml</href>
+        <src>./D%25201st%2520Floor.png</src>
+        <text>Campus%20Map</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

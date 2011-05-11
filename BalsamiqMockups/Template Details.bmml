@@ -1,0 +1,142 @@
+<mockup version="1.0" skin="sketch" measuredW="736" measuredH="547" mockupW="727" mockupH="537">
+  <controls>
+    <control controlID="50" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="9" y="10" w="-1" h="-1" measuredW="229" measuredH="25" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <hrefs>Home%26bm%3BHome.bmml%26bm%3BHome.bmml%26bm%3BHome.bmml%2CTemplate%20List%26bm%3BTemplate%20List.bmml%26bm%3BTemplate%20List.bmml%26bm%3BTemplate%20List.bmml%2C</hrefs>
+        <text>Home%2C%20Templates%2C%20Basic%20Algebra</text>
+      </controlProperties>
+    </control>
+    <control controlID="51" controlTypeID="com.balsamiq.mockups::Accordion" x="14" y="39" w="-1" h="-1" measuredW="238" measuredH="508" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <hrefs>%2CTemplate%20Details%26bm%3BTemplate%20Details.bmml%26bm%3BTemplate%20Details.bmml%26bm%3BTemplate%20Details.bmml%2CTemplate%20Details%26bm%3BTemplate%20Details.bmml%26bm%3BTemplate%20Details.bmml%26bm%3BTemplate%20Details.bmml%2CTemplate%20Details%26bm%3BTemplate%20Details.bmml%26bm%3BTemplate%20Details.bmml%26bm%3BTemplate%20Details.bmml%2C%2C%2C%2C%2C%2C</hrefs>
+        <selectedIndex>0</selectedIndex>
+        <text>MATH%201301%20College%20Algebra%0A-%20Basic%20Algebra%0A-%20Computer%20Lab%20Algebra%0A-%20Online%20Algebra%0AMATH%201302%20Trigonometry%0AMATH%202301%20Calculus%201%0AMATH%202301%20Calculus%202%0AMATH%200309%20Developmental%20Math%203%0AMATH%200308%20Developmental%20Math%202%0AMATH%200307%20Developmental%20Math%201</text>
+      </controlProperties>
+    </control>
+    <control controlID="52" controlTypeID="com.balsamiq.mockups::Label" x="278" y="72" w="-1" h="-1" measuredW="37" measuredH="25" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>false</bold>
+        <text>Label</text>
+      </controlProperties>
+    </control>
+    <control controlID="53" controlTypeID="com.balsamiq.mockups::Label" x="278" y="97" w="-1" h="-1" measuredW="92" measuredH="25" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Basic%20Algebra</text>
+      </controlProperties>
+    </control>
+    <control controlID="54" controlTypeID="com.balsamiq.mockups::Label" x="278" y="122" w="-1" h="-1" measuredW="46" measuredH="25" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>false</bold>
+        <text>Course</text>
+      </controlProperties>
+    </control>
+    <control controlID="55" controlTypeID="com.balsamiq.mockups::Label" x="278" y="147" w="-1" h="-1" measuredW="187" measuredH="25" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>MATH%201301%20College%20Algebra</text>
+      </controlProperties>
+    </control>
+    <control controlID="56" controlTypeID="com.balsamiq.mockups::Label" x="278" y="222" w="-1" h="-1" measuredW="36" measuredH="25" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>false</bold>
+        <text>Room</text>
+      </controlProperties>
+    </control>
+    <control controlID="57" controlTypeID="com.balsamiq.mockups::Label" x="278" y="247" w="-1" h="-1" measuredW="57" measuredH="25" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>0</color>
+        <text>Not%20Set</text>
+      </controlProperties>
+    </control>
+    <control controlID="58" controlTypeID="com.balsamiq.mockups::Label" x="278" y="272" w="-1" h="-1" measuredW="68" measuredH="25" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>false</bold>
+        <text>Instructor</text>
+      </controlProperties>
+    </control>
+    <control controlID="59" controlTypeID="com.balsamiq.mockups::Label" x="278" y="297" w="-1" h="-1" measuredW="57" measuredH="25" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>0</color>
+        <text>Not%20Set</text>
+      </controlProperties>
+    </control>
+    <control controlID="62" controlTypeID="com.balsamiq.mockups::Label" x="278" y="172" w="-1" h="-1" measuredW="57" measuredH="25" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>false</bold>
+        <text>Capacity</text>
+      </controlProperties>
+    </control>
+    <control controlID="63" controlTypeID="com.balsamiq.mockups::Label" x="278" y="197" w="-1" h="-1" measuredW="21" measuredH="25" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>0</color>
+        <text>25</text>
+      </controlProperties>
+    </control>
+    <control controlID="66" controlTypeID="com.balsamiq.mockups::ButtonBar" x="278" y="41" w="-1" h="-1" measuredW="386" measuredH="31" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <hrefs>%2CCreate%20Section%26bm%3BCreate%20Section.bmml%26bm%3BCreate%20Section.bmml%26bm%3BCreate%20Section.bmml%2C</hrefs>
+        <selectedIndex>-1</selectedIndex>
+        <text>Copy%20Template%2C%20Create%20Section%2C%20Delete%20Template</text>
+      </controlProperties>
+    </control>
+    <control controlID="70" controlTypeID="com.balsamiq.mockups::Icon" x="375" y="97" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>square</borderStyle>
+        <icon>PencilIcon%7Csmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="71" controlTypeID="com.balsamiq.mockups::Icon" x="308" y="197" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>square</borderStyle>
+        <icon>PencilIcon%7Csmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="72" controlTypeID="com.balsamiq.mockups::Icon" x="339" y="247" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="15" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>square</borderStyle>
+        <href>Template%20Room%20Assignment%201%26bm%3BTemplate%20Room%20Assignment%201.bmml%26bm%3BTemplate%20Room%20Assignment%201.bmml%26bm%3BTemplate%20Room%20Assignment%201.bmml</href>
+        <icon>PencilIcon%7Csmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="73" controlTypeID="com.balsamiq.mockups::Icon" x="339" y="297" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>square</borderStyle>
+        <icon>PencilIcon%7Csmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="78" controlTypeID="com.balsamiq.mockups::FieldSet" x="278" y="330" w="-1" h="-1" measuredW="200" measuredH="170" zOrder="17" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Instructor%20Equipment</text>
+      </controlProperties>
+    </control>
+    <control controlID="79" controlTypeID="com.balsamiq.mockups::Paragraph" x="287" y="353" w="-1" h="-1" measuredW="200" measuredH="140" zOrder="18" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>1%20Whiteboard%0A1%20PC%0A1%20Projector</text>
+      </controlProperties>
+    </control>
+    <control controlID="80" controlTypeID="com.balsamiq.mockups::Icon" x="433" y="330" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="19" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>square</borderStyle>
+        <href>Instructor%20Equipment%26bm%3BInstructor%20Equipment.bmml%26bm%3BInstructor%20Equipment.bmml%26bm%3BInstructor%20Equipment.bmml</href>
+        <icon>PencilIcon%7Csmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="81" controlTypeID="com.balsamiq.mockups::FieldSet" x="521" y="332" w="-1" h="-1" measuredW="200" measuredH="170" zOrder="20" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Student%20Equipment</text>
+      </controlProperties>
+    </control>
+    <control controlID="82" controlTypeID="com.balsamiq.mockups::Paragraph" x="536" y="353" w="-1" h="-1" measuredW="200" measuredH="140" zOrder="21" locked="false" isInGroup="-1">
+      <controlProperties>
+        <state>disabled</state>
+        <text>None</text>
+      </controlProperties>
+    </control>
+    <control controlID="83" controlTypeID="com.balsamiq.mockups::Icon" x="664" y="330" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="22" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>square</borderStyle>
+        <href>Student%20Equipment%26bm%3BStudent%20Equipment.bmml%26bm%3BStudent%20Equipment.bmml%26bm%3BStudent%20Equipment.bmml</href>
+        <icon>PencilIcon%7Csmall</icon>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

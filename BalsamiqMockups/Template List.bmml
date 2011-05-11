@@ -1,0 +1,24 @@
+<mockup version="1.0" skin="sketch" measuredW="931" measuredH="545" mockupW="924" mockupH="537">
+  <controls>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="7" y="8" w="-1" h="-1" measuredW="121" measuredH="25" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <hrefs>Home%26bm%3BHome.bmml%26bm%3BHome.bmml%26bm%3BHome.bmml%2C</hrefs>
+        <text>Home%2C%20Templates</text>
+      </controlProperties>
+    </control>
+    <control controlID="16" controlTypeID="com.balsamiq.mockups::Accordion" x="12" y="37" w="-1" h="-1" measuredW="238" measuredH="508" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <hrefs>%2CTemplate%20Details%26bm%3BTemplate%20Details.bmml%26bm%3BTemplate%20Details.bmml%26bm%3BTemplate%20Details.bmml%2CTemplate%20Details%26bm%3BTemplate%20Details.bmml%26bm%3BTemplate%20Details.bmml%26bm%3BTemplate%20Details.bmml%2CTemplate%20Details%26bm%3BTemplate%20Details.bmml%26bm%3BTemplate%20Details.bmml%26bm%3BTemplate%20Details.bmml%2C%2C%2C%2C%2C%2C</hrefs>
+        <selectedIndex>0</selectedIndex>
+        <text>MATH%201301%20College%20Algebra%0A-%20Basic%20Algebra%0A-%20Computer%20Lab%20Algebra%0A-%20Online%20Algebra%0AMATH%201302%20Trigonometry%0AMATH%202301%20Calculus%201%0AMATH%202301%20Calculus%202%0AMATH%200309%20Developmental%20Math%203%0AMATH%200308%20Developmental%20Math%202%0AMATH%200307%20Developmental%20Math%201</text>
+      </controlProperties>
+    </control>
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::Title" x="265" y="37" w="666" h="-1" measuredW="609" measuredH="62" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>false</bold>
+        <color>10066329</color>
+        <text>Choose%20a%20template%20from%20the%20left</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

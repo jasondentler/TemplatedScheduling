@@ -1,0 +1,41 @@
+<mockup version="1.0" skin="sketch" measuredW="861" measuredH="631" mockupW="854" mockupH="623">
+  <controls>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="7" y="8" w="-1" h="-1" measuredW="480" measuredH="25" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <hrefs>Home%26bm%3BHome.bmml%26bm%3BHome.bmml%26bm%3BHome.bmml%2CSection%20List%26bm%3BSection%20List.bmml%26bm%3BSection%20List.bmml%26bm%3BSection%20List.bmml%2CSection%20Details%26bm%3BSection%20Details.bmml%26bm%3BSection%20Details.bmml%26bm%3BSection%20Details.bmml</hrefs>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%220%2C0%2C42%2C25%22%20href%3D%22Home.bmml%22%20alt%3D%22Home%22%20id%3D%221_0%22/%3E%0A%3Carea%20shape%3D%22rect%22%20coords%3D%2254%2C0%2C117%2C25%22%20href%3D%22Section%2520List.bmml%22%20alt%3D%22Section%20List%22%20id%3D%221_1%22/%3E%0A</map>
+        <text>Home%2C%20Sections%2C%20MATH%201301.M1%20College%20Algebra%2C%20Schedule%20Selection</text>
+      </controlProperties>
+    </control>
+    <control controlID="16" controlTypeID="com.balsamiq.mockups::Accordion" x="12" y="37" w="-1" h="-1" measuredW="238" measuredH="594" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <hrefs>%2CSection%20Details%26bm%3BSection%20Details.bmml%26bm%3BSection%20Details.bmml%26bm%3BSection%20Details.bmml%2CSection%20Details%26bm%3BSection%20Details.bmml%26bm%3BSection%20Details.bmml%26bm%3BSection%20Details.bmml%2CSection%20Details%26bm%3BSection%20Details.bmml%26bm%3BSection%20Details.bmml%26bm%3BSection%20Details.bmml%2CSection%20Details%26bm%3BSection%20Details.bmml%26bm%3BSection%20Details.bmml%26bm%3BSection%20Details.bmml%2CSection%20Details%26bm%3BSection%20Details.bmml%26bm%3BSection%20Details.bmml%26bm%3BSection%20Details.bmml%2C%2C%2C%2C%2C%2C</hrefs>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2215%2C60.5%2C253%2C85.5%22%20href%3D%22Section%2520Details.bmml%22%20alt%3D%22Section%20Details%22%20id%3D%2216_0%22/%3E%0A%3Carea%20shape%3D%22rect%22%20coords%3D%2215%2C89.5%2C253%2C114.5%22%20href%3D%22Section%2520Details.bmml%22%20alt%3D%22Section%20Details%22%20id%3D%2216_1%22/%3E%0A%3Carea%20shape%3D%22rect%22%20coords%3D%2215%2C118.5%2C253%2C143.5%22%20href%3D%22Section%2520Details.bmml%22%20alt%3D%22Section%20Details%22%20id%3D%2216_2%22/%3E%0A%3Carea%20shape%3D%22rect%22%20coords%3D%2215%2C147.5%2C253%2C172.5%22%20href%3D%22Section%2520Details.bmml%22%20alt%3D%22Section%20Details%22%20id%3D%2216_3%22/%3E%0A%3Carea%20shape%3D%22rect%22%20coords%3D%2215%2C176.5%2C253%2C201.5%22%20href%3D%22Section%2520Details.bmml%22%20alt%3D%22Section%20Details%22%20id%3D%2216_4%22/%3E%0A</map>
+        <selectedIndex>0</selectedIndex>
+        <text>MATH%201301%20College%20Algebra%0A-%2001%20John%20Smith%0A-%2002%20Jane%20Smith%0A-%2003%20John%20Smith%0A-%20M1%20Jane%20Smith%0A-%20IM1%20Jane%20Smith%0AMATH%201302%20Trigonometry%0AMATH%202301%20Calculus%201%0AMATH%202301%20Calculus%202%0AMATH%200309%20Developmental%20Math%203%0AMATH%200308%20Developmental%20Math%202%0AMATH%200307%20Developmental%20Math%201</text>
+      </controlProperties>
+    </control>
+    <control controlID="19" controlTypeID="com.balsamiq.mockups::ComboBox" x="273" y="77" w="-1" h="-1" measuredW="58" measuredH="72" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>MW%0ATTh%0AMWF</text>
+      </controlProperties>
+    </control>
+    <control controlID="20" controlTypeID="com.balsamiq.mockups::ComboBox" x="346" y="77" w="-1" h="-1" measuredW="135" measuredH="132" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>8%3A00%20to%209%3A30%20am%0A9%3A30%20to%2011%3A00%20am%0A11%3A00%20to%2012%3A30%20pm%0A1%3A00%20to%202%3A30%20pm%0A2%3A30%20to%204%3A00%20pm%0A4%3A00%20to%205%3A30%20pm</text>
+      </controlProperties>
+    </control>
+    <control controlID="22" controlTypeID="com.balsamiq.mockups::Button" x="494" y="77" w="-1" h="-1" measuredW="108" measuredH="28" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Set%20Schedule</text>
+      </controlProperties>
+    </control>
+    <control controlID="33" controlTypeID="com.balsamiq.mockups::TabBar" x="265" y="41" w="596" h="590" measuredW="371" measuredH="100" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <hrefs>Section%20Schedule%20Selection%26bm%3BSection%20Schedule%20Selection.bmml%26bm%3BSection%20Schedule%20Selection.bmml%26bm%3BSection%20Schedule%20Selection.bmml%2CSection%20Schedule%20Nonstandard%20Selection%26bm%3BSection%20Schedule%20Nonstandard%20Selection.bmml%26bm%3BSection%20Schedule%20Nonstandard%20Selection.bmml%26bm%3BSection%20Schedule%20Nonstandard%20Selection.bmml%2CSection%20Schedule%20Insane%20Selection%26bm%3BSection%20Schedule%20Insane%20Selection.bmml%26bm%3BSection%20Schedule%20Insane%20Selection.bmml%26bm%3BSection%20Schedule%20Insane%20Selection.bmml</hrefs>
+        <text>Standard%20Daytime%2C%20Non-standard%2C%20Insane</text>
+        <underline>true</underline>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
