@@ -71,6 +71,7 @@
     <control controlID="30" controlTypeID="com.balsamiq.mockups::Icon" x="334" y="211" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
         <borderStyle>square</borderStyle>
+        <href>Section%20Room%20Selection%26bm%3BSection%20Room%20Selection.bmml%26bm%3BSection%20Room%20Selection.bmml%26bm%3BSection%20Room%20Selection.bmml</href>
         <icon>PencilIcon%7Csmall</icon>
       </controlProperties>
     </control>
@@ -130,6 +131,7 @@
     <control controlID="41" controlTypeID="com.balsamiq.mockups::Icon" x="458" y="311" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="21" locked="false" isInGroup="-1">
       <controlProperties>
         <borderStyle>square</borderStyle>
+        <href>Section%20Schedule%20Selection%26bm%3BSection%20Schedule%20Selection.bmml%26bm%3BSection%20Schedule%20Selection.bmml%26bm%3BSection%20Schedule%20Selection.bmml</href>
         <icon>PencilIcon%7Csmall</icon>
       </controlProperties>
     </control>
