@@ -1,0 +1,18 @@
+﻿@model InstructorList
+@{
+    ViewBag.Title = "Instructors";
+}
+<fieldset class="itemList">
+    <legend>Instructors</legend>
+    <ul>
+        @foreach (var instructor in Model.Items)
+        {
+            <li>@Html.ActionLink(instructor.Name, "Details", new { id = instructor.Id })</li>
+        }
+    </ul>
+</fieldset>
+
+<h2 class="hint">Choose an instructor from the left</h2>
+
+@(Html.ActionLink<InstructorController>("Create a new instructor", c => c.Create()))
+
