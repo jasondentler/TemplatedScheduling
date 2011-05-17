@@ -2,17 +2,18 @@
 @{
     ViewBag.Title = "Instructors";
 }
+
+<script id="template" type="text/html">
 <fieldset class="itemList">
     <legend>Instructors</legend>
     <ul>
-        @foreach (var instructor in Model.Items)
-        {
-            <li>@Html.ActionLink(instructor.Name, "Details", new { id = instructor.Id })</li>
-        }
-    </ul>
+        <li>@(Html.ActionLink<InstructorController>(c => c.Create(), "Create an instructor"))</li>
+        {{each Instructors}}
+            <li>@Html.TemplateActionLink("${Name}", "Details", new {id = new Token("${Id}")})</li>
+        {{/each}}
+</ul>
 </fieldset>
-
 <h2 class="hint">Choose an instructor from the left</h2>
+</script>
 
-@(Html.ActionLink<InstructorController>("Create a new instructor", c => c.Create()))
-
+<div id="placeholder" />

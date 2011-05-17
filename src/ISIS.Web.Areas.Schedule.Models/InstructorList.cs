@@ -1,14 +1,16 @@
 ﻿using System.Collections.Generic;
+using ISIS.Web.Models;
 
 namespace ISIS.Web.Areas.Schedule.Models
 {
-    public class InstructorList
+    public class InstructorList : JsonSerializable 
     {
-        public IEnumerable<InstructorListItem> Items { get; private set; }
+        public IEnumerable<InstructorListItem> Instructors { get; private set; }
 
-        public InstructorList(IEnumerable<InstructorListItem> items)
+        public InstructorList(IEnumerable<InstructorListItem> instructors)
         {
-            Items = items;
+            Instructors = instructors;
         }
+
     }
 }
