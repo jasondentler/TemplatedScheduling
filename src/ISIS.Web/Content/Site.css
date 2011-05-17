@@ -74,22 +74,36 @@ textarea
     display: none;
 }
 
-/* Styles for site
+/* Styles for breadcrumbs
 -----------------------------------------------------------*/
 ul.breadcrumbs li
 {
 	display: inline-block;
+	color: #808080;
+	font-size: small;
 }
 
+ul.breadcrumbs li a
+{
+	color: black;
+}
+
+ul.breadcrumbs li:last-child
+{
+	font-weight: bold;
+	color: black;
+}
+
+/* Styles for link lists
+-----------------------------------------------------------*/
 ul.links li
 {
 	display: inline-block;
-	border-left: 1px solid black;
-	padding: 0 0.4em 0 0.8em;
+	font-size: small;
+	color: #808080;
 }
 
-ul.links li:first-child
+ul.links li a
 {
-	border: none;
-	padding: 0;
+	color: black;
 }

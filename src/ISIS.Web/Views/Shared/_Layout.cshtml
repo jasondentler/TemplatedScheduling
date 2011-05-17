@@ -10,13 +10,16 @@
 
 <body>
     <ul class="breadcrumbs">
+    <li>You are here: <a href="@Url.Content("~/")">ISIS</a></li>
     @if (ViewData.ContainsKey("Breadcrumbs"))
     {
         foreach (var crumb in (IEnumerable<ISIS.Web.Models.Breadcrumb>) ViewData["Breadcrumbs"])
         {
+            <li class="separator">&gt;</li>
             @crumb
         }
     }
+    <li class="separator">&gt;</li>
     <li>@ViewBag.Title</li>
     </ul>
     @RenderBody()
