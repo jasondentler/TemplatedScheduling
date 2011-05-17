@@ -114,6 +114,7 @@ fieldset.itemList
 {
 	display: inline-block;
 	float: left;
+	margin: 0 1em 0 1em;
 }
 
 .itemList ul
@@ -129,4 +130,9 @@ h2.hint
 {
 	text-align: center;
 	color: #808080;
+}
+
+.display-field
+{
+	font-weight: bold;
 }

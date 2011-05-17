@@ -1,0 +1,11 @@
+﻿<script id="instructorListTemplate" type="text/html">
+<fieldset class="itemList" id="instructorList">
+    <legend>Instructors</legend>
+    <ul>
+        <li>@(Html.ActionLink<InstructorController>(c => c.Create(), "Create an instructor"))</li>
+        {{each Instructors}}
+            <li>@Html.TemplateActionLink("${Name}", "Details", new {id = "${Id}"})</li>
+        {{/each}}
+</ul>
+</fieldset>
+</script>

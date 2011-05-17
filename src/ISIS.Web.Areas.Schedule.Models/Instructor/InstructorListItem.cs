@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ISIS.Web.Areas.Schedule.Models
+namespace ISIS.Web.Areas.Schedule.Models.Instructor
 {
     public class InstructorListItem
     {

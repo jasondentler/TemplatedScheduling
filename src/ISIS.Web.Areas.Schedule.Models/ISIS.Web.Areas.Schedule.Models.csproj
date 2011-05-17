@@ -41,8 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InstructorList.cs" />
-    <Compile Include="InstructorListItem.cs" />
+    <Compile Include="Instructor\Details.cs" />
+    <Compile Include="Instructor\IInstructorList.cs" />
+    <Compile Include="Instructor\Index.cs" />
+    <Compile Include="Instructor\InstructorListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

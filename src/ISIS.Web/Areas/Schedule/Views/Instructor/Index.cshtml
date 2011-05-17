@@ -1,18 +1,12 @@
-﻿@model InstructorList
+﻿@model Index
 @{
     ViewBag.Title = "Instructors";
 }
 
+@Html.Partial("_InstructorList")
+
 <script id="template" type="text/html">
-<fieldset class="itemList">
-    <legend>Instructors</legend>
-    <ul>
-        <li>@(Html.ActionLink<InstructorController>(c => c.Create(), "Create an instructor"))</li>
-        {{each Instructors}}
-            <li>@Html.TemplateActionLink("${Name}", "Details", new {id = "${Id}"})</li>
-        {{/each}}
-</ul>
-</fieldset>
+{{tmpl instructorListTemplate}}
 <h2 class="hint">Choose an instructor from the left</h2>
 </script>
 

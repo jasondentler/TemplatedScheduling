@@ -1,0 +1,24 @@
+﻿@model Details
+@{
+    ViewBag.Title = string.Format("{0} {1}", Model.FirstName, Model.LastName);
+}
+
+@Html.Partial("_InstructorList")
+
+<script id="template" type="text/html">
+    {{tmpl instructorListTemplate}}
+    <div>
+        <fieldset>
+            <legend>Details for ${FirstName} ${LastName}</legend>
+
+            <div class="display-label">First Name</div>
+            <div class="display-field">${FirstName}</div>
+
+            <div class="display-label">Last Name</div>
+            <div class="display-field">${LastName}</div>
+        </fieldset>
+    </div>
+</script>
+
+
+<div id="placeholder" />
