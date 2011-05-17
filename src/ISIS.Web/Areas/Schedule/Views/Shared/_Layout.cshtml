@@ -11,6 +11,8 @@
 <body>
     <ul class="breadcrumbs">
     <li>You are here: <a href="@Url.Content("~/")">ISIS</a></li>
+    <li class="separator">\</li>
+    <li><a href="@Url.Content("~/Schedule")">Course Scheduling</a></li>
     @if (ViewData.ContainsKey("Breadcrumbs"))
     {
         foreach (var crumb in (IEnumerable<ISIS.Web.Models.Breadcrumb>) ViewData["Breadcrumbs"])

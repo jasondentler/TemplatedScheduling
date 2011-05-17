@@ -107,3 +107,26 @@ ul.links li a
 {
 	color: black;
 }
+
+/* Styles for item lists
+-----------------------------------------------------------*/
+fieldset.itemList
+{
+	display: inline-block;
+	float: left;
+}
+
+.itemList ul
+{
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+/* Other styles
+-----------------------------------------------------------*/
+h2.hint
+{
+	text-align: center;
+	color: #808080;
+}

@@ -37,6 +37,12 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.Mvc">
+      <HintPath>..\..\lib\ASP.NET MVC\Microsoft.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcContrib">
+      <HintPath>..\..\lib\MvcContrib\MvcContrib.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -141,6 +147,10 @@
       <Project>{AEB8F4E2-64DF-49D3-83F9-F441F19DA20C}</Project>
       <Name>ISIS.Web.Areas.Schedule.Controllers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ISIS.Web.Areas.Schedule.Models\ISIS.Web.Areas.Schedule.Models.csproj">
+      <Project>{E6650204-533F-44B8-BC1F-C99AE366F146}</Project>
+      <Name>ISIS.Web.Areas.Schedule.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ISIS.Web.Models\ISIS.Web.Models.csproj">
       <Project>{22EC4DEB-8911-4ADF-BED3-C4663EDD30EB}</Project>
       <Name>ISIS.Web.Models</Name>
@@ -163,6 +173,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Schedule\Views\Shared\Error.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Schedule\Views\Instructor\Index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
