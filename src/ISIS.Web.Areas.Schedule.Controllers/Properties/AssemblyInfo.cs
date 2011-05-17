@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ISIS.Web.Schedule.Controllers")]
+[assembly: AssemblyTitle("ISIS.Web.Areas.Schedule.Controllers")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("ISIS.Web.Schedule.Controllers")]
+[assembly: AssemblyProduct("ISIS.Web.Areas.Schedule.Controllers")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d961fd9c-7100-45c2-9ae5-a6dc58e38725")]
+[assembly: Guid("054e25f6-2d2e-41f7-8d94-a3ef75ca5e0a")]
 
 // Version information for an assembly consists of the following four values:
 //

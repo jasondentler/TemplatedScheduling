@@ -73,3 +73,23 @@ textarea
 {
     display: none;
 }
+
+/* Styles for site
+-----------------------------------------------------------*/
+ul.breadcrumbs li
+{
+	display: inline-block;
+}
+
+ul.links li
+{
+	display: inline-block;
+	border-left: 1px solid black;
+	padding: 0 0.4em 0 0.8em;
+}
+
+ul.links li:first-child
+{
+	border: none;
+	padding: 0;
+}

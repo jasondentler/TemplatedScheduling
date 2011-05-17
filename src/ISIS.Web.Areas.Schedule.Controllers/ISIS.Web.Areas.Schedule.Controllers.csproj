@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{1C84128A-7776-4851-A0C8-AF18B9003B0D}</ProjectGuid>
+    <ProjectGuid>{AEB8F4E2-64DF-49D3-83F9-F441F19DA20C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ISIS.Web.Schedule.Controllers</RootNamespace>
-    <AssemblyName>ISIS.Web.Schedule.Controllers</AssemblyName>
+    <RootNamespace>ISIS.Web.Areas.Schedule.Controllers</RootNamespace>
+    <AssemblyName>ISIS.Web.Areas.Schedule.Controllers</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,13 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HomeController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ISIS.Web.Schedule.Models\ISIS.Web.Schedule.Models.csproj">
-      <Project>{7209357E-CA75-4597-A1FD-83DF03663B7A}</Project>
-      <Name>ISIS.Web.Schedule.Models</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
