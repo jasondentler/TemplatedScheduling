@@ -127,6 +127,7 @@ namespace ISIS.Web
                                                    IDictionary<string, object> htmlAttributes,
                                                    bool includeImplicitMvcValues)
         {
+            TokenizeRouteValues(routeValues);
             var tokenMap = BuildTokenMap(routeValues);
             var patternRouteValues = Transform(routeValues, tokenMap);
 
@@ -146,6 +147,20 @@ namespace ISIS.Web
             tagBuilder.MergeAttributes(htmlAttributes);
             tagBuilder.MergeAttribute("href", url);
             return tagBuilder.ToString(TagRenderMode.Normal);
+        }
+
+        private static void TokenizeRouteValues(RouteValueDictionary routeValues)
+        {
+            var tokenizedRouteValues = routeValues
+                .Where(i => i.Value != null)
+                .Select(i => new {i.Key, Value = i.Value.ToString()})
+                .Where(i => i.Value.StartsWith("${") && i.Value.EndsWith("}"))
+                .ToDictionary(
+                    i => i.Key,
+                    i => (object) new Token(i.Value));
+
+            foreach (var item in tokenizedRouteValues)
+                routeValues[item.Key] = item.Value;
         }
 
         private static IDictionary<Guid, Token> BuildTokenMap(RouteValueDictionary routeValues)

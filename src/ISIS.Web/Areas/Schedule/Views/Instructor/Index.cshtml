@@ -9,7 +9,7 @@
     <ul>
         <li>@(Html.ActionLink<InstructorController>(c => c.Create(), "Create an instructor"))</li>
         {{each Instructors}}
-            <li>@Html.TemplateActionLink("${Name}", "Details", new {id = new Token("${Id}")})</li>
+            <li>@Html.TemplateActionLink("${Name}", "Details", new {id = "${Id}"})</li>
         {{/each}}
 </ul>
 </fieldset>
