@@ -5,18 +5,34 @@
 
 @Html.Partial("_InstructorList")
 
+<script id="courseChecklistTemplate" type="text/html">
+    <div>
+        <input type="checkbox" id="course${Id}" name="courses">
+        <label for="course${Id}">${Id}</label>
+    </div>
+</script>
+
 <script id="template" type="text/html">
     {{tmpl instructorListTemplate}}
     <div>
+        <div class="display-label">First Name</div>
+        <div class="display-field">${FirstName}</div>
+        <div class="display-label">Last Name</div>
+        <div class="display-field">${LastName}</div>
+
+        <div>
+            <select><option>MATH 2302 Calculus</option></select>
+            <input type="button" value="Add Course" />
+        </div>
+
         <fieldset>
-            <legend>Details for ${FirstName} ${LastName}</legend>
-
-            <div class="display-label">First Name</div>
-            <div class="display-field">${FirstName}</div>
-
-            <div class="display-label">Last Name</div>
-            <div class="display-field">${LastName}</div>
+            <legend>Courses</legend>
+            {{each Courses}}
+                {{tmpl courseChecklistTemplate}}
+            {{/each}}
+            <input type="button" value="Remove Checked Courses" />
         </fieldset>
+
     </div>
 </script>
 

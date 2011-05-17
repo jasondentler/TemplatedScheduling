@@ -18,21 +18,6 @@ namespace ISIS.Web.Areas.Schedule.Controllers
                        : View(GetInstructorsList());
         }
 
-        [NonAction]
-        private Index GetInstructorsList()
-        {
-            return new Index(
-                new[]
-                    {
-                        new InstructorListItem() {Id = Guid.NewGuid(), Name = "John Smith"},
-                        new InstructorListItem() {Id = Guid.NewGuid(), Name = "Joe Smith"},
-                        new InstructorListItem() {Id = Guid.NewGuid(), Name = "Jim Smith"},
-                        new InstructorListItem() {Id = Guid.NewGuid(), Name = "James Smith"},
-                        new InstructorListItem() {Id = Guid.NewGuid(), Name = "Jane Smith"},
-                        new InstructorListItem() {Id = Guid.NewGuid(), Name = "Juan Smith"}
-                    });
-        }
-
         [HttpGet]
         public ViewResult Create()
         {
@@ -48,6 +33,21 @@ namespace ISIS.Web.Areas.Schedule.Controllers
         }
 
         [NonAction]
+        private Index GetInstructorsList()
+        {
+            return new Index(
+                new[]
+                    {
+                        new InstructorListItem() {Id = Guid.NewGuid(), Name = "John Smith"},
+                        new InstructorListItem() {Id = Guid.NewGuid(), Name = "Joe Smith"},
+                        new InstructorListItem() {Id = Guid.NewGuid(), Name = "Jim Smith"},
+                        new InstructorListItem() {Id = Guid.NewGuid(), Name = "James Smith"},
+                        new InstructorListItem() {Id = Guid.NewGuid(), Name = "Jane Smith"},
+                        new InstructorListItem() {Id = Guid.NewGuid(), Name = "Juan Smith"}
+                    });
+        }
+
+        [NonAction]
         private Details GetDetails(Guid Id)
         {
             var instructors = GetInstructorsList().Instructors;
@@ -55,11 +55,11 @@ namespace ISIS.Web.Areas.Schedule.Controllers
                 instructors,
                 Guid.NewGuid(),
                 "John", "Smith",
-                new HashSet<String>(new[]
-                                        {
-                                            "MATH 1301 - College Algebra",
-                                            "MATH 2301 - Calculus 1"
-                                        }));
+                new Dictionary<Guid, string>()
+                    {
+                        {Guid.NewGuid(), "MATH 1301 College Algebra"},
+                        {Guid.NewGuid(), "MATH 2301 Calculus 1"}
+                    });
         }
 
     }
