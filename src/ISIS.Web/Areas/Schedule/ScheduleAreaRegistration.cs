@@ -17,8 +17,9 @@ namespace ISIS.Web.Areas.Schedule
             context.MapRoute(
                 "Schedule_default",
                 "Schedule/{controller}/{action}/{id}",
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+                new {controller = "Home", action = "Index", id = UrlParameter.Optional},
+                new[] {"ISIS.Web.Areas.Schedule.Controllers"}
+                );
         }
     }
 }
