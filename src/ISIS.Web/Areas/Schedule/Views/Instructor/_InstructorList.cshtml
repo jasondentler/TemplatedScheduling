@@ -1,11 +1,28 @@
-﻿<script id="instructorListTemplate" type="text/html">
+﻿<script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/createInstructor.js")"></script>
+<script id="instructorListTemplate" type="text/html">
 <fieldset class="itemList" id="instructorList">
     <legend>Instructors</legend>
     <ul>
-        <li>@(Html.ActionLink<InstructorController>(c => c.Create(), "Create an instructor"))</li>
+        <li><a id="createInstructorLink" href="#">Create an instructor</a></li>
         {{each Instructors}}
             <li>@Html.TemplateActionLink("${Name}", "Details", new {id = "${Id}"})</li>
         {{/each}}
 </ul>
 </fieldset>
+    <div id="createInstructorDialog" title="Create Instructor" class="hidden">
+        @using (Html.BeginForm<InstructorController>(c => c.Create(null), FormMethod.Post, new {id="createInstructorForm"}))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="Id" value="@Guid.NewGuid()"/>
+            <div class="editor-label">First Name</div>
+            <div class="editor-field">
+                <input type="textbox" name="FirstName"/>
+            </div>
+
+            <div class="editor-label">Last Name</div>
+            <div class="editor-field">
+                <input type="textbox" name="LastName"/>
+            </div>
+        }
+    </div>
 </script>

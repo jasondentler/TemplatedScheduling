@@ -2,7 +2,7 @@
 
 namespace ISIS.Web.Areas.Schedule.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : ControllerBase 
     {
 
         public ViewResult Index()

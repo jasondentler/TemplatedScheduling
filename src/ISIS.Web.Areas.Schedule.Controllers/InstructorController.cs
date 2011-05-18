@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using ISIS.Web.Areas.Schedule.Models;
 using ISIS.Web.Areas.Schedule.Models.Instructor;
+using Microsoft.Web.Mvc;
 
 namespace ISIS.Web.Areas.Schedule.Controllers
 {
 
-    public class InstructorController : Controller
+    public class InstructorController : ControllerBase 
     {
 
         [HttpGet]
@@ -19,18 +19,29 @@ namespace ISIS.Web.Areas.Schedule.Controllers
         }
 
         [HttpGet]
-        public ViewResult Create()
-        {
-            throw new NotImplementedException();
-        }
-
-        [HttpGet]
         public ActionResult Details(Guid Id)
         {
-            return Request.IsAjaxRequest()
-                       ? (ActionResult) Json(GetDetails(Id), JsonRequestBehavior.AllowGet)
-                       : View(GetDetails(Id));
+            if (Request.IsAjaxRequest())
+            {
+                return Json(GetDetails(Id), JsonRequestBehavior.AllowGet);
+            }
+            return View(GetDetails(Id));
         }
+
+        [HttpPost]
+        public RedirectToRouteResult Create(Create model)
+        {
+            return ModelState.IsValid
+                       ? this.RedirectToAction(c => c.Details(model.Id))
+                       : this.RedirectToAction(c => c.Index());
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult Rename(Rename model)
+        {
+            return this.RedirectToAction(c => c.Details(model.Id));
+        }
+
 
         [NonAction]
         private Index GetInstructorsList()
@@ -59,6 +70,15 @@ namespace ISIS.Web.Areas.Schedule.Controllers
                     {
                         {Guid.NewGuid(), "MATH 1301 College Algebra"},
                         {Guid.NewGuid(), "MATH 2301 Calculus 1"}
+                    },
+                new Dictionary<Guid, string>()
+                    {
+                        {Guid.NewGuid(), "MATH 0307 DevEd Math 1"},
+                        {Guid.NewGuid(), "MATH 0308 DevEd Math 2"},
+                        {Guid.NewGuid(), "MATH 0309 DevEd Math 3"},
+                        {Guid.NewGuid(), "MATH 1301 College Algebra"},
+                        {Guid.NewGuid(), "MATH 2301 Calculus 1"},
+                        {Guid.NewGuid(), "MATH 2301 Calculus 2"}
                     });
         }
 

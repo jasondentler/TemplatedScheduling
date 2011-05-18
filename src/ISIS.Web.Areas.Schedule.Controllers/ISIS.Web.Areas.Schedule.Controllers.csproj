@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Web.Mvc">
+      <HintPath>..\..\lib\ASP.NET MVC\Microsoft.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -52,6 +55,10 @@
     <ProjectReference Include="..\ISIS.Web.Areas.Schedule.Models\ISIS.Web.Areas.Schedule.Models.csproj">
       <Project>{E6650204-533F-44B8-BC1F-C99AE366F146}</Project>
       <Name>ISIS.Web.Areas.Schedule.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ISIS.Web.Core\ISIS.Web.Core.csproj">
+      <Project>{226336EE-021F-4B45-BDE7-EA84A8AA0026}</Project>
+      <Name>ISIS.Web.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\ISIS.Web.Models\ISIS.Web.Models.csproj">
       <Project>{22EC4DEB-8911-4ADF-BED3-C4663EDD30EB}</Project>

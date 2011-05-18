@@ -5,36 +5,64 @@
 
 @Html.Partial("_InstructorList")
 
-<script id="courseChecklistTemplate" type="text/html">
-    <div>
-        <input type="checkbox" id="course${Id}" name="courses">
-        <label for="course${Id}">${Id}</label>
-    </div>
-</script>
-
 <script id="template" type="text/html">
     {{tmpl instructorListTemplate}}
     <div>
         <div class="display-label">First Name</div>
-        <div class="display-field">${FirstName}</div>
+        <div class="display-field">${FirstName}
+            <button class="editInstructorName icon-pencil no-text">
+                Change Instructor Name
+            </button>
+        </div
         <div class="display-label">Last Name</div>
-        <div class="display-field">${LastName}</div>
+        <div class="display-field">${LastName}
+            <button class="editInstructorName icon-pencil no-text">
+                Change Instructor Name
+            </button>
+        </div>
 
         <div>
-            <select><option>MATH 2302 Calculus</option></select>
-            <input type="button" value="Add Course" />
+            <select name="availableCourses">
+                {{each AvailableCourses}}
+                    <option value="${$index}">${$value}</option>
+                {{/each}}
+            </select>
+            <button class="icon-plusthick">Add Course</button>
         </div>
 
         <fieldset>
             <legend>Courses</legend>
             {{each Courses}}
-                {{tmpl courseChecklistTemplate}}
+                <div>
+                    <input type="checkbox" id="course${$index}" name="courses">
+                    <label for="course${$index}">${$value}</label>
+                </div>
             {{/each}}
-            <input type="button" value="Remove Checked Courses" />
+            <button class="icon-closethick">Remove Checked Courses</button>
         </fieldset>
 
     </div>
+
+    <div id="editInstructorNameDialog" title="Change Instructor Name" class="hidden">
+        @using (Html.BeginForm<InstructorController>(c => c.Rename(null), FormMethod.Post, new {id="editInstructorNameForm"})) {
+            @Html.AntiForgeryToken()
+            <input type="hidden" Name="Id" value="${Id}" />
+            <div class="editor-label">First Name</div>
+            <div class="editor-field">
+                <input type="textbox" Name="NewFirstName" value="${FirstName}"/>
+            </div>
+
+            <div class="editor-label">Last Name</div>
+            <div class="editor-field">
+                <input type="textbox" Name="NewLastName" value="${LastName}"/>
+            </div>
+        }
+    </div>
+
+
 </script>
 
+
+<script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/editInstructorName.js")"></script>
 
 <div id="placeholder" />

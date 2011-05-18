@@ -1,8 +1,6 @@
-﻿using System.Web.Mvc;
-
-namespace ISIS.Web.Areas.Schedule.Controllers
+﻿namespace ISIS.Web.Areas.Schedule.Controllers
 {
-    public class TemplateController : Controller
+    public class TemplateController : ControllerBase
     {
     }
 }
