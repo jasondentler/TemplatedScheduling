@@ -42,6 +42,17 @@ namespace ISIS.Web.Areas.Schedule.Controllers
             return this.RedirectToAction(c => c.Details(model.Id));
         }
 
+        [HttpPost]
+        public RedirectToRouteResult AddCourse(AddCourse model)
+        {
+            return this.RedirectToAction(c => c.Details(model.Id));
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult RemoveCourses(RemoveCourses model)
+        {
+            return this.RedirectToAction(c => c.Details(model.Id));
+        }
 
         [NonAction]
         private Index GetInstructorsList()

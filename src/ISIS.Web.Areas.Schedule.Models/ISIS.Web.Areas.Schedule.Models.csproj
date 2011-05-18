@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Instructor\AddCourse.cs" />
+    <Compile Include="Instructor\RemoveCourses.cs" />
     <Compile Include="Instructor\Rename.cs" />
     <Compile Include="Instructor\Create.cs" />
     <Compile Include="Instructor\Details.cs" />

@@ -27,8 +27,9 @@ namespace ISIS.Web.Models
             var encodedName = _contextBase.Server.HtmlEncode(Name);
             var encodedUrl = Url.Replace("\"", "%22");
             return string.Format(@"<li><a href=""{0}"">{1}</a></li>",
-                                 encodedName,
-                                 encodedUrl);
+                                 encodedUrl,
+                                 encodedName
+                );
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿@model Details
 @{
     ViewBag.Title = string.Format("{0} {1}", Model.FirstName, Model.LastName);
+    ViewData["Breadcrumbs"] = new[] {new Breadcrumb("Instructors", @Url.Action("Index"))};
 }
 
 @Html.Partial("_InstructorList")
@@ -22,29 +23,38 @@
         </div>
 
         <div>
-            <select name="availableCourses">
+            @using (Html.BeginForm<InstructorController>(c => c.AddCourse(null), FormMethod.Post, new {id="instructorAddCourse"})) {
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="Id" value="${Id}" />
+                <select name="CourseId">
                 {{each AvailableCourses}}
                     <option value="${$index}">${$value}</option>
                 {{/each}}
-            </select>
-            <button class="icon-plusthick">Add Course</button>
+                </select>
+                <input type="submit" value="Add Course" class="icon-plusthick" />
+            }
         </div>
 
         <fieldset>
             <legend>Courses</legend>
-            {{each Courses}}
-                <div>
-                    <input type="checkbox" id="course${$index}" name="courses">
-                    <label for="course${$index}">${$value}</label>
-                </div>
-            {{/each}}
-            <button class="icon-closethick">Remove Checked Courses</button>
+            @using (Html.BeginForm<InstructorController>(c => c.RemoveCourses(null), FormMethod.Post, new {id="instructorAddCourse"})) {
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="Id" value="${Id}" />
+                @:{{each Courses}}
+                    <div>
+                        <input type="checkbox" id="course${$index}" name="CourseIds" value="${$index}">
+                        <label for="course${$index}">${$value}</label>
+                    </div>
+                @:{{/each}}
+                <input type="submit" value="Remove Checked Courses" class="icon-closethick" />
+            }
         </fieldset>
 
     </div>
 
     <div id="editInstructorNameDialog" title="Change Instructor Name" class="hidden">
-        @using (Html.BeginForm<InstructorController>(c => c.Rename(null), FormMethod.Post, new {id="editInstructorNameForm"})) {
+        @using (Html.BeginForm<InstructorController>(c => c.Rename(null), FormMethod.Post, new { id = "editInstructorNameForm" }))
+        {
             @Html.AntiForgeryToken()
             <input type="hidden" Name="Id" value="${Id}" />
             <div class="editor-label">First Name</div>
