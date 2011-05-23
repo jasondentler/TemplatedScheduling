@@ -11,23 +11,42 @@ function eventGenerator() {
     var events = [];
     var colorMap = [];
     var colorSchemes = [
-        { top: '#000099', body: "#666699", border: "#333399", text: "white" },
-        { top: '#009900', body: "#669966", border: "#339933", text: "white" },
-        { top: '#990000', body: "#996666", border: "#993333", text: "white" },
-        { top: '#999900', body: "#999966", border: "#999933", text: "white" },
-        { top: '#990099', body: "#996699", border: "#993399", text: "white" },
-        { top: '#009999', body: "#669999", border: "#339999", text: "white" }
-    ];
+        'event-class1',
+        'event-class2',
+        'event-class3',
+        'event-class4',
+        'event-class5',
+        'event-class6'];
+
+    var allDayColorSchemes = [
+        'event-class1-allday',
+        'event-class2-allday',
+        'event-class3-allday',
+        'event-class4-allday',
+        'event-class5-allday',
+        'event-class6-allday'];
+
     var nextSchemeIndex = 0;
     
     var itemCount = model.Items.length;
     for (var idx in model.Items) {
         var e = model.Items[idx];
         var title = e.Title;
+
         var currentScheme;
-        if (!colorMap[title]) {
-            colorMap[title] = colorSchemes[nextSchemeIndex];
-            nextSchemeIndex = (nextSchemeIndex + 1) % colorSchemes.length;
+
+        if (e.Class == null) {
+            if (!colorMap[title]) {
+                colorMap[title] = nextSchemeIndex;  //colorSchemes[nextSchemeIndex];
+                nextSchemeIndex = (nextSchemeIndex + 1) % colorSchemes.length;
+            }
+
+            var currentSchemeIndex = colorMap[title];
+            currentScheme = colorSchemes[currentSchemeIndex];
+            if (e.Start == null)
+                currentScheme = allDayColorSchemes[currentSchemeIndex];
+        } else {
+            currentScheme = e.Class;
         }
 
         var newEvent = {
@@ -36,10 +55,7 @@ function eventGenerator() {
             end: GetEventEnd(e, model),
             url: e.Link,
             allDay: (e.Start == null),
-            color: colorMap[title].top,
-            backgroundColor: colorMap[title].body,
-            borderColor: colorMap[title].border,
-            textColor: colorMap[title].text
+            className: currentScheme
         };
         events.push(newEvent);
     }

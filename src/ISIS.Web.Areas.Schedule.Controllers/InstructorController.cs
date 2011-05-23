@@ -178,9 +178,21 @@ namespace ISIS.Web.Areas.Schedule.Controllers
         [NonAction]
         private IEnumerable<CalendarItem> GenerateCalendarItems()
         {
-            var itemCount = rnd.Next(2, 30);
+            var itemCount = rnd.Next(12, 50);
             for (var i = 0; i < itemCount; i++)
                 yield return GenerateCalendarItem();
+
+            var blackoutCount = rnd.Next(5, 5);
+            for (var i = 0; i < blackoutCount; i++)
+            {
+                var item = GenerateCalendarItem();
+                while (!item.Start.HasValue)
+                    item = GenerateCalendarItem();
+
+                item.Title = "Unavailable";
+                item.Class = "blackout";
+                yield return item;
+            }
         }
 
         [NonAction]

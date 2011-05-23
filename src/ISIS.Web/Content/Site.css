@@ -129,12 +129,117 @@ fieldset.itemList
 	margin: 0;
 }
 
-/* Other styles
+/* Calendar styles
 -----------------------------------------------------------*/
 #calendarWrapper
 {
 	height: 90%;
 	width: 90%;
+}
+
+.blackout, 
+.fc-agenda .blackout .fc-event-time, 
+.fc-agenda .blackout .fc-event-inner
+{
+	border: 1px solid black;
+	color: white;
+	background-color: black;
+}
+
+.event-class1, 
+.fc-agenda .event-class1 .fc-event-time, 
+.fc-agenda .event-class1 .fc-event-inner
+{
+	border-color: #003300;
+	color: white;
+	background-color: #003300;
+}
+
+.event-class1-allday, .fc-agenda .event-class1-allday .fc-event-time, .fc-agenda .event-class1-allday .fc-event-inner
+{
+	border-color: #4C6F4C;
+	color: white;
+	background-color: #4C6F4C;
+}
+
+.event-class2, 
+.fc-agenda .event-class2 .fc-event-time, 
+.fc-agenda .event-class2 .fc-event-inner
+{
+	border-color: #663300;
+	color: white;
+	background-color: #663300;
+}
+
+.event-class2-allday, .fc-agenda .event-class2-allday .fc-event-time, .fc-agenda .event-class2-allday .fc-event-inner
+{
+	border-color: #936F4C;
+	color: white;
+	background-color: #936F4C;
+}
+
+.event-class3, 
+.fc-agenda .event-class3 .fc-event-time, 
+.fc-agenda .event-class3 .fc-event-inner
+{
+	border-color: #993333;
+	color: white;
+	background-color: #993333;
+}
+
+.event-class3-allday, .fc-agenda .event-class3-allday .fc-event-time, .fc-agenda .event-class3-allday .fc-event-inner
+{
+	border-color: #B76F6F;
+	color: white;
+	background-color: #B76F6F;
+}
+
+.event-class4, 
+.fc-agenda .event-class4 .fc-event-time, 
+.fc-agenda .event-class4 .fc-event-inner
+{ 
+	border-color: #660066;
+	color: white;
+	background-color: #660066;
+}
+
+.event-class4-allday, .fc-agenda .event-class4-allday .fc-event-time, .fc-agenda .event-class4-allday .fc-event-inner
+{
+	border-color: #934C93;
+	color: white;
+	background-color: #934C93;
+}
+
+.event-class5, 
+.fc-agenda .event-class5 .fc-event-time, 
+.fc-agenda .event-class5 .fc-event-inner
+{
+	border-color: #000066;
+	color: white;
+	background-color: #000066;
+}
+
+.event-class5-allday, .fc-agenda .event-class5-allday .fc-event-time, .fc-agenda .event-class5-allday .fc-event-inner
+{
+	border-color: #4C4C93;
+	color: white;
+	background-color: #4C4C93;
+}
+
+.event-class6, 
+.fc-agenda .event-class6 .fc-event-time, 
+.fc-agenda .event-class6 .fc-event-inner
+{
+	border-color: #003366;
+	color: white;
+	background-color: #003366;
+}
+
+.event-class6-allday, .fc-agenda .event-class6-allday .fc-event-time, .fc-agenda .event-class6-allday .fc-event-inner
+{
+	border-color: #4C6F93;
+	color: white;
+	background-color: #4C6F93;
 }
 
 /* Other styles
