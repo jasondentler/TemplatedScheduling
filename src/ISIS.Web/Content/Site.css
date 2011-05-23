@@ -1,4 +1,4 @@
-body
+body, .normal
 {
     font-size: .85em;
     font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
@@ -131,6 +131,14 @@ fieldset.itemList
 
 /* Other styles
 -----------------------------------------------------------*/
+#calendarWrapper
+{
+	height: 90%;
+	width: 90%;
+}
+
+/* Other styles
+-----------------------------------------------------------*/
 h2.hint
 {
 	text-align: center;
@@ -140,4 +148,10 @@ h2.hint
 .display-field
 {
 	font-weight: bold;
+}
+
+.content 
+{
+	clear: left;
+	display: inline-block;	
 }

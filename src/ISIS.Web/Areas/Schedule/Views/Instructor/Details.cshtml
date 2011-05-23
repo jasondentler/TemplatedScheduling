@@ -5,16 +5,21 @@
 }
 
 @Html.Partial("_InstructorList")
+@Html.Partial("_AddBlackoutTime")
 
 <script id="template" type="text/html">
-    {{tmpl instructorListTemplate}}
-    <div>
+    {{tmpl "#instructorListTemplate"}}
+    <div class="content">
+        <ul class="links">
+            <li>@(Html.TemplateActionLink("View Schedule","Calendar", new {id = "${Id}"}))</li>
+        </ul>
+
         <div class="display-label">First Name</div>
         <div class="display-field">${FirstName}
             <button class="editInstructorName icon-pencil no-text">
                 Change Instructor Name
             </button>
-        </div
+        </div>
         <div class="display-label">Last Name</div>
         <div class="display-field">${LastName}
             <button class="editInstructorName icon-pencil no-text">
@@ -37,7 +42,7 @@
 
         <fieldset>
             <legend>Courses</legend>
-            @using (Html.BeginForm<InstructorController>(c => c.RemoveCourses(null), FormMethod.Post, new {id="instructorAddCourse"})) {
+            @using (Html.BeginForm<InstructorController>(c => c.RemoveCourses(null), FormMethod.Post, new {id="instructorRemoveCourse"})) {
                 @Html.AntiForgeryToken()
                 <input type="hidden" name="Id" value="${Id}" />
                 @:{{each Courses}}
@@ -47,6 +52,23 @@
                     </div>
                 @:{{/each}}
                 <input type="submit" value="Remove Checked Courses" class="icon-closethick" />
+            }
+        </fieldset>
+
+        {{tmpl "#instructorAddBlackoutTimeTemplate"}}
+        <fieldset>
+            <legend>Blackout Times</legend>
+            @using (Html.BeginForm<InstructorController>(c => c.RemoveBlackoutTime(null), FormMethod.Post, new { id = "instructorRemoveBlackoutTime" }))
+            {
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="Id" value="${Id}" />
+                @:{{each BlackoutTimes}}
+                    <div>
+                        <input type="checkbox" id="blackoutTime${$index}" name="BlackoutTimeIds" value="${$index}">
+                        <label for="blackoutTime${$index}">${$value}</label>
+                    </div>
+                @:{{/each}}            
+                <input type="submit" value="Remove Blackout Times" class="icon-closethick" />
             }
         </fieldset>
 

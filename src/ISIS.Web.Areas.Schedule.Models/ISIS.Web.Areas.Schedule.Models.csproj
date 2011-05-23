@@ -41,7 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalendarItem.cs" />
     <Compile Include="Instructor\AddCourse.cs" />
+    <Compile Include="Instructor\Calendar.cs" />
+    <Compile Include="Instructor\AddBlackoutTime.cs" />
+    <Compile Include="Instructor\RemoveBlackoutTimes.cs" />
     <Compile Include="Instructor\RemoveCourses.cs" />
     <Compile Include="Instructor\Rename.cs" />
     <Compile Include="Instructor\Create.cs" />

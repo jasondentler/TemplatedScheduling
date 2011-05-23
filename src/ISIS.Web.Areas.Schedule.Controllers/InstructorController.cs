@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
+using ISIS.Web.Areas.Schedule.Models;
 using ISIS.Web.Areas.Schedule.Models.Instructor;
 using Microsoft.Web.Mvc;
 
@@ -28,6 +30,16 @@ namespace ISIS.Web.Areas.Schedule.Controllers
             return View(GetDetails(Id));
         }
 
+        [HttpGet]
+        public ActionResult Calendar(Guid Id)
+        {
+            if (Request.IsAjaxRequest())
+            {
+                return Json(GetCalendar(Id), JsonRequestBehavior.AllowGet);
+            }
+            return View(GetCalendar(Id));
+        }
+
         [HttpPost]
         public RedirectToRouteResult Create(Create model)
         {
@@ -53,6 +65,19 @@ namespace ISIS.Web.Areas.Schedule.Controllers
         {
             return this.RedirectToAction(c => c.Details(model.Id));
         }
+
+        [HttpPost]
+        public RedirectToRouteResult RemoveBlackoutTime(RemoveBlackoutTimes model)
+        {
+            return this.RedirectToAction(c => c.Details(model.Id));
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult AddBlackoutTime(AddBlackoutTime model)
+        {
+            return this.RedirectToAction(c => c.Details(model.Id));
+        }
+
 
         [NonAction]
         private Index GetInstructorsList()
@@ -90,7 +115,129 @@ namespace ISIS.Web.Areas.Schedule.Controllers
                         {Guid.NewGuid(), "MATH 1301 College Algebra"},
                         {Guid.NewGuid(), "MATH 2301 Calculus 1"},
                         {Guid.NewGuid(), "MATH 2301 Calculus 2"}
-                    });
+                    },
+                new Dictionary<Guid, string>()
+                    {
+                        {Guid.NewGuid(), "Monday, 12:00 am - 10:00 am"},
+                        {Guid.NewGuid(), "Tuesday, 12:00 am - 10:00 am"},
+                        {Guid.NewGuid(), "Wednesday, 12:00 am - 10:00 am"},
+                        {Guid.NewGuid(), "Thursday, 12:00 am - 10:00 am"},
+                        {Guid.NewGuid(), "Friday, 12:00 am - 10:00 am"}
+                    },
+                new Dictionary<int, string>()
+                    {
+                        {0, "Sunday"},
+                        {1, "Monday"},
+                        {2, "Tuesday"},
+                        {3, "Wednesday"},
+                        {4, "Thursday"},
+                        {5, "Friday"},
+                        {6, "Saturday"}
+                    },
+                GetBlackoutStartTimes(),
+                GetBlackoutEndTimes());
+        }
+
+        [NonAction]
+        private IDictionary<int, string> GetBlackoutStartTimes()
+        {
+            var startTimes = new Dictionary<int, string>();
+            var minutesToAdd = 0;
+            while (DateTime.Today.AddMinutes(minutesToAdd) < DateTime.Today.AddDays(1))
+            {
+                startTimes.Add(minutesToAdd, DateTime.Today.AddMinutes(minutesToAdd).ToShortTimeString());
+                minutesToAdd += 15;
+            }
+            return startTimes;
+        }
+
+        [NonAction]
+        private IDictionary<int, string> GetBlackoutEndTimes()
+        {
+            var endTimes = new Dictionary<int, string>();
+            var minutesToAdd = 15;
+            while (DateTime.Today.AddMinutes(minutesToAdd) <= DateTime.Today.AddDays(1))
+            {
+                endTimes.Add(minutesToAdd, DateTime.Today.AddMinutes(minutesToAdd).ToShortTimeString());
+                minutesToAdd += 15;
+            }
+            return endTimes;
+        }
+
+        private static Random rnd = new Random();
+
+        [NonAction]
+        private Calendar GetCalendar(Guid Id)
+        {
+            return new Calendar(
+                Id,
+                "John Smith",
+                GenerateCalendarItems());
+        }
+
+        [NonAction]
+        private IEnumerable<CalendarItem> GenerateCalendarItems()
+        {
+            var itemCount = rnd.Next(2, 30);
+            for (var i = 0; i < itemCount; i++)
+                yield return GenerateCalendarItem();
+        }
+
+        [NonAction]
+        private CalendarItem GenerateCalendarItem()
+        {
+            var sections = new Dictionary<Guid, string>()
+                               {
+                                   {Guid.NewGuid(), "MATH 0307.01"},
+                                   {Guid.NewGuid(), "MATH 0307.02"},
+                                   {Guid.NewGuid(), "MATH 0308.01"},
+                                   {Guid.NewGuid(), "MATH 0308.02"},
+                                   {Guid.NewGuid(), "MATH 0309.01"},
+                                   {Guid.NewGuid(), "MATH 0309.02"},
+                                   {Guid.NewGuid(), "MATH 1301.01"},
+                                   {Guid.NewGuid(), "MATH 1301.02"},
+                                   {Guid.NewGuid(), "MATH 1301.03"},
+                                   {Guid.NewGuid(), "MATH 1301.IN"},
+                                   {Guid.NewGuid(), "MATH 1301.M1"},
+                                   {Guid.NewGuid(), "MATH 1302.01"},
+                                   {Guid.NewGuid(), "MATH 2301.01"},
+                                   {Guid.NewGuid(), "MATH 2301.02"},
+                                   {Guid.NewGuid(), "MATH 2302.01"}
+                               };
+            var section = GetRandomItem(sections);
+            var schedule = GetRandomTimespan();
+            return new CalendarItem()
+                       {
+                           Id = section.Key,
+                           Title = section.Value,
+                           Description = "John Smith",
+                           Start = schedule[0],
+                           End = schedule[1]
+                       };
+        }
+
+        [NonAction]
+        private T GetRandomItem<T>(IEnumerable<T> items)
+        {
+            var index = rnd.Next(items.Count());
+            return items.ElementAt(index);
+        }
+
+        [NonAction]
+        private DateTime?[] GetRandomTimespan()
+        {
+            if (rnd.Next(2) == 0)
+                return new DateTime?[] {null, null};
+
+            var dayOfWeek = rnd.Next(7);
+            var startHour = rnd.Next(4, 23);
+            var endHour = rnd.Next(startHour, 24);
+            
+            // May 8,2011 was a Sunday
+            var date = new DateTime(2011, 5, 8).AddDays(dayOfWeek);
+            var start = date.AddHours(startHour);
+            var end = date.AddHours(endHour);
+            return new DateTime?[] {start, end};
         }
 
     }

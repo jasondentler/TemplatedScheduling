@@ -1,0 +1,22 @@
+﻿@model Calendar
+@{
+    ViewBag.Title = "View Schedule";
+    ViewData["Breadcrumbs"] = new[]
+                                  {
+                                      new Breadcrumb("Instructors", @Url.Action("Index")),
+                                      new Breadcrumb(Model.Name, @Url.Action("Details", new {Id = Model.Id}))
+                                  };
+}
+
+@*Html.Partial("_InstructorList")*@
+
+@Html.Partial("_CalendarView")
+
+<script id="template" type="text/html">
+    <div>
+        {{tmpl "#calendarTemplate"}}
+    </div>
+</script>
+
+
+<div id="placeholder" />

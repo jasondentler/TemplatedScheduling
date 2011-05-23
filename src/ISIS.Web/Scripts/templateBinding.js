@@ -5,11 +5,11 @@ afterBind = [];
 
 $(document).ready(function () {
     afterBind.push(function () {
-        $(':button').button();
-        $(':button.icon-pencil').button("option", "icons", { primary: "ui-icon-pencil" });
-        $(':button.icon-plusthick').button("option", "icons", { primary: "ui-icon-plusthick" });
-        $(':button.icon-closethick').button("option", "icons", { primary: "ui-icon-closethick" });
-        $(':button.no-text').button("option", "text", false);
+        $(':button,:submit,.button').button();
+        $('.icon-pencil').button("option", "icons", { primary: "ui-icon-pencil" });
+        $('.icon-plusthick').button("option", "icons", { primary: "ui-icon-plusthick" });
+        $('.icon-closethick').button("option", "icons", { primary: "ui-icon-closethick" });
+        $('.no-text').button("option", "text", false);
     });
     Bind();
 });
