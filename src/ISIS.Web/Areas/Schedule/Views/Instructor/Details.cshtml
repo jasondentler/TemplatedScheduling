@@ -72,6 +72,8 @@
             }
         </fieldset>
 
+        <button id="removeInstructor">Remove Instructor</button>
+
     </div>
 
     <div id="editInstructorNameDialog" title="Change Instructor Name" class="hidden">
@@ -91,10 +93,19 @@
         }
     </div>
 
+    <div id="removeInstructorDialog" title="Remove Instructor" class="hidden">
+        @using (Html.BeginForm<InstructorController>(c => c.RemoveInstructor(null), FormMethod.Post, new {id = "removeInstructorForm"}))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" Name="Id" value="${Id}" />
+            <div>Are you sure you want to remove this instructor?</div>
+        }
+    </div>
 
 </script>
 
 
 <script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/editInstructorName.js")"></script>
+<script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/removeInstructor.js")"></script>
 
 <div id="placeholder" />

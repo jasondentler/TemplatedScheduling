@@ -79,6 +79,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Schedule\Scripts\removeInstructor.js" />
     <Content Include="Areas\Schedule\Scripts\displayCalendar.js" />
     <Content Include="Areas\Schedule\Scripts\editInstructorName.js" />
     <Content Include="Areas\Schedule\Scripts\createInstructor.js" />

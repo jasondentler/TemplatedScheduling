@@ -78,6 +78,12 @@ namespace ISIS.Web.Areas.Schedule.Controllers
             return this.RedirectToAction(c => c.Details(model.Id));
         }
 
+        [HttpPost]
+        public RedirectToRouteResult RemoveInstructor(Remove model)
+        {
+            return this.RedirectToAction(c => c.Index());
+        }
+
 
         [NonAction]
         private Index GetInstructorsList()
@@ -123,45 +129,7 @@ namespace ISIS.Web.Areas.Schedule.Controllers
                         {Guid.NewGuid(), "Wednesday, 12:00 am - 10:00 am"},
                         {Guid.NewGuid(), "Thursday, 12:00 am - 10:00 am"},
                         {Guid.NewGuid(), "Friday, 12:00 am - 10:00 am"}
-                    },
-                new Dictionary<int, string>()
-                    {
-                        {0, "Sunday"},
-                        {1, "Monday"},
-                        {2, "Tuesday"},
-                        {3, "Wednesday"},
-                        {4, "Thursday"},
-                        {5, "Friday"},
-                        {6, "Saturday"}
-                    },
-                GetBlackoutStartTimes(),
-                GetBlackoutEndTimes());
-        }
-
-        [NonAction]
-        private IDictionary<int, string> GetBlackoutStartTimes()
-        {
-            var startTimes = new Dictionary<int, string>();
-            var minutesToAdd = 0;
-            while (DateTime.Today.AddMinutes(minutesToAdd) < DateTime.Today.AddDays(1))
-            {
-                startTimes.Add(minutesToAdd, DateTime.Today.AddMinutes(minutesToAdd).ToShortTimeString());
-                minutesToAdd += 15;
-            }
-            return startTimes;
-        }
-
-        [NonAction]
-        private IDictionary<int, string> GetBlackoutEndTimes()
-        {
-            var endTimes = new Dictionary<int, string>();
-            var minutesToAdd = 15;
-            while (DateTime.Today.AddMinutes(minutesToAdd) <= DateTime.Today.AddDays(1))
-            {
-                endTimes.Add(minutesToAdd, DateTime.Today.AddMinutes(minutesToAdd).ToShortTimeString());
-                minutesToAdd += 15;
-            }
-            return endTimes;
+                    });
         }
 
         private static Random rnd = new Random();
@@ -178,11 +146,11 @@ namespace ISIS.Web.Areas.Schedule.Controllers
         [NonAction]
         private IEnumerable<CalendarItem> GenerateCalendarItems()
         {
-            var itemCount = rnd.Next(12, 50);
+            var itemCount = rnd.Next(0, 20);
             for (var i = 0; i < itemCount; i++)
                 yield return GenerateCalendarItem();
 
-            var blackoutCount = rnd.Next(5, 5);
+            var blackoutCount = rnd.Next(0, 5);
             for (var i = 0; i < blackoutCount; i++)
             {
                 var item = GenerateCalendarItem();
