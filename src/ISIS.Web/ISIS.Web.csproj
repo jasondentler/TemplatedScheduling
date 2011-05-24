@@ -79,6 +79,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Schedule\Scripts\changeTemplateCapacity.js" />
+    <Content Include="Areas\Schedule\Scripts\renameTemplate.js" />
+    <Content Include="Areas\Schedule\Scripts\removeTemplate.js" />
+    <Content Include="Areas\Schedule\Scripts\createSection.js" />
     <Content Include="Areas\Schedule\Scripts\copyTemplate.js" />
     <Content Include="Areas\Schedule\Scripts\templateList.js" />
     <Content Include="Areas\Schedule\Scripts\removeInstructor.js" />
@@ -116,6 +120,7 @@
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\templateDialog.js" />
     <Content Include="Scripts\fullcalendar\fullcalendar.js" />
     <Content Include="Scripts\fullcalendar\fullcalendar.min.js" />
     <Content Include="Scripts\fullcalendar\gcal.js" />

@@ -13,6 +13,10 @@ namespace ISIS.Web.Areas.Schedule.Models.Template
         public string InstructorName { get; set; }
         public IEnumerable<string> InstructorEquipment { get; set; }
         public IEnumerable<string> StudentEquipment { get; set; }
+        public bool CanRename { get; set; }
+        public bool CanRemove { get; set; }
+        public bool CanSetRoom { get; set; }
+        public bool CanSetInstructor { get; set; }
 
         public Details(IEnumerable<TemplateListItem> templates,
             Guid id,
@@ -22,7 +26,11 @@ namespace ISIS.Web.Areas.Schedule.Models.Template
             string roomName,
             string instructorName,
             IEnumerable<string> instructorEquipment,
-            IEnumerable<string> studentEquipment)
+            IEnumerable<string> studentEquipment,
+            bool canRename,
+            bool canRemove,
+            bool canSetRoom,
+            bool canSetInstructor)
             : base(templates)
         {
             Id = id;
@@ -33,6 +41,10 @@ namespace ISIS.Web.Areas.Schedule.Models.Template
             InstructorName = instructorName;
             InstructorEquipment = instructorEquipment;
             StudentEquipment = studentEquipment;
+            CanRename = canRename;
+            CanRemove = canRemove;
+            CanSetRoom = canSetRoom;
+            CanSetInstructor = canSetInstructor;
         }
     }
 }

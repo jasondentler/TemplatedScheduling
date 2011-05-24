@@ -11,15 +11,19 @@
     <div class="content">
         <ul class="links">
             <li><a href="#" id="copyTemplateLink">Copy Template</a></li>
-            <li>@(Html.TemplateActionLink("Create Section","#", new {id = "${Id}"}))</li>
-            <li>@(Html.TemplateActionLink("Delete Template","#", new {id = "${Id}"}))</li>
+            <li><a href="#" id="createSectionLink">Create Section</a></li>
+            <li><a href="#" id="removeTemplateLink">Remove Template</a></li>
         </ul>
         <div class="display-label">Template</div>
-        <div class="display-field">${TemplateName}</div>
+        <div class="display-field">${TemplateName}
+            <button id="renameTemplate" class="icon-pencil no-text">Rename Template</button>
+        </div>
         <div class="display-label">Course</div>
         <div class="display-field">${CourseName}</div>
         <div class="display-label">Capacity</div>
-        <div class="display-field">${Capacity}</div>
+        <div class="display-field">${Capacity}
+            <button id="changeCapacity" class="icon-pencil no-text">Change Capacity</button>
+        </div>
         <div class="display-label">Room</div>
         <div class="display-field">
             {{if RoomName}}
@@ -75,9 +79,62 @@
             </div>
         }
     </div>
+
+    <div id="createSectionDialog" title="Create Section" class="hidden">
+        @using (Html.BeginForm<TemplateController>(c => c.CreateSection(null), FormMethod.Post, new { id = "createSectionForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" Name="TemplateId" value="${Id}" />
+            <input type="hidden" Name="SectionId" value="@Guid.NewGuid()" />
+            <div class="editor-label">Section Number</div>
+            <div class="editor-field">
+                <input type="textbox" Name="SectionNumber"/>
+            </div>
+        }
+    </div>
+
+    <div id="removeTemplateDialog" title="Remove Template" class="hidden">
+        @using (Html.BeginForm<TemplateController>(c => c.RemoveTemplate(null), FormMethod.Post, new {id = "removeTemplateForm"}))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" Name="Id" value="${Id}" />
+            <div>Are you sure you want to remove this template?</div>
+        }
+    </div>
+
+    <div id="renameTemplateDialog" title="Rename Template" class="hidden">
+        @using (Html.BeginForm<TemplateController>(c => c.RenameTemplate(null), FormMethod.Post, new { id = "renameTemplateForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" Name="Id" value="${Id}" />
+            <div class="editor-label">New Template Name</div>
+            <div class="editor-field">
+                <input type="textbox" Name="TemplateName" value="${TemplateName}"/>
+            </div>
+        }
+    </div>
+
+    <div id="changeCapacityDialog" title="Change Capacity" class="hidden">
+        @using (Html.BeginForm<TemplateController>(c => c.ChangeCapacity(null), FormMethod.Post, new { id = "changeCapacityForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" Name="Id" value="${Id}" />
+            <div class="editor-label">New Capacity</div>
+            <div class="editor-field">
+                <input type="textbox" Name="Capacity" value="${Capacity}"/>
+            </div>
+        }
+    </div>
+
+
+
 </script>
 
 <script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/copyTemplate.js")"></script>
+<script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/createSection.js")"></script>
+<script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/removeTemplate.js")"></script>
+<script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/renameTemplate.js")"></script>
+<script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/changeTemplateCapacity.js")"></script>
 
 
 <div id="placeholder" />

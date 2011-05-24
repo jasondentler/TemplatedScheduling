@@ -32,7 +32,29 @@ namespace ISIS.Web.Areas.Schedule.Controllers
             return this.RedirectToAction(c => c.Details(model.CopyId));
         }
 
+        [HttpPost]
+        public RedirectToRouteResult CreateSection(CreateSection model)
+        {
+            return this.RedirectToAction<SectionController>(c => c.Details(model.SectionId));
+        }
 
+        [HttpPost]
+        public RedirectToRouteResult RemoveTemplate(Remove model)
+        {
+            return this.RedirectToAction(c => c.Index());
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult RenameTemplate(Rename model)
+        {
+            return this.RedirectToAction(c => c.Details(model.Id));
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult ChangeCapacity(ChangeCapacity model)
+        {
+            return this.RedirectToAction(c => c.Details(model.Id));
+        }
 
         [NonAction]
         private ITemplateList GetTemplateList()
@@ -65,9 +87,12 @@ namespace ISIS.Web.Areas.Schedule.Controllers
                 null,
                 null,
                 new[] {"1 Whiteboard", "1 PC", "1 Projector"},
-                new string[0]);
+                new string[0],
+                false,
+                false,
+                false,
+                false);
         }
-
 
     }
 }

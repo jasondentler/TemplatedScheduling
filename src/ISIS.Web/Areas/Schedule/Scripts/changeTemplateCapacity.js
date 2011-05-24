@@ -1,7 +1,9 @@
 ﻿/// <reference path="../../Scripts/templateDialog.js" />
 ConfigureDialog(
-    "#editInstructorNameDialog",
-    "#editInstructorNameForm",
-    "Change Name",
-    ".editInstructorName",
+    "#changeCapacityDialog",
+    "#changeCapacityForm",
+    "Yes, change capacity",
+    "#changeCapacity",
     function () { return true; });
+
+
