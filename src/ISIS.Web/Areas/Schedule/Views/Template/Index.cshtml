@@ -1,0 +1,13 @@
+﻿@model Index
+@{
+    ViewBag.Title = "Templates";
+}
+
+@Html.Partial("_TemplateList")
+
+<script id="template" type="text/html">
+{{tmpl "#templateListTemplate"}}
+<h2 class="hint">Choose a template from the left</h2>
+</script>
+
+<div id="placeholder" />

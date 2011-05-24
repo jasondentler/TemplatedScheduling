@@ -260,3 +260,9 @@ h2.hint
 	clear: left;
 	display: inline-block;	
 }
+
+.disabled 
+{
+	color: #808080;
+	font-weight: bold;
+}

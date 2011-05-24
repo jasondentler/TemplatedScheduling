@@ -12,6 +12,7 @@
     <div class="content">
         <ul class="links">
             <li>@(Html.TemplateActionLink("View Schedule","Calendar", new {id = "${Id}"}))</li>
+            <li><a id="removeInstructor" href="#">Remove Instructor</a></li>
         </ul>
 
         <div class="display-label">First Name</div>
@@ -71,8 +72,6 @@
                 <input type="submit" value="Remove Blackout Times" class="icon-closethick" />
             }
         </fieldset>
-
-        <button id="removeInstructor">Remove Instructor</button>
 
     </div>
 

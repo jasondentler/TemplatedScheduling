@@ -6,6 +6,7 @@ afterBind = [];
 $(document).ready(function () {
     afterBind.push(function () {
         $(':button,:submit,.button').button();
+        $('.links').buttonset();
         $('.icon-pencil').button("option", "icons", { primary: "ui-icon-pencil" });
         $('.icon-plusthick').button("option", "icons", { primary: "ui-icon-plusthick" });
         $('.icon-closethick').button("option", "icons", { primary: "ui-icon-closethick" });

@@ -1,0 +1,83 @@
+﻿@model Details
+@{
+    ViewBag.Title = Model.TemplateName;
+    ViewData["Breadcrumbs"] = new[] { new Breadcrumb("Templates", @Url.Action("Index")) };
+}
+
+@Html.Partial("_TemplateList")
+
+<script id="template" type="text/html">
+{{tmpl "#templateListTemplate"}}
+    <div class="content">
+        <ul class="links">
+            <li><a href="#" id="copyTemplateLink">Copy Template</a></li>
+            <li>@(Html.TemplateActionLink("Create Section","#", new {id = "${Id}"}))</li>
+            <li>@(Html.TemplateActionLink("Delete Template","#", new {id = "${Id}"}))</li>
+        </ul>
+        <div class="display-label">Template</div>
+        <div class="display-field">${TemplateName}</div>
+        <div class="display-label">Course</div>
+        <div class="display-field">${CourseName}</div>
+        <div class="display-label">Capacity</div>
+        <div class="display-field">${Capacity}</div>
+        <div class="display-label">Room</div>
+        <div class="display-field">
+            {{if RoomName}}
+                ${RoomName}
+            {{else}}
+                <span class="disabled">Not Set</span>
+            {{/if}}
+        </div>
+        <div class="display-label">Instructor</div>
+        <div class="display-field">
+            {{if InstructorName}}
+                ${InstructorName}
+            {{else}}
+                <span class="disabled">Not Set</span>
+            {{/if}}
+        </div>
+        <fieldset>
+            <legend>Instructor Equipment</legend>
+            {{if InstructorEquipment.length}}
+            <ul>
+                {{each InstructorEquipment}}
+                    <li>${$value}</li>
+                {{/each}}
+            </ul>
+            {{else}}
+                <span class="disabled">None</span>
+            {{/if}}
+        </fieldset>
+        <fieldset>
+            <legend>Student Equipment</legend>
+            {{if StudentEquipment.length}}
+            <ul>
+                {{each StudentEquipment}}
+                    <li>${$value}</li>
+                {{/each}}
+            </ul>
+            {{else}}
+                <span class="disabled">None</span>
+            {{/if}}
+        </fieldset>
+    </div>
+
+
+    <div id="copyTemplateDialog" title="Copy Template" class="hidden">
+        @using (Html.BeginForm<TemplateController>(c => c.CopyTemplate(null), FormMethod.Post, new { id = "copyTemplateForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" Name="SourceId" value="${Id}" />
+            <input type="hidden" Name="CopyId" value="@Guid.NewGuid()" />
+            <div class="editor-label">New Template Name</div>
+            <div class="editor-field">
+                <input type="textbox" Name="CopyName" value="${TemplateName}"/>
+            </div>
+        }
+    </div>
+</script>
+
+<script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/copyTemplate.js")"></script>
+
+
+<div id="placeholder" />

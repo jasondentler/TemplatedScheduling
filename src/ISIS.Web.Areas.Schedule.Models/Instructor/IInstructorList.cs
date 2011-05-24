@@ -5,6 +5,8 @@ namespace ISIS.Web.Areas.Schedule.Models.Instructor
 {
     public interface IInstructorList : IJsonSerializable 
     {
+
         IEnumerable<InstructorListItem> Instructors { get; }
+
     }
 }
