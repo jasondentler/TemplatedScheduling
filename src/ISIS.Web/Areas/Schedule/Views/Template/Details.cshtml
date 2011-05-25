@@ -31,6 +31,9 @@
             {{else}}
                 <span class="disabled">Not Set</span>
             {{/if}}
+            {{if CanChangeRoom}}
+                @(Html.TemplateActionLink("Change Room", "ChangeRoom",new {Id="${Id}"}, new {@class="button icon-pencil no-text"}))
+            {{/if}}
         </div>
         <div class="display-label">Instructor</div>
         <div class="display-field">
@@ -39,9 +42,14 @@
             {{else}}
                 <span class="disabled">Not Set</span>
             {{/if}}
+            {{if CanChangeInstructor}}
+                @(Html.TemplateActionLink("Change Instructor", "ChangeInstructor",new {Id="${Id}"}, new {@class="button icon-pencil no-text"}))
+            {{/if}}
         </div>
         <fieldset>
-            <legend>Instructor Equipment</legend>
+            <legend>Instructor Equipment
+                @(Html.TemplateActionLink("Change Instructor Equipment", "ChangeInstructorEquipment",new {Id="${Id}"}, new {@class="button icon-pencil no-text"}))
+            </legend>
             {{if InstructorEquipment.length}}
             <ul>
                 {{each InstructorEquipment}}
@@ -53,7 +61,9 @@
             {{/if}}
         </fieldset>
         <fieldset>
-            <legend>Student Equipment</legend>
+            <legend>Student Equipment
+                @(Html.TemplateActionLink("Change Student Equipment", "ChangeStudentEquipment",new {Id="${Id}"}, new {@class="button icon-pencil no-text"}))
+            </legend>
             {{if StudentEquipment.length}}
             <ul>
                 {{each StudentEquipment}}

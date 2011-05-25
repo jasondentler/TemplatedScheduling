@@ -84,7 +84,6 @@ namespace ISIS.Web.Areas.Schedule.Controllers
             return this.RedirectToAction(c => c.Index());
         }
 
-
         [NonAction]
         private Index GetInstructorsList()
         {

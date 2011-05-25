@@ -26,6 +26,30 @@ namespace ISIS.Web.Areas.Schedule.Controllers
             return View(GetDetails(Id));
         }
 
+        [HttpGet]
+        public ActionResult ChangeRoom(Guid Id)
+        {
+            return Content("Template #" + Id.ToString());
+        }
+
+        [HttpGet]
+        public ActionResult ChangeInstructor(Guid Id)
+        {
+            return Content("Template #" + Id.ToString());
+        }
+
+        [HttpGet]
+        public ActionResult ChangeInstructorEquipment(Guid Id)
+        {
+            return Content("Template #" + Id.ToString());
+        }
+
+        [HttpGet]
+        public ActionResult ChangeStudentEquipment(Guid Id)
+        {
+            return Content("Template #" + Id.ToString());
+        }
+
         [HttpPost]
         public RedirectToRouteResult CopyTemplate(Copy model)
         {
@@ -67,6 +91,7 @@ namespace ISIS.Web.Areas.Schedule.Controllers
                         new TemplateListItem(Guid.NewGuid(), "MATH 1301 College Algebra", "Online Algebra"),
                         new TemplateListItem(Guid.NewGuid(), "MATH 1302 Trigonometry", "Basic Trigonometry"),
                         new TemplateListItem(Guid.NewGuid(), "MATH 2301 Calculus 1", "Basic Calculus 1"),
+                        new TemplateListItem(Guid.NewGuid(), "MATH 2301 Calculus 1", "Calculus 1 Online"),
                         new TemplateListItem(Guid.NewGuid(), "MATH 2302 Calculus 2", "Basic Calculus 2"),
                         new TemplateListItem(Guid.NewGuid(), "MATH 0309 Developmental Math 3", "Basic Developmental Math 3"),
                         new TemplateListItem(Guid.NewGuid(), "MATH 0308 Developmental Math 2", "Basic Developmental Math 2"),
@@ -82,16 +107,16 @@ namespace ISIS.Web.Areas.Schedule.Controllers
                 templates,
                 Id,
                 "MATH 2301 Calculus 1",
-                "Basic Calculus 1",
+                "Calculus 1 Online",
                 25,
                 null,
                 null,
                 new[] {"1 Whiteboard", "1 PC", "1 Projector"},
                 new string[0],
-                false,
-                false,
-                false,
-                false);
+                true,
+                true,
+                true,
+                true);
         }
 
     }
