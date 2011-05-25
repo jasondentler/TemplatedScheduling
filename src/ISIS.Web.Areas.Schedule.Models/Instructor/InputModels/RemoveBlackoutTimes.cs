@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace ISIS.Web.Areas.Schedule.Models.Instructor
+namespace ISIS.Web.Areas.Schedule.Models.Instructor.InputModels
 {
     public class RemoveBlackoutTimes
     {

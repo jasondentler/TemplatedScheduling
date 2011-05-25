@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ISIS.Web.Areas.Schedule.Models.Template
+namespace ISIS.Web.Areas.Schedule.Models.Template.ViewModels
 {
     public class TemplateListItem
     {

@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
-using ISIS.Web.Areas.Schedule.Models.Template;
+using ISIS.Web.Areas.Schedule.Models.Template.InputModels;
+using ISIS.Web.Areas.Schedule.Models.Template.ViewModels;
 using Microsoft.Web.Mvc;
+using ChangeInstructor = ISIS.Web.Areas.Schedule.Models.Template.InputModels.ChangeInstructor;
 
 namespace ISIS.Web.Areas.Schedule.Controllers
 {
@@ -35,7 +38,9 @@ namespace ISIS.Web.Areas.Schedule.Controllers
         [HttpGet]
         public ActionResult ChangeInstructor(Guid Id)
         {
-            return Content("Template #" + Id.ToString());
+            if (!Request.IsAjaxRequest())
+                return HttpNotFound("Not a JSON request");
+            return Json(GetChangeInstructor(Id), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -80,6 +85,12 @@ namespace ISIS.Web.Areas.Schedule.Controllers
             return this.RedirectToAction(c => c.Details(model.Id));
         }
 
+        [HttpPost]
+        public RedirectToRouteResult ChangeInstructor(ChangeInstructor model)
+        {
+            return this.RedirectToAction(c => c.Details(model.Id));
+        }
+
         [NonAction]
         private ITemplateList GetTemplateList()
         {
@@ -116,7 +127,29 @@ namespace ISIS.Web.Areas.Schedule.Controllers
                 true,
                 true,
                 true,
-                true);
+                true,
+                Url.Action("ChangeInstructor", new {Id = Id}));
+        }
+
+        [NonAction]
+        private Models.Template.ViewModels.ChangeInstructor GetChangeInstructor(Guid Id)
+        {
+            var instructors = new Dictionary<Guid, string>()
+                                  {
+                                      {Guid.NewGuid(), "John Smith"},
+                                      {Guid.NewGuid(), "Joe Smith"},
+                                      {Guid.NewGuid(), "Jim Smith"},
+                                      {Guid.NewGuid(), "James Smith"},
+                                      {Guid.NewGuid(), "Jane Smith"},
+                                      {Guid.NewGuid(), "Juan Smith"}
+                                  };
+            var templates = GetTemplateList().Templates;
+            return new Models.Template.ViewModels.ChangeInstructor(
+                templates,
+                Id,
+                "Calculus 1 Online",
+                "MATH 2301 Calculus 1",
+                instructors);
         }
 
     }

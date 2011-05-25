@@ -1,0 +1,23 @@
+﻿<script id="changeInstructorTemplate" type="text/html">
+    @using (Html.BeginForm<TemplateController>(c => c.ChangeInstructor(null), FormMethod.Post, new {id = "changeInstructorForm"})) {
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="Id" value="${Id}" />
+        <div class="editor-label">New Instructor</div>
+        <div class="editor-field">
+            <select name="InstructorId" id="instructorId">
+                <option value="@Guid.Empty.ToString()">Not Set</option>
+            {{each QualifiedInstructors}}
+                <option value="${$index}">${$value}</option>
+            {{/each}}
+            </select>
+        </div>
+    }
+</script>
+
+<script id="emptyChangeInstructorTemplate" type="text/html">
+    <h5 class="disabled">Getting the list of instructors qualified to teach this course. Please wait.</h5>
+</script>
+
+<div id="changeInstructorDialog" title="Change Instructor" class="hidden"></div>
+
+<script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/changeInstructor.js")"></script>

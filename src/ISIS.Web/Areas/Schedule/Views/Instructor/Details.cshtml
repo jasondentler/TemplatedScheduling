@@ -1,4 +1,5 @@
-﻿@model Details
+﻿
+@model Details
 @{
     ViewBag.Title = string.Format("{0} {1}", Model.FirstName, Model.LastName);
     ViewData["Breadcrumbs"] = new[] {new Breadcrumb("Instructors", @Url.Action("Index"))};

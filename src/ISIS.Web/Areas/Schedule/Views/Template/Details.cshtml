@@ -5,6 +5,7 @@
 }
 
 @Html.Partial("_TemplateList")
+@Html.Partial("_ChangeInstructor")
 
 <script id="template" type="text/html">
 {{tmpl "#templateListTemplate"}}
@@ -42,9 +43,7 @@
             {{else}}
                 <span class="disabled">Not Set</span>
             {{/if}}
-            {{if CanChangeInstructor}}
-                @(Html.TemplateActionLink("Change Instructor", "ChangeInstructor",new {Id="${Id}"}, new {@class="button icon-pencil no-text"}))
-            {{/if}}
+            <a href="#" id="changeInstructorLink" class="button icon-pencil no-text">Change Instructor</a>
         </div>
         <fieldset>
             <legend>Instructor Equipment
@@ -94,7 +93,7 @@
         @using (Html.BeginForm<TemplateController>(c => c.CreateSection(null), FormMethod.Post, new { id = "createSectionForm" }))
         {
             @Html.AntiForgeryToken()
-            <input type="hidden" Name="TemplateId" value="${Id}" />
+            <input type="hidden" Name="Id" value="${Id}" />
             <input type="hidden" Name="SectionId" value="@Guid.NewGuid()" />
             <div class="editor-label">Section Number</div>
             <div class="editor-field">
@@ -135,8 +134,6 @@
             </div>
         }
     </div>
-
-
 
 </script>
 

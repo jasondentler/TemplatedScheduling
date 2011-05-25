@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web.Mvc;
 using ISIS.Web.Areas.Schedule.Models;
 using ISIS.Web.Areas.Schedule.Models.Instructor;
+using ISIS.Web.Areas.Schedule.Models.Instructor.InputModels;
+using ISIS.Web.Areas.Schedule.Models.Instructor.ViewModels;
 using Microsoft.Web.Mvc;
 
 namespace ISIS.Web.Areas.Schedule.Controllers

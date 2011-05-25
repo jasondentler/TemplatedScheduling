@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ISIS.Web.Areas.Schedule.Models.Instructor
+namespace ISIS.Web.Areas.Schedule.Models.Instructor.ViewModels
 {
     public class Details : Index
     {
