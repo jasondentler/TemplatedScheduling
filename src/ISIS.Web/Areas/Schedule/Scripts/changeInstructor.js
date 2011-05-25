@@ -5,8 +5,7 @@ afterBind.push(function () {
     $("#changeInstructorDialog").dialog({
         disabled: true,
         autoOpen: false,
-        height: 300,
-        width: 350,
+        width: 500,
         modal: true,
         buttons: [{
             text: "Yes, change instructor",
@@ -43,7 +42,9 @@ function enableChangeInstructorDialogButton() {
 
 function getQualifiedInstructors(callback) {
     var url = model.GetQualifiedInstructorsUrl;
-    $.getJSON(url, callback);
+    $.getJSON(url, function (data) {
+        callback(data);
+    });
 }
 
 function bindTemplate(model) {
@@ -55,4 +56,7 @@ function bindTemplate(model) {
 function emptyDialog() {
     var content = $("#emptyChangeInstructorTemplate").tmpl(model);
     $("#changeInstructorDialog").html(content);
+    $("#changeInstructorLoadingInstructorsProgress").progressbar({
+            value: 100
+        });
 }

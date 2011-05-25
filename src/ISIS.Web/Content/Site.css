@@ -266,3 +266,8 @@ h2.hint
 	color: #808080;
 	font-weight: bold;
 }
+
+.ui-progressbar-value 
+{ 
+	background-image: url(images/pbar-ani.gif); 
+}

@@ -9,8 +9,7 @@ function ConfigureDialog(dialog, form, okButtonText, activatingButton, allowed) 
     afterBind.push(function () {
         $(dialog).dialog({
                 autoOpen: false,
-                height: 300,
-                width: 350,
+                width: 500,
                 modal: true,
                 buttons: [{
                     text: okButtonText,

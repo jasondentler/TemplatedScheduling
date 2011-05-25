@@ -38,6 +38,7 @@ namespace ISIS.Web.Areas.Schedule.Controllers
         [HttpGet]
         public ActionResult ChangeInstructor(Guid Id)
         {
+            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(10));
             if (!Request.IsAjaxRequest())
                 return HttpNotFound("Not a JSON request");
             return Json(GetChangeInstructor(Id), JsonRequestBehavior.AllowGet);
