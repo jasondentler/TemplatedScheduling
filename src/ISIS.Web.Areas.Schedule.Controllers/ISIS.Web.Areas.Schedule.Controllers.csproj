@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImageController.cs" />
     <Compile Include="SectionController.cs" />
     <Compile Include="TemplateController.cs" />
     <Compile Include="HomeController.cs" />

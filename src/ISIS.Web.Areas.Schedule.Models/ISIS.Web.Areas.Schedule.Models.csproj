@@ -67,6 +67,7 @@
     <Compile Include="Template\InputModels\Copy.cs" />
     <Compile Include="Template\ViewModels\ChangeInstructor.cs" />
     <Compile Include="Template\ViewModels\ChangeInstructorEquipment.cs" />
+    <Compile Include="Template\ViewModels\ChangeRoom.cs" />
     <Compile Include="Template\ViewModels\ChangeStudentEquipment.cs" />
     <Compile Include="Template\ViewModels\Details.cs" />
     <Compile Include="Template\ViewModels\Index.cs" />

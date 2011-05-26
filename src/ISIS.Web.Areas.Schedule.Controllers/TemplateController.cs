@@ -33,7 +33,9 @@ namespace ISIS.Web.Areas.Schedule.Controllers
         [HttpGet]
         public ActionResult ChangeRoom(Guid Id)
         {
-            return Content("Template #" + Id.ToString());
+            if (Request.IsAjaxRequest())
+                return Json(GetChangeRoom(Id), JsonRequestBehavior.AllowGet);
+            return View(GetChangeRoom(Id));
         }
 
         [HttpGet]
@@ -234,6 +236,18 @@ namespace ISIS.Web.Areas.Schedule.Controllers
                            "Chalkboard",
                            "Lab Sink"
                        }.OrderBy(s => s);
+        }
+
+        [NonAction]
+        private ChangeRoom GetChangeRoom(Guid Id)
+        {
+            var templates = GetTemplateList().Templates;
+
+            return new ChangeRoom(
+                templates,
+                Id,
+                "MATH 2301 Calculus 1",
+                "Calculus 1 Online");
         }
 
     }
