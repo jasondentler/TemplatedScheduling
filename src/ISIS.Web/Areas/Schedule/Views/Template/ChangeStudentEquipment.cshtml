@@ -1,6 +1,6 @@
-﻿@model ChangeInstructorEquipment
+﻿@model ChangeStudentEquipment
 @{
-    ViewBag.Title = "Instructor Equipment";
+    ViewBag.Title = "Student Equipment";
     ViewData["Breadcrumbs"] = new[]
                                   {
                                       new Breadcrumb("Templates", @Url.Action("Index")),
@@ -16,7 +16,7 @@
         <div class="display-label">Template</div>
         <div class="display-field">${TemplateName}</div>
         <div class="editor-field">
-            @using (Html.BeginForm<TemplateController>(c => c.AddInstructorEquipment(null), FormMethod.Post))
+            @using (Html.BeginForm<TemplateController>(c => c.AddStudentEquipment(null), FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
                 <input type="hidden" name="TemplateId" value="${Id}" />
@@ -36,13 +36,25 @@
                     <option value="${$index}">${$value}</option>
                 {{/each}}
                 </select>
+                <select name="PerStudent">
+                    <option value="1">per student</option>
+                    <option value="2">per 2 students</option>
+                    <option value="3">per 3 students</option>
+                    <option value="4">per 4 students</option>
+                    <option value="5">per 5 students</option>
+                    <option value="6">per 6 students</option>
+                    <option value="7">per 7 students</option>
+                    <option value="8">per 8 students</option>
+                    <option value="9">per 9 students</option>
+                    <option value="10">per 10 students</option>
+                </select>
                 <input type="submit" value="Add" class="icon-plusthick" />
             }
         </div>
         <fieldset>
-            <legend>Instructor Equipment</legend>
+            <legend>Student Equipment</legend>
             {{if mapHasKeys(RequiredEquipment)}}
-            @using (Html.BeginForm<TemplateController>(c => c.RemoveInstructorEquipment(null), FormMethod.Post))
+            @using (Html.BeginForm<TemplateController>(c => c.RemoveStudentEquipment(null), FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
                 <input type="hidden" name="TemplateId" value="${Id}" />

@@ -2,7 +2,7 @@
 
 namespace ISIS.Web.Areas.Schedule.Models.Template.InputModels
 {
-    public class RemoveInstructorEquipment
+    public class RemoveStudentEquipment
     {
 
         public Guid TemplateId { get; set; }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -40,7 +39,7 @@ namespace ISIS.Web.Areas.Schedule.Controllers
         [HttpGet]
         public ActionResult ChangeInstructor(Guid Id)
         {
-            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(10));
+            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(2));
             if (!Request.IsAjaxRequest())
                 return HttpNotFound("Not a JSON request");
             return Json(GetChangeInstructor(Id), JsonRequestBehavior.AllowGet);
@@ -57,7 +56,9 @@ namespace ISIS.Web.Areas.Schedule.Controllers
         [HttpGet]
         public ActionResult ChangeStudentEquipment(Guid Id)
         {
-            return Content("Template #" + Id.ToString());
+            if (Request.IsAjaxRequest())
+                return Json(GetStudentEquipment(Id), JsonRequestBehavior.AllowGet);
+            return View(GetStudentEquipment(Id));
         }
 
         [HttpPost]
@@ -97,7 +98,7 @@ namespace ISIS.Web.Areas.Schedule.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult RemoveInstructorEquipment(RemoveInstructorEquipment  model)
+        public RedirectToRouteResult RemoveInstructorEquipment(RemoveInstructorEquipment model)
         {
             return this.RedirectToAction(c => c.ChangeInstructorEquipment(model.TemplateId));
         }
@@ -106,6 +107,18 @@ namespace ISIS.Web.Areas.Schedule.Controllers
         public RedirectToRouteResult AddInstructorEquipment(AddInstructorEquipment model)
         {
             return this.RedirectToAction(c => c.ChangeInstructorEquipment(model.TemplateId));
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult RemoveStudentEquipment(RemoveStudentEquipment model)
+        {
+            return this.RedirectToAction(c => c.ChangeStudentEquipment(model.TemplateId));
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult AddStudentEquipment(AddStudentEquipment model)
+        {
+            return this.RedirectToAction(c => c.ChangeStudentEquipment(model.TemplateId));
         }
 
         [NonAction]
@@ -143,7 +156,7 @@ namespace ISIS.Web.Areas.Schedule.Controllers
                 null,
                 null,
                 new[] {"1 Whiteboard", "1 PC", "1 Projector"},
-                new string[0],
+                new[] {"1 PC per student"},
                 true,
                 true,
                 true,
@@ -189,6 +202,24 @@ namespace ISIS.Web.Areas.Schedule.Controllers
                         {Guid.NewGuid(), "1 Whiteboard"},
                         {Guid.NewGuid(), "1 PC"},
                         {Guid.NewGuid(), "1 Projector"}
+                    });
+        }
+
+        [NonAction]
+        private ChangeStudentEquipment GetStudentEquipment(Guid Id)
+        {
+            var templates = GetTemplateList().Templates;
+            return new ChangeStudentEquipment(
+                templates,
+                Id,
+                "MATH 2301 Calculus 1",
+                "Calculus 1 Online",
+                GetEquipmentList().ToDictionary(
+                    i => Guid.NewGuid(),
+                    i => i),
+                new Dictionary<Guid, string>()
+                    {
+                        {Guid.NewGuid(), "1 PC per student"}
                     });
         }
 
