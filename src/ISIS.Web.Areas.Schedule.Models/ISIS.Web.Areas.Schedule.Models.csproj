@@ -55,13 +55,16 @@
     <Compile Include="Instructor\ViewModels\Index.cs" />
     <Compile Include="Instructor\ViewModels\InstructorListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Template\InputModels\AddInstructorEquipment.cs" />
     <Compile Include="Template\InputModels\ChangeCapacity.cs" />
     <Compile Include="Template\InputModels\ChangeInstructor.cs" />
+    <Compile Include="Template\InputModels\RemoveInstructorEquipment.cs" />
     <Compile Include="Template\InputModels\Rename.cs" />
     <Compile Include="Template\InputModels\Remove.cs" />
     <Compile Include="Template\InputModels\CreateSection.cs" />
     <Compile Include="Template\InputModels\Copy.cs" />
     <Compile Include="Template\ViewModels\ChangeInstructor.cs" />
+    <Compile Include="Template\ViewModels\ChangeInstructorEquipment.cs" />
     <Compile Include="Template\ViewModels\Details.cs" />
     <Compile Include="Template\ViewModels\Index.cs" />
     <Compile Include="Template\ViewModels\ITemplateList.cs" />

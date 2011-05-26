@@ -1,0 +1,65 @@
+﻿@model ChangeInstructorEquipment
+@{
+    ViewBag.Title = "Instructor Equipment";
+    ViewData["Breadcrumbs"] = new[]
+                                  {
+                                      new Breadcrumb("Templates", @Url.Action("Index")),
+                                      new Breadcrumb(Model.TemplateName, @Url.Action("Details", new {id = Model.Id}))
+                                  };
+}
+
+@Html.Partial("_TemplateList")
+
+<script id="template" type="text/html" />
+{{tmpl "#templateListTemplate"}}
+    <div class="content">
+        <div class="display-label">Template</div>
+        <div class="display-field">${TemplateName}</div>
+        <div class="editor-field">
+            @using (Html.BeginForm<TemplateController>(c => c.AddInstructorEquipment(null), FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="TemplateId" value="${Id}" />
+                <select name="Quantity">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                </select>
+                <select name="EquipmentId">
+                {{each EquipmentList}}
+                    <option value="${$index}">${$value}</option>
+                {{/each}}
+                </select>
+                <input type="submit" value="Add" class="icon-plusthick" />
+            }
+        </div>
+        <fieldset>
+            <legend>Instructor Equipment</legend>
+            {{if mapHasKeys(RequiredEquipment)}}
+            @using (Html.BeginForm<TemplateController>(c => c.RemoveInstructorEquipment(null), FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="TemplateId" value="${Id}" />
+                @:{{each RequiredEquipment}}
+                        <div>
+                            <input type="checkbox" id="equipment${$index}" name="InstructorEquipmentId" value="${$index}" />
+                            <label for="equipment${$index}">${$value}</label>
+                        </div>
+                @:{{/each}}
+                <input type="submit" value="Remove Checked Equipment" class="icon-crossthick" />
+            }
+
+            {{else}}
+                <span class="disabled">None</span>
+            {{/if}}
+        </fieldset>
+    </div>
+</script>
+
+<div id="placeholder" />

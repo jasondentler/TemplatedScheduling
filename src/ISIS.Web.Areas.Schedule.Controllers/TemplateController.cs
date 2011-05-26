@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using ISIS.Web.Areas.Schedule.Models.Template.InputModels;
 using ISIS.Web.Areas.Schedule.Models.Template.ViewModels;
@@ -47,7 +49,9 @@ namespace ISIS.Web.Areas.Schedule.Controllers
         [HttpGet]
         public ActionResult ChangeInstructorEquipment(Guid Id)
         {
-            return Content("Template #" + Id.ToString());
+            if (Request.IsAjaxRequest())
+                return Json(GetInstructorEquipment(Id), JsonRequestBehavior.AllowGet);
+            return View(GetInstructorEquipment(Id));
         }
 
         [HttpGet]
@@ -92,11 +96,23 @@ namespace ISIS.Web.Areas.Schedule.Controllers
             return this.RedirectToAction(c => c.Details(model.Id));
         }
 
+        [HttpPost]
+        public RedirectToRouteResult RemoveInstructorEquipment(RemoveInstructorEquipment  model)
+        {
+            return this.RedirectToAction(c => c.ChangeInstructorEquipment(model.TemplateId));
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult AddInstructorEquipment(AddInstructorEquipment model)
+        {
+            return this.RedirectToAction(c => c.ChangeInstructorEquipment(model.TemplateId));
+        }
+
         [NonAction]
         private ITemplateList GetTemplateList()
         {
             return new Index(
-                new []
+                new[]
                     {
                         new TemplateListItem(Guid.NewGuid(), "MATH 1301 College Algebra", "Basic College Algebra"),
                         new TemplateListItem(Guid.NewGuid(), "MATH 1301 College Algebra", "Computer Lab Algebra"),
@@ -105,9 +121,12 @@ namespace ISIS.Web.Areas.Schedule.Controllers
                         new TemplateListItem(Guid.NewGuid(), "MATH 2301 Calculus 1", "Basic Calculus 1"),
                         new TemplateListItem(Guid.NewGuid(), "MATH 2301 Calculus 1", "Calculus 1 Online"),
                         new TemplateListItem(Guid.NewGuid(), "MATH 2302 Calculus 2", "Basic Calculus 2"),
-                        new TemplateListItem(Guid.NewGuid(), "MATH 0309 Developmental Math 3", "Basic Developmental Math 3"),
-                        new TemplateListItem(Guid.NewGuid(), "MATH 0308 Developmental Math 2", "Basic Developmental Math 2"),
-                        new TemplateListItem(Guid.NewGuid(), "MATH 0307 Developmental Math 1", "Basic Developmental Math 1")
+                        new TemplateListItem(Guid.NewGuid(), "MATH 0309 Developmental Math 3",
+                                             "Basic Developmental Math 3"),
+                        new TemplateListItem(Guid.NewGuid(), "MATH 0308 Developmental Math 2",
+                                             "Basic Developmental Math 2"),
+                        new TemplateListItem(Guid.NewGuid(), "MATH 0307 Developmental Math 1",
+                                             "Basic Developmental Math 1")
                     });
         }
 
@@ -151,6 +170,39 @@ namespace ISIS.Web.Areas.Schedule.Controllers
                 "Calculus 1 Online",
                 "MATH 2301 Calculus 1",
                 instructors);
+        }
+
+        [NonAction]
+        private ChangeInstructorEquipment GetInstructorEquipment(Guid Id)
+        {
+            var templates = GetTemplateList().Templates;
+            return new ChangeInstructorEquipment(
+                templates,
+                Id,
+                "MATH 2301 Calculus 1",
+                "Calculus 1 Online",
+                GetEquipmentList().ToDictionary(
+                    i => Guid.NewGuid(),
+                    i => i),
+                new Dictionary<Guid, string>()
+                    {
+                        {Guid.NewGuid(), "1 Whiteboard"},
+                        {Guid.NewGuid(), "1 PC"},
+                        {Guid.NewGuid(), "1 Projector"}
+                    });
+        }
+
+        [NonAction]
+        private IEnumerable<string> GetEquipmentList()
+        {
+            return new[]
+                       {
+                           "Whiteboard",
+                           "PC",
+                           "Projector",
+                           "Chalkboard",
+                           "Lab Sink"
+                       }.OrderBy(s => s);
         }
 
     }

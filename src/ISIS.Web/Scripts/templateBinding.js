@@ -24,4 +24,15 @@ function Bind() {
         }
     }
 }
-        
+
+function mapIsEmpty(map) {
+    for (var key in map) {
+        if (map.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
+
+function mapHasKeys(map) {
+    return !mapIsEmpty(map);
+}
