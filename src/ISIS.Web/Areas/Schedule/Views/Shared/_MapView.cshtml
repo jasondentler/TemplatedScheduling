@@ -23,17 +23,16 @@
                 var options = {  };
                 switch (avail.Status) {
                     case 0: // Available
-                        options = { fill: 'none', stroke: '#D90000', strokeWidth: 10 };
+                        options = { fill: 'green', fillOpacity: 0.5, stroke: 'none', strokeWidth: 3 };
                         break;
                     case 1: // Unavailable
-                        options = { fill: 'none', stroke: '#D90000', strokeWidth: 10 };
+                        options = { fill: 'red', fillOpacity: 0.5, stroke: 'none', strokeWidth: 3 };
                         break;
                     case 2: // ReducedCapacity
-                        options = { fill: 'none', stroke: '#D90000', strokeWidth: 10 };
+                        options = { fill: 'yellow', fillOpacity: 0.5, stroke: 'none', strokeWidth: 3 };
                         break;
                 };
-                var path = svg.createPath();
-                svg.path(path.line(points).close(), options);
+                svg.polygon(points, options);
             }
         }
     }
