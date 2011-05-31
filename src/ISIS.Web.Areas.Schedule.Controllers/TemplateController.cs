@@ -247,7 +247,25 @@ namespace ISIS.Web.Areas.Schedule.Controllers
                 templates,
                 Id,
                 "MATH 2301 Calculus 1",
-                "Calculus 1 Online");
+                "Calculus 1 Online",
+                new[]
+                    {
+                        new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "100", RoomStatuses.Available),
+                        new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "105", RoomStatuses.Unavailable,
+                                             "MATH 0309.01"),
+                        new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "111", RoomStatuses.ReducedCapacity,
+                                             "Missing 1 whiteboard"),
+                        new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "112", RoomStatuses.Unavailable,
+                                             "ENGL 1301.01"),
+                        new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "125", RoomStatuses.ReducedCapacity,
+                                             "Capacity: 15"),
+                        new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "125A", RoomStatuses.Available),
+                        new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "126", RoomStatuses.ReducedCapacity,
+                                             "Capacity: 17"),
+                        new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "127", RoomStatuses.Available),
+                        new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "129", RoomStatuses.Unavailable,
+                                             "ENGL 1302.01")
+                    });
         }
 
     }

@@ -92,6 +92,8 @@
     <Content Include="Areas\Schedule\Scripts\createInstructor.js" />
     <Content Include="Content\fullcalendar\fullcalendar.css" />
     <Content Include="Content\fullcalendar\fullcalendar.print.css" />
+    <Content Include="Content\images\buildings\G1.js" />
+    <Content Include="Content\jquery.svg.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -137,6 +139,25 @@
     <Content Include="Content\themes\ui-lightness\jquery-ui-1.8.13.custom.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\jquery.svg.compat-1.0.1.js" />
+    <Content Include="Scripts\jquery.svg.js" />
+    <Content Include="Scripts\jquery.svg.min.js" />
+    <Content Include="Scripts\jquery.svg.pack.js" />
+    <Content Include="Scripts\jquery.svganim.js" />
+    <Content Include="Scripts\jquery.svganim.min.js" />
+    <Content Include="Scripts\jquery.svganim.pack.js" />
+    <Content Include="Scripts\jquery.svgdom.js" />
+    <Content Include="Scripts\jquery.svgdom.min.js" />
+    <Content Include="Scripts\jquery.svgdom.pack.js" />
+    <Content Include="Scripts\jquery.svgfilter.js" />
+    <Content Include="Scripts\jquery.svgfilter.min.js" />
+    <Content Include="Scripts\jquery.svgfilter.pack.js" />
+    <Content Include="Scripts\jquery.svggraph.js" />
+    <Content Include="Scripts\jquery.svggraph.min.js" />
+    <Content Include="Scripts\jquery.svggraph.pack.js" />
+    <Content Include="Scripts\jquery.svgplot.js" />
+    <Content Include="Scripts\jquery.svgplot.min.js" />
+    <Content Include="Scripts\jquery.svgplot.pack.js" />
     <Content Include="Scripts\templateDialog.js" />
     <Content Include="Scripts\fullcalendar\fullcalendar.js" />
     <Content Include="Scripts\fullcalendar\fullcalendar.min.js" />
@@ -273,6 +294,9 @@
     <Content Include="Content\images\buildings\G1.svg">
       <SubType>Designer</SubType>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\images\blank.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
