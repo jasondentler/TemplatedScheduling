@@ -6,6 +6,7 @@ using ISIS.Web.Areas.Schedule.Models.Template.InputModels;
 using ISIS.Web.Areas.Schedule.Models.Template.ViewModels;
 using Microsoft.Web.Mvc;
 using ChangeInstructor = ISIS.Web.Areas.Schedule.Models.Template.InputModels.ChangeInstructor;
+using ChangeRoom = ISIS.Web.Areas.Schedule.Models.Template.ViewModels.ChangeRoom;
 
 namespace ISIS.Web.Areas.Schedule.Controllers
 {
@@ -122,6 +123,13 @@ namespace ISIS.Web.Areas.Schedule.Controllers
         {
             return this.RedirectToAction(c => c.ChangeStudentEquipment(model.TemplateId));
         }
+        
+        [HttpPost]
+        public RedirectToRouteResult ChangeRoom(Models.Template.InputModels.ChangeRoom model)
+        {
+            return this.RedirectToAction(c => c.Details(model.Id));
+        }
+
 
         [NonAction]
         private ITemplateList GetTemplateList()
@@ -253,13 +261,9 @@ namespace ISIS.Web.Areas.Schedule.Controllers
                         new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "100", RoomStatuses.Available),
                         new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "105", RoomStatuses.Unavailable,
                                              "MATH 0309.01"),
-                        new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "111", RoomStatuses.ReducedCapacity,
+                        new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "111", RoomStatuses.MissingEquipment,
                                              "Missing 1 whiteboard"),
-                        new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "112", RoomStatuses.Unavailable,
-                                             "ENGL 1301.01"),
-                        new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "125", RoomStatuses.ReducedCapacity,
-                                             "Capacity: 15"),
-                        new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "125A", RoomStatuses.Available),
+                        new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "112", RoomStatuses.Available),
                         new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "126", RoomStatuses.ReducedCapacity,
                                              "Capacity: 17"),
                         new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "127", RoomStatuses.Available),

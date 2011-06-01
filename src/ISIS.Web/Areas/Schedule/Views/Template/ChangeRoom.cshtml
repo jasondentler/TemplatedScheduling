@@ -15,6 +15,22 @@
         <div class="display-field">${TemplateName}</div>
     </div>
     {{tmpl "#mapView"}}
+    @using (Html.BeginForm<TemplateController>(c => c.ChangeRoom(null), FormMethod.Post, new { id = "changeRoomForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <input type="hidden" Name="Id" value="${Id}" />
+        <input type="hidden" Name="RoomId" id="roomIdInput"/>
+    }
+</script>
+
+<script type="text/javascript">
+
+function roomSelected(event) {
+    var roomId = event.data.roomId;
+    $("#roomIdInput").val(roomId);
+    $("#changeRoomForm").submit();
+}
+
 </script>
 
 <div id="placeholder" />

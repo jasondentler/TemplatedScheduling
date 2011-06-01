@@ -75,6 +75,7 @@ namespace ISIS.Web.Areas.Schedule.Models.Template.ViewModels
     {
         Available,
         Unavailable,
-        ReducedCapacity
+        ReducedCapacity,
+        MissingEquipment
     }
 }

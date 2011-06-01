@@ -272,3 +272,8 @@ h2.hint
 	background-image: url(images/pbar-ani.gif); 
 }
 
+#map
+{
+    width: 100%;
+    height: 800px;
+}

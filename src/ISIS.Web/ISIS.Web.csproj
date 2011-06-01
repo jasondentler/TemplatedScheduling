@@ -139,6 +139,7 @@
     <Content Include="Content\themes\ui-lightness\jquery-ui-1.8.13.custom.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\svgMap.js" />
     <Content Include="Scripts\jquery.svg.compat-1.0.1.js" />
     <Content Include="Scripts\jquery.svg.js" />
     <Content Include="Scripts\jquery.svg.min.js" />
@@ -313,7 +314,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1481</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

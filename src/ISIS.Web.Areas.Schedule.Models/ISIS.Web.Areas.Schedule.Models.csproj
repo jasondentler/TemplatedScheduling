@@ -59,6 +59,7 @@
     <Compile Include="Template\InputModels\ChangeCapacity.cs" />
     <Compile Include="Template\InputModels\ChangeInstructor.cs" />
     <Compile Include="Template\InputModels\AddStudentEquipment.cs" />
+    <Compile Include="Template\InputModels\ChangeRoom.cs" />
     <Compile Include="Template\InputModels\RemoveStudentEquipment.cs" />
     <Compile Include="Template\InputModels\RemoveInstructorEquipment.cs" />
     <Compile Include="Template\InputModels\Rename.cs" />
