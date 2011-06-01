@@ -1,0 +1,13 @@
+﻿@model Index
+@{
+    ViewBag.Title = "Sections";
+}
+
+@Html.Partial("_SectionList")
+
+<script id="template" type="text/html">
+{{tmpl "#sectionListTemplate"}}
+<h2 class="hint">Choose a section from the left</h2>
+</script>
+
+<div id="placeholder" />

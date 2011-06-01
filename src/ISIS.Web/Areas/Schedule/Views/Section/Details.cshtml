@@ -1,0 +1,102 @@
+﻿@model Details
+@{
+    ViewBag.Title = Model.SectionName;
+    ViewData["Breadcrumbs"] = new[] { new Breadcrumb("Sections", @Url.Action("Index")) };
+}
+
+@Html.Partial("_SectionList")
+@Html.Partial("_ChangeInstructor")
+
+<script id="template" type="text/html">
+{{tmpl "#sectionListTemplate"}}
+    <div class="content">
+        <div class="display-label">Section</div>
+        <div class="display-field">${SectionName}</div>
+        <div class="display-label">Term</div>
+        <div class="display-field">
+            {{if Term}}
+                ${Term}
+            {{else}}
+                <span class="disabled">Not Set</span>
+            {{/if}}
+            <button id="changeTerm" class="icon-pencil no-text">Change Term</button>
+        </div>
+        <div class="display-label">Capacity</div>
+        <div class="display-field">${Capacity}
+            <button id="changeCapacity" class="icon-pencil no-text">Change Capacity</button>
+        </div>
+        <div class="display-label">Room</div>
+        <div class="display-field">
+            {{if RoomName}}
+                ${RoomName}
+            {{else}}
+                <span class="disabled">Not Set</span>
+            {{/if}}
+            @(Html.TemplateActionLink("Change Room", "ChangeRoom",new {Id="${Id}"}, new {@class="button icon-pencil no-text"}))
+        </div>
+        <div class="display-label">Instructor</div>
+        <div class="display-field">
+            {{if InstructorName}}
+                ${InstructorName}
+            {{else}}
+                <span class="disabled">Not Set</span>
+            {{/if}}
+            <a href="#" id="changeInstructorLink" class="button icon-pencil no-text">Change Instructor</a>
+        </div>
+        <div class="display-label">Schedule</div>
+        <div class="display-field">
+            {{if ScheduleText}}
+                ${ScheduleText}
+            {{else}}
+                <span class="disabled">Not Set</span>
+            {{/if}}
+            <a href="#" id="changeScheduleLink" class="button icon-pencil no-text">Change Schedule</a>
+        </div>
+
+        <fieldset>
+            <legend>Instructor Equipment
+                @(Html.TemplateActionLink("Change Instructor Equipment", "ChangeInstructorEquipment",new {Id="${Id}"}, new {@class="button icon-pencil no-text"}))
+            </legend>
+            {{if InstructorEquipment.length}}
+            <ul>
+                {{each InstructorEquipment}}
+                    <li>${$value}</li>
+                {{/each}}
+            </ul>
+            {{else}}
+                <span class="disabled">None</span>
+            {{/if}}
+        </fieldset>
+        <fieldset>
+            <legend>Student Equipment
+                @(Html.TemplateActionLink("Change Student Equipment", "ChangeStudentEquipment",new {Id="${Id}"}, new {@class="button icon-pencil no-text"}))
+            </legend>
+            {{if StudentEquipment.length}}
+            <ul>
+                {{each StudentEquipment}}
+                    <li>${$value}</li>
+                {{/each}}
+            </ul>
+            {{else}}
+                <span class="disabled">None</span>
+            {{/if}}
+        </fieldset>
+    </div>
+
+@*
+    <div id="changeCapacityDialog" title="Change Capacity" class="hidden">
+        @using (Html.BeginForm<TemplateController>(c => c.ChangeCapacity(null), FormMethod.Post, new { id = "changeCapacityForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" Name="Id" value="${Id}" />
+            <div class="editor-label">New Capacity</div>
+            <div class="editor-field">
+                <input type="textbox" Name="Capacity" value="${Capacity}"/>
+            </div>
+        }
+    </div>
+*@
+</script>
+
+
+<div id="placeholder" />

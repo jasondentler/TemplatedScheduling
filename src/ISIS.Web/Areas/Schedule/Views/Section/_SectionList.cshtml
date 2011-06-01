@@ -1,0 +1,18 @@
+﻿<script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/sectionList.js")"></script>
+<script id="sectionListTemplate" type="text/html">
+<fieldset class="itemList">
+    <legend>Sections</legend>
+    <div id="sectionList">
+        {{each GetCourses(model)}}
+            <h3 courseName="${$index}"><a href="#">${$index}</a></h3>
+            <div>
+                <ul>
+                {{each $value.sections}}
+                    <li>@Html.TemplateActionLink("${name}", "Details", new {id = "${id}"})</li>
+                {{/each}}
+                </ul>
+            </div>
+        {{/each}}
+    </div>
+</fieldset>
+</script>

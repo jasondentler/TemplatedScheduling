@@ -55,6 +55,10 @@
     <Compile Include="Instructor\ViewModels\Index.cs" />
     <Compile Include="Instructor\ViewModels\InstructorListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Section\ViewModels\Details.cs" />
+    <Compile Include="Section\ViewModels\Index.cs" />
+    <Compile Include="Section\ViewModels\ISectionList.cs" />
+    <Compile Include="Section\ViewModels\SectionListItem.cs" />
     <Compile Include="Template\InputModels\AddInstructorEquipment.cs" />
     <Compile Include="Template\InputModels\ChangeCapacity.cs" />
     <Compile Include="Template\InputModels\ChangeInstructor.cs" />
