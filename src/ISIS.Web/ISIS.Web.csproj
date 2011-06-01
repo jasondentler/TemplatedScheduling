@@ -317,6 +317,26 @@
   <ItemGroup>
     <Content Include="Areas\Schedule\Views\Section\_ChangeInstructor.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\images\buildings\A1.svg" />
+    <None Include="Content\images\buildings\A2.svg" />
+    <None Include="Content\images\buildings\B1.svg" />
+    <None Include="Content\images\buildings\B2.svg" />
+    <None Include="Content\images\buildings\C1.svg" />
+    <None Include="Content\images\buildings\C2.svg" />
+    <None Include="Content\images\buildings\D1.svg" />
+    <None Include="Content\images\buildings\D2.svg" />
+    <None Include="Content\images\buildings\E1.svg" />
+    <None Include="Content\images\buildings\F1.svg" />
+    <None Include="Content\images\buildings\F2.svg" />
+    <None Include="Content\images\buildings\H1.svg" />
+    <None Include="Content\images\buildings\J1.svg" />
+    <None Include="Content\images\buildings\K1.svg" />
+    <None Include="Content\images\buildings\N1.svg" />
+    <None Include="Content\images\buildings\NRC1.svg" />
+    <None Include="Content\images\buildings\S1.svg" />
+    <None Include="Content\images\buildings\S2.svg" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,8 +1,143 @@
 ﻿<script id="mapView" type="text/html">
     <div>
+        {{tmpl(model) "#campusDropdown" }}
+        <span id="buildingDropdownContainer">
+            {{tmpl(model.Campuses[0]) "#buildingDropdown"}}
+        </span>
+        <span id="mapDropdownContainer">
+            {{tmpl(model.Campuses[0].Buildings[0]) "#mapsDropdown"}}
+        </span>
         <div id="map"></div>
     </div>
 </script>
 
-<script type="text/javascript" src="@Url.Content("~/Content/images/buildings/G1.js")"></script>
-<script type="text/javascript" src="@Url.Content("~/Scripts/svgMap.js")"></script>
+<script id="campusDropdown" type="text/html">
+        <select id="campuses">
+            {{each Campuses}}
+                <option>${$value.Name}</option>
+            {{/each}}
+        </select>
+</script>
+
+<script id="buildingDropdown" type="text/html">
+        <select id="buildings">
+            {{each Buildings}}
+                <option>${$value.Name}</option>
+            {{/each}}
+        </select>
+</script>
+
+<script id="mapsDropdown" type="text/html">
+        <select id="maps">
+            {{each BuildingMaps}}
+                <option>${$value.Name}</option>
+            {{/each}}
+        </select>
+</script>
+
+@*<script type="text/javascript" src="@Url.Content("~/Content/images/buildings/G1.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/svgMap.js")"></script>*@
+<script type="text/javascript">
+
+    var svg = null;
+    var selectedMap = null;
+    var roomData = null;
+    var roomAvailabilityData = null;
+
+    afterBind.push(function () {
+        rebind();
+        mapChanged();
+    });
+    
+    function rebind() {
+        $("#campuses").change(campusChanged);
+        $("#buildings").change(buildingChanged);
+        $("#maps").change(mapChanged);
+    }
+
+    function campusChanged() {
+        var campus = getSelectedCampus();
+        var content = $('#buildingDropdown').tmpl(campus);
+        $("#buildingDropdownContainer").empty().append(content);
+        rebind();
+        buildingChanged();
+    }
+
+    function buildingChanged() {
+        var building = getSelectedBuilding();
+        var content = $('#mapsDropdown').tmpl(building);
+        $("#mapDropdownContainer").empty().append(content);
+        rebind();
+        mapChanged();
+    }
+
+    function mapChanged() {
+        selectedMap = getSelectedMap();
+        roomData = null;
+        roomAvailabilityData = null;
+        svg = null;
+        $('#map').svg('destroy');
+        $('#map').svg({
+                loadURL: selectedMap.MapImageUrl,
+                onLoad: onMapLoaded
+            });
+    }
+
+    function getSelectedCampus() {
+        for (var campusIdx in model.Campuses) {
+            var campus = model.Campuses[campusIdx];
+            if (campus.Name == $("#campuses").val())
+                return campus;
+        }
+        return null;
+    }
+
+    function getSelectedBuilding() {
+        var campus = getSelectedCampus();
+        if (campus)
+            for (var buildingIdx in campus.Buildings) {
+                var building = campus.Buildings[buildingIdx];
+                if (building.Name == $("#buildings").val())
+                    return building;
+            }
+        return null;
+    }
+    
+    function getSelectedMap() {
+        var building = getSelectedBuilding();
+        if (building)
+            for (var mapIdx in building.BuildingMaps) {
+                var map = building.BuildingMaps[mapIdx];
+                if (map.Name == $("#maps").val())
+                    return map;
+            }
+        return null;
+    }
+
+    function onMapLoaded(loadedSvg) {
+        svg = loadedSvg;
+        loadRoomData();
+    }
+    
+    function loadRoomData() {
+        alert("Loading room data");
+        $.getJSON(selectedMap.MapRoomDataUrl, function (data) {
+            roomData = data;
+            loadRoomAvailability();
+        });
+    }
+
+    function loadRoomAvailability() {
+        alert("Loading room availability");
+        $.getJSON(selectedMap.AvailabilityUrl, function(data) {
+            roomAvailabilityData = data;
+            overlayMap();
+        });
+    }
+    
+    function overlayMap() {
+        alert("Drawing map overlay");
+    }
+    
+   
+</script>

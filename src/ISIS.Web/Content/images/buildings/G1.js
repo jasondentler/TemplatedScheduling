@@ -1,4 +1,4 @@
-﻿var mapData = {
+﻿{
     "rooms": [
         {
             "number": "100",
@@ -151,4 +151,4 @@
     "building": "G",
     "floor": "1",
     "campus": "ACC"
-};
+}

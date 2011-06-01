@@ -70,6 +70,9 @@
     <Compile Include="Template\InputModels\Remove.cs" />
     <Compile Include="Template\InputModels\CreateSection.cs" />
     <Compile Include="Template\InputModels\Copy.cs" />
+    <Compile Include="Template\ViewModels\Building.cs" />
+    <Compile Include="Template\ViewModels\BuildingMap.cs" />
+    <Compile Include="Template\ViewModels\Campus.cs" />
     <Compile Include="Template\ViewModels\ChangeInstructor.cs" />
     <Compile Include="Template\ViewModels\ChangeInstructorEquipment.cs" />
     <Compile Include="Template\ViewModels\ChangeRoom.cs" />
@@ -77,6 +80,8 @@
     <Compile Include="Template\ViewModels\Details.cs" />
     <Compile Include="Template\ViewModels\Index.cs" />
     <Compile Include="Template\ViewModels\ITemplateList.cs" />
+    <Compile Include="Template\ViewModels\RoomAvailability.cs" />
+    <Compile Include="Template\ViewModels\RoomStatuses.cs" />
     <Compile Include="Template\ViewModels\TemplateListItem.cs" />
   </ItemGroup>
   <ItemGroup>
