@@ -10,7 +10,6 @@
         <div id="map"></div>
     </div>
 </script>
-
 <script id="campusDropdown" type="text/html">
         <select id="campuses">
             {{each Campuses}}
@@ -18,7 +17,6 @@
             {{/each}}
         </select>
 </script>
-
 <script id="buildingDropdown" type="text/html">
         <select id="buildings">
             {{each Buildings}}
@@ -26,7 +24,6 @@
             {{/each}}
         </select>
 </script>
-
 <script id="mapsDropdown" type="text/html">
         <select id="maps">
             {{each BuildingMaps}}
@@ -34,7 +31,12 @@
             {{/each}}
         </select>
 </script>
-
+<script id="errorDialogTemplate" type="text/html">
+    <p>
+        <span class='ui-icon ui-icon-alert' style='float:left; margin:0 7px 50px 0;'></span>
+        Sorry. We had trouble loading data for this map.
+    </p>
+</script>
 @*<script type="text/javascript" src="@Url.Content("~/Content/images/buildings/G1.js")"></script>
 <script type="text/javascript" src="@Url.Content("~/Scripts/svgMap.js")"></script>*@
 <script type="text/javascript">
@@ -48,11 +50,11 @@
         rebind();
         mapChanged();
     });
-    
+
     function rebind() {
-        $("#campuses").change(campusChanged);
-        $("#buildings").change(buildingChanged);
-        $("#maps").change(mapChanged);
+        $("#campuses").unbind('change').change(campusChanged);
+        $("#buildings").unbind('change').change(buildingChanged);
+        $("#maps").unbind('change').change(mapChanged);
     }
 
     function campusChanged() {
@@ -76,11 +78,51 @@
         roomData = null;
         roomAvailabilityData = null;
         svg = null;
-        $('#map').svg('destroy');
-        $('#map').svg({
-                loadURL: selectedMap.MapImageUrl,
-                onLoad: onMapLoaded
-            });
+
+        // Additional deferred.reject() calls are ignored, so
+        // we can use this trick to only display the dialog once
+        // even for multiple failures.
+        var showDialogDeferred = $.Deferred();
+        showDialogDeferred.fail(function() {
+            console.log('Showing error dialog');
+            var dialogContent = $("#errorDialogTemplate").tmpl(null);
+            $("<div />")
+                                                    .attr('title', 'Error loading map data.')
+                                                    .append(dialogContent)
+                                                    .dialog({
+                                                    modal: true,
+                                                    resizable: false,
+                                                    close: function() { $(this).remove(); }
+                                                });
+        });
+
+        var d1 = changeMap();
+        var d2 = loadRoomData();
+        var d3 = loadRoomAvailability();
+
+        d1.done(function() { console.log('Loading the svg completed.'); })
+                                        .fail(function () { console.log('Loading the svg failed.'); });
+
+        d2.done(function() { console.log('Loading room data completed.'); })
+                .fail(function () { console.log('Loading the room data failed.'); });
+
+        d3.done(function() { console.log('Loading room availability data completed.'); })
+                        .fail(function() { console.log('Loading the room availability data failed.'); });
+        
+
+        $.when(d1, d2, d3)
+                        .done(function(newSvg, newRoomData, newRoomAvailData) {
+                    roomData = newRoomData;
+                    roomAvailabilityData = newRoomAvailData;
+                    svg = newSvg;
+                    showDialogDeferred.resolve();
+                })
+                        .fail(function(deferred) {
+                    console.log('Fail!');
+                    console.log(deferred);
+                    showDialogDeferred.reject();
+                });
+        console.log('Callbacks started!');
     }
 
     function getSelectedCampus() {
@@ -102,7 +144,7 @@
             }
         return null;
     }
-    
+
     function getSelectedMap() {
         var building = getSelectedBuilding();
         if (building)
@@ -114,30 +156,24 @@
         return null;
     }
 
-    function onMapLoaded(loadedSvg) {
-        svg = loadedSvg;
-        loadRoomData();
-    }
-    
-    function loadRoomData() {
-        alert("Loading room data");
-        $.getJSON(selectedMap.MapRoomDataUrl, function (data) {
-            roomData = data;
-            loadRoomAvailability();
+    function changeMap() {
+        var dfd = $.Deferred();
+        $('#map').svg('destroy');
+        $('#map').svg({
+            loadURL: selectedMap.MapImageUrl,
+            onLoad: function (svg) {
+                dfd.resolve(svg);
+            }
         });
+        return dfd.promise();
+    }
+
+    function loadRoomData() {
+        return $.getJSON(selectedMap.MapRoomDataUrl);
     }
 
     function loadRoomAvailability() {
-        alert("Loading room availability");
-        $.getJSON(selectedMap.AvailabilityUrl, function(data) {
-            roomAvailabilityData = data;
-            overlayMap();
-        });
-    }
-    
-    function overlayMap() {
-        alert("Drawing map overlay");
-    }
-    
+        return $.getJSON(selectedMap.AvailabilityUrl);
+    }  
    
 </script>
