@@ -64,6 +64,12 @@ namespace ISIS.Web.Areas.Schedule.Controllers
             return View(GetStudentEquipment(Id));
         }
 
+        [HttpGet]
+        public ActionResult RoomAvailability(Guid id, string map)
+        {
+            return Json(GetRoomAvailability(id, map), JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public RedirectToRouteResult CopyTemplate(Copy model)
         {
@@ -471,21 +477,28 @@ namespace ISIS.Web.Areas.Schedule.Controllers
                         new Campus("Pearland Campus", new Building[0])
                     });
 
-            //new[]
-            //    {
-            //        new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "100", RoomStatuses.Available),
-            //        new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "105", RoomStatuses.Unavailable,
-            //                             "MATH 0309.01"),
-            //        new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "111", RoomStatuses.MissingEquipment,
-            //                             "Missing 1 whiteboard"),
-            //        new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "112", RoomStatuses.Available),
-            //        new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "126", RoomStatuses.ReducedCapacity,
-            //                             "Capacity: 17"),
-            //        new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "127", RoomStatuses.Available),
-            //        new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "129", RoomStatuses.Unavailable,
-            //                             "ENGL 1302.01")
-            //    });
         }
+
+        [NonAction]
+        private IEnumerable<RoomAvailability> GetRoomAvailability(Guid id, string map)
+        {
+            return new[]
+                       {
+                           new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "100", RoomStatuses.Available),
+                           new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "105", RoomStatuses.Unavailable,
+                                                "MATH 0309.01"),
+                           new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "111", RoomStatuses.MissingEquipment,
+                                                "Missing 1 whiteboard"),
+                           new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "112", RoomStatuses.Available),
+                           new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "126", RoomStatuses.ReducedCapacity,
+                                                "Capacity: 17"),
+                           new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "127", RoomStatuses.Available),
+                           new RoomAvailability(Guid.NewGuid(), "ACC", "G", "1", "129", RoomStatuses.Unavailable,
+                                                "ENGL 1302.01")
+                       };
+        }
+
+
 
     }
 }

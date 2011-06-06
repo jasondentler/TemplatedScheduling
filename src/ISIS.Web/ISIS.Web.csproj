@@ -93,6 +93,7 @@
     <Content Include="Areas\Schedule\Scripts\createInstructor.js" />
     <Content Include="Content\fullcalendar\fullcalendar.css" />
     <Content Include="Content\fullcalendar\fullcalendar.print.css" />
+    <Content Include="Content\images\buildings\A1.js" />
     <Content Include="Content\images\buildings\G1.js" />
     <Content Include="Content\jquery.svg.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -140,7 +141,6 @@
     <Content Include="Content\themes\ui-lightness\jquery-ui-1.8.13.custom.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\svgMap.js" />
     <Content Include="Scripts\jquery.svg.compat-1.0.1.js" />
     <Content Include="Scripts\jquery.svg.js" />
     <Content Include="Scripts\jquery.svg.min.js" />
@@ -354,7 +354,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1481</DevelopmentServerPort>
+          <DevelopmentServerPort>3461</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:1481/</IISUrl>
           <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
