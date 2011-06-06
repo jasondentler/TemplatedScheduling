@@ -51,7 +51,7 @@
             {{else}}
                 <span class="disabled">Not Set</span>
             {{/if}}
-            <a href="#" id="changeScheduleLink" class="button icon-pencil no-text">Change Schedule</a>
+            @(Html.TemplateActionLink("Change Schedule", "ChangeSchedule",new {Id="${Id}"}, new {@class="button icon-pencil no-text"}))
         </div>
 
         <fieldset>

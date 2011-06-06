@@ -13,6 +13,7 @@ afterBind.push(function () {
     $('.icon-plusthick').button("option", "icons", { primary: "ui-icon-plusthick" });
     $('.icon-closethick').button("option", "icons", { primary: "ui-icon-closethick" });
     $('.no-text').button("option", "text", false);
+    $('.tabs').tabs();
 });
 
 $(document).ready(function () {

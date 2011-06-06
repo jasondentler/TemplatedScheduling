@@ -66,6 +66,7 @@
     <Compile Include="Section\ViewModels\ChangeInstructor.cs" />
     <Compile Include="Section\ViewModels\ChangeInstructorEquipment.cs" />
     <Compile Include="Section\ViewModels\ChangeRoom.cs" />
+    <Compile Include="Section\ViewModels\ChangeSchedule.cs" />
     <Compile Include="Section\ViewModels\ChangeStudentEquipment.cs" />
     <Compile Include="Section\ViewModels\ChangeTerm.cs" />
     <Compile Include="Section\ViewModels\Details.cs" />

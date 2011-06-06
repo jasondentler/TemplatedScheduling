@@ -255,10 +255,17 @@ h2.hint
 	font-weight: bold;
 }
 
+.tabs
+{
+	overflow-x:auto;
+	position:relative;
+	width: 50em;
+}
+
 .content 
 {
 	clear: left;
-	display: inline-block;	
+	display: inline-block;
 }
 
 .disabled 

@@ -73,6 +73,14 @@ namespace ISIS.Web.Areas.Schedule.Controllers
         }
 
         [HttpGet]
+        public ActionResult ChangeSchedule(Guid Id)
+        {
+            if (Request.IsAjaxRequest())
+                return Json(GetChangeSchedule(Id), JsonRequestBehavior.AllowGet);
+            return View(GetChangeSchedule(Id));
+        }
+
+        [HttpGet]
         public ActionResult ChangeStudentEquipment(Guid Id)
         {
             if (Request.IsAjaxRequest())
@@ -210,7 +218,7 @@ namespace ISIS.Web.Areas.Schedule.Controllers
                 sections,
                 Id,
                 "MATH 2301 Calculus 1",
-                "Calculus 1 Online",
+                "MATH 2301.02 Calculus 1",
                 GetEquipmentList().ToDictionary(
                     i => Guid.NewGuid(),
                     i => i),
@@ -230,7 +238,7 @@ namespace ISIS.Web.Areas.Schedule.Controllers
                 sections,
                 Id,
                 "MATH 2301 Calculus 1",
-                "Calculus 1 Online",
+                "MATH 2301.02 Calculus 1",
                 GetEquipmentList().ToDictionary(
                     i => Guid.NewGuid(),
                     i => i),
@@ -251,6 +259,17 @@ namespace ISIS.Web.Areas.Schedule.Controllers
                            "Chalkboard",
                            "Lab Sink"
                        }.OrderBy(s => s);
+        }
+
+        [NonAction]
+        private ChangeSchedule GetChangeSchedule(Guid id)
+        {
+            var sections = GetSectionList().Sections;
+            return new ChangeSchedule(
+                sections,
+                id,
+                "MATH 2301 Calculus 1",
+                "MATH 2301.02 Calculus 1");
         }
 
         [NonAction]

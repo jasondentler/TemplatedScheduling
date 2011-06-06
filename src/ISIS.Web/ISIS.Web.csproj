@@ -323,6 +323,7 @@
     <Content Include="Areas\Schedule\Views\Section\_ChangeTerm.cshtml" />
     <Content Include="Areas\Schedule\Views\Section\ChangeInstructorEquipment.cshtml" />
     <Content Include="Areas\Schedule\Views\Section\ChangeStudentEquipment.cshtml" />
+    <Content Include="Areas\Schedule\Views\Section\ChangeSchedule.cshtml" />
     <None Include="Content\images\buildings\A1.svg" />
     <None Include="Content\images\buildings\A2.svg" />
     <None Include="Content\images\buildings\B1.svg" />
