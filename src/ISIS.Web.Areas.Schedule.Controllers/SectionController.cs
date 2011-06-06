@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using ISIS.Web.Areas.Schedule.Models;
 using ISIS.Web.Areas.Schedule.Models.Section.InputModels;
@@ -7,6 +8,7 @@ using ISIS.Web.Areas.Schedule.Models.Section.ViewModels;
 using Microsoft.Web.Mvc;
 using ChangeInstructor = ISIS.Web.Areas.Schedule.Models.Section.ViewModels.ChangeInstructor;
 using ChangeRoom = ISIS.Web.Areas.Schedule.Models.Section.ViewModels.ChangeRoom;
+using ChangeTerm = ISIS.Web.Areas.Schedule.Models.Section.ViewModels.ChangeTerm;
 
 namespace ISIS.Web.Areas.Schedule.Controllers
 {
@@ -53,6 +55,31 @@ namespace ISIS.Web.Areas.Schedule.Controllers
             return Json(GetChangeInstructor(Id), JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public ActionResult ChangeTerm(Guid Id)
+        {
+            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(2));
+            if (!Request.IsAjaxRequest())
+                return HttpNotFound("Not a JSON request");
+            return Json(GetChangeTerm(Id), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult ChangeInstructorEquipment(Guid Id)
+        {
+            if (Request.IsAjaxRequest())
+                return Json(GetInstructorEquipment(Id), JsonRequestBehavior.AllowGet);
+            return View(GetInstructorEquipment(Id));
+        }
+
+        [HttpGet]
+        public ActionResult ChangeStudentEquipment(Guid Id)
+        {
+            if (Request.IsAjaxRequest())
+                return Json(GetStudentEquipment(Id), JsonRequestBehavior.AllowGet);
+            return View(GetStudentEquipment(Id));
+        }
+
         [HttpPost]
         public RedirectToRouteResult ChangeRoom(Models.Section.InputModels.ChangeRoom model)
         {
@@ -71,7 +98,35 @@ namespace ISIS.Web.Areas.Schedule.Controllers
             return this.RedirectToAction(c => c.Details(model.Id));
         }
 
+        [HttpPost]
+        public RedirectToRouteResult ChangeTerm(Models.Section.InputModels.ChangeTerm model)
+        {
+            return this.RedirectToAction(c => c.Details(model.Id));
+        }
 
+        [HttpPost]
+        public RedirectToRouteResult RemoveInstructorEquipment(RemoveInstructorEquipment model)
+        {
+            return this.RedirectToAction(c => c.ChangeInstructorEquipment(model.SectionId));
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult AddInstructorEquipment(AddInstructorEquipment model)
+        {
+            return this.RedirectToAction(c => c.ChangeInstructorEquipment(model.SectionId));
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult RemoveStudentEquipment(RemoveStudentEquipment model)
+        {
+            return this.RedirectToAction(c => c.ChangeStudentEquipment(model.SectionId));
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult AddStudentEquipment(AddStudentEquipment model)
+        {
+            return this.RedirectToAction(c => c.ChangeStudentEquipment(model.SectionId));
+        }
 
         [NonAction]
         public Index GetSectionList()
@@ -114,7 +169,9 @@ namespace ISIS.Web.Areas.Schedule.Controllers
                 new[] {"1 Whiteboard", "1 PC", "1 Projector"},
                 new string[0],
                 true,
-                Url.Action("ChangeInstructor", new {Id = id}));
+                Url.Action("ChangeInstructor", new {Id = id}),
+                true,
+                Url.Action("ChangeTerm", new {Id = id}));
         }
 
         [NonAction]
@@ -130,6 +187,70 @@ namespace ISIS.Web.Areas.Schedule.Controllers
                                       {Guid.NewGuid(), "Juan Smith"}
                                   };
             return new ChangeInstructor(Id, instructors);
+        }
+
+        [NonAction]
+        private ChangeTerm GetChangeTerm(Guid Id)
+        {
+            var terms = new Dictionary<Guid, string>()
+                                  {
+                                      {Guid.NewGuid(), "Spring 2012"},
+                                      {Guid.NewGuid(), "Spring 2012 Mini 1"},
+                                      {Guid.NewGuid(), "Spring 2012 Mini 2"},
+                                      {Guid.NewGuid(), "Spring 2012 Mini 3"}
+                                  };
+            return new ChangeTerm(Id, terms);
+        }
+
+        [NonAction]
+        private ChangeInstructorEquipment GetInstructorEquipment(Guid Id)
+        {
+            var sections = GetSectionList().Sections;
+            return new ChangeInstructorEquipment(
+                sections,
+                Id,
+                "MATH 2301 Calculus 1",
+                "Calculus 1 Online",
+                GetEquipmentList().ToDictionary(
+                    i => Guid.NewGuid(),
+                    i => i),
+                new Dictionary<Guid, string>()
+                    {
+                        {Guid.NewGuid(), "1 Whiteboard"},
+                        {Guid.NewGuid(), "1 PC"},
+                        {Guid.NewGuid(), "1 Projector"}
+                    });
+        }
+
+        [NonAction]
+        private ChangeStudentEquipment GetStudentEquipment(Guid Id)
+        {
+            var sections = GetSectionList().Sections;
+            return new ChangeStudentEquipment(
+                sections,
+                Id,
+                "MATH 2301 Calculus 1",
+                "Calculus 1 Online",
+                GetEquipmentList().ToDictionary(
+                    i => Guid.NewGuid(),
+                    i => i),
+                new Dictionary<Guid, string>()
+                    {
+                        {Guid.NewGuid(), "1 PC per student"}
+                    });
+        }
+
+        [NonAction]
+        private IEnumerable<string> GetEquipmentList()
+        {
+            return new[]
+                       {
+                           "Whiteboard",
+                           "PC",
+                           "Projector",
+                           "Chalkboard",
+                           "Lab Sink"
+                       }.OrderBy(s => s);
         }
 
         [NonAction]

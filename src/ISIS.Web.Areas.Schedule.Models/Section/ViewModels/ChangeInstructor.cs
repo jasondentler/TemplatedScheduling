@@ -7,7 +7,6 @@ namespace ISIS.Web.Areas.Schedule.Models.Section.ViewModels
     public class ChangeInstructor : JsonSerializable 
     {
         public Guid Id { get; private set; }
-        public string TemplateName { get; private set; }
         public IDictionary<Guid, string> QualifiedInstructors { get; private set; }
 
         public ChangeInstructor(

@@ -3,6 +3,9 @@
 var model;
 afterBind = [];
 
+if (!console)
+    var console = { log: function(msg) { } };
+
 afterBind.push(function () {
     $(':button,:submit,.button').button();
     $('.links').buttonset();

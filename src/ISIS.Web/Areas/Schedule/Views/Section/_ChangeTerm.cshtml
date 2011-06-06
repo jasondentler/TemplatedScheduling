@@ -1,0 +1,24 @@
+﻿<script id="changeTermTemplate" type="text/html">
+    @using (Html.BeginForm<SectionController>(c => c.ChangeTerm(null), FormMethod.Post, new {id = "changeInstructorForm"})) {
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="Id" value="${Id}" />
+        <div class="editor-label">New Term</div>
+        <div class="editor-field">
+            <select name="TermId" id="termId">
+                <option value="@Guid.Empty.ToString()">Not Set</option>
+            {{each AvailableTerms}}
+                <option value="${$index}">${$value}</option>
+            {{/each}}
+            </select>
+        </div>
+    }
+</script>
+
+<script id="emptyChangeTermTemplate" type="text/html">
+    <h5 class="disabled">Getting the list of available terms. Please wait.</h5>
+    <div id="changeTermLoadingTermProgress" class="progress"></div>
+</script>
+
+<div id="changeTermDialog" title="Change Term" class="hidden"></div>
+
+<script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/changeTerm.js")"></script>

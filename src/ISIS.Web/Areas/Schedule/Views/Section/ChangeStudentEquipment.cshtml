@@ -1,0 +1,77 @@
+﻿@model ChangeStudentEquipment
+@{
+    ViewBag.Title = "Student Equipment";
+    ViewData["Breadcrumbs"] = new[]
+                                  {
+                                      new Breadcrumb("Sections", @Url.Action("Index")),
+                                      new Breadcrumb(Model.SectionName, @Url.Action("Details", new {id = Model.Id}))
+                                  };
+}
+
+@Html.Partial("_SectionList")
+
+<script id="template" type="text/html" >
+{{tmpl "#sectionListTemplate"}}
+    <div class="content">
+        <div class="display-label">Template</div>
+        <div class="display-field">${TemplateName}</div>
+        <div class="editor-field">
+            @using (Html.BeginForm<SectionController>(c => c.AddStudentEquipment(null), FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="SectionId" value="${Id}" />
+                <select name="Quantity">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                </select>
+                <select name="EquipmentId">
+                {{each EquipmentList}}
+                    <option value="${$index}">${$value}</option>
+                {{/each}}
+                </select>
+                <select name="PerStudent">
+                    <option value="1">per student</option>
+                    <option value="2">per 2 students</option>
+                    <option value="3">per 3 students</option>
+                    <option value="4">per 4 students</option>
+                    <option value="5">per 5 students</option>
+                    <option value="6">per 6 students</option>
+                    <option value="7">per 7 students</option>
+                    <option value="8">per 8 students</option>
+                    <option value="9">per 9 students</option>
+                    <option value="10">per 10 students</option>
+                </select>
+                <input type="submit" value="Add" class="icon-plusthick" />
+            }
+        </div>
+        <fieldset>
+            <legend>Student Equipment</legend>
+            {{if mapHasKeys(RequiredEquipment)}}
+            @using (Html.BeginForm<SectionController>(c => c.RemoveStudentEquipment(null), FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="SectionId" value="${Id}" />
+                @:{{each RequiredEquipment}}
+                        <div>
+                            <input type="checkbox" id="equipment${$index}" name="EquipmentIds" value="${$index}" />
+                            <label for="equipment${$index}">${$value}</label>
+                        </div>
+                @:{{/each}}
+                <input type="submit" value="Remove Checked Equipment" class="icon-crossthick" />
+            }
+
+            {{else}}
+                <span class="disabled">None</span>
+            {{/if}}
+        </fieldset>
+    </div>
+</script>
+
+<div id="placeholder" />
