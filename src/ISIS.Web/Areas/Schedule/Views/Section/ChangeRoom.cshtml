@@ -1,0 +1,36 @@
+﻿@model ChangeRoom
+@{
+    ViewBag.Title = "Room Assignment";
+    ViewData["Breadcrumbs"] = new[]
+                                  {
+                                      new Breadcrumb("Sections", @Url.Action("Index")),
+                                      new Breadcrumb(Model.SectionName, @Url.Action("Details", new {id = Model.Id}))
+                                  };
+}
+@Html.Partial("_MapView")
+
+<script id="template" type="text/html" >
+    <div class="content">
+        <div class="display-label">Section</div>
+        <div class="display-field">${SectionName}</div>
+    </div>
+    {{tmpl "#mapView"}}
+    @using (Html.BeginForm<SectionController>(c => c.ChangeRoom(null), FormMethod.Post, new { id = "changeRoomForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <input type="hidden" Name="Id" value="${Id}" />
+        <input type="hidden" Name="RoomId" id="roomIdInput"/>
+    }
+</script>
+
+<script type="text/javascript">
+
+function roomSelected(event) {
+    var roomId = event.data.roomId;
+    $("#roomIdInput").val(roomId);
+    $("#changeRoomForm").submit();
+}
+
+</script>
+
+<div id="placeholder" />

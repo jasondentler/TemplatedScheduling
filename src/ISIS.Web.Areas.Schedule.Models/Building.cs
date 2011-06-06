@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using ISIS.Web.Areas.Schedule.Models.Template.ViewModels;
 
-namespace ISIS.Web.Areas.Schedule.Models.Template.ViewModels
+namespace ISIS.Web.Areas.Schedule.Models
 {
     public class Building
     {

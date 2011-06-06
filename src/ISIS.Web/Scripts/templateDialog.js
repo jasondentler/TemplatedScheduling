@@ -105,7 +105,13 @@ templateDialog.Configure = function (options) {
 
         dialog.dialog(dialogOptions);
 
+        var buttonId = activatingButton.attr('id');
+        var dialogId = dialog.attr('id');
+        console.log('Binding #' + buttonId + ' to #' + dialogId);
+
         activatingButton.click(function () {
+            console.log(allowed);
+            console.log(allowed());
             var showDialog = true;
             if (allowed)
                 showDialog = allowed();

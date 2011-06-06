@@ -20,7 +20,7 @@ templateDialog.Configure({
         onOK: function() {
             $("#changeInstructorForm").submit();
         },
-        allowed: function() {
+        allowed: function () {
             return model.CanChangeInstructor;
         },
         modelUrl: model.GetQualifiedInstructorsUrl,

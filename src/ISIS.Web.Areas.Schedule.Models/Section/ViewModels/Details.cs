@@ -14,6 +14,8 @@ namespace ISIS.Web.Areas.Schedule.Models.Section.ViewModels
         public string ScheduleText { get; set; }
         public IEnumerable<string> InstructorEquipment { get; set; }
         public IEnumerable<string> StudentEquipment { get; set; }
+        public bool CanChangeInstructor { get; set; }
+        public string GetQualifiedInstructorsUrl { get; set; }
 
         public Details(
             IEnumerable<SectionListItem> sections,
@@ -26,7 +28,9 @@ namespace ISIS.Web.Areas.Schedule.Models.Section.ViewModels
             string instructorName,
             string scheduleText,
             IEnumerable<string> instructorEquipment,
-            IEnumerable<string> studentEquipment)
+            IEnumerable<string> studentEquipment,
+            bool canChangeInstructor,
+            string getQualifiedInstructorsUrl)
             : base(sections)
         {
             Id = id;
@@ -38,6 +42,8 @@ namespace ISIS.Web.Areas.Schedule.Models.Section.ViewModels
             ScheduleText = scheduleText;
             InstructorEquipment = instructorEquipment;
             StudentEquipment = studentEquipment;
+            CanChangeInstructor = canChangeInstructor;
+            GetQualifiedInstructorsUrl = getQualifiedInstructorsUrl;
             CourseName = courseName;
         }
     }

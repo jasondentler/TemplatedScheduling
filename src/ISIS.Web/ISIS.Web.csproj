@@ -79,7 +79,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Schedule\Scripts\changeTemplateCapacity.js" />
+    <Content Include="Areas\Schedule\Scripts\changeCapacity.js" />
     <Content Include="Areas\Schedule\Scripts\changeInstructor.js" />
     <Content Include="Areas\Schedule\Scripts\sectionList.js" />
     <Content Include="Areas\Schedule\Scripts\renameTemplate.js" />
@@ -318,6 +318,7 @@
     <Content Include="Areas\Schedule\Views\Section\_ChangeInstructor.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Schedule\Views\Section\ChangeRoom.cshtml" />
     <None Include="Content\images\buildings\A1.svg" />
     <None Include="Content\images\buildings\A2.svg" />
     <None Include="Content\images\buildings\B1.svg" />

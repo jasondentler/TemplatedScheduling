@@ -277,3 +277,18 @@ h2.hint
     width: 100%;
     height: 800px;
 }
+
+
+#legend ul 
+{
+	list-style-type: none;
+}
+
+#legend ul li div 
+{
+	display: inline-block;
+	width: 1em; 
+	height: 1em;
+	border: 1px solid black;
+	margin-right: 0.5em;
+}

@@ -1,4 +1,4 @@
-﻿namespace ISIS.Web.Areas.Schedule.Models.Template.ViewModels
+﻿namespace ISIS.Web.Areas.Schedule.Models
 {
     public class BuildingMap
     {

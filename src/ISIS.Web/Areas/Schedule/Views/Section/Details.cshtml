@@ -83,9 +83,9 @@
         </fieldset>
     </div>
 
-@*
+
     <div id="changeCapacityDialog" title="Change Capacity" class="hidden">
-        @using (Html.BeginForm<TemplateController>(c => c.ChangeCapacity(null), FormMethod.Post, new { id = "changeCapacityForm" }))
+        @using (Html.BeginForm<SectionController>(c => c.ChangeCapacity(null), FormMethod.Post, new { id = "changeCapacityForm" }))
         {
             @Html.AntiForgeryToken()
             <input type="hidden" Name="Id" value="${Id}" />
@@ -95,8 +95,10 @@
             </div>
         }
     </div>
-*@
+
 </script>
+
+<script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/changeCapacity.js")"></script>
 
 
 <div id="placeholder" />

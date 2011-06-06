@@ -1,5 +1,5 @@
 ﻿<script id="changeInstructorTemplate" type="text/html">
-    @using (Html.BeginForm<TemplateController>(c => c.ChangeInstructor(null), FormMethod.Post, new {id = "changeInstructorForm"})) {
+    @using (Html.BeginForm<SectionController>(c => c.ChangeInstructor(null), FormMethod.Post, new {id = "changeInstructorForm"})) {
         @Html.AntiForgeryToken()
         <input type="hidden" name="Id" value="${Id}" />
         <div class="editor-label">New Instructor</div>
