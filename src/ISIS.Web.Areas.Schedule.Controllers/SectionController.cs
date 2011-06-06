@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -265,11 +266,56 @@ namespace ISIS.Web.Areas.Schedule.Controllers
         private ChangeSchedule GetChangeSchedule(Guid id)
         {
             var sections = GetSectionList().Sections;
+
+            var days = new[] {"MW", "TTh", "MWF"};
+            var times = new Dictionary<string, IEnumerable<string>>()
+                            {
+                                {
+                                    "MW", new[]
+                                              {
+                                                  "8:00 a.m. to 9:30 a.m.",
+                                                  "9:30 a.m. to 11:00 a.m.",
+                                                  "11:00 a.m. to 12:30 p.m.",
+                                                  "1:00 p.m. to 2:30 p.m.",
+                                                  "2:30 p.m. to 4:00 p.m.",
+                                                  "4:00 p.m. to 5:30 p.m."
+                                              }
+                                    },
+                                {
+                                    "TTh", new[]
+                                               {
+                                                   "8:00 a.m. to 9:30 a.m.",
+                                                   "9:30 a.m. to 11:00 a.m.",
+                                                   "11:00 a.m. to 12:30 p.m.",
+                                                   "1:00 p.m. to 2:30 p.m.",
+                                                   "2:30 p.m. to 4:00 p.m.",
+                                                   "4:00 p.m. to 5:30 p.m."
+                                               }
+                                    },
+                                {
+                                    "MWF", new[]
+                                               {
+                                                   "8:00 a.m. to 9:00 a.m.",
+                                                   "9:00 a.m. to 10:00 a.m.",
+                                                   "10:00 a.m. to 11:00 a.m.",
+                                                   "11:00 a.m. to 12:00 p.m.",
+                                                   "12:00 p.m. to 1:00 p.m.",
+                                                   "1:00 p.m. to 2:00 p.m.",
+                                                   "2:00 p.m. to 3:00 p.m.",
+                                                   "3:00 p.m. to 4:00 p.m.",
+                                                   "4:00 p.m. to 5:00 p.m.",
+                                               }
+                                    }
+                            };
+
+
             return new ChangeSchedule(
                 sections,
                 id,
                 "MATH 2301 Calculus 1",
-                "MATH 2301.02 Calculus 1");
+                "MATH 2301.02 Calculus 1",
+                new StandardScheduleData(days, times)
+                );
         }
 
         [NonAction]
