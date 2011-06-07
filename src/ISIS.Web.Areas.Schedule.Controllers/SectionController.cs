@@ -142,6 +142,12 @@ namespace ISIS.Web.Areas.Schedule.Controllers
             return this.RedirectToAction(c => c.Details(model.Id));
         }
 
+        [HttpPost]
+        public RedirectToRouteResult SetNonstandardSchedule(SetNonstandardSchedule model)
+        {
+            return this.RedirectToAction(c => c.Details(model.Id));
+        }
+
         [NonAction]
         public Index GetSectionList()
         {

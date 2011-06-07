@@ -55,43 +55,47 @@
 </script>
 
 <script id="nonstandardScheduleTemplate" type="text/html">
-    <ul>
-        <li>
-            <input type='checkbox' id="DaysMonday" name="Days" value="M" />
-            <label for="DaysMonday">Monday</label>
-        </li>
-        <li>
-            <input type='checkbox' id="DaysTuesday" name="Days" value="T" />
-            <label for="DaysTuesday">Tuesday</label>
-        </li>
-        <li>
-            <input type='checkbox' id="DaysWednesday" name="Days" value="W" />
-            <label for="DaysWednesday">Wednesday</label>
-        </li>
-        <li>
-            <input type='checkbox' id="DaysThursday" name="Days" value="Th" />
-            <label for="DaysThursday">Thursday</label>
-        </li>
-        <li>
-            <input type='checkbox' id="DaysFriday" name="Days" value="F" />
-            <label for="DaysFriday">Friday</label>
-        </li>
-        <li>
-            <input type='checkbox' id="DaysSaturday" name="Days" value="Sa" />
-            <label for="DaysSaturday">Saturday</label>
-        </li>
-        <li>
-            <input type='checkbox' id="DaysSunday" name="Days" value="Su" />
-            <label for="DaysSunday">Sunday</label>
-        </li>
-    </ul>
-    <div>
-        <div class="editor-label">Start:</div>
-        <div class="editor-field"><input type="text" name="StartTime" value="8:00 a.m."></div>
-        <div class="editor-label">End:</div>
-        <div class="editor-field"><input type="text" name="EndTime" value="12:00 p.m."></div>
-    </div>
-    <input type="submit" value="Set Schedule" />
+    @using (Html.BeginForm<SectionController>(c => c.SetNonstandardSchedule(null), FormMethod.Post))
+    {
+        <input type='hidden' name='Id' value='${Id}'/>
+        <ul>
+            <li>
+                <input type='checkbox' id="DaysMonday" name="Days" value="M" />
+                <label for="DaysMonday">Monday</label>
+            </li>
+            <li>
+                <input type='checkbox' id="DaysTuesday" name="Days" value="T" />
+                <label for="DaysTuesday">Tuesday</label>
+            </li>
+            <li>
+                <input type='checkbox' id="DaysWednesday" name="Days" value="W" />
+                <label for="DaysWednesday">Wednesday</label>
+            </li>
+            <li>
+                <input type='checkbox' id="DaysThursday" name="Days" value="Th" />
+                <label for="DaysThursday">Thursday</label>
+            </li>
+            <li>
+                <input type='checkbox' id="DaysFriday" name="Days" value="F" />
+                <label for="DaysFriday">Friday</label>
+            </li>
+            <li>
+                <input type='checkbox' id="DaysSaturday" name="Days" value="Sa" />
+                <label for="DaysSaturday">Saturday</label>
+            </li>
+            <li>
+                <input type='checkbox' id="DaysSunday" name="Days" value="Su" />
+                <label for="DaysSunday">Sunday</label>
+            </li>
+        </ul>
+        <div>
+            <div class="editor-label">Start:</div>
+            <div class="editor-field"><input type="text" name="StartTime" value="8:00 a.m."></div>
+            <div class="editor-label">End:</div>
+            <div class="editor-field"><input type="text" name="EndTime" value="12:00 p.m."></div>
+        </div>
+        <input type="submit" value="Set Schedule" />
+    }
 </script>
 
 <div data-bind='template: "template"' />
