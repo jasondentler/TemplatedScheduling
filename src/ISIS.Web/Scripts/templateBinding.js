@@ -18,6 +18,7 @@ afterBind.push(function () {
     $('.icon-closethick').button("option", "icons", { primary: "ui-icon-closethick" });
     $('.no-text').button("option", "text", false);
     $('.tabs').tabs();
+    $('.humaneDate').timeago();
 });
 
 $(document).ready(function () {

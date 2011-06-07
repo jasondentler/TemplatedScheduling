@@ -18,6 +18,8 @@ namespace ISIS.Web.Areas.Schedule.Models.Section.ViewModels
         public string GetQualifiedInstructorsUrl { get; set; }
         public bool CanChangeTerm { get; set; }
         public string GetAvailableTermsUrl { get; set; }
+        public bool CanCancelSection { get; set; }
+        public IEnumerable<Note> Notes { get; set; }
 
         public Details(
             IEnumerable<SectionListItem> sections,
@@ -34,7 +36,9 @@ namespace ISIS.Web.Areas.Schedule.Models.Section.ViewModels
             bool canChangeInstructor,
             string getQualifiedInstructorsUrl,
             bool canChangeTerm,
-            string getAvailableTermsUrl)
+            string getAvailableTermsUrl,
+            bool canCancelSection,
+            IEnumerable<Note> notes)
             : base(sections)
         {
             Id = id;
@@ -50,7 +54,28 @@ namespace ISIS.Web.Areas.Schedule.Models.Section.ViewModels
             GetQualifiedInstructorsUrl = getQualifiedInstructorsUrl;
             CanChangeTerm = canChangeTerm;
             GetAvailableTermsUrl = getAvailableTermsUrl;
+            CanCancelSection = canCancelSection;
+            Notes = notes;
             CourseName = courseName;
+        }
+    }
+
+    public class Note
+    {
+        public Guid Id { get; set; }
+        public string NoteAdded { get; set; }
+        public string UserName { get; set; }
+        public string Content { get; set; }
+
+        public Note(Guid id,
+            DateTime noteAdded,
+            string userName,
+            string content)
+        {
+            Id = id;
+            NoteAdded = noteAdded.ToString("yyyy-MM-ddTHH\\:mm\\:ss.fffffffzzz");
+            UserName = userName;
+            Content = content;
         }
     }
 }

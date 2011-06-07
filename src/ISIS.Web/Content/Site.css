@@ -242,6 +242,31 @@ fieldset.itemList
 	background-color: #4C6F93;
 }
 
+/* Notes
+-----------------------------------------------------------*/
+#notes > ul
+{
+	list-style-type: none;
+}
+
+#notes > ul > li
+{
+	margin: 1em;
+}
+
+#notes .heading
+{
+	padding: 0.5em;
+	font-size: 0.9em;
+	color: #444444;
+	background-color: #DDDDDD;
+}
+
+#notes .content
+{
+	font-size: 1.2em;
+}
+
 /* Other styles
 -----------------------------------------------------------*/
 h2.hint

@@ -11,6 +11,10 @@
 <script id="template" type="text/html">
 {{tmpl "#sectionListTemplate"}}
     <div class="content">
+        <ul class="links">
+            <li><a href="#" id="cancelSectionLink">Cancel Section</a></li>
+            <li><a href="#" id="createTemplateLink">Create Template</a></li>
+        </ul>
         <div class="display-label">Section</div>
         <div class="display-field">${SectionName}</div>
         <div class="display-label">Term</div>
@@ -82,6 +86,26 @@
                 <span class="disabled">None</span>
             {{/if}}
         </fieldset>
+        <fieldset id="notes">
+            <legend>Notes
+            <a href="#" id="addNoteLink" class="button icon-plusthick no-text">Add Note</a>
+            </legend>
+            {{if Notes && Notes.length}}
+            <ul>
+                {{each(i, note) Notes}}
+                    <li>
+                        <div class="heading ui-corner-all">
+                            <span class="user">${UserName}</span> wrote 
+                            <span class="humaneDate" title="${NoteAdded}">${NoteAdded}</span>
+                        </div>
+                        <div class="content">${Content}</div>
+                    </li>
+                {{/each}}
+            </ul>
+            {{else}}
+                <span class="disabled">No notes</span>
+            {{/if}}
+        </fieldset>
     </div>
 
 
@@ -97,9 +121,42 @@
         }
     </div>
 
+    <div id="cancelSectionDialog" title="Cancel Section" class="hidden">
+        @using (Html.BeginForm<SectionController>(c => c.CancelSection(null), FormMethod.Post, new { id = "cancelSectionForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" Name="Id" value="${Id}" />
+            <p>Are you sure you want to cancel this section?</p>
+        }
+    </div>
+
+    <div id="createTemplateDialog" title="Create Template" class="hidden">
+        @using (Html.BeginForm<SectionController>(c => c.CreateTemplate(null), FormMethod.Post, new { id = "createTemplateForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" Name="SectionId" value="${Id}" />
+            <div class="editor-label">Template Name</div>
+            <div class="editor-field">
+                <input type="textbox" Name="TemplateName" value="${SectionName}"/>
+            </div>
+        }
+    </div>
+
+    <div id="addNoteDialog" title="Add Note" class="hidden">
+        @using (Html.BeginForm<SectionController>(c => c.AddNote(null), FormMethod.Post, new { id = "addNoteForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" Name="Id" value="${Id}" />
+            <textarea rows="4" style="height: 100%; width: 100%" name="Content" />
+        }
+    </div>
+
 </script>
 
 <script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/changeCapacity.js")"></script>
+<script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/cancelSection.js")"></script>
+<script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/createTemplate.js")"></script>
+<script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/addNote.js")"></script>
 
 
 <div data-bind='template: "template"' />

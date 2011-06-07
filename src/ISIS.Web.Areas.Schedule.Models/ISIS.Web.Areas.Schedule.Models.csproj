@@ -61,6 +61,9 @@
     <Compile Include="Section\InputModels\ChangeInstructor.cs" />
     <Compile Include="Section\InputModels\ChangeRoom.cs" />
     <Compile Include="Section\InputModels\ChangeTerm.cs" />
+    <Compile Include="Section\InputModels\CancelSection.cs" />
+    <Compile Include="Section\InputModels\AddNote.cs" />
+    <Compile Include="Section\InputModels\CreateTemplate.cs" />
     <Compile Include="Section\InputModels\SetNonstandardSchedule.cs" />
     <Compile Include="Section\InputModels\RemoveInstructorEquipment.cs" />
     <Compile Include="Section\InputModels\RemoveStudentEquipment.cs" />

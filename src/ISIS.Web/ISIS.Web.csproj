@@ -82,6 +82,9 @@
     <Content Include="Areas\Schedule\Scripts\changeCapacity.js" />
     <Content Include="Areas\Schedule\Scripts\changeInstructor.js" />
     <Content Include="Areas\Schedule\Scripts\changeTerm.js" />
+    <Content Include="Areas\Schedule\Scripts\cancelSection.js" />
+    <Content Include="Areas\Schedule\Scripts\addNote.js" />
+    <Content Include="Areas\Schedule\Scripts\createTemplate.js" />
     <Content Include="Areas\Schedule\Scripts\sectionList.js" />
     <Content Include="Areas\Schedule\Scripts\renameTemplate.js" />
     <Content Include="Areas\Schedule\Scripts\removeTemplate.js" />
@@ -161,6 +164,7 @@
     <Content Include="Scripts\jquery.svgplot.js" />
     <Content Include="Scripts\jquery.svgplot.min.js" />
     <Content Include="Scripts\jquery.svgplot.pack.js" />
+    <Content Include="Scripts\jquery.timeago.js" />
     <Content Include="Scripts\knockout-1.2.1.debug.js" />
     <Content Include="Scripts\knockout-1.2.1.js" />
     <Content Include="Scripts\templateDialog.js" />

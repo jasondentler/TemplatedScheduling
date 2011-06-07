@@ -148,6 +148,25 @@ namespace ISIS.Web.Areas.Schedule.Controllers
             return this.RedirectToAction(c => c.Details(model.Id));
         }
 
+        [HttpPost]
+        public RedirectToRouteResult CancelSection(CancelSection model)
+        {
+            return this.RedirectToAction(c => c.Index());
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult CreateTemplate(CreateTemplate model)
+        {
+            var templateId = Guid.NewGuid();
+            return this.RedirectToAction<TemplateController>(c => c.Details(templateId));
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult AddNote(AddNote model)
+        {
+            return this.RedirectToAction(c => c.Details(model.Id));
+        }
+
         [NonAction]
         public Index GetSectionList()
         {
@@ -191,7 +210,14 @@ namespace ISIS.Web.Areas.Schedule.Controllers
                 true,
                 Url.Action("ChangeInstructor", new {Id = id}),
                 true,
-                Url.Action("ChangeTerm", new {Id = id}));
+                Url.Action("ChangeTerm", new {Id = id}),
+                true,
+                new []
+                    {
+                        new Note(Guid.NewGuid(), DateTime.Now.AddMonths(-1), "Patty Balderas", "Should this section be cancelled? It never makes, and we need a bigger room for DevEd Math."), 
+                        new Note(Guid.NewGuid(), DateTime.Now.AddMonths(-1).AddDays(2), "Jennifer Hopkins", "I'll teach it online."), 
+                        new Note(Guid.NewGuid(), DateTime.Now.AddMonths(-1).AddDays(2).AddHours(1), "Patty Balderas", "Okay.")
+                    });
         }
 
         [NonAction]
