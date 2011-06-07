@@ -137,6 +137,12 @@ namespace ISIS.Web.Areas.Schedule.Controllers
             return this.RedirectToAction(c => c.ChangeStudentEquipment(model.SectionId));
         }
 
+        [HttpPost]
+        public RedirectToRouteResult SetStandardSchedule(SetStandardSchedule model)
+        {
+            return this.RedirectToAction(c => c.Details(model.Id));
+        }
+
         [NonAction]
         public Index GetSectionList()
         {

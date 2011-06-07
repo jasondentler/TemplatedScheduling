@@ -36,17 +36,45 @@
 </script>
 
 <script id="standardSchedule" type="text/html">
-    <select id="days">
-        {{each Days}}
-            <option>${$value}</option>
+    @using (Html.BeginForm<SectionController>(c => c.SetStandardSchedule(null), FormMethod.Post))
+    {
+    <input type='hidden' name='Id' value='${Id}'/>
+    <select id="days" name="Days">
+        {{each(i, day) Days}}
+            <option {{if day==selectedDay}}selected{{/if}}>${day}</option>
         {{/each}}
     </select>
 
-    <select id="times">
-        {{each Times[Days[0]]}}
-            <option>${$value}</option>
-        {{/each}}
+    <select id="times" name="Time">
+        {{tmpl "#timesItems"}}
     </select>
+
+    <input type="submit" value="Schedule" />
+    }
+</script>
+
+<script id="timesItems" type="text/html">
+        {{each(i, time) Times[selectedDay]}}
+            <option>${time}</option>
+        {{/each}}
 </script>
 
 <div data-bind='template: "template"' />
+
+<script type="text/javascript">
+    getViewModel = function (model) {
+        model.StandardScheduleData.selectedDay = model.StandardScheduleData.Days[0];
+        model.StandardScheduleData.Id = model.Id;
+        return model;
+    };
+
+    afterBind.push(function () {
+        $('#days').change(function () {
+            var selectedDay = $("#days").val();
+            viewModel.StandardScheduleData.selectedDay = selectedDay;
+            var content = $('#timesItems').tmpl(viewModel.StandardScheduleData);
+            $('#times').html(content);
+        });
+    });
+    
+</script>

@@ -63,6 +63,7 @@
     <Compile Include="Section\InputModels\ChangeTerm.cs" />
     <Compile Include="Section\InputModels\RemoveInstructorEquipment.cs" />
     <Compile Include="Section\InputModels\RemoveStudentEquipment.cs" />
+    <Compile Include="Section\InputModels\SetStandardSchedule.cs" />
     <Compile Include="Section\ViewModels\ChangeInstructor.cs" />
     <Compile Include="Section\ViewModels\ChangeInstructorEquipment.cs" />
     <Compile Include="Section\ViewModels\ChangeRoom.cs" />

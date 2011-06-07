@@ -4,6 +4,7 @@
 /// <reference path="knockout-1.2.1.js" />
 
 var model;
+var viewModel;
 afterBind = [];
 
 if (!console)
@@ -23,9 +24,14 @@ $(document).ready(function () {
     Bind();
 });
 
+var getViewModel = function (model) {
+    return model;
+};
+
 function Bind() {
     if (model) {
-        ko.applyBindings(model);
+        viewModel = getViewModel(model);
+        ko.applyBindings(viewModel);
         for (var index = 0; index < afterBind.length; index++) {
             afterBind[index]();
         }
