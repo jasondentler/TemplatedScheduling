@@ -325,20 +325,20 @@ h2.hint
 	margin-right: 0.5em;
 }
 
-#nonstandardSchedule > ul
+#nonstandardSchedule > form> ul
 {
 	list-style-type: none;
 	display: inline-block;
 	padding-right: 2em;
 }
 
-#nonstandardSchedule > div
+#nonstandardSchedule > form > div
 {
 	display: inline-block;
 	vertical-align: top;	
 }
 
-#nonstandardSchedule > input
+#nonstandardSchedule > form > input
 {
 	vertical-align: top;
 }
