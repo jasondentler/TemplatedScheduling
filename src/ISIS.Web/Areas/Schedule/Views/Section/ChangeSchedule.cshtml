@@ -17,25 +17,20 @@
         <div class="display-field">${SectionName}</div>
         <div class="tabs">
 	        <ul>
-		        <li><a href="#tabs-1">Standard Daytime</a></li>
-		        <li><a href="#tabs-2">Nonstandard</a></li>
-		        <li><a href="#tabs-3">Insane</a></li>
+		        <li><a href="#standardSchedule">Standard Daytime</a></li>
+		        <li><a href="#nonstandardSchedule">Nonstandard</a></li>
 	        </ul>
-	        <div id="tabs-1">
-		        {{tmpl(StandardScheduleData) "#standardSchedule"}}
+	        <div id="standardSchedule">
+		        {{tmpl(StandardScheduleData) "#standardScheduleTemplate"}}
 	        </div>
-	        <div id="tabs-2">
-		        <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
-	        </div>
-	        <div id="tabs-3">
-		        <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
-		        <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+	        <div id="nonstandardSchedule">
+		        {{tmpl "#nonstandardScheduleTemplate"}}
 	        </div>
         </div>
     </div>
 </script>
 
-<script id="standardSchedule" type="text/html">
+<script id="standardScheduleTemplate" type="text/html">
     @using (Html.BeginForm<SectionController>(c => c.SetStandardSchedule(null), FormMethod.Post))
     {
     <input type='hidden' name='Id' value='${Id}'/>
@@ -49,7 +44,7 @@
         {{tmpl "#timesItems"}}
     </select>
 
-    <input type="submit" value="Schedule" />
+    <input type="submit" value="Set Schedule" />
     }
 </script>
 
@@ -57,6 +52,46 @@
         {{each(i, time) Times[selectedDay]}}
             <option>${time}</option>
         {{/each}}
+</script>
+
+<script id="nonstandardScheduleTemplate" type="text/html">
+    <ul>
+        <li>
+            <input type='checkbox' id="DaysMonday" name="Days" value="M" />
+            <label for="DaysMonday">Monday</label>
+        </li>
+        <li>
+            <input type='checkbox' id="DaysTuesday" name="Days" value="T" />
+            <label for="DaysTuesday">Tuesday</label>
+        </li>
+        <li>
+            <input type='checkbox' id="DaysWednesday" name="Days" value="W" />
+            <label for="DaysWednesday">Wednesday</label>
+        </li>
+        <li>
+            <input type='checkbox' id="DaysThursday" name="Days" value="Th" />
+            <label for="DaysThursday">Thursday</label>
+        </li>
+        <li>
+            <input type='checkbox' id="DaysFriday" name="Days" value="F" />
+            <label for="DaysFriday">Friday</label>
+        </li>
+        <li>
+            <input type='checkbox' id="DaysSaturday" name="Days" value="Sa" />
+            <label for="DaysSaturday">Saturday</label>
+        </li>
+        <li>
+            <input type='checkbox' id="DaysSunday" name="Days" value="Su" />
+            <label for="DaysSunday">Sunday</label>
+        </li>
+    </ul>
+    <div>
+        <div class="editor-label">Start:</div>
+        <div class="editor-field"><input type="text" name="StartTime" value="8:00 a.m."></div>
+        <div class="editor-label">End:</div>
+        <div class="editor-field"><input type="text" name="EndTime" value="12:00 p.m."></div>
+    </div>
+    <input type="submit" value="Set Schedule" />
 </script>
 
 <div data-bind='template: "template"' />

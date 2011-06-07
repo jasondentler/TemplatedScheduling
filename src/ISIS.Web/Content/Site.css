@@ -299,3 +299,21 @@ h2.hint
 	border: 1px solid black;
 	margin-right: 0.5em;
 }
+
+#nonstandardSchedule > ul
+{
+	list-style-type: none;
+	display: inline-block;
+	padding-right: 2em;
+}
+
+#nonstandardSchedule > div
+{
+	display: inline-block;
+	vertical-align: top;	
+}
+
+#nonstandardSchedule > input
+{
+	vertical-align: top;
+}
