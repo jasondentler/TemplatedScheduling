@@ -1,5 +1,8 @@
-﻿/// <reference path="../../Scripts/jquery-ui-1.8.11.min.js" />
-/// <reference path="../../Scripts/jquery-1.5.1.min.js" />
+﻿/// <reference path="jquery-1.5.1.min.js" />
+/// <reference path="jquery-ui-1.8.11.min.js" />
+/// <reference path="jquery-tmpl.min.js" />
+/// <reference path="knockout-1.2.1.js" />
+
 var model;
 afterBind = [];
 
@@ -22,7 +25,7 @@ $(document).ready(function () {
 
 function Bind() {
     if (model) {
-        $('#template').tmpl(model).appendTo('#placeholder');
+        ko.applyBindings(model);
         for (var index = 0; index < afterBind.length; index++) {
             afterBind[index]();
         }

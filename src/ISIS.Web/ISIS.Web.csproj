@@ -161,6 +161,8 @@
     <Content Include="Scripts\jquery.svgplot.js" />
     <Content Include="Scripts\jquery.svgplot.min.js" />
     <Content Include="Scripts\jquery.svgplot.pack.js" />
+    <Content Include="Scripts\knockout-1.2.1.debug.js" />
+    <Content Include="Scripts\knockout-1.2.1.js" />
     <Content Include="Scripts\templateDialog.js" />
     <Content Include="Scripts\fullcalendar\fullcalendar.js" />
     <Content Include="Scripts\fullcalendar\fullcalendar.min.js" />

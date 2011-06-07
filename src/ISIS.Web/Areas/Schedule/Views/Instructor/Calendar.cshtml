@@ -9,8 +9,6 @@
                                   };
 }
 
-@*Html.Partial("_InstructorList")*@
-
 @Html.Partial("_CalendarView")
 
 <script id="template" type="text/html">
@@ -19,5 +17,4 @@
     </div>
 </script>
 
-
-<div id="placeholder" />
+<div data-bind='template: "template"' />
