@@ -3,4 +3,9 @@
 }
 
 <h2>Welcome to ISIS</h2>
-@Html.RouteLink("Let's get scheduling.", new {area="Schedule", controller = "Home", action="Index"})
+
+<ul class="links">
+    <li>@Html.RouteLink("Course Scheduling", new { area = "Schedule", controller = "Home", action = "Index" })</li>
+    <li class="separator">|</li>
+    <li>@Html.RouteLink("Facilities", new { area = "Facilities", controller = "Home", action = "Index" })</li>
+</ul>

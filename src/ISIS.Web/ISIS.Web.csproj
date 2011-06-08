@@ -71,6 +71,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Facilities\FacilitiesAreaRegistration.cs" />
     <Compile Include="Areas\Schedule\ScheduleAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -216,6 +217,14 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ISIS.Web.Areas.Facilities.Controllers\ISIS.Web.Areas.Facilities.Controllers.csproj">
+      <Project>{7E62730C-24A8-42AF-9E93-7684769F313B}</Project>
+      <Name>ISIS.Web.Areas.Facilities.Controllers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ISIS.Web.Areas.Facilities.Models\ISIS.Web.Areas.Facilities.Models.csproj">
+      <Project>{DC4ECEF7-1934-48DD-AB4E-35EDF6C02596}</Project>
+      <Name>ISIS.Web.Areas.Facilities.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ISIS.Web.Areas.Schedule.Controllers\ISIS.Web.Areas.Schedule.Controllers.csproj">
       <Project>{AEB8F4E2-64DF-49D3-83F9-F441F19DA20C}</Project>
       <Name>ISIS.Web.Areas.Schedule.Controllers</Name>
@@ -330,6 +339,16 @@
     <Content Include="Areas\Schedule\Views\Section\ChangeInstructorEquipment.cshtml" />
     <Content Include="Areas\Schedule\Views\Section\ChangeStudentEquipment.cshtml" />
     <Content Include="Areas\Schedule\Views\Section\ChangeSchedule.cshtml" />
+    <Content Include="Areas\Facilities\Views\Web.config" />
+    <Content Include="Areas\Facilities\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Facilities\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Facilities\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\Facilities\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Facilities\Views\Map\Index.cshtml" />
+    <Content Include="Areas\Facilities\Views\Map\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\Facilities\Views\Map\_MapsTree.cshtml" />
     <None Include="Content\images\buildings\A1.svg" />
     <None Include="Content\images\buildings\A2.svg" />
     <None Include="Content\images\buildings\B1.svg" />
@@ -349,6 +368,7 @@
     <None Include="Content\images\buildings\S1.svg" />
     <None Include="Content\images\buildings\S2.svg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

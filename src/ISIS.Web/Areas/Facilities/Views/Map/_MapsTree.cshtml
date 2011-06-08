@@ -1,0 +1,25 @@
+﻿@model IMapList
+
+<script id="mapsTreeTemplate" type="text/html">
+<ul id="mapList">
+    {{each(i, campus) RootItems}}
+        <li>${campus.Text}
+            {{if campus.Children.length}}
+                {{tmpl(campus) "#mapsTreeLevelTemplate"}}
+            {{/if}}
+        </li>
+    {{/each}}
+</ul>
+</script>
+
+<script id="mapsTreeLevelTemplate" type="text/html">
+<ul>
+    {{each(i, item) Children}}
+        <li>${item.Text}
+            {{if item.Children.length}}
+                {{tmpl(item) "#mapsTreeLevelTemplate"}}
+            {{/if}}
+        </li>
+    {{/each}}
+</ul>
+</script>

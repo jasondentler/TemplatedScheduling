@@ -1,0 +1,13 @@
+﻿@model Index
+@{
+    ViewBag.Title = "Building Maps";
+}
+
+@Html.Partial("_MapsTree")
+
+<script id="template" type="text/html">
+    {{tmpl "#mapsTreeTemplate"}}
+    <h2 class="hint">Choose a section from the left</h2>
+</script>
+
+<div data-bind='template: "template"' />
