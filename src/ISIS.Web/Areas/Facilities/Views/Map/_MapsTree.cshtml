@@ -1,25 +1,65 @@
 ﻿@model IMapList
 
 <script id="mapsTreeTemplate" type="text/html">
-<ul id="mapList">
-    {{each(i, campus) RootItems}}
-        <li>${campus.Text}
-            {{if campus.Children.length}}
-                {{tmpl(campus) "#mapsTreeLevelTemplate"}}
+<div id="mapList" style="float: left; width: 18em;">
+    <ul>
+        {{each(i, campus) RootItems}}
+            <li class="closed {{if campus.Children.length}}folder{{/if}} ${campus.Type}">
+                @Html.TemplateActionLink("${campus.Text}", "Details","Campus", new {Id = "${campus.Id}"},  new {dataId = "${campus.Id}"})
+                {{if campus.Children.length}}
+                    {{tmpl(campus) "#mapsTreeBuildingLevelTemplate"}}
+                {{/if}}
+            </li>
+        {{/each}}
+    </ul>
+</div>
+</script>
+
+<script id="mapsTreeBuildingLevelTemplate" type="text/html">
+<ul>
+    {{each(i, item) Children}}
+        <li class="closed {{if item.Children.length}}folder{{/if}} ${item.Type}">
+        @Html.TemplateActionLink("${item.Text}", "Details","Building", new {Id = "${item.Id}"}, new {dataId = "${item.Id}"})
+            {{if item.Children.length}}
+                {{tmpl(item) "#mapsTreeMapLevelTemplate"}}
             {{/if}}
         </li>
     {{/each}}
 </ul>
 </script>
 
-<script id="mapsTreeLevelTemplate" type="text/html">
+<script id="mapsTreeMapLevelTemplate" type="text/html">
 <ul>
     {{each(i, item) Children}}
-        <li>${item.Text}
+        <li class="closed {{if item.Children.length}}folder{{/if}} ${item.Type}">
+        @Html.TemplateActionLink("${item.Text}", "Details","Map", new {Id = "${item.Id}"}, new {dataId = "${item.Id}"})
             {{if item.Children.length}}
-                {{tmpl(item) "#mapsTreeLevelTemplate"}}
+                {{tmpl(item) "#mapsTreeRoomLevelTemplate"}}
             {{/if}}
         </li>
     {{/each}}
 </ul>
+</script>
+
+<script id="mapsTreeRoomLevelTemplate" type="text/html">
+<ul>
+    {{each(i, item) Children}}
+        <li class="closed {{if item.Children.length}}folder{{/if}} ${item.Type}">
+            @Html.TemplateActionLink("${item.Text}", "Details","Room", new {Id = "${item.Id}"}, new {dataId = "${item.Id}"})
+        </li>
+    {{/each}}
+</ul>
+</script>
+
+<script type="text/javascript">
+    afterBind.push(function () {
+        $("#mapList a[dataId='" + model.SelectedItem + "']")
+                            .parents("li")
+                            .removeClass("closed")
+                            .addClass("open");
+
+        $("#mapList > ul").treeview({
+            animated: "fast"
+        });
+    });
 </script>

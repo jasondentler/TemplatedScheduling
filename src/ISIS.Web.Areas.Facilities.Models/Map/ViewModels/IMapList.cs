@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ISIS.Web.Areas.Facilities.Models.Map.ViewModels
 {
@@ -7,6 +8,7 @@ namespace ISIS.Web.Areas.Facilities.Models.Map.ViewModels
     {
 
         IEnumerable<ITreeItem> RootItems { get; }
+        Guid SelectedItem { get; }
 
     }
 

@@ -267,6 +267,34 @@ fieldset.itemList
 	font-size: 1.2em;
 }
 
+/* Tree view
+-----------------------------------------------------------*/
+#mapList li
+{
+}
+
+#mapList li > a 
+{
+	display: inline-block;
+	text-decoration: none;
+	text-indent: 18px;	
+}
+
+#mapList li.campus > a
+{
+	background: url(images/world.png) 0 0 no-repeat;	
+}
+
+#mapList li.building > a
+{
+	background: url(images/building.png) 0 0 no-repeat;	
+}
+
+#mapList li.map > a
+{
+	background: url(images/map.png) 0 0 no-repeat;	
+}
+
 /* Other styles
 -----------------------------------------------------------*/
 h2.hint

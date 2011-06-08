@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ISIS.Web.Areas.Facilities.Models.Map.ViewModels
 {
     public class Map  : ITreeItem
     {
+        public Guid Id { get; private set; }
+
         public string Text { get; private set; }
 
         public string Type { get { return "map"; } }
@@ -12,6 +15,7 @@ namespace ISIS.Web.Areas.Facilities.Models.Map.ViewModels
 
         public Map(string text)
         {
+            Id = Guid.NewGuid();
             Text = text;
         }
     }
