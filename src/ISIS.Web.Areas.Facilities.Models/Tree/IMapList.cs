@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ISIS.Web.Areas.Facilities.Models.Map.ViewModels
+namespace ISIS.Web.Areas.Facilities.Models.Tree
 {
 
     public interface IMapList 

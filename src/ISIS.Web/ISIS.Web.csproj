@@ -162,6 +162,7 @@
     <Content Include="Content\themes\ui-lightness\jquery-ui-1.8.13.custom.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\jquery.jstree.js" />
     <Content Include="Scripts\jquery.svg.compat-1.0.1.js" />
     <Content Include="Scripts\jquery.svg.js" />
     <Content Include="Scripts\jquery.svg.min.js" />
@@ -357,7 +358,6 @@
     <Content Include="Areas\Schedule\Views\Section\ChangeStudentEquipment.cshtml" />
     <Content Include="Areas\Schedule\Views\Section\ChangeSchedule.cshtml" />
     <Content Include="Areas\Facilities\Views\Web.config" />
-    <Content Include="Areas\Facilities\Views\Home\Index.cshtml" />
     <Content Include="Areas\Facilities\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Facilities\Views\Shared\Error.cshtml" />
     <Content Include="Areas\Facilities\Views\_ViewStart.cshtml" />
@@ -365,7 +365,11 @@
     <Content Include="Areas\Facilities\Views\Map\Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Areas\Facilities\Views\Map\_MapsTree.cshtml" />
+    <Content Include="Areas\Facilities\Views\Shared\_Tree.cshtml" />
+    <Content Include="Areas\Facilities\Views\Campus\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\Facilities\Views\Campus\Index.cshtml" />
     <None Include="Content\images\buildings\A1.svg" />
     <None Include="Content\images\buildings\A2.svg" />
     <None Include="Content\images\buildings\B1.svg" />

@@ -269,28 +269,38 @@ fieldset.itemList
 
 /* Tree view
 -----------------------------------------------------------*/
-#mapList li
+#facilityTree li
 {
 }
 
-#mapList li > a 
+#facilityTree li > a 
 {
 	display: inline-block;
 	text-decoration: none;
 	text-indent: 18px;	
 }
 
-#mapList li.campus > a
+#facilityTree li.loadPending > div
+{
+	display: inline-block;
+	text-decoration: none;
+	margin-left: 5px;
+	text-indent: 20px;	
+	background: url(images/throbber.gif) 0 0 no-repeat;	
+}
+
+
+#facilityTree li.campus > a
 {
 	background: url(images/world.png) 0 0 no-repeat;	
 }
 
-#mapList li.building > a
+#facilityTree li.building > a
 {
 	background: url(images/building.png) 0 0 no-repeat;	
 }
 
-#mapList li.map > a
+#facilityTree li.map > a
 {
 	background: url(images/map.png) 0 0 no-repeat;	
 }

@@ -40,12 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Map\ViewModels\Building.cs" />
-    <Compile Include="Map\ViewModels\Campus.cs" />
-    <Compile Include="Map\ViewModels\IMapList.cs" />
-    <Compile Include="Map\ViewModels\Index.cs" />
-    <Compile Include="Map\ViewModels\ITreeItem.cs" />
-    <Compile Include="Map\ViewModels\Map.cs" />
+    <Compile Include="Campus\ViewModels\Index.cs" />
+    <Compile Include="Tree\Building.cs" />
+    <Compile Include="Tree\Campus.cs" />
+    <Compile Include="Tree\FacilitiesSingleton.cs" />
+    <Compile Include="Tree\Room.cs" />
+    <Compile Include="Tree\Map.cs" />
+    <Compile Include="Tree\TreeItem.cs" />
+    <Compile Include="Tree\IMapList.cs" />
+    <Compile Include="Tree\ITreeItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +57,7 @@
       <Name>ISIS.Web.Models</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

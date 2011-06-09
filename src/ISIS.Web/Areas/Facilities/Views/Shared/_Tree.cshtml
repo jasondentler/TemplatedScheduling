@@ -1,0 +1,122 @@
+﻿@model IMapList
+<script id="treeTemplateProxy" type="text/html">
+    {{tmpl "#treeTemplate"}}
+</script>
+
+<script id="treeTemplate" type="text/html">
+    <ul id="facilityTree" class="treeview">
+        {{each(i, item) translateModel(RootItems)}}
+            {{tmpl(item) "#nodeTemplate"}}
+        {{/each}}
+    </ul>
+</script>
+
+<script id="nodeListTemplate" type="text/html">
+    {{each(i, item) translateModel(items)}}
+        {{tmpl(item) "#nodeTemplate"}}
+    {{/each}}
+</script>
+
+<script id="nodeTemplate" type="text/html">
+    {{if hasChildren}}
+    <li class="${type} expandable" loadChildrenUrl="${loadChildrenUrl}">
+        <div class="hitarea" />
+        <a href="${url}">${text}</a>
+        <ul>
+            <li class="loadPending"><div>Loading. Please wait.</div></li>
+        </ul>
+    </li>
+    {{else}}
+    <li class="${type}">
+        <a href="${url}">${text}</a>
+    </li>
+    {{/if}}
+</script>
+
+<script type="text/javascript">
+    afterBind.push(function () {
+        updateTree($("#facilityTree"));
+        $(".treeview .hitarea").live('click', toggle);
+    });
+
+    function updateTree(tree) {
+        $(tree).find("li").each(function (index, item) {
+            updateTreeNode($(item));
+        });
+    }
+
+    function updateTreeNode(node) {
+        if (node.hasClass("expandable")) {
+            node.find("> ul").hide();
+            node.find("> .hitarea").addClass("expandable-hitarea");
+        } else if (node.hasClass("collapsable")) {
+            node.find("> ul").show();
+            node.find("> .hitarea").removeClass("expandable-hitarea");
+        }
+
+        if ($(node).filter(":last-child").length) {
+            updateLastNode(node);
+        } else {
+            updateMiddleNode(node);
+        }
+    }
+
+    function updateMiddleNode(node) {
+        node.removeClass("last");
+    }
+
+    function updateLastNode(node) {
+        node.addClass("last");
+        if (node.hasClass("expandable")) {
+            node.addClass("lastExpandable").removeClass("lastCollapsable");
+            node.find("> .hitarea").addClass("lastExpandable-hitarea").removeClass("lastCollapsable-hitarea");
+        } else if (node.hasClass("collapsable")) {
+            node.removeClass("lastExpandable").addClass("lastCollapsable");
+            node.find("> .hitarea").removeClass("lastExpandable-hitarea").addClass("lastCollapsable-hitarea");
+        }
+    }
+
+    function toggle() {
+        var node = $(this).parent();
+        if (node.hasClass("expandable")) {
+            node.removeClass("expandable").addClass("collapsable");
+        } else if (node.hasClass("collapsable")) {
+            node.removeClass("collapsable").addClass("expandable");
+        }
+        updateTreeNode(node);
+        if (node.find(".loadPending").length) {
+            loadChildren(node);
+        }
+    }
+
+    function loadChildren(node) {
+        var url = node.attr("loadChildrenUrl");
+        $.getJSON(url)
+         .done(function (data) {
+             var viewModel = {
+                 items: data
+             };
+             console.log(viewModel);
+             var content = $('#nodeListTemplate').tmpl(viewModel);
+             console.log(content);
+             node.find(">ul").empty().append(content);
+             updateTree(node);
+         });
+    }
+    
+    
+    function translateModel(itemsArray) {
+        var retval = [];
+        for (var idx in itemsArray) {
+            var item = itemsArray[idx];
+            retval.push({
+                    id: item.Id,
+                    text: item.Text,
+                    type: item.Type,
+                    hasChildren: item.HasChildren,
+                    loadChildrenUrl: item.LoadChildrenUrl
+                });
+            }
+        return retval;
+    }
+</script>

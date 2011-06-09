@@ -1,11 +1,12 @@
-﻿@{
-    ViewBag.Title = "Building Maps";
+﻿@model Index
+@{
+    ViewBag.Title = "Campuses";
 }
 
-@Html.Partial("_MapsTree")
+@Html.Partial("_Tree")
 
 <script id="template" type="text/html">
-    {{tmpl "#treeTemplate"}}
+    {{tmpl "#treeTemplateProxy"}}
     <h2 class="hint">Choose an item from the left</h2>
 </script>
 

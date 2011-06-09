@@ -45,9 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CampusController.cs" />
+    <Compile Include="BuildingController.cs" />
     <Compile Include="MapController.cs" />
-    <Compile Include="HomeController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoomController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ISIS.Web.Areas.Facilities.Models\ISIS.Web.Areas.Facilities.Models.csproj">

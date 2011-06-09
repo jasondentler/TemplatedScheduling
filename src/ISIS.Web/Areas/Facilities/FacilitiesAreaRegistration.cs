@@ -17,7 +17,7 @@ namespace ISIS.Web.Areas.Facilities
             context.MapRoute(
                 "Facilities_default",
                 "Facilities/{controller}/{action}/{id}",
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                new { controller = "Campus", action = "Index", id = UrlParameter.Optional },
                 new[] { "ISIS.Web.Areas.Facilities.Controllers" }
                 );
         }
