@@ -18,7 +18,7 @@ namespace ISIS.Web.Areas.Facilities.Controllers
         [NonAction]
         public IEnumerable<Room> GetRooms(Guid mapId)
         {
-            return FacilitiesSingleton.Facilities.GetChildren(Guid.Empty)
+            return FacilitiesSingleton.Facilities.GetChildren(mapId)
                 .Select(tuple => new Room(tuple.Item1, tuple.Item2));
 
         }

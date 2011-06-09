@@ -106,6 +106,7 @@
     <Content Include="Areas\Schedule\Scripts\createInstructor.js" />
     <Content Include="Content\fullcalendar\fullcalendar.css" />
     <Content Include="Content\fullcalendar\fullcalendar.print.css" />
+    <Content Include="Content\images\book.png" />
     <Content Include="Content\images\building.png" />
     <Content Include="Content\images\buildings\A1.js" />
     <Content Include="Content\images\buildings\G1.js" />

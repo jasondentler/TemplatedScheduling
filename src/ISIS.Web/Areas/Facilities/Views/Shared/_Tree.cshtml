@@ -84,7 +84,7 @@
             node.removeClass("collapsable").addClass("expandable");
         }
         updateTreeNode(node);
-        if (node.find(".loadPending").length) {
+        if (node.find("> ul > li.loadPending").length) {
             loadChildren(node);
         }
     }

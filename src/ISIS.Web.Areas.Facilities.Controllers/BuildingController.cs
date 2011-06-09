@@ -19,7 +19,7 @@ namespace ISIS.Web.Areas.Facilities.Controllers
         [NonAction]
         public IEnumerable<Building> GetBuildings(Guid campusId)
         {
-            return FacilitiesSingleton.Facilities.GetChildren(Guid.Empty)
+            return FacilitiesSingleton.Facilities.GetChildren(campusId)
                 .Select(tuple => new Building(
                                      tuple.Item1,
                                      tuple.Item2,

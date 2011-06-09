@@ -305,6 +305,11 @@ fieldset.itemList
 	background: url(images/map.png) 0 0 no-repeat;	
 }
 
+#facilityTree li.room > a
+{
+	background: url(images/book.png) 0 0 no-repeat;	
+}
+
 /* Other styles
 -----------------------------------------------------------*/
 h2.hint
