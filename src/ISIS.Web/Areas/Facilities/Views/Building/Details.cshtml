@@ -1,14 +1,81 @@
-﻿@model IMapList
+﻿@model Details
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.BuildingName;
+    ViewData["Breadcrumbs"] = new[] { new Breadcrumb(Model.CampusName, @Url.Action<CampusController>(c => c.Details(Model.CampusId))) };
 }
 
 @Html.Partial("_Tree")
 
 <script id="template" type="text/html">
     {{tmpl "#treeTemplateProxy"}}
-    <h2 class="hint">Building Details</h2>
+    <div class="content">
+        <ul class="links">
+            <li><a href="#" id="addMapLink">Add Map</a></li>
+            <li><a href="#" id="removeBuildingLink">Remove Building</a></li>
+        </ul>
+        <div class="display-label">Building</div>
+        <div class="display-field">${BuildingName}
+            <button id="renameBuilding" class="icon-pencil no-text">Rename Building</button>
+        </div>
+    </div>
+    
+    <div id="removeBuildingDialog" class="hidden" title="Warning!">
+        @using (Html.BeginForm<BuildingController>(c => c.RemoveBuilding(null), FormMethod.Post, new {id = "removeBuildingForm"}))
+        {
+            <input type="hidden" name="BuildingId" value="${Id}" />
+            <p class="warning">
+                This action will remove the building, as well as all of its maps and rooms. It cannot be undone.
+            </p>
+        }
+    </div>
+
+    <div id="addMapDialog" class="hidden" title="Add a map">
+        @using (Html.BeginForm<BuildingController>(c => c.AddMap(null), FormMethod.Post, new {id="addMapForm"}))
+        {
+            <input type="hidden" name="BuildingId" value="${Id}" />
+            <div class="edit-label">Map Name</div>
+            <div class="edit-field">
+                    <input type="text" name="MapName" />
+            </div>
+        }
+    </div>
+
+        <div id="renameBuildingDialog" class="hidden" title="Rename this building">
+        @using (Html.BeginForm<BuildingController>(c => c.RenameBuilding(null), FormMethod.Post, new {id = "renameBuildingForm"}))
+        {
+            <input type="hidden" name="BuildingId" value="${Id}" />
+            <div class="edit-label">New Building Name</div>
+            <div class="edit-field">
+                <input type="text" name="NewBuildingName" value="${BuildingName}" />
+            </div>
+        }
+    </div>
+
+</script>
+
+<script type="text/javascript">
+    ConfigureDialog(
+        "#addMapDialog",
+        "#addMapForm",
+        "Yes, add this map",
+        "#addMapLink",
+        function () { return true; });
+
+    ConfigureDialog(
+        "#removeBuildingDialog",
+        "#removeBuildingForm",
+        "Yes, I'm absolutely positively sure.",
+        "#removeBuildingLink",
+        function () { return true; });
+
+    ConfigureDialog(
+        "#renameBuildingDialog",
+        "#renameBuildingForm",
+        "Yes, rename this building.",
+        "#renameBuilding",
+        function () { return true; });
+    
 </script>
 
 <div data-bind='template: "template"' />

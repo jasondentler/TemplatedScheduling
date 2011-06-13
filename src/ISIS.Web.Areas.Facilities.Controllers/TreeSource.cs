@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Web.Mvc;
 using ISIS.Web.Areas.Facilities.Models.Tree;
 
@@ -20,13 +17,13 @@ namespace ISIS.Web.Areas.Facilities.Controllers
 
             var buildingUrlProvider = new UrlProvider
             {
-                GetChildrenUrl = id => Url.Action("Data", "Map", new { campusId = id }),
+                GetChildrenUrl = id => Url.Action("Data", "Map", new { buildingId = id }),
                 GetDetailsUrl = id => Url.Action("Details", "Building", new { Id = id })
             };
 
             var mapUrlProvider = new UrlProvider
             {
-                GetChildrenUrl = id => Url.Action("Data", "Room", new { campusId = id }),
+                GetChildrenUrl = id => Url.Action("Data", "Room", new { mapId = id }),
                 GetDetailsUrl = id => Url.Action("Details", "Map", new { Id = id })
             };
 

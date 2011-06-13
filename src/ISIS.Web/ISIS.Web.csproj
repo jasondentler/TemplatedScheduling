@@ -110,6 +110,7 @@
     <Content Include="Content\images\building.png" />
     <Content Include="Content\images\buildings\A1.js" />
     <Content Include="Content\images\buildings\G1.js" />
+    <Content Include="Content\images\cancel.png" />
     <Content Include="Content\images\map.png" />
     <Content Include="Content\images\minus.gif" />
     <Content Include="Content\images\plus.gif" />
@@ -362,7 +363,6 @@
     <Content Include="Areas\Facilities\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Facilities\Views\Shared\Error.cshtml" />
     <Content Include="Areas\Facilities\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Facilities\Views\Map\Index.cshtml" />
     <Content Include="Areas\Facilities\Views\Map\Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -375,6 +375,12 @@
     <Content Include="Areas\Facilities\Views\Map\Details.cshtml" />
     <Content Include="Areas\Facilities\Views\Campus\Details.cshtml" />
     <Content Include="Areas\Facilities\Views\Building\Details.cshtml" />
+    <Content Include="Areas\Facilities\Views\Building\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\Facilities\Views\Room\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Content\images\buildings\A1.svg" />
     <None Include="Content\images\buildings\A2.svg" />
     <None Include="Content\images\buildings\B1.svg" />

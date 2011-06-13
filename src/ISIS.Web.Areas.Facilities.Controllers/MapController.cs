@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Microsoft.Web.Mvc;
+using ISIS.Web.Areas.Facilities.Models.Map.InputModels;
+using ISIS.Web.Areas.Facilities.Models.Map.ViewModels;
 using ISIS.Web.Areas.Facilities.Models.Tree;
 
 namespace ISIS.Web.Areas.Facilities.Controllers
@@ -13,7 +16,22 @@ namespace ISIS.Web.Areas.Facilities.Controllers
         public ViewResult Details(Guid Id)
         {
             var tree = new TreeSource().GetTree(Id, Url);
-            return View(tree);
+
+            var mapId = Id;
+            var buildingId = FacilitiesSingleton.Facilities.GetParent(mapId);
+            var campusId = FacilitiesSingleton.Facilities.GetParent(buildingId);
+
+            var campus = tree.RootItems.Single(item => item.Id == campusId);
+            var campusName = campus.Text;
+
+            var building = campus.Children.Single(item => item.Id == buildingId);
+            var buildingName = building.Text;
+
+            var map = building.Children.Single(item => item.Id == mapId);
+            var mapName = map.Text;
+
+            var model = new Details(tree, mapId, mapName, buildingId, buildingName, campusId, campusName);
+            return View(model);
         }
 
         [HttpGet]
@@ -21,6 +39,36 @@ namespace ISIS.Web.Areas.Facilities.Controllers
         {
             return Json(GetMaps(buildingId), JsonRequestBehavior.AllowGet);
         }
+
+
+        [HttpPost]
+        public RedirectToRouteResult AddRoom(AddRoom model)
+        {
+            var roomId = Guid.NewGuid();
+            // For now: Do our best not to redirect to nowhere or yellow-screen-of-death
+            roomId = FacilitiesSingleton.Facilities.GetChildren(model.MapId).First().Item1;
+            return this.RedirectToAction<RoomController>(c => c.Details(roomId));
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult RemoveMap(RemoveMap model)
+        {
+            var buildingId = FacilitiesSingleton.Facilities.GetParent(model.MapId);
+            return this.RedirectToAction<BuildingController>(c => c.Details(buildingId));
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult RenameMap(RenameMap model)
+        {
+            return this.RedirectToAction(c => c.Details(model.MapId));
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult UploadMapImage(UploadMapImage model)
+        {
+            return this.RedirectToAction(c => c.Details(model.MapId));
+        }
+
 
         [NonAction]
         public IEnumerable<Map> GetMaps(Guid buildingId)
@@ -33,115 +81,6 @@ namespace ISIS.Web.Areas.Facilities.Controllers
                                      tuple.Item3,
                                      Url.Action("Data", "Room", new {mapId = tuple.Item1})));
         }
-
-        //[HttpGet]
-        //public ActionResult Index()
-        //{
-        //    if (Request.IsAjaxRequest())
-        //        return Json(GetMapList(), JsonRequestBehavior.AllowGet);
-        //    return View(GetMapList());
-        //}
-
-        //[NonAction]
-        //public Index GetMapList()
-        //{
-        //    return new Index(
-        //        new[]
-        //            {
-        //                new TreeItem("Main Campus",
-        //                           new[]
-        //                               {
-        //                                   new Models.Tree.Building("A",
-        //                                                new[]
-        //                                                    {
-        //                                                        new Map("1st Floor"),
-        //                                                        new Map("2nd Floor"),
-        //                                                    }
-        //                                       ),
-        //                                   new Models.Tree.Building("B",
-        //                                                new[]
-        //                                                    {
-        //                                                        new Map("1st Floor"),
-        //                                                        new Map("2nd Floor"),
-        //                                                    }
-        //                                       ),
-        //                                   new Models.Tree.Building("C",
-        //                                                new[]
-        //                                                    {
-        //                                                        new Map("1st Floor"),
-        //                                                        new Map("2nd Floor"),
-        //                                                    }
-        //                                       ),
-        //                                   new Models.Tree.Building("D",
-        //                                                new[]
-        //                                                    {
-        //                                                        new Map("1st Floor"),
-        //                                                        new Map("2nd Floor"),
-        //                                                    }
-        //                                       ),
-        //                                   new Models.Tree.Building("E",
-        //                                                new[]
-        //                                                    {
-        //                                                        new Map("1st Floor")
-        //                                                    }
-        //                                       ),
-        //                                   new Models.Tree.Building("F",
-        //                                                new[]
-        //                                                    {
-        //                                                        new Map("1st Floor"),
-        //                                                        new Map("2nd Floor"),
-        //                                                    }
-        //                                       ),
-        //                                   new Models.Tree.Building("G",
-        //                                                new[]
-        //                                                    {
-        //                                                        new Map("1st Floor")
-        //                                                    }
-        //                                       ),
-        //                                   new Models.Tree.Building("H",
-        //                                                new[]
-        //                                                    {
-        //                                                        new Map("1st Floor")
-        //                                                    }
-        //                                       ),
-        //                                   new Models.Tree.Building("J",
-        //                                                new[]
-        //                                                    {
-        //                                                        new Map("1st Floor")
-        //                                                    }
-        //                                       ),
-        //                                   new Models.Tree.Building("K",
-        //                                                new[]
-        //                                                    {
-        //                                                        new Map("1st Floor")
-        //                                                    }
-        //                                       ),
-        //                                   new Models.Tree.Building("N",
-        //                                                new[]
-        //                                                    {
-        //                                                        new Map("1st Floor")
-        //                                                    }
-        //                                       ),
-        //                                   new Models.Tree.Building("Nolan Ryan Center",
-        //                                                new[]
-        //                                                    {
-        //                                                        new Map("1st Floor")
-        //                                                    }
-        //                                       ),
-        //                                   new Models.Tree.Building("G",
-        //                                                new[]
-        //                                                    {
-        //                                                        new Map("1st Floor"),
-        //                                                        new Map("2nd Floor")
-        //                                                    }
-        //                                       )
-        //                               }
-        //                    ),
-        //                new TreeItem("Pearland", new Models.Tree.Building[0]),
-        //            }
-        //        );
-        //}
-
-
+        
     }
 }

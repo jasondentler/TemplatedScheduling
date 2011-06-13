@@ -1,14 +1,106 @@
-﻿@model IMapList
+﻿@model Details
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.MapName;
+    ViewData["Breadcrumbs"] = new[] { 
+        new Breadcrumb(Model.CampusName, @Url.Action<CampusController>(c => c.Details(Model.CampusId))) ,
+        new Breadcrumb(Model.BuildingName, @Url.Action<BuildingController>(c => c.Details(Model.BuildingId)))
+        
+    };
 }
 
 @Html.Partial("_Tree")
 
 <script id="template" type="text/html">
     {{tmpl "#treeTemplateProxy"}}
-    <h2 class="hint">Map Details</h2>
+    <div class="content">
+        <ul class="links">
+            <li><a href="#" id="addRoomLink">Add Room</a></li>
+            <li><a href="#" id="uploadMapImageLink">Upload Map</a></li>
+            <li><a href="#" id="removeMapLink">Remove Map</a></li>
+        </ul>
+        <div class="display-label">Map</div>
+        <div class="display-field">${MapName}
+            <button id="renameMap" class="icon-pencil no-text">Rename Map</button>
+        </div>
+    </div>
+    
+    <div id="removeMapDialog" class="hidden" title="Warning!">
+        @using (Html.BeginForm<MapController>(c => c.RemoveMap(null), FormMethod.Post, new {id = "removeMapForm"}))
+        {
+            <input type="hidden" name="MapId" value="${Id}" />
+            <p class="warning">
+                This action will remove the map, as well as all of its rooms. It cannot be undone.
+            </p>
+        }
+    </div>
+
+    <div id="addRoomDialog" class="hidden" title="Add a room">
+        @using (Html.BeginForm<MapController>(c => c.AddRoom(null), FormMethod.Post, new {id="addRoomForm"}))
+        {
+            <input type="hidden" name="MapId" value="${Id}" />
+            <div class="edit-label">Room Name</div>
+            <div class="edit-field">
+                    <input type="text" name="RoomName" />
+            </div>
+        }
+    </div>
+
+    <div id="renameMapDialog" class="hidden" title="Rename this map">
+        @using (Html.BeginForm<MapController>(c => c.RenameMap(null), FormMethod.Post, new {id = "renameMapForm"}))
+        {
+            <input type="hidden" name="MapId" value="${Id}" />
+            <div class="edit-label">New Map Name</div>
+            <div class="edit-field">
+                <input type="text" name="NewMapName" value="${MapName}" />
+            </div>
+        }
+    </div>
+
+    <div id="uploadMapImageDialog" class="hidden" title="Upload a map">
+        @using (Html.BeginForm<MapController>(c => c.UploadMapImage(null), FormMethod.Post, new {id="uploadMapImageForm", enctype="multipart/form-data"}))
+        {
+            <input type="hidden" name="MapId" value="${Id}" />
+            <p>Upload a standard floor plan in Scalable Vector Graphics (svg) format. The free program InkScape can convert many file formats to svg.</p>
+            <div class="edit-label">Map Image</div>
+            <div class="edit-field">
+                    <input type="file" name="Map" accept="image/svg+xml" />
+            </div>
+        }
+    </div>
+
+
+
+</script>
+
+<script type="text/javascript">
+    ConfigureDialog(
+        "#addRoomDialog",
+        "#addRoomForm",
+        "Yes, add this room",
+        "#addRoomLink",
+        function () { return true; });
+
+    ConfigureDialog(
+        "#removeMapDialog",
+        "#removeMapForm",
+        "Yes, I'm absolutely positively sure.",
+        "#removeMapLink",
+        function () { return true; });
+
+    ConfigureDialog(
+        "#renameMapDialog",
+        "#renameMapForm",
+        "Yes, rename this map.",
+        "#renameMap",
+        function () { return true; });
+
+    ConfigureDialog(
+        "#uploadMapImageDialog",
+        "#uploadMapImageForm",
+        "Yes, upload this map.",
+        "#uploadMapImageLink",
+        function () { return true; });
 </script>
 
 <div data-bind='template: "template"' />

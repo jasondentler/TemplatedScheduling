@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,7 +41,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Building\InputModels\AddMap.cs" />
+    <Compile Include="Building\InputModels\RemoveBuilding.cs" />
+    <Compile Include="Building\InputModels\RenameBuilding.cs" />
+    <Compile Include="Building\ViewModels\Details.cs" />
+    <Compile Include="Campus\InputModels\AddBuilding.cs" />
+    <Compile Include="Campus\InputModels\RemoveCampus.cs" />
+    <Compile Include="Campus\InputModels\RenameCampus.cs" />
+    <Compile Include="Campus\ViewModels\Details.cs" />
     <Compile Include="Campus\ViewModels\Index.cs" />
+    <Compile Include="Map\InputModels\UploadMapImage.cs" />
+    <Compile Include="Room\InputModels\RemoveRoom.cs" />
+    <Compile Include="Room\InputModels\RenameRoom.cs" />
+    <Compile Include="Room\ViewModels\Details.cs" />
+    <Compile Include="Map\InputModels\AddRoom.cs" />
+    <Compile Include="Map\InputModels\RemoveMap.cs" />
+    <Compile Include="Map\InputModels\RenameMap.cs" />
+    <Compile Include="Map\ViewModels\Details.cs" />
     <Compile Include="Tree\Building.cs" />
     <Compile Include="Tree\Campus.cs" />
     <Compile Include="Tree\FacilitiesSingleton.cs" />

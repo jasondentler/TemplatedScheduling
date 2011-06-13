@@ -1,14 +1,80 @@
-﻿@model IMapList
+﻿@model Details
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.CampusName;
 }
 
 @Html.Partial("_Tree")
 
 <script id="template" type="text/html">
     {{tmpl "#treeTemplateProxy"}}
-    <h2 class="hint">Campus Details</h2>
+    <div class="content">
+        <ul class="links">
+            <li><a href="#" id="addBuildingLink">Add Building</a></li>
+            <li><a href="#" id="removeCampusLink">Remove Campus</a></li>
+        </ul>
+        <div class="display-label">Campus</div>
+        <div class="display-field">${CampusName}
+            <button id="renameCampus" class="icon-pencil no-text">Rename Campus</button>
+        </div>
+    </div>
+    
+    <div id="removeCampusDialog" class="hidden" title="Warning!">
+        @using (Html.BeginForm<CampusController>(c => c.RemoveCampus(null), FormMethod.Post, new {id = "removeCampusForm"}))
+        {
+            <input type="hidden" name="CampusId" value="${Id}" />
+            <p class="warning">
+                This action will remove the campus, as well as all of its buildings, maps, and rooms. It cannot be undone.
+            </p>
+        }
+    </div>
+
+    <div id="addBuildingDialog" class="hidden" title="Add a building">
+        @using (Html.BeginForm<CampusController>(c => c.AddBuilding(null), FormMethod.Post, new {id="addBuildingForm"}))
+        {
+            <input type="hidden" name="CampusId" value="${Id}" />
+            <div class="edit-label">New Building Name</div>
+            <div class="edit-field">
+                <input type="text" name="BuildingName" />
+            </div>
+        }
+    </div>
+
+        <div id="renameCampusDialog" class="hidden" title="Rename this campus">
+        @using (Html.BeginForm<CampusController>(c => c.RenameCampus(null), FormMethod.Post, new {id = "renameCampusForm"}))
+        {
+            <input type="hidden" name="CampusId" value="${Id}" />
+            <div class="edit-label">New Campus Name</div>
+            <div class="edit-field">
+                <input type="text" name="NewCampusName" value="${CampusName}" />
+            </div>
+        }
+    </div>
+
+</script>
+
+<script type="text/javascript">
+    ConfigureDialog(
+        "#addBuildingDialog",
+        "#addBuildingForm",
+        "Yes, add this building",
+        "#addBuildingLink",
+        function () { return true; });
+
+    ConfigureDialog(
+        "#removeCampusDialog",
+        "#removeCampusForm",
+        "Yes, I'm absolutely positively sure.",
+        "#removeCampusLink",
+        function () { return true; });
+
+    ConfigureDialog(
+        "#renameCampusDialog",
+        "#renameCampusForm",
+        "Yes, rename this campus.",
+        "#renameCampus",
+        function () { return true; });
+    
 </script>
 
 <div data-bind='template: "template"' />

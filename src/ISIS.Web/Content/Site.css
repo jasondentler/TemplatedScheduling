@@ -313,6 +313,14 @@ fieldset.itemList
 
 /* Other styles
 -----------------------------------------------------------*/
+.warning
+{
+	background: url("images/cancel.png") 0 0 no-repeat;
+	padding-left: 40px;
+	min-height: 32px;
+}
+
+
 h2.hint
 {
 	text-align: center;

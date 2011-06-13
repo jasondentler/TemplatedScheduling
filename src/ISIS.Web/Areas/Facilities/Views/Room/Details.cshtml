@@ -1,14 +1,67 @@
-﻿@model IMapList
+﻿@model Details
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.RoomName;
+    ViewData["Breadcrumbs"] = new[] { 
+        new Breadcrumb(Model.CampusName, @Url.Action<CampusController>(c => c.Details(Model.CampusId))) ,
+        new Breadcrumb(Model.BuildingName, @Url.Action<BuildingController>(c => c.Details(Model.BuildingId))),
+        new Breadcrumb(Model.MapName, @Url.Action<MapController>(c => c.Details(Model.MapId)))
+    };
 }
 
 @Html.Partial("_Tree")
 
 <script id="template" type="text/html">
     {{tmpl "#treeTemplateProxy"}}
-    <h2 class="hint">Room Details</h2>
+    <div class="content">
+        <ul class="links">
+            <li><a href="#" id="removeRoomLink">Remove Room</a></li>
+        </ul>
+        <div class="display-label">Room</div>
+        <div class="display-field">${RoomName}
+            <button id="renameRoom" class="icon-pencil no-text">Rename Room</button>
+        </div>
+    </div>
+    
+    <div id="removeRoomDialog" class="hidden" title="Warning!">
+        @using (Html.BeginForm<RoomController>(c => c.RemoveRoom(null), FormMethod.Post, new {id = "removeRoomForm"}))
+        {
+            <input type="hidden" name="RoomId" value="${Id}" />
+            <p class="warning">
+                This action will remove the room. It cannot be undone.
+            </p>
+        }
+    </div>
+    
+    <div id="renameRoomDialog" class="hidden" title="Rename this room">
+        @using (Html.BeginForm<RoomController>(c => c.RenameRoom(null), FormMethod.Post, new {id = "renameRoomForm"}))
+        {
+            <input type="hidden" name="RoomId" value="${Id}" />
+            <div class="edit-label">New Room Name</div>
+            <div class="edit-field">
+                <input type="text" name="NewRoomName" value="${RoomName}" />
+            </div>
+        }
+    </div>
+
+</script>
+
+<script type="text/javascript">
+
+    ConfigureDialog(
+        "#removeRoomDialog",
+        "#removeRoomForm",
+        "Yes, I'm absolutely positively sure.",
+        "#removeRoomLink",
+        function () { return true; });
+
+    ConfigureDialog(
+        "#renameRoomDialog",
+        "#renameRoomForm",
+        "Yes, rename this room.",
+        "#renameRoom",
+        function () { return true; });
+    
 </script>
 
 <div data-bind='template: "template"' />
