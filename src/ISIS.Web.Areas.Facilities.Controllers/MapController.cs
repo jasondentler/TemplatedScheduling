@@ -30,7 +30,9 @@ namespace ISIS.Web.Areas.Facilities.Controllers
             var map = building.Children.Single(item => item.Id == mapId);
             var mapName = map.Text;
 
-            var model = new Details(tree, mapId, mapName, buildingId, buildingName, campusId, campusName);
+            var mapImageUrl = Url.Action("Image", new {Id = mapId});
+
+            var model = new Details(tree, mapId, mapName, buildingId, buildingName, campusId, campusName, mapImageUrl);
             return View(model);
         }
 
@@ -38,6 +40,12 @@ namespace ISIS.Web.Areas.Facilities.Controllers
         public JsonResult Data(Guid buildingId)
         {
             return Json(GetMaps(buildingId), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public FileResult Image(Guid Id)
+        {
+            return File(Server.MapPath("~/Content/images/buildings/G1.svg"), "image/svg+xml");
         }
 
 

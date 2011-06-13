@@ -12,6 +12,7 @@ namespace ISIS.Web.Areas.Facilities.Models.Map.ViewModels
         public Guid BuildingId { get; set; }
         public Guid CampusId { get; set; }
         public string CampusName { get; set; }
+        public string MapImageUrl { get; set; }
         public string BuildingName { get; set; }
         public IEnumerable<ITreeItem> RootItems { get; private set; }
         public Guid SelectedItem { get; private set; }
@@ -22,7 +23,8 @@ namespace ISIS.Web.Areas.Facilities.Models.Map.ViewModels
             Guid buildingId,
             string buildingName,
             Guid campusId,
-            string campusName)
+            string campusName,
+            string mapImageUrl)
         {
             Id = id;
             MapName = mapName;
@@ -30,6 +32,7 @@ namespace ISIS.Web.Areas.Facilities.Models.Map.ViewModels
             BuildingName = buildingName;
             CampusId = campusId;
             CampusName = campusName;
+            MapImageUrl = mapImageUrl;
             RootItems = tree.RootItems;
             SelectedItem = tree.SelectedItem;
         }
