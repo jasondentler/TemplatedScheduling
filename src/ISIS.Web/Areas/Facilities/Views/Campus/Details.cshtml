@@ -1,0 +1,14 @@
+﻿@model IMapList
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@Html.Partial("_Tree")
+
+<script id="template" type="text/html">
+    {{tmpl "#treeTemplateProxy"}}
+    <h2 class="hint">Campus Details</h2>
+</script>
+
+<div data-bind='template: "template"' />

@@ -44,6 +44,8 @@
     <Compile Include="Tree\Building.cs" />
     <Compile Include="Tree\Campus.cs" />
     <Compile Include="Tree\FacilitiesSingleton.cs" />
+    <Compile Include="Tree\FacilitiesSource.cs" />
+    <Compile Include="Tree\MapList.cs" />
     <Compile Include="Tree\Room.cs" />
     <Compile Include="Tree\Map.cs" />
     <Compile Include="Tree\TreeItem.cs" />

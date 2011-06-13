@@ -11,8 +11,41 @@ namespace ISIS.Web.Areas.Facilities.Controllers
     {
 
         [HttpGet]
+        public ViewResult Details(Guid Id)
+        {
+            Campus.DetailsLinkFormat = Url.Action("Details", "Campus", new { Id = "asdf" })
+                .Replace("asdf", "{0}");
+            Building.DetailsLinkFormat = Url.Action("Details", "Building", new { Id = "asdf" })
+                .Replace("asdf", "{0}");
+            Map.DetailsLinkFormat = Url.Action("Details", "Map", new { Id = "asdf" })
+                .Replace("asdf", "{0}");
+            Room.DetailsLinkFormat = Url.Action("Details", "Room", new { Id = "asdf" })
+                .Replace("asdf", "{0}");
+
+            var campusLoadChildrenUrlFormat = Url.Action("Data", "Building", new { campusId = "asdf" })
+                .Replace("asdf", "{0}");
+            var buildingLoadChildrenUrlFormat = Url.Action("Data", "Map", new { buildingId = "asdf" })
+                .Replace("asdf", "{0}");
+            var mapLoadChildrenUrlFormat = Url.Action("Data", "Room", new { mapId = "adsf" })
+                .Replace("asdf", "{0}");
+
+            var tree = FacilitiesSource.GetTree(Id,
+                                                mapLoadChildrenUrlFormat,
+                                                buildingLoadChildrenUrlFormat,
+                                                campusLoadChildrenUrlFormat);
+            return View(tree);
+        }
+        [HttpGet]
         public ViewResult Index()
         {
+            Campus.DetailsLinkFormat = Url.Action("Details", "Campus", new { Id = "asdf" })
+                .Replace("asdf","{0}");
+            Building.DetailsLinkFormat = Url.Action("Details", "Building", new { Id = "asdf" })
+                .Replace("asdf", "{0}");
+            Map.DetailsLinkFormat = Url.Action("Details", "Map", new {Id = "asdf"})
+                .Replace("asdf", "{0}");
+            Room.DetailsLinkFormat = Url.Action("Details", "Room", new {Id = "asdf"})
+                .Replace("asdf", "{0}");
             return View(new Index(GetCampuses()));
         }
 

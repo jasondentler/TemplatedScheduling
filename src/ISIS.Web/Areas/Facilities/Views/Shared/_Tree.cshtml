@@ -19,15 +19,25 @@
 
 <script id="nodeTemplate" type="text/html">
     {{if hasChildren}}
-    <li class="${type} expandable" loadChildrenUrl="${loadChildrenUrl}">
+        {{if childrenLoaded}}
+    <li class="${type} expandable" data-id="${id}">
+        <div class="hitarea" />
+        <a href="${url}">${text}</a>
+        <ul>
+            {{tmpl "#nodeListTemplate"}}
+        </ul>
+    </li>
+        {{else}}
+    <li class="${type} expandable" loadChildrenUrl="${loadChildrenUrl}" data-id="${id}">
         <div class="hitarea" />
         <a href="${url}">${text}</a>
         <ul>
             <li class="loadPending"><div>Loading. Please wait.</div></li>
         </ul>
     </li>
+        {{/if}}
     {{else}}
-    <li class="${type}">
+    <li class="${type}" data-id="${id}">
         <a href="${url}">${text}</a>
     </li>
     {{/if}}
@@ -37,6 +47,8 @@
     afterBind.push(function () {
         updateTree($("#facilityTree"));
         $(".treeview .hitarea").live('click', toggle);
+        if (model.SelectedItem && model.SelectedItem.length)
+            expand($(".treeview li[data-id='" + model.SelectedItem + "']"));
     });
 
     function updateTree(tree) {
@@ -88,7 +100,7 @@
             loadChildren(node);
         }
     }
-
+    
     function loadChildren(node) {
         var url = node.attr("loadChildrenUrl");
         $.getJSON(url)
@@ -113,10 +125,28 @@
                     id: item.Id,
                     text: item.Text,
                     type: item.Type,
+                    url: item.DetailsLinkUrl,
                     hasChildren: item.HasChildren,
-                    loadChildrenUrl: item.LoadChildrenUrl
+                    loadChildrenUrl: item.LoadChildrenUrl,
+                    childrenLoaded: item.ChildrenLoaded,
+                    items: item.Children
                 });
             }
         return retval;
     }
+
+    function expand(node) {
+        var toExpand = $(node)
+                        .parentsUntil(".treeview", "li");
+        
+        if ($(node).hasClass("collapsable") || $(node).hasClass("expandable"))
+            toExpand = toExpand.add($(node));
+
+        toExpand
+                                .addClass("collapsable")
+                                .removeClass("expandable");
+        
+        updateTree($(node).parents(".treeview"));
+    }
+    
 </script>

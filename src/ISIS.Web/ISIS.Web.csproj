@@ -371,6 +371,10 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Areas\Facilities\Views\Campus\Index.cshtml" />
+    <Content Include="Areas\Facilities\Views\Room\Details.cshtml" />
+    <Content Include="Areas\Facilities\Views\Map\Details.cshtml" />
+    <Content Include="Areas\Facilities\Views\Campus\Details.cshtml" />
+    <Content Include="Areas\Facilities\Views\Building\Details.cshtml" />
     <None Include="Content\images\buildings\A1.svg" />
     <None Include="Content\images\buildings\A2.svg" />
     <None Include="Content\images\buildings\B1.svg" />
@@ -406,7 +410,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>3461</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

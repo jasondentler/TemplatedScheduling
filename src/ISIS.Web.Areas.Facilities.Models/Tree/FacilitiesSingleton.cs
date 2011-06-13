@@ -97,6 +97,14 @@ namespace ISIS.Web.Areas.Facilities.Models.Tree
                                  _rows.Any(row => row.Item2 == i.Item1)));
         }
 
+        public Guid GetParent(Guid nodeId)
+        {
+            return _rows
+                .Where(i => i.Item1 == nodeId)
+                .Select(i => i.Item2)
+                .Single();
+        }
+
 
         private readonly ISet<Tuple<Guid, Guid, string>> _rows;
 
