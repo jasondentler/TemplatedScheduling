@@ -269,8 +269,9 @@ fieldset.itemList
 
 /* Tree view
 -----------------------------------------------------------*/
-#facilityTree li
+#facilityTree
 {
+	float: left;
 }
 
 #facilityTree li > a 

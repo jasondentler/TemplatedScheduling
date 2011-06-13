@@ -5,18 +5,17 @@ namespace ISIS.Web.Areas.Facilities.Models.Tree
 {
     public class Campus : TreeItem
     {
-
-        public static string DetailsLinkFormat { get; set; }
-
-        public Campus(Guid id, string text, bool hasChildren,
-                      string loadChildrenUrl) 
-            : base(id, text, hasChildren)
+        public Campus(
+            Guid id, string text, string detailsLinkUrl, 
+            bool hasChildren, string loadChildrenUrl)
+            : base(id, text, detailsLinkUrl, hasChildren, loadChildrenUrl)
         {
-            LoadChildrenUrl = loadChildrenUrl;
         }
 
-        public Campus(Guid id, string text, IEnumerable<Building> buildings)
-            : base(id, text, buildings)
+        public Campus(
+            Guid id, string text, string detailsLinkUrl, 
+            IEnumerable<Building> children)
+            : base(id, text, detailsLinkUrl, children)
         {
         }
 
@@ -25,11 +24,5 @@ namespace ISIS.Web.Areas.Facilities.Models.Tree
             get { return "campus"; }
         }
 
-        public override string LoadChildrenUrl { get; protected set; }
-
-        public override string DetailsLinkUrl
-        {
-            get { return string.Format(DetailsLinkFormat, Id); }
-        }
     }
 }

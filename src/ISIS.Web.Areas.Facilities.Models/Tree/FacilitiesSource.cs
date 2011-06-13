@@ -20,9 +20,10 @@ namespace ISIS.Web.Areas.Facilities.Models.Tree
 
         public static IMapList GetTree(
             Guid selectedId, 
-            string mapLoadChildrenUrlFormat, 
-            string buildingLoadChildrenUrlFormat, 
-            string campusLoadChildrenUrlFormat)
+            UrlProvider roomUrlProvider,
+            UrlProvider mapUrlProvider,
+            UrlProvider buildingUrlProvider,
+            UrlProvider campusUrlProvider)
         {
             var parentIds = new Stack<Guid>();
             FindParentIds(parentIds, selectedId);
@@ -47,27 +48,28 @@ namespace ISIS.Web.Areas.Facilities.Models.Tree
             var campusTuples = levels.ContainsKey(Level.Campus) ? levels[Level.Campus] : emptyTuples;
 
             var rooms = roomTuples
-                .Select(i => new Room(i.Item1, i.Item2))
+                .Select(i => new Room(i.Item1, i.Item2, roomUrlProvider.GetDetailsUrl(i.Item1)))
                 .ToArray();
 
             var maps = mapTuples
                 .Select(i => parentIds.Contains(i.Item1)
-                                 ? new Map(i.Item1, i.Item2, rooms)
-                                 : new Map(i.Item1, i.Item2, i.Item3, string.Format(mapLoadChildrenUrlFormat, i.Item1)))
+                                 ? new Map(i.Item1, i.Item2, mapUrlProvider.GetDetailsUrl(i.Item1), rooms)
+                                 : new Map(i.Item1, i.Item2, mapUrlProvider.GetDetailsUrl(i.Item1),
+                                           i.Item3, mapUrlProvider.GetChildrenUrl(i.Item1)))
                 .ToArray();
 
             var buildings = buildingTuples
                 .Select(i => parentIds.Contains(i.Item1)
-                                 ? new Building(i.Item1, i.Item2, maps)
-                                 : new Building(i.Item1, i.Item2, i.Item3,
-                                                string.Format(buildingLoadChildrenUrlFormat, i.Item1)))
+                                 ? new Building(i.Item1, i.Item2, buildingUrlProvider.GetDetailsUrl(i.Item1), maps)
+                                 : new Building(i.Item1, i.Item2, buildingUrlProvider.GetDetailsUrl(i.Item1),
+                                           i.Item3, buildingUrlProvider.GetChildrenUrl(i.Item1)))
                 .ToArray();
 
             var campuses = campusTuples
                 .Select(i => parentIds.Contains(i.Item1)
-                                 ? new Campus(i.Item1, i.Item2, buildings)
-                                 : new Campus(i.Item1, i.Item2, i.Item3,
-                                              string.Format(campusLoadChildrenUrlFormat, i.Item1)))
+                                 ? new Campus(i.Item1, i.Item2, campusUrlProvider.GetDetailsUrl(i.Item1), buildings)
+                                 : new Campus(i.Item1, i.Item2, campusUrlProvider.GetDetailsUrl(i.Item1),
+                                           i.Item3, campusUrlProvider.GetChildrenUrl(i.Item1)))
                 .ToArray();
 
             return new MapList(campuses, selectedId);

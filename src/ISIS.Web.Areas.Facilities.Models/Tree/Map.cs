@@ -5,18 +5,22 @@ namespace ISIS.Web.Areas.Facilities.Models.Tree
 {
     public class Map : TreeItem
     {
-
-        public static string DetailsLinkFormat { get; set; }
-
-        public Map(Guid id, string text, bool hasChildren,
-            string loadChildrenUrl) 
-            : base(id, text, hasChildren)
+        public Map(
+            Guid id, 
+            string text, 
+            string detailsLinkUrl, 
+            bool hasChildren, 
+            string loadChildrenUrl)
+            : base(id, text, detailsLinkUrl, hasChildren, loadChildrenUrl)
         {
-            LoadChildrenUrl = loadChildrenUrl;
         }
 
-        public Map(Guid id, string text, IEnumerable<Room> rooms)
-            : base(id, text, rooms)
+        public Map(
+            Guid id, 
+            string text, 
+            string detailsLinkUrl, 
+            IEnumerable<Room> children)
+            : base(id, text, detailsLinkUrl, children)
         {
         }
 
@@ -25,11 +29,5 @@ namespace ISIS.Web.Areas.Facilities.Models.Tree
             get { return "map"; }
         }
 
-        public override string LoadChildrenUrl { get; protected set; }
-
-        public override string DetailsLinkUrl
-        {
-            get { return string.Format(DetailsLinkFormat, Id); }
-        }
     }
 }

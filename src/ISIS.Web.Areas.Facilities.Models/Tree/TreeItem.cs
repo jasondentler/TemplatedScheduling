@@ -18,25 +18,34 @@ namespace ISIS.Web.Areas.Facilities.Models.Tree
 
         public abstract string Type { get; }
 
-        public abstract string LoadChildrenUrl { get; protected set; }
+        public string LoadChildrenUrl { get; protected set; }
 
-        public abstract string DetailsLinkUrl { get; }
+        public string DetailsLinkUrl { get; protected set; }
 
         protected TreeItem(
             Guid id,
             string text,
-            bool hasChildren)
+            string detailsLinkUrl,
+            bool hasChildren,
+            string loadChildrenUrl)
         {
             Id = id;
             Text = text;
             HasChildren = hasChildren;
+            LoadChildrenUrl = loadChildrenUrl;
+            DetailsLinkUrl = detailsLinkUrl;
             ChildrenLoaded = false;
         }
 
-        protected TreeItem(Guid id, string text, IEnumerable<ITreeItem> children)
+        protected TreeItem(
+            Guid id, 
+            string text, 
+            string detailsLinkUrl,
+            IEnumerable<ITreeItem> children)
         {
             Id = id;
             Text = text;
+            DetailsLinkUrl = detailsLinkUrl;
             HasChildren = children.Any();
             Children = children;
             ChildrenLoaded = true;

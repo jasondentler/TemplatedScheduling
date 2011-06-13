@@ -1,10 +1,12 @@
 ﻿@model IMapList
 <script id="treeTemplateProxy" type="text/html">
+    <div id="facilityTree">
     {{tmpl "#treeTemplate"}}
+    </div>
 </script>
 
 <script id="treeTemplate" type="text/html">
-    <ul id="facilityTree" class="treeview">
+    <ul class="treeview">
         {{each(i, item) translateModel(RootItems)}}
             {{tmpl(item) "#nodeTemplate"}}
         {{/each}}
