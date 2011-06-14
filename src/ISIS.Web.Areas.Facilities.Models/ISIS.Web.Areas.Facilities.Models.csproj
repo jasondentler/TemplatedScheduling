@@ -51,6 +51,7 @@
     <Compile Include="Campus\ViewModels\Details.cs" />
     <Compile Include="Campus\ViewModels\Index.cs" />
     <Compile Include="Map\InputModels\UploadMapImage.cs" />
+    <Compile Include="Room\InputModels\MoveRoom.cs" />
     <Compile Include="Room\InputModels\RemoveRoom.cs" />
     <Compile Include="Room\InputModels\RenameRoom.cs" />
     <Compile Include="Room\ViewModels\Details.cs" />

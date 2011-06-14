@@ -69,6 +69,19 @@ namespace ISIS.Web.Areas.Facilities.Controllers
             return this.RedirectToAction(c => c.Details(model.RoomId));
         }
 
+        [HttpPost]
+        public ActionResult MoveRoom(MoveRoom model)
+        {
+            // model.Points is an int[][2] in JSON format
+            // model.Points[0][0] is the first point's x value
+            // model.Points[0][1] is the first point's y value
+            // model.Points[1][0] is the second point's x value
+            // model.Points[1][1] is the second point's y value
+            // model.Points[2][0] is the third point's x value
+            // and so on...
+            return Content(model.Points, "application/json");
+        }
+
         [NonAction]
         public IEnumerable<Room> GetRooms(Guid mapId)
         {

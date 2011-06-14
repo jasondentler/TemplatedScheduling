@@ -49,6 +49,10 @@
         }
     </div>
 
+    <div class="hidden" id="moveRoomPostback">
+        @Html.TemplateActionLink("Invisible","MoveRoom",new {Id = "${Id}"})
+    </div>
+
 </script>
 
 <script type="text/javascript">
@@ -164,20 +168,33 @@
     function stopMovingRoom() {
         if (!isMovingRoom)
             return;
-        model.RoomPolygon.Points = points;
         console.log("stop moving");
-        $(".ui-button").button('enable');
         $("#map").css("cursor", "default");
-        isMovingRoom = false;
-        bindMapClickEvents();
-        drawRoom(getSvg());
+
         console.log(points);
+        postMoveRoom(points)
+            .done(function (returnedPoints) {
+                model.RoomPolygon.Points = returnedPoints;
+                $(".ui-button").button('enable');
+                isMovingRoom = false;
+                bindMapClickEvents();
+                drawRoom(getSvg());
+            });
     }
 
     function addPoint(x, y) {
         if (!isMovingRoom)
             return;
         points.push([x, y]);
+    }
+
+    function postMoveRoom(points) {
+        var url = $("#moveRoomPostback a").attr("href");
+        return $.ajax(url, {
+                type: "POST",
+                dataType: "json",
+                data: { RoomId: model.Id, Points: JSON.stringify(points) }
+            });
     }
     
 </script>
