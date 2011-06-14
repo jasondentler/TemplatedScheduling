@@ -13,8 +13,15 @@
 <script id="template" type="text/html" >
 {{tmpl "#templateListTemplate"}}
     <div class="content">
+        <div class="contentHeader">
+            <img id="help" alt="Help" src="@Url.Content("~/Content/images/help.png")"/>
+        </div>
+
         <div class="display-label">Template</div>
         <div class="display-field">${TemplateName}</div>
+
+        <fieldset>
+            <legend>Instructor Equipment</legend>
         <div class="editor-field">
             @using (Html.BeginForm<TemplateController>(c => c.AddInstructorEquipment(null), FormMethod.Post))
             {
@@ -39,8 +46,6 @@
                 <input type="submit" value="Add" class="icon-plusthick" />
             }
         </div>
-        <fieldset>
-            <legend>Instructor Equipment</legend>
             {{if mapHasKeys(RequiredEquipment)}}
             @using (Html.BeginForm<TemplateController>(c => c.RemoveInstructorEquipment(null), FormMethod.Post))
             {
@@ -60,6 +65,16 @@
             {{/if}}
         </fieldset>
     </div>
+
+    <div id="helpDialog" title="Instructor Equipment" class="hidden">
+        <h4>Instructor Equipment</h4>
+
+        <p>The Instructor Equipment screen allows you to enter equipment used by the instructor or shared by the entire class. 
+        For example, a section of this course may require 2 whiteboards.</p>
+    </div>
 </script>
 
+<script type="text/javascript">
+    ConfigureHelp("#helpDialog", "#help");
+</script>
 <div data-bind='template: "template"' />

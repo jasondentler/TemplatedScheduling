@@ -10,11 +10,15 @@
 <script id="template" type="text/html">
 {{tmpl "#templateListTemplate"}}
     <div class="content">
-        <ul class="links">
-            <li><a href="#" id="copyTemplateLink">Copy Template</a></li>
-            <li><a href="#" id="createSectionLink">Create Section</a></li>
-            <li><a href="#" id="removeTemplateLink">Remove Template</a></li>
-        </ul>
+        <div class="contentHeader">
+            <ul class="links">
+                <li><a href="#" id="copyTemplateLink">Copy Template</a></li>
+                <li><a href="#" id="createSectionLink">Create Section</a></li>
+                <li><a href="#" id="removeTemplateLink">Remove Template</a></li>
+            </ul>
+            <img id="help" alt="Help" src="@Url.Content("~/Content/images/help.png")"/>
+        </div>
+
         <div class="display-label">Template</div>
         <div class="display-field">${TemplateName}
             <button id="renameTemplate" class="icon-pencil no-text">Rename Template</button>
@@ -134,7 +138,27 @@
             </div>
         }
     </div>
+    
+    <div id="helpDialog" title="Help with templates" class="hidden">
+        <h4>Help with templates</h4>
+        <p>Templates allow you to quickly set up similar sections. Each course has a basic template which cannot be changed.</p>
 
+        <p>
+            To set up an additional template,
+            <ol>
+                <li>Click Copy Template</li>
+                <li>Enter a name for the new template</li>
+                <li>Change some or all of the details of the new template. 
+                These details will be copied when creating sections from this new template.</li>
+            </ol>
+        </p>
+
+        <p>The Instructor Equipment section shows equipment used by the instructor or shared by the entire class. 
+        For example, a section of this course may require 2 whiteboards.</p>
+
+        <p>The Student Equipment section shows equipment required to take a section of this course.
+        For example, a section of this course may require 1 PC per student or 1 lab sink per 2 students.</p>
+    </div>
 </script>
 
 <script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/copyTemplate.js")"></script>
@@ -143,5 +167,8 @@
 <script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/renameTemplate.js")"></script>
 <script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/changeCapacity.js")"></script>
 
+<script type="text/javascript">
+    ConfigureHelp("#helpDialog", "#help");
+</script>
 
 <div data-bind='template: "template"' />

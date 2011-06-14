@@ -13,9 +13,16 @@
 <script id="template" type="text/html" >
 {{tmpl "#templateListTemplate"}}
     <div class="content">
+        <div class="contentHeader">
+            <img id="help" alt="Help" src="@Url.Content("~/Content/images/help.png")"/>
+        </div>
+
         <div class="display-label">Template</div>
         <div class="display-field">${TemplateName}</div>
-        <div class="editor-field">
+        
+        <fieldset>
+            <legend>Student Equipment</legend>
+            <div class="editor-field">
             @using (Html.BeginForm<TemplateController>(c => c.AddStudentEquipment(null), FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
@@ -51,8 +58,7 @@
                 <input type="submit" value="Add" class="icon-plusthick" />
             }
         </div>
-        <fieldset>
-            <legend>Student Equipment</legend>
+
             {{if mapHasKeys(RequiredEquipment)}}
             @using (Html.BeginForm<TemplateController>(c => c.RemoveStudentEquipment(null), FormMethod.Post))
             {
@@ -72,6 +78,16 @@
             {{/if}}
         </fieldset>
     </div>
+
+    <div id="helpDialog" title="Student Equipment" class="hidden">
+        <h4>Student Equipment</h4>
+        <p>The Student Equipment screen allows you to enter equipment required to take a section of this course.
+        For example, a section of this course may require 1 PC per student or 1 lab sink per 2 students.</p>
+    </div>
+</script>
+
+<script type="text/javascript">
+    ConfigureHelp("#helpDialog", "#help");
 </script>
 
 <div data-bind='template: "template"' />

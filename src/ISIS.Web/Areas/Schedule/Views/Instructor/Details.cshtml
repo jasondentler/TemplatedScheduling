@@ -11,10 +11,13 @@
 <script id="template" type="text/html">
     {{tmpl "#instructorListTemplate"}}
     <div class="content">
-        <ul class="links">
-            <li>@(Html.TemplateActionLink("View Schedule","Calendar", new {id = "${Id}"}))</li>
-            <li><a id="removeInstructor" href="#">Remove Instructor</a></li>
-        </ul>
+        <div class="contentHeader">
+            <ul class="links">
+                <li>@(Html.TemplateActionLink("View Schedule","Calendar", new {id = "${Id}"}))</li>
+                <li><a id="removeInstructor" href="#">Remove Instructor</a></li>
+            </ul>
+            <img id="help" alt="Help" src="@Url.Content("~/Content/images/help.png")"/>
+        </div>
 
         <div class="display-label">First Name</div>
         <div class="display-field">${FirstName}
@@ -57,9 +60,9 @@
             }
         </fieldset>
 
-        {{tmpl "#instructorAddBlackoutTimeTemplate"}}
         <fieldset>
             <legend>Blackout Times</legend>
+            {{tmpl "#instructorAddBlackoutTimeTemplate"}}
             @using (Html.BeginForm<InstructorController>(c => c.RemoveBlackoutTime(null), FormMethod.Post, new { id = "instructorRemoveBlackoutTime" }))
             {
                 @Html.AntiForgeryToken()
@@ -83,12 +86,12 @@
             <input type="hidden" Name="Id" value="${Id}" />
             <div class="editor-label">First Name</div>
             <div class="editor-field">
-                <input type="textbox" Name="NewFirstName" value="${FirstName}"/>
+                <input type="text" Name="NewFirstName" value="${FirstName}"/>
             </div>
 
             <div class="editor-label">Last Name</div>
             <div class="editor-field">
-                <input type="textbox" Name="NewLastName" value="${LastName}"/>
+                <input type="text" Name="NewLastName" value="${LastName}"/>
             </div>
         }
     </div>
@@ -102,10 +105,19 @@
         }
     </div>
 
+    <div id="helpDialog" title="Tips for working with instructors" class="hidden">
+        <h4>Tips for working with instructors</h4>
+        <p>The courses section of the screen allows you to control which courses this instructor is qualified to teach. This information is necessary.</p>
+        <p>The blackout times section allows you to enter times when this instructor is not available to teach. Though not required, it helps prevent conflicts with the instructor's personal schedule.</p>
+    </div>
 </script>
 
 
 <script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/editInstructorName.js")"></script>
 <script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/removeInstructor.js")"></script>
+
+<script type="text/javascript">
+    ConfigureHelp("#helpDialog", "#help");
+</script>
 
 <div data-bind='template: "template"' />

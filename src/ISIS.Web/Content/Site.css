@@ -398,6 +398,8 @@ h2.hint
 .contentHeader
 {
 	width: 100%;
+	white-space: nowrap;
+	display: table-header-group;
 }
 
 .contentHeader .links
@@ -407,5 +409,6 @@ h2.hint
 
 .contentHeader #help
 {
+	margin-left: 3em;
 	float: right;
 }
