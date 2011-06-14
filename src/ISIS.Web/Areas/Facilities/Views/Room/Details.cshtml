@@ -15,12 +15,16 @@
     {{tmpl "#treeTemplateProxy"}}
     <div class="content">
         <ul class="links">
+            <li><a href="#" id="moveRoomLink">Move Room</a></li>
             <li><a href="#" id="removeRoomLink">Remove Room</a></li>
         </ul>
         <div class="display-label">Room</div>
         <div class="display-field">${RoomName}
             <button id="renameRoom" class="icon-pencil no-text">Rename Room</button>
         </div>
+
+        
+
         <div id="map"></div>
     </div>
     
@@ -49,27 +53,32 @@
 
 <script type="text/javascript">
 
+    var isMovingRoom = false;
+    var points = [];
+
     ConfigureDialog(
         "#removeRoomDialog",
         "#removeRoomForm",
         "Yes, I'm absolutely positively sure.",
         "#removeRoomLink",
-        function () { return true; });
+        function () { return !isMovingRoom; });
 
     ConfigureDialog(
         "#renameRoomDialog",
         "#renameRoomForm",
         "Yes, rename this room.",
         "#renameRoom",
-        function () { return true; });
+        function () { return !isMovingRoom; });
 
     afterBind.push(function () {
+        $("#map").css("cursor", "default");
         $.when(loadMap(), displaySVG())
             .done(function (mapData, svg) {
                 mapData = mapData[2].responseText;
                 svg.load(mapData);
                 resizeMap(svg, mapData);
                 drawRoom(svg);
+                bindMapClickEvents();
             });
     });
 
@@ -110,7 +119,66 @@
         var mapSize = getMapSize(mapDoc);
         svg.configure(mapSize);
     }
+
+    function getSvg() {
+        return $("#map").svg('get');
+    }
     
+    function eraseRoom(svg) {
+        var room = svg.getElementById('room');
+        if (room)
+            svg.remove(room);
+    }
+
+    function bindMapClickEvents() {
+        $("#map").die('mouseup');
+        $("#moveRoomLink").die('click');
+        $("#map").live('mouseup', map_onMouseUp);
+        $("#moveRoomLink").live('click', startMovingRoom);
+    }
+
+    function map_onMouseUp(event) {
+        switch (event.button) {
+            case 2:
+                stopMovingRoom();
+                break;
+            case 0:
+                var x = event.clientX - $("#map").position().left;
+                var y = event.clientY - $("#map").position().top;
+                addPoint(x, y);
+                break;
+        }
+    }
+
+    function startMovingRoom() {
+        if (isMovingRoom)
+            return;
+        console.log("start moving");
+        points = [];
+        eraseRoom(getSvg());
+        $(".ui-button").button('disable');
+        $("#map").css("cursor", "crosshair");
+        isMovingRoom = true;
+    }
+
+    function stopMovingRoom() {
+        if (!isMovingRoom)
+            return;
+        model.RoomPolygon.Points = points;
+        console.log("stop moving");
+        $(".ui-button").button('enable');
+        $("#map").css("cursor", "default");
+        isMovingRoom = false;
+        bindMapClickEvents();
+        drawRoom(getSvg());
+        console.log(points);
+    }
+
+    function addPoint(x, y) {
+        if (!isMovingRoom)
+            return;
+        points.push([x, y]);
+    }
     
 </script>
 
