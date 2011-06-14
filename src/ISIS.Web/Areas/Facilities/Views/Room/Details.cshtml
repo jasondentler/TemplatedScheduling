@@ -136,8 +136,12 @@
 
     function bindMapClickEvents() {
         $("#map").die('mouseup');
+        $("#map").die('contextmenu');
         $("#moveRoomLink").die('click');
         $("#map").live('mouseup', map_onMouseUp);
+        $("#map").live('contextmenu', function(e) {
+            e.preventDefault();
+        });
         $("#moveRoomLink").live('click', startMovingRoom);
     }
 
