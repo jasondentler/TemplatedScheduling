@@ -111,6 +111,7 @@
     <Content Include="Content\images\buildings\A1.js" />
     <Content Include="Content\images\buildings\G1.js" />
     <Content Include="Content\images\cancel.png" />
+    <Content Include="Content\images\help.png" />
     <Content Include="Content\images\map.png" />
     <Content Include="Content\images\minus.gif" />
     <Content Include="Content\images\plus.gif" />

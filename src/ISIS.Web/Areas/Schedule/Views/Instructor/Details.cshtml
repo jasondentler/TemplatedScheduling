@@ -29,21 +29,21 @@
             </button>
         </div>
 
-        <div>
-            @using (Html.BeginForm<InstructorController>(c => c.AddCourse(null), FormMethod.Post, new {id="instructorAddCourse"})) {
-                @Html.AntiForgeryToken()
-                <input type="hidden" name="Id" value="${Id}" />
-                <select name="CourseId">
-                {{each AvailableCourses}}
-                    <option value="${$index}">${$value}</option>
-                {{/each}}
-                </select>
-                <input type="submit" value="Add Course" class="icon-plusthick" />
-            }
-        </div>
-
         <fieldset>
             <legend>Courses</legend>
+            <div>
+                @using (Html.BeginForm<InstructorController>(c => c.AddCourse(null), FormMethod.Post, new {id="instructorAddCourse"})) {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="Id" value="${Id}" />
+                    <select name="CourseId">
+                    {{each AvailableCourses}}
+                        <option value="${$index}">${$value}</option>
+                    {{/each}}
+                    </select>
+                    <input type="submit" value="Add Course" class="icon-plusthick" />
+                }
+            </div>
+
             @using (Html.BeginForm<InstructorController>(c => c.RemoveCourses(null), FormMethod.Post, new {id="instructorRemoveCourse"})) {
                 @Html.AntiForgeryToken()
                 <input type="hidden" name="Id" value="${Id}" />

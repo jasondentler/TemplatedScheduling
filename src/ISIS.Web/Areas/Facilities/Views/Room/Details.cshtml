@@ -14,16 +14,27 @@
 <script id="template" type="text/html">
     {{tmpl "#treeTemplateProxy"}}
     <div class="content">
-        <ul class="links">
-            <li><a href="#" id="moveRoomLink">Move Room</a></li>
-            <li><a href="#" id="removeRoomLink">Remove Room</a></li>
-        </ul>
+        <div class="contentHeader">
+            <ul class="links" >
+                <li><a href="#" id="moveRoomLink">Move Room</a></li>
+                <li><a href="#" id="removeRoomLink">Remove Room</a></li>
+            </ul>
+            <img id="help" alt="Help" src="@Url.Content("~/Content/images/help.png")"/>
+        </div>
         <div class="display-label">Room</div>
         <div class="display-field">${RoomName}
             <button id="renameRoom" class="icon-pencil no-text">Rename Room</button>
         </div>
 
-        
+        <div class="display-label">Room Type</div>
+        <div class="display-field">
+            {{if RoomType && RoomType.length}}
+                ${RoomType}
+            {{else}}
+                <span class="disabled">Not Set</span>
+            {{/if}}
+            <button id="changeRoomType" class="icon-pencil no-text">Change Room Type</button>
+        </div>
 
         <div id="map"></div>
     </div>
@@ -47,6 +58,34 @@
                 <input type="text" name="NewRoomName" value="${RoomName}" />
             </div>
         }
+    </div>
+
+    <div id="changeRoomTypeDialog" class="hidden" title="Change Room Type">
+        @using (Html.BeginForm<RoomController>(c => c.ChangeRoomType(null), FormMethod.Post, new {id = "changeRoomTypeForm"}))
+        {
+            <input type="hidden" name="RoomId" value="${Id}" />
+            <div class="edit-label">New Room Type</div>
+            <div class="edit-field">
+                <select name="RoomType">
+                {{each(i, roomType) RoomTypes}}
+                    <text>
+                    <option {{if roomType == model.RoomType}}selected{{/if}}>${roomType}</option>
+                    </text>
+                {{/each}}
+                </select>
+            </div>
+        }
+    </div>
+
+    <div id="helpDialog" title="Help" class="hidden">
+        <p>To move a room:
+            <ol>
+                <li>Click the Move Room button.</li>
+                <li>Left-click on the map in the upper-left corner of the room</li>
+                <li>Following the outline of the room counter-clockwise, left-click the remaining corners of the room.</li>
+                <li>Right-click anywhere on the map to indicate you are finished.</li>
+            </ol>
+        </p>
     </div>
 
     <div class="hidden" id="moveRoomPostback">
@@ -74,6 +113,15 @@
         "#renameRoom",
         function () { return !isMovingRoom; });
 
+    ConfigureDialog(
+        "#changeRoomTypeDialog",
+        "#changeRoomTypeForm",
+        "Yes, change the room type.",
+        "#changeRoomType",
+        function () { return !isMovingRoom; });
+
+    ConfigureHelp("#helpDialog", "#help");
+    
     afterBind.push(function () {
         $("#map").css("cursor", "default");
         $.when(loadMap(), displaySVG())
@@ -199,8 +247,8 @@
                 dataType: "json",
                 data: { RoomId: model.Id, Points: JSON.stringify(points) }
             });
-    }
-    
+        }
+
 </script>
 
 <div data-bind='template: "template"' />

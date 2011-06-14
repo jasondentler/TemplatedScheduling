@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web;
 using ISIS.Web.Areas.Facilities.Models.Tree;
 using ISIS.Web.Models;
 
@@ -17,6 +16,8 @@ namespace ISIS.Web.Areas.Facilities.Models.Room.ViewModels
         public string CampusName { get; set; }
         public string MapImageUrl { get; set; }
         public Polygon RoomPolygon { get; set; }
+        public string RoomType { get; set; }
+        public IEnumerable<string> RoomTypes { get; set; }
         public string BuildingName { get; set; }
         public IEnumerable<ITreeItem> RootItems { get; private set; }
         public Guid SelectedItem { get; private set; }
@@ -31,7 +32,9 @@ namespace ISIS.Web.Areas.Facilities.Models.Room.ViewModels
             Guid campusId,
             string campusName,
             string mapImageUrl,
-            Polygon roomPolygon)
+            Polygon roomPolygon,
+            string roomType,
+            IEnumerable<string> roomTypes)
         {
             Id = id;
             RoomName = roomName;
@@ -43,6 +46,8 @@ namespace ISIS.Web.Areas.Facilities.Models.Room.ViewModels
             CampusName = campusName;
             MapImageUrl = mapImageUrl;
             RoomPolygon = roomPolygon;
+            RoomType = roomType;
+            RoomTypes = roomTypes;
             RootItems = tree.RootItems;
             SelectedItem = tree.SelectedItem;
         }

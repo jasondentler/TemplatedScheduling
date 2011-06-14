@@ -133,3 +133,19 @@ function ConfigureDialog(dialog, form, okButtonText, activatingButton, allowed) 
         allowed: allowed
     });
 }
+
+function ConfigureHelp(dialog, activatingButton) {
+    afterBind.push(function() { 
+        var isOpen = false;
+        $(dialog).dialog({
+            autoOpen: false,
+            width: 500,
+            buttons: [],
+            close: function () { isOpen = false; }
+        });
+        $(activatingButton).click(function () {
+            if (!isOpen)
+                $(dialog).dialog('open');
+        });
+    });
+}

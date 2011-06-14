@@ -14,11 +14,14 @@
 <script id="template" type="text/html">
     {{tmpl "#treeTemplateProxy"}}
     <div class="content">
-        <ul class="links">
-            <li><a href="#" id="addRoomLink">Add Room</a></li>
-            <li><a href="#" id="uploadMapImageLink">Upload Map</a></li>
-            <li><a href="#" id="removeMapLink">Remove Map</a></li>
-        </ul>
+        <div class="contentHeader">
+            <ul class="links">
+                <li><a href="#" id="addRoomLink">Add Room</a></li>
+                <li><a href="#" id="uploadMapImageLink">Upload Map Image</a></li>
+                <li><a href="#" id="removeMapLink">Remove Map</a></li>
+            </ul>
+            <img id="help" alt="Help" src="@Url.Content("~/Content/images/help.png")"/>
+        </div>
         <div class="display-label">Map</div>
         <div class="display-field">${MapName}
             <button id="renameMap" class="icon-pencil no-text">Rename Map</button>
@@ -70,7 +73,14 @@
         }
     </div>
 
-
+    <div id="helpDialog" title="Help" class="hidden">
+        <h4>Tips for uploading map images</h4>
+        <ul>
+            <li>Find or create a suitable floor plan.</li>
+            <li>Use <a href="http://inkscape.org">InkScape</a> to convert the image to Scalable Vector Graphics format. It's free and easy to use.</li>
+            <li>For the best results, save the file in the "Plain Svg" format.</li>
+        </ul>
+    </div>
 
 </script>
 
@@ -102,6 +112,9 @@
         "Yes, upload this map.",
         "#uploadMapImageLink",
         function () { return true; });
+
+    ConfigureHelp("#helpDialog", "#help");
+    
 </script>
 
 <div data-bind='template: "template"' />

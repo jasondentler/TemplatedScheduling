@@ -394,3 +394,18 @@ h2.hint
 {
 	vertical-align: top;
 }
+
+.contentHeader
+{
+	width: 100%;
+}
+
+.contentHeader .links
+{
+	display: inline-block;
+}
+
+.contentHeader #help
+{
+	float: right;
+}

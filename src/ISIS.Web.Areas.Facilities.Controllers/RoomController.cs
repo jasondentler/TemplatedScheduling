@@ -46,7 +46,30 @@ namespace ISIS.Web.Areas.Facilities.Controllers
                                               });
 
             var model = new Details(tree, roomId, roomName, mapId, mapName, buildingId, buildingName, campusId,
-                                    campusName, mapImageUrl, roomPolygon);
+                                    campusName, mapImageUrl, roomPolygon,
+                                    null, new[]
+                                                     {
+                                                         "Classroom",
+                                                         "Lab",
+                                                         "Office",
+                                                         "Storage",
+                                                         "Housekeeping",
+                                                         "AC & Heating",
+                                                         "Electrical",
+                                                         "Mail room",
+                                                         "Theatre",
+                                                         "Restroom",
+                                                         "Library",
+                                                         "Kitchen",
+                                                         "Breakroom",
+                                                         "Bookstore",
+                                                         "Gymnasium",
+                                                         "Conference Room",
+                                                         "Display gallery",
+                                                         "Locker room",
+                                                         "Other",
+                                                         "Mechanical"
+                                                     });
             return View(model);
         }
 
@@ -80,6 +103,12 @@ namespace ISIS.Web.Areas.Facilities.Controllers
             // model.Points[2][0] is the third point's x value
             // and so on...
             return Content(model.Points, "application/json");
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult ChangeRoomType(ChangeRoomType model)
+        {
+            return this.RedirectToAction(c => c.Details(model.RoomId));
         }
 
         [NonAction]
