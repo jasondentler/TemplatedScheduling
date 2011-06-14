@@ -21,6 +21,7 @@
         <div class="display-field">${RoomName}
             <button id="renameRoom" class="icon-pencil no-text">Rename Room</button>
         </div>
+        <div id="map"></div>
     </div>
     
     <div id="removeRoomDialog" class="hidden" title="Warning!">
@@ -61,6 +62,55 @@
         "Yes, rename this room.",
         "#renameRoom",
         function () { return true; });
+
+    afterBind.push(function () {
+        $.when(loadMap(), displaySVG())
+            .done(function (mapData, svg) {
+                mapData = mapData[2].responseText;
+                svg.load(mapData);
+                resizeMap(svg, mapData);
+                drawRoom(svg);
+            });
+    });
+
+    function displaySVG() {
+        var svgPromise = $.Deferred();
+        $('#map').svg({
+            onLoad: function (svg) {
+                svgPromise.resolve(svg);
+            }
+        });
+        return svgPromise.promise();
+    }
+
+    function loadMap() {
+        return $.get(model.MapImageUrl);
+    }
+
+    function getMapXmlDoc(mapData) {
+        return $.parseXML(mapData);
+    }
+
+    function getMapSize(mapDocument) {
+        var svgElem = $(mapDocument).find("svg");
+        return {
+            width: $(svgElem).attr("width"),
+            height: $(svgElem).attr("height")
+        };
+    }
+
+    function drawRoom(svg) {
+        var options = { id: 'room', fill: 'blue', fillOpacity: 0.5, stroke: 'none', strokeWidth: 3 };
+        var points = model.RoomPolygon.Points;
+        svg.polygon(points, options);
+    }
+
+    function resizeMap(svg, mapData) {
+        var mapDoc = getMapXmlDoc(mapData);
+        var mapSize = getMapSize(mapDoc);
+        svg.configure(mapSize);
+    }
+    
     
 </script>
 

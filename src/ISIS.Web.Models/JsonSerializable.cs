@@ -5,10 +5,15 @@ namespace ISIS.Web.Models
 {
     public class JsonSerializable : IJsonSerializable
     {
-        public IHtmlString ToJson()
+        public virtual IHtmlString ToJson()
         {
-            var dataString = JsonConvert.SerializeObject(this);
+            var dataString = ToJson(this);
             return new HtmlString(dataString);
+        }
+
+        protected static string ToJson(object toSerialize)
+        {
+            return JsonConvert.SerializeObject(toSerialize);
         }
     }
 }

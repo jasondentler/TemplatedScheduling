@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -34,7 +35,18 @@ namespace ISIS.Web.Areas.Facilities.Controllers
             var room = map.Children.Single(item => item.Id == roomId);
             var roomName = room.Text;
 
-            var model = new Details(tree, roomId, roomName, mapId, mapName, buildingId, buildingName, campusId, campusName);
+            var mapImageUrl = Url.Action("Image", "Map", new {Id = mapId});
+
+            var roomPolygon = new Polygon(new[]
+                                              {
+                                                  new[] {30, 30},
+                                                  new[] {30, 200},
+                                                  new[] {400, 300},
+                                                  new[] {200, 30}
+                                              });
+
+            var model = new Details(tree, roomId, roomName, mapId, mapName, buildingId, buildingName, campusId,
+                                    campusName, mapImageUrl, roomPolygon);
             return View(model);
         }
 
