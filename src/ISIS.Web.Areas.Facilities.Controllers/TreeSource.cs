@@ -9,6 +9,19 @@ namespace ISIS.Web.Areas.Facilities.Controllers
 
         public IMapList GetTree(Guid Id, UrlHelper Url)
         {
+
+            var equipmentUrlProvider = new UrlProvider
+                                           {
+                                               GetChildrenUrl = id => null,
+                                               GetDetailsUrl = id => Url.Action("Index", "Equipment")
+                                           };
+
+            var roomTypesUrlProvider = new UrlProvider
+                                           {
+                                               GetChildrenUrl = id => null,
+                                               GetDetailsUrl = id => Url.Action("Index", "Room")
+                                           };
+
             var campusUrlProvider = new UrlProvider
             {
                 GetChildrenUrl = id => Url.Action("Data", "Building", new { campusId = id }),
@@ -34,7 +47,7 @@ namespace ISIS.Web.Areas.Facilities.Controllers
             };
 
             var tree = FacilitiesSource.GetTree(Id, roomUrlProvider, mapUrlProvider, buildingUrlProvider,
-                                                campusUrlProvider);
+                                                campusUrlProvider, equipmentUrlProvider, roomTypesUrlProvider);
             return tree;
         }
 

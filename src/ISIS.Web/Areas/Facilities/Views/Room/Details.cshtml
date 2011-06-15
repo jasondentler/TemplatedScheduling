@@ -14,27 +14,58 @@
 <script id="template" type="text/html">
     {{tmpl "#treeTemplateProxy"}}
     <div class="content">
-        <div class="contentHeader">
-            <ul class="links" >
-                <li><a href="#" id="moveRoomLink">Move Room</a></li>
-                <li><a href="#" id="removeRoomLink">Remove Room</a></li>
-            </ul>
-            <img id="help" alt="Help" src="@Url.Content("~/Content/images/help.png")"/>
-        </div>
-        <div class="display-label">Room</div>
-        <div class="display-field">${RoomName}
-            <button id="renameRoom" class="icon-pencil no-text">Rename Room</button>
+        <ul class="links" >
+            <li><a href="#" id="moveRoomLink">Move Room</a></li>
+            <li><a href="#" id="removeRoomLink">Remove Room</a></li>
+        </ul>
+        <div style="display: table">
+            <div style="display: table-row">
+                <div style="display: table-cell">
+                    <div class="display-label">Room</div>
+                    <div class="display-field">${RoomName}
+                        <button id="renameRoom" class="icon-pencil no-text">Rename Room</button>
+                    </div>
+
+                    <div class="display-label">Room Type</div>
+                    <div class="display-field">
+                        {{if RoomType && RoomType.length}}
+                            ${RoomType}
+                        {{else}}
+                            <span class="disabled">Not Set</span>
+                        {{/if}}
+                        <button id="changeRoomType" class="icon-pencil no-text">Change Room Type</button>
+                    </div>
+
+                    <div class="display-label">Capacity</div>
+                    <div class="display-field">
+                        {{if Capacity}}
+                            ${Capacity}
+                        {{else}}
+                            <span class="disabled">None</span>
+                        {{/if}}
+                        <button id="changeCapacity" class="icon-pencil no-text">Change Capacity</button>
+                    </div>
+                </div>
+                <div style="display: table-cell; padding: 3em 3em 3em 3em;">
+                    <fieldset>
+                        <legend>Equipment
+                            <button id="addEquipment" class="icon-plusthick no-text">Add Equipment</button>
+                            <button id="removeEquipment" class="icon-minusthick no-text">Remove Equipment</button>
+                        </legend>
+                        {{if RoomEquipment && mapHasKeys(RoomEquipment)}}
+                        <ul>
+                            {{each(item,quantity) RoomEquipment}}
+                                <li>${quantity} ${item}</li>
+                            {{/each}}
+                        </ul>
+                        {{else}}
+                        <span class="disabled">None</span>
+                        {{/if}}
+                    </fieldset>
+                </div>
+            </div>
         </div>
 
-        <div class="display-label">Room Type</div>
-        <div class="display-field">
-            {{if RoomType && RoomType.length}}
-                ${RoomType}
-            {{else}}
-                <span class="disabled">Not Set</span>
-            {{/if}}
-            <button id="changeRoomType" class="icon-pencil no-text">Change Room Type</button>
-        </div>
 
         <div id="map"></div>
     </div>
@@ -71,6 +102,52 @@
                     <text>
                     <option {{if roomType == model.RoomType}}selected{{/if}}>${roomType}</option>
                     </text>
+                {{/each}}
+                </select>
+            </div>
+        }
+    </div>
+
+    <div id="changeCapacityDialog" class="hidden" title="Change Capacity">
+        @using (Html.BeginForm<RoomController>(c => c.ChangeCapacity(null), FormMethod.Post, new {id = "changeCapacityForm"}))
+        {
+            <input type="hidden" name="RoomId" value="${Id}" />
+            <div class="edit-label">New Capacity</div>
+            <div class="edit-field">
+                <input type="text" name="Capacity" value="${Capacity}"/>
+            </div>
+        }
+    </div>
+
+    <div id="addEquipmentDialog" class="hidden" title="Add Equipment">
+        @using (Html.BeginForm<RoomController>(c => c.AddEquipment(null), FormMethod.Post, new {id = "addEquipmentForm"}))
+        {
+            <input type="hidden" name="RoomId" value="${Id}" />
+            <div class="edit-label">Total Number</div>
+            <div class="edit-field">
+                <input type="text" name="Quantity" value="1"/>
+            </div>
+
+            <div class="edit-label">Equipment</div>
+            <div class="edit-field">
+                <select name="Equipment">
+                {{each(index, item) Equipment}}
+                    <option>${item}</option>
+                {{/each}}
+                </select>
+            </div>
+        }
+    </div>
+
+    <div id="removeEquipmentDialog" class="hidden" title="Remove Equipment">
+        @using (Html.BeginForm<RoomController>(c => c.RemoveEquipment(null), FormMethod.Post, new {id = "removeEquipmentForm"}))
+        {
+            <input type="hidden" name="RoomId" value="${Id}" />
+            <div class="edit-label">Equipment</div>
+            <div class="edit-field">
+                <select name="Equipment">
+                {{each(item, quantity) RoomEquipment}}
+                    <option value="${item}">${quantity} ${item}</option>
                 {{/each}}
                 </select>
             </div>
@@ -120,8 +197,27 @@
         "#changeRoomType",
         function () { return !isMovingRoom; });
 
-    ConfigureHelp("#helpDialog", "#help");
-    
+    ConfigureDialog(
+        "#changeCapacityDialog",
+        "#changeCapacityForm",
+        "Yes, change the room capacity.",
+        "#changeCapacity",
+        function () { return !isMovingRoom; });
+
+    ConfigureDialog(
+        "#addEquipmentDialog",
+        "#addEquipmentForm",
+        "Yes, add equipment.",
+        "#addEquipment",
+        function () { return !isMovingRoom; });
+
+    ConfigureDialog(
+        "#removeEquipmentDialog",
+        "#removeEquipmentForm",
+        "Yes, remove equipment.",
+        "#removeEquipment",
+        function () { return !isMovingRoom; });
+
     afterBind.push(function () {
         $("#map").css("cursor", "default");
         $.when(loadMap(), displaySVG())
@@ -199,8 +295,8 @@
                 stopMovingRoom();
                 break;
             case 0:
-                var x = event.clientX - $("#map").position().left;
-                var y = event.clientY - $("#map").position().top;
+                var x = event.pageX - $("#map").position().left;
+                var y = event.pageY - $("#map").position().top;
                 addPoint(x, y);
                 break;
         }

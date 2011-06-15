@@ -14,14 +14,11 @@
 <script id="template" type="text/html">
     {{tmpl "#treeTemplateProxy"}}
     <div class="content">
-        <div class="contentHeader">
-            <ul class="links">
-                <li><a href="#" id="addRoomLink">Add Room</a></li>
-                <li><a href="#" id="uploadMapImageLink">Upload Map Image</a></li>
-                <li><a href="#" id="removeMapLink">Remove Map</a></li>
-            </ul>
-            <img id="help" alt="Help" src="@Url.Content("~/Content/images/help.png")"/>
-        </div>
+        <ul class="links">
+            <li><a href="#" id="addRoomLink">Add Room</a></li>
+            <li><a href="#" id="uploadMapImageLink">Upload Map Image</a></li>
+            <li><a href="#" id="removeMapLink">Remove Map</a></li>
+        </ul>
         <div class="display-label">Map</div>
         <div class="display-field">${MapName}
             <button id="renameMap" class="icon-pencil no-text">Rename Map</button>
@@ -112,9 +109,7 @@
         "Yes, upload this map.",
         "#uploadMapImageLink",
         function () { return true; });
-
-    ConfigureHelp("#helpDialog", "#help");
-    
+        
 </script>
 
 <div data-bind='template: "template"' />

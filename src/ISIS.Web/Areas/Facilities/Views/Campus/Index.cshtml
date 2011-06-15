@@ -8,6 +8,57 @@
 <script id="template" type="text/html">
     {{tmpl "#treeTemplateProxy"}}
     <h2 class="hint">Choose an item from the left</h2>
+
+
+    <div id="helpDialog" title="Facilities Help" class="hidden">
+        <h4>@Html.Image("~/Content/images/32x32/terminal.png") Equipment</h4>
+        <p>
+            Use the equipment screen to maintain the list of available equipment.
+        </p>
+
+        <h4>@Html.Image("~/Content/images/32x32/door_open.png") Room Types</h4>
+        <p>
+            Use the room types screen to maintain the list of available room types.
+        </p>
+
+
+        <h4>@Html.Image("~/Content/images/32x32/world.png") Campuses</h4>
+        <p>
+            To set up a new campus, choose the New Campus item and enter a campus name.
+        </p>
+
+        <h4>@Html.Image("~/Content/images/32x32/building.png") Buildings</h4>
+        <p>
+            Each campus contains buildings. To add a building, select the campus, then click "Add Building."
+        </p>
+
+        <h4>@Html.Image("~/Content/images/32x32/map.png") Maps</h4>
+        <p>
+            Each building has one or more maps, typically one for each floor. To add a map:
+            <ol>
+                <li>Select the building.</li>
+                <li>Click "Add Map."</li>
+                <li>Enter a name for this map.</li>
+                <li>Upload a map image showing rooms.</li>
+                <li>Create a room entry for each room on the map.</li>
+            </ol>
+        </p>
+
+        <h4>@Html.Image("~/Content/images/32x32/door_open.png") Rooms</h4>
+        <p>
+            To create a room:
+            <ol>
+                <li>Select the map.</li>
+                <li>Click "Add Room."</li>
+                <li>Enter a name for this room.</li>
+                <li>If the room is used for classes, set the room capacity.</li>
+                <li>Add the equipment available in this room.</li>
+                <li>Indicate the room on the map using the "Move Room" feature.</li>
+            </ol>
+        </p>
+
+
+    </div>
 </script>
 
 <div data-bind='template: "template"' />

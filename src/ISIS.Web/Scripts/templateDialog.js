@@ -134,12 +134,12 @@ function ConfigureDialog(dialog, form, okButtonText, activatingButton, allowed) 
     });
 }
 
-function ConfigureHelp(dialog, activatingButton) {
-    afterBind.push(function() { 
+afterBind.push(function () {
+    var ConfigureHelp = function (dialog, activatingButton) {
         var isOpen = false;
         $(dialog).dialog({
             autoOpen: false,
-            width: 500,
+            width: "60%",
             buttons: [],
             close: function () { isOpen = false; }
         });
@@ -147,5 +147,10 @@ function ConfigureHelp(dialog, activatingButton) {
             if (!isOpen)
                 $(dialog).dialog('open');
         });
-    });
-}
+    };
+
+    if ($("#helpDialog").length) {
+        ConfigureHelp("#helpDialog", "#help");
+        $("#help").show();
+    }
+})

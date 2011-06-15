@@ -79,56 +79,6 @@ textarea
     display: none;
 }
 
-/* Styles for breadcrumbs
------------------------------------------------------------*/
-ul.breadcrumbs li
-{
-	display: inline-block;
-	color: #808080;
-	font-size: small;
-}
-
-ul.breadcrumbs li a
-{
-	color: black;
-}
-
-ul.breadcrumbs li:last-child
-{
-	font-weight: bold;
-	color: black;
-}
-
-/* Styles for link lists
------------------------------------------------------------*/
-ul.links li
-{
-	display: inline-block;
-	font-size: small;
-	color: #808080;
-}
-
-ul.links li a
-{
-	color: black;
-}
-
-/* Styles for item lists
------------------------------------------------------------*/
-fieldset.itemList
-{
-	display: inline-block;
-	float: left;
-	margin: 0 1em 0 1em;
-}
-
-.itemList ul
-{
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
-}
-
 /* Calendar styles
 -----------------------------------------------------------*/
 #calendarWrapper
@@ -293,33 +243,106 @@ fieldset.itemList
 
 #facilityTree li.campus > a
 {
-	background: url(images/world.png) 0 0 no-repeat;	
+	background: url(images/16x16/world.png) 0 0 no-repeat;	
 }
 
 #facilityTree li.building > a
 {
-	background: url(images/building.png) 0 0 no-repeat;	
+	background: url(images/16x16/building.png) 0 0 no-repeat;	
 }
 
 #facilityTree li.map > a
 {
-	background: url(images/map.png) 0 0 no-repeat;	
+	background: url(images/16x16/map.png) 0 0 no-repeat;	
 }
 
 #facilityTree li.room > a
 {
-	background: url(images/book.png) 0 0 no-repeat;	
+	background: url(images/16x16/door_open.png) 0 0 no-repeat;	
 }
+
+#facilityTree li.equipment > a
+{
+	background: url(images/16x16/terminal.png) 0 0 no-repeat;	
+}
+
+#facilityTree li.roomTypes > a
+{
+	background: url(images/16x16/door_open.png) 0 0 no-repeat;	
+}
+
+/* Styles for breadcrumbs
+-----------------------------------------------------------*/
+ul.breadcrumbs li
+{
+	display: inline-block;
+	color: #808080;
+	font-size: small;
+}
+
+ul.breadcrumbs li a
+{
+	color: black;
+}
+
+ul.breadcrumbs li:last-child
+{
+	font-weight: bold;
+	color: black;
+}
+
+
+/* Styles for link lists
+-----------------------------------------------------------*/
+ul.links li
+{
+	display: inline-block;
+	font-size: small;
+	color: #808080;
+}
+
+ul.links li a
+{
+	color: black;
+}
+
+/* Styles for item lists
+-----------------------------------------------------------*/
+fieldset.itemList
+{
+	display: inline-block;
+	float: left;
+	margin: 0 1em 0 1em;
+}
+
+.itemList ul
+{
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
 
 /* Other styles
 -----------------------------------------------------------*/
+#help
+{
+	float: right;
+	display: none;
+}
+
+.content 
+{
+	clear: left;
+	display: inline-block;
+}
+
 .warning
 {
 	background: url("images/cancel.png") 0 0 no-repeat;
 	padding-left: 40px;
 	min-height: 32px;
 }
-
 
 h2.hint
 {
@@ -337,12 +360,6 @@ h2.hint
 	overflow-x:auto;
 	position:relative;
 	width: 50em;
-}
-
-.content 
-{
-	clear: left;
-	display: inline-block;
 }
 
 .disabled 
@@ -398,17 +415,18 @@ h2.hint
 .contentHeader
 {
 	width: 100%;
-	white-space: nowrap;
-	display: table-header-group;
+	display: table;
 }
 
 .contentHeader .links
 {
-	display: inline-block;
+	display: table-cell;
 }
 
 .contentHeader #help
 {
 	margin-left: 3em;
+	display: table-cell;
+	text-align: right;
 	float: right;
 }

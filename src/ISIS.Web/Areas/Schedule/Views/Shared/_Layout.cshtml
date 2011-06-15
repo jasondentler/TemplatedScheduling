@@ -28,21 +28,24 @@
 </head>
 
 <body>
-    <ul class="breadcrumbs">
-    <li>You are here: <a href="@Url.Content("~/")">ISIS</a></li>
-    <li class="separator">\</li>
-    <li><a href="@Url.Content("~/Schedule")">Course Scheduling</a></li>
-    @if (ViewData.ContainsKey("Breadcrumbs"))
-    {
-        foreach (var crumb in (IEnumerable<ISIS.Web.Models.Breadcrumb>) ViewData["Breadcrumbs"])
+    <div class="header">
+        <ul class="breadcrumbs">
+        <li>You are here: <a href="@Url.Content("~/")">ISIS</a></li>
+        <li class="separator">\</li>
+        <li><a href="@Url.Content("~/Schedule")">Course Scheduling</a></li>
+        @if (ViewData.ContainsKey("Breadcrumbs"))
         {
-            <li class="separator">\</li>
-            @crumb
+            foreach (var crumb in (IEnumerable<ISIS.Web.Models.Breadcrumb>) ViewData["Breadcrumbs"])
+            {
+                <li class="separator">\</li>
+                @crumb
+            }
         }
-    }
-    <li class="separator">\</li>
-    <li>@ViewBag.Title</li>
-    </ul>
+        <li class="separator">\</li>
+        <li>@ViewBag.Title</li>
+        </ul>
+        <img id="help" alt="Help" src="@Url.Content("~/Content/images/help.png")"/>
+    </div>
     @RenderBody()
 </body>
 </html>

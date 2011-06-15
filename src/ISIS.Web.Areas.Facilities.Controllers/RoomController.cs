@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -12,6 +11,11 @@ namespace ISIS.Web.Areas.Facilities.Controllers
 {
     public class RoomController : ControllerBase
     {
+
+        public ViewResult Index()
+        {
+            throw new NotImplementedException();
+        }
 
         [HttpGet]
         public ViewResult Details(Guid Id)
@@ -39,37 +43,51 @@ namespace ISIS.Web.Areas.Facilities.Controllers
 
             var roomPolygon = new Polygon(new[]
                                               {
-                                                  new[] {30, 30},
-                                                  new[] {30, 200},
-                                                  new[] {400, 300},
-                                                  new[] {200, 30}
+                                                  new[] {257, 94},
+                                                  new[] {257, 213},
+                                                  new[] {327, 213},
+                                                  new[] {327, 94}
                                               });
 
             var model = new Details(tree, roomId, roomName, mapId, mapName, buildingId, buildingName, campusId,
                                     campusName, mapImageUrl, roomPolygon,
                                     null, new[]
-                                                     {
-                                                         "Classroom",
-                                                         "Lab",
-                                                         "Office",
-                                                         "Storage",
-                                                         "Housekeeping",
-                                                         "AC & Heating",
-                                                         "Electrical",
-                                                         "Mail room",
-                                                         "Theatre",
-                                                         "Restroom",
-                                                         "Library",
-                                                         "Kitchen",
-                                                         "Breakroom",
-                                                         "Bookstore",
-                                                         "Gymnasium",
-                                                         "Conference Room",
-                                                         "Display gallery",
-                                                         "Locker room",
-                                                         "Other",
-                                                         "Mechanical"
-                                                     });
+                                              {
+                                                  "Classroom",
+                                                  "Lab",
+                                                  "Office",
+                                                  "Storage",
+                                                  "Housekeeping",
+                                                  "AC & Heating",
+                                                  "Electrical",
+                                                  "Mail room",
+                                                  "Theatre",
+                                                  "Restroom",
+                                                  "Library",
+                                                  "Kitchen",
+                                                  "Breakroom",
+                                                  "Bookstore",
+                                                  "Gymnasium",
+                                                  "Conference Room",
+                                                  "Display gallery",
+                                                  "Locker room",
+                                                  "Other",
+                                                  "Mechanical"
+                                              },
+                                    25,
+                                    new[]
+                                        {
+                                            "PC",
+                                            "Whiteboard",
+                                            "Lab Sink",
+                                            "Projector"
+                                        },
+                                    new Dictionary<string, int>
+                                        {
+                                            {"PC", 25},
+                                            {"Whiteboard", 2},
+                                            {"Projector", 1}
+                                        });
             return View(model);
         }
 
@@ -107,6 +125,24 @@ namespace ISIS.Web.Areas.Facilities.Controllers
 
         [HttpPost]
         public RedirectToRouteResult ChangeRoomType(ChangeRoomType model)
+        {
+            return this.RedirectToAction(c => c.Details(model.RoomId));
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult AddEquipment(AddEquipment model)
+        {
+            return this.RedirectToAction(c => c.Details(model.RoomId));
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult RemoveEquipment(RemoveEquipment model)
+        {
+            return this.RedirectToAction(c => c.Details(model.RoomId));
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult ChangeCapacity(ChangeCapacity model)
         {
             return this.RedirectToAction(c => c.Details(model.RoomId));
         }

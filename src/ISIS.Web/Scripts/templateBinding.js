@@ -15,6 +15,7 @@ afterBind.push(function () {
     $('.links').buttonset();
     $('.icon-pencil').button("option", "icons", { primary: "ui-icon-pencil" });
     $('.icon-plusthick').button("option", "icons", { primary: "ui-icon-plusthick" });
+    $('.icon-minusthick').button("option", "icons", { primary: "ui-icon-minusthick" });
     $('.icon-closethick').button("option", "icons", { primary: "ui-icon-closethick" });
     $('.no-text').button("option", "text", false);
     $('.tabs').tabs();

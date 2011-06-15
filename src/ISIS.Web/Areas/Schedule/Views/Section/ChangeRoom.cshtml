@@ -14,6 +14,7 @@
         <div class="display-label">Section</div>
         <div class="display-field">${SectionName}</div>
     </div>
+
     {{tmpl "#mapView"}}
     @using (Html.BeginForm<SectionController>(c => c.ChangeRoom(null), FormMethod.Post, new { id = "changeRoomForm" }))
     {
@@ -21,6 +22,26 @@
         <input type="hidden" Name="Id" value="${Id}" />
         <input type="hidden" Name="RoomId" id="roomIdInput"/>
     }
+
+    <div id="helpDialog" title="Help with sections" class="hidden">
+        <h4>Choosing a room</h4>
+
+        <p>Hover your mouse cursor over a room to show the room's capacity limitation or missing equipment.</p>
+
+        <fieldset id="legend">
+            <legend>Legend</legend>
+            <ul>
+                <li><div style='background-color: red'/>Another section is using this room at this time.</li>
+                <li><div style='background-color: yellow'/>Insufficient capacity.</li>
+                <li><div style='background-color: orange'/>Room does not have all required equipment.</li>
+                <li><div style='background-color: green'/>Room matches all criteria.</li>
+            </ul>
+        </fieldset>
+
+        
+    </div>
+
+
 </script>
 
 <script type="text/javascript">

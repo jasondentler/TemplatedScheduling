@@ -3,21 +3,17 @@
     ViewBag.Title = Model.TemplateName;
     ViewData["Breadcrumbs"] = new[] { new Breadcrumb("Templates", @Url.Action("Index")) };
 }
-
 @Html.Partial("_TemplateList")
 @Html.Partial("_ChangeInstructor")
-
 <script id="template" type="text/html">
 {{tmpl "#templateListTemplate"}}
+
     <div class="content">
-        <div class="contentHeader">
-            <ul class="links">
-                <li><a href="#" id="copyTemplateLink">Copy Template</a></li>
-                <li><a href="#" id="createSectionLink">Create Section</a></li>
-                <li><a href="#" id="removeTemplateLink">Remove Template</a></li>
-            </ul>
-            <img id="help" alt="Help" src="@Url.Content("~/Content/images/help.png")"/>
-        </div>
+        <ul class="links">
+            <li><a href="#" id="copyTemplateLink">Copy Template</a></li>
+            <li><a href="#" id="createSectionLink">Create Section</a></li>
+            <li><a href="#" id="removeTemplateLink">Remove Template</a></li>
+        </ul>
 
         <div class="display-label">Template</div>
         <div class="display-field">${TemplateName}
@@ -37,7 +33,7 @@
                 <span class="disabled">Not Set</span>
             {{/if}}
             {{if CanChangeRoom}}
-                @(Html.TemplateActionLink("Change Room", "ChangeRoom",new {Id="${Id}"}, new {@class="button icon-pencil no-text"}))
+                @(Html.TemplateActionLink("Change Room", "ChangeRoom", new { Id = "${Id}" }, new { @class = "button icon-pencil no-text" }))
             {{/if}}
         </div>
         <div class="display-label">Instructor</div>
@@ -51,7 +47,7 @@
         </div>
         <fieldset>
             <legend>Instructor Equipment
-                @(Html.TemplateActionLink("Change Instructor Equipment", "ChangeInstructorEquipment",new {Id="${Id}"}, new {@class="button icon-pencil no-text"}))
+                @(Html.TemplateActionLink("Change Instructor Equipment", "ChangeInstructorEquipment", new { Id = "${Id}" }, new { @class = "button icon-pencil no-text" }))
             </legend>
             {{if InstructorEquipment.length}}
             <ul>
@@ -65,7 +61,7 @@
         </fieldset>
         <fieldset>
             <legend>Student Equipment
-                @(Html.TemplateActionLink("Change Student Equipment", "ChangeStudentEquipment",new {Id="${Id}"}, new {@class="button icon-pencil no-text"}))
+                @(Html.TemplateActionLink("Change Student Equipment", "ChangeStudentEquipment", new { Id = "${Id}" }, new { @class = "button icon-pencil no-text" }))
             </legend>
             {{if StudentEquipment.length}}
             <ul>
@@ -107,7 +103,7 @@
     </div>
 
     <div id="removeTemplateDialog" title="Remove Template" class="hidden">
-        @using (Html.BeginForm<TemplateController>(c => c.RemoveTemplate(null), FormMethod.Post, new {id = "removeTemplateForm"}))
+        @using (Html.BeginForm<TemplateController>(c => c.RemoveTemplate(null), FormMethod.Post, new { id = "removeTemplateForm" }))
         {
             @Html.AntiForgeryToken()
             <input type="hidden" Name="Id" value="${Id}" />
@@ -141,7 +137,15 @@
     
     <div id="helpDialog" title="Help with templates" class="hidden">
         <h4>Help with templates</h4>
-        <p>Templates allow you to quickly set up similar sections. Each course has a basic template which cannot be changed.</p>
+        <p>
+            Templates allow you to quickly set up similar sections. For example, 
+        you can set up a template for each delivery methods of a course: all online, all lecture, and hybrid.
+        If an instructor requires different equipment for his or her particular style, you
+        can create a template specifically for them.</p>
+
+        <p>
+            Each course has a basic template. On these basic templates, only equipment and capacity can be changed.
+        </p>
 
         <p>
             To set up an additional template,
@@ -160,15 +164,9 @@
         For example, a section of this course may require 1 PC per student or 1 lab sink per 2 students.</p>
     </div>
 </script>
-
 <script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/copyTemplate.js")"></script>
 <script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/createSection.js")"></script>
 <script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/removeTemplate.js")"></script>
 <script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/renameTemplate.js")"></script>
 <script type="text/javascript" src="@Url.Content(@"~/Areas/Schedule/Scripts/changeCapacity.js")"></script>
-
-<script type="text/javascript">
-    ConfigureHelp("#helpDialog", "#help");
-</script>
-
 <div data-bind='template: "template"' />

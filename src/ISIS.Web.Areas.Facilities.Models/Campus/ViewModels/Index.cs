@@ -10,7 +10,7 @@ namespace ISIS.Web.Areas.Facilities.Models.Campus.ViewModels
         public IEnumerable<ITreeItem> RootItems { get; private set; }
         public Guid SelectedItem { get; private set; }
 
-        public Index(IEnumerable<Tree.Campus> rootItems)
+        public Index(IEnumerable<ITreeItem> rootItems)
         {
             RootItems = rootItems;
             SelectedItem = Guid.Empty;

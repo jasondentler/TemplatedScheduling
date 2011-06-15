@@ -13,10 +13,6 @@
 <script id="template" type="text/html" >
 {{tmpl "#templateListTemplate"}}
     <div class="content">
-        <div class="contentHeader">
-            <img id="help" alt="Help" src="@Url.Content("~/Content/images/help.png")"/>
-        </div>
-
         <div class="display-label">Template</div>
         <div class="display-field">${TemplateName}</div>
 
@@ -74,7 +70,4 @@
     </div>
 </script>
 
-<script type="text/javascript">
-    ConfigureHelp("#helpDialog", "#help");
-</script>
 <div data-bind='template: "template"' />

@@ -18,6 +18,9 @@ namespace ISIS.Web.Areas.Facilities.Models.Room.ViewModels
         public Polygon RoomPolygon { get; set; }
         public string RoomType { get; set; }
         public IEnumerable<string> RoomTypes { get; set; }
+        public int Capacity { get; set; }
+        public IEnumerable<string> Equipment { get; set; }
+        public IDictionary<string, int> RoomEquipment { get; set; }
         public string BuildingName { get; set; }
         public IEnumerable<ITreeItem> RootItems { get; private set; }
         public Guid SelectedItem { get; private set; }
@@ -34,7 +37,10 @@ namespace ISIS.Web.Areas.Facilities.Models.Room.ViewModels
             string mapImageUrl,
             Polygon roomPolygon,
             string roomType,
-            IEnumerable<string> roomTypes)
+            IEnumerable<string> roomTypes,
+            int capacity,
+            IEnumerable<string> equipment,
+            IDictionary<string, int> roomEquipment)
         {
             Id = id;
             RoomName = roomName;
@@ -48,6 +54,9 @@ namespace ISIS.Web.Areas.Facilities.Models.Room.ViewModels
             RoomPolygon = roomPolygon;
             RoomType = roomType;
             RoomTypes = roomTypes;
+            Capacity = capacity;
+            Equipment = equipment;
+            RoomEquipment = roomEquipment;
             RootItems = tree.RootItems;
             SelectedItem = tree.SelectedItem;
         }

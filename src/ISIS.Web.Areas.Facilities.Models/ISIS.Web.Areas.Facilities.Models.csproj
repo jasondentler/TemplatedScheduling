@@ -51,8 +51,11 @@
     <Compile Include="Campus\ViewModels\Details.cs" />
     <Compile Include="Campus\ViewModels\Index.cs" />
     <Compile Include="Map\InputModels\UploadMapImage.cs" />
+    <Compile Include="Room\InputModels\AddEquipment.cs" />
+    <Compile Include="Room\InputModels\ChangeCapacity.cs" />
     <Compile Include="Room\InputModels\ChangeRoomType.cs" />
     <Compile Include="Room\InputModels\MoveRoom.cs" />
+    <Compile Include="Room\InputModels\RemoveEquipment.cs" />
     <Compile Include="Room\InputModels\RemoveRoom.cs" />
     <Compile Include="Room\InputModels\RenameRoom.cs" />
     <Compile Include="Room\ViewModels\Details.cs" />
@@ -62,6 +65,8 @@
     <Compile Include="Map\ViewModels\Details.cs" />
     <Compile Include="Tree\Building.cs" />
     <Compile Include="Tree\Campus.cs" />
+    <Compile Include="Tree\RoomTypes.cs" />
+    <Compile Include="Tree\Equipment.cs" />
     <Compile Include="Tree\FacilitiesSingleton.cs" />
     <Compile Include="Tree\FacilitiesSource.cs" />
     <Compile Include="Tree\MapList.cs" />

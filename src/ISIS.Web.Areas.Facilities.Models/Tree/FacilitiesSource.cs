@@ -23,7 +23,9 @@ namespace ISIS.Web.Areas.Facilities.Models.Tree
             UrlProvider roomUrlProvider,
             UrlProvider mapUrlProvider,
             UrlProvider buildingUrlProvider,
-            UrlProvider campusUrlProvider)
+            UrlProvider campusUrlProvider,
+            UrlProvider equipmentUrlProvider,
+            UrlProvider roomTypesUrlProvider)
         {
             var parentIds = new Stack<Guid>();
             FindParentIds(parentIds, selectedId);
@@ -70,9 +72,17 @@ namespace ISIS.Web.Areas.Facilities.Models.Tree
                                  ? new Campus(i.Item1, i.Item2, campusUrlProvider.GetDetailsUrl(i.Item1), buildings)
                                  : new Campus(i.Item1, i.Item2, campusUrlProvider.GetDetailsUrl(i.Item1),
                                            i.Item3, campusUrlProvider.GetChildrenUrl(i.Item1)))
+                .Cast<ITreeItem>()
                 .ToArray();
 
-            return new MapList(campuses, selectedId);
+            var equipment = new Equipment(equipmentUrlProvider.GetDetailsUrl(Guid.Empty));
+
+            var roomTypes = new RoomTypes(roomTypesUrlProvider.GetDetailsUrl(Guid.Empty));
+
+            var rootItems = new ITreeItem[] {equipment, roomTypes}
+                .Union(campuses);
+
+            return new MapList(rootItems, selectedId);
         }
 
         private static void FindParentIds(Stack<Guid> parentIds, Guid nodeId)
