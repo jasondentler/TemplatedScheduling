@@ -7,8 +7,22 @@
 
 <script id="template" type="text/html">
     {{tmpl "#treeTemplateProxy"}}
-    <h2 class="hint">Choose an item from the left</h2>
+    <div class="content">
+        <ul class="links">
+            <li><a href="#" id="addCampusLink">Add Campus</a></li>
+        </ul>
+    </div>
+    <h2 class="hint">Choose an item from the left or click Add Campus.</h2>
 
+    <div id="addCampusDialog" class="hidden" title="Add a campus">
+        @using (Html.BeginForm<CampusController>(c => c.AddCampus(null), FormMethod.Post, new {id = "addCampusForm"}))
+        {
+            <div class="edit-label">New Campus Name</div>
+            <div class="edit-field">
+                <input type="text" name="CampusName" />
+            </div>
+        }
+    </div>
 
     <div id="helpDialog" title="Facilities Help" class="hidden">
         <h4>@Html.Image("~/Content/images/32x32/terminal.png") Equipment</h4>
@@ -59,6 +73,15 @@
 
 
     </div>
+</script>
+
+<script type="text/javascript">
+    ConfigureDialog(
+        "#addCampusDialog",
+        "#addCampusForm",
+        "Yes, add this campus",
+        "#addCampusLink",
+        function() { return true; });
 </script>
 
 <div data-bind='template: "template"' />

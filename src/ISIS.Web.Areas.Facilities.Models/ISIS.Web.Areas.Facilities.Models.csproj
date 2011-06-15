@@ -46,6 +46,7 @@
     <Compile Include="Building\InputModels\RenameBuilding.cs" />
     <Compile Include="Building\ViewModels\Details.cs" />
     <Compile Include="Campus\InputModels\AddBuilding.cs" />
+    <Compile Include="Campus\InputModels\AddCampus.cs" />
     <Compile Include="Campus\InputModels\RemoveCampus.cs" />
     <Compile Include="Campus\InputModels\RenameCampus.cs" />
     <Compile Include="Campus\ViewModels\Details.cs" />

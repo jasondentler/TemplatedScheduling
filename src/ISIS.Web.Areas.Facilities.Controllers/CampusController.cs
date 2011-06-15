@@ -15,7 +15,8 @@ namespace ISIS.Web.Areas.Facilities.Controllers
         [HttpGet]
         public ViewResult Index()
         {
-            return View(new Index(GetCampuses()));
+            var tree = new TreeSource().GetTree(Guid.Empty, Url);
+            return View(new Index(tree.RootItems));
         }
 
         [HttpGet]
@@ -29,7 +30,8 @@ namespace ISIS.Web.Areas.Facilities.Controllers
         [HttpGet]
         public JsonResult Data()
         {
-                return Json(GetCampuses(), JsonRequestBehavior.AllowGet);
+            var tree = new TreeSource().GetTree(Guid.Empty, Url);
+            return Json(tree.RootItems, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -53,16 +55,13 @@ namespace ISIS.Web.Areas.Facilities.Controllers
             return this.RedirectToAction(c => c.Details(model.CampusId));
         }
 
-        [NonAction]
-        public IEnumerable<Campus> GetCampuses()
+        [HttpPost]
+        public RedirectToRouteResult AddCampus(AddCampus model)
         {
-            return FacilitiesSingleton.Facilities.GetChildren(Guid.Empty)
-                .Select(tuple => new Campus(
-                                     tuple.Item1,
-                                     tuple.Item2,
-                                     Url.Action("Details", new {Id = tuple.Item1}),
-                                     tuple.Item3,
-                                     Url.Action("Data", "Building", new {campusId = tuple.Item1})));
+            var campusId = Guid.NewGuid();
+            // For now, so we don't redirect to a non-existent campus
+            campusId = FacilitiesSingleton.Facilities.GetChildren(Guid.Empty).First().Item1;
+            return this.RedirectToAction(c => c.Details(campusId));
         }
 
     }

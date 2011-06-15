@@ -335,6 +335,7 @@ fieldset.itemList
 {
 	clear: left;
 	display: inline-block;
+	padding: 1em 1em 1em 1em;
 }
 
 .warning
