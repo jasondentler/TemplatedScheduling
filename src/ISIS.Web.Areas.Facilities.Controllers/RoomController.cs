@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -14,7 +15,10 @@ namespace ISIS.Web.Areas.Facilities.Controllers
 
         public ViewResult Index()
         {
-            throw new NotImplementedException();
+            var tree = new TreeSource().GetTree(Guid.Empty, Url);
+            var model = new Index(tree.RootItems, GetRoomTypes());
+
+            return View(model);
         }
 
         [HttpGet]
@@ -51,29 +55,8 @@ namespace ISIS.Web.Areas.Facilities.Controllers
 
             var model = new Details(tree, roomId, roomName, mapId, mapName, buildingId, buildingName, campusId,
                                     campusName, mapImageUrl, roomPolygon,
-                                    null, new[]
-                                              {
-                                                  "Classroom",
-                                                  "Lab",
-                                                  "Office",
-                                                  "Storage",
-                                                  "Housekeeping",
-                                                  "AC & Heating",
-                                                  "Electrical",
-                                                  "Mail room",
-                                                  "Theatre",
-                                                  "Restroom",
-                                                  "Library",
-                                                  "Kitchen",
-                                                  "Breakroom",
-                                                  "Bookstore",
-                                                  "Gymnasium",
-                                                  "Conference Room",
-                                                  "Display gallery",
-                                                  "Locker room",
-                                                  "Other",
-                                                  "Mechanical"
-                                              },
+                                    null, 
+                                    GetRoomTypes(),
                                     25,
                                     new[]
                                         {
@@ -147,12 +130,51 @@ namespace ISIS.Web.Areas.Facilities.Controllers
             return this.RedirectToAction(c => c.Details(model.RoomId));
         }
 
+        [HttpPost]
+        public RedirectToRouteResult AddRoomType(AddRoomType model)
+        {
+            return this.RedirectToAction(c => c.Index());
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult RemoveRoomType(RemoveRoomType model)
+        {
+            return this.RedirectToAction(c => c.Index());
+        }
+
         [NonAction]
         public IEnumerable<Room> GetRooms(Guid mapId)
         {
             return FacilitiesSingleton.Facilities.GetChildren(mapId)
                 .Select(tuple => new Room(tuple.Item1, tuple.Item2, Url.Action("Details", new {Id = tuple.Item1})));
+        }
 
+        [NonAction]
+        public IEnumerable<string> GetRoomTypes()
+        {
+            return new[]
+                       {
+                           "Classroom",
+                           "Lab",
+                           "Office",
+                           "Storage",
+                           "Housekeeping",
+                           "AC & Heating",
+                           "Electrical",
+                           "Mail room",
+                           "Theatre",
+                           "Restroom",
+                           "Library",
+                           "Kitchen",
+                           "Breakroom",
+                           "Bookstore",
+                           "Gymnasium",
+                           "Conference Room",
+                           "Display gallery",
+                           "Locker room",
+                           "Other",
+                           "Mechanical"
+                       };
         }
 
     }

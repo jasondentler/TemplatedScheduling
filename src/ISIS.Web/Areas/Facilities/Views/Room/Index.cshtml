@@ -1,0 +1,73 @@
+﻿@model Index
+
+@{
+    ViewBag.Title = "Room Types";
+}
+
+@Html.Partial("_Tree")
+
+<script id="template" type="text/html">
+    {{tmpl "#treeTemplateProxy"}}
+    <div class="content">
+        <fieldset>
+            <legend>Room Types
+                <button id="addRoomType" class="icon-plusthick no-text">Add Room Type</button>
+                <button id="removeRoomType" class="icon-minusthick no-text">Remove Room Type</button>
+            </legend>
+            {{if RoomTypes && RoomTypes.length}}
+            <ul>
+                {{each(index, item) RoomTypes}}
+                <li>${item}</li>
+                {{/each}}
+            </ul>
+            {{else}}
+            <span class="disabled">None</span>
+            {{/if}}
+        </fieldset>
+    </div>
+    
+    <div id="addRoomTypeDialog" class="hidden" title="Remove Room Type">
+        @using (Html.BeginForm<RoomController>(c => c.AddRoomType(null), FormMethod.Post, new {id = "addRoomTypeForm"}))
+        {
+            <div class="edit-label">Room Type</div>
+            <div class="edit-field">
+                <input type="text" name="RoomType"/>
+            </div>
+        }
+    </div>
+
+    <div id="removeRoomTypeDialog" class="hidden" title="Remove Room Type">
+        @using (Html.BeginForm<RoomController>(c => c.RemoveRoomType(null), FormMethod.Post, new {id = "removeRoomTypeForm"}))
+        {
+            <div class="edit-label">Room Type</div>
+            <div class="edit-field">
+                <select name="RoomType">
+                {{each(index, item) RoomTypes}}
+                    <option>${item}</option>
+                {{/each}}
+                </select>
+            </div>
+        }
+    </div>
+
+
+</script>
+
+<script type="text/javascript">
+    ConfigureDialog(
+        "#addRoomTypeDialog",
+        "#addRoomTypeForm",
+        "Yes, add this room type.",
+        "#addRoomType",
+        function () { return true; });
+
+    ConfigureDialog(
+        "#removeRoomTypeDialog",
+        "#removeRoomTypeForm",
+        "Yes, remove this room type.",
+        "#removeRoomType",
+        function () { return true; });
+    
+</script>
+
+<div data-bind='template: "template"' />
