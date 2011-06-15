@@ -1,0 +1,73 @@
+﻿@model Index
+
+@{
+    ViewBag.Title = "Equipment";
+}
+
+@Html.Partial("_Tree")
+
+<script id="template" type="text/html">
+    {{tmpl "#treeTemplateProxy"}}
+    <div class="content">
+        <fieldset>
+            <legend>Equipment
+                <button id="addEquipment" class="icon-plusthick no-text">Add Equipment</button>
+                <button id="removeEquipment" class="icon-minusthick no-text">Remove Equipment</button>
+            </legend>
+            {{if Equipment && Equipment.length}}
+            <ul>
+                {{each(index, item) Equipment}}
+                <li>${item}</li>
+                {{/each}}
+            </ul>
+            {{else}}
+            <span class="disabled">None</span>
+            {{/if}}
+        </fieldset>
+    </div>
+    
+    <div id="addEquipmentDialog" class="hidden" title="Remove Equipment">
+        @using (Html.BeginForm<EquipmentController>(c => c.AddEquipment(null), FormMethod.Post, new {id = "addEquipmentForm"}))
+        {
+            <div class="edit-label">Equipment</div>
+            <div class="edit-field">
+                <input type="text" name="Equipment"/>
+            </div>
+        }
+    </div>
+
+    <div id="removeEquipmentDialog" class="hidden" title="Remove Equipment">
+        @using (Html.BeginForm<EquipmentController>(c => c.RemoveEquipment(null), FormMethod.Post, new {id = "removeEquipmentForm"}))
+        {
+            <div class="edit-label">Equipment</div>
+            <div class="edit-field">
+                <select name="Equipment">
+                {{each(index, item) Equipment}}
+                    <option>${item}</option>
+                {{/each}}
+                </select>
+            </div>
+        }
+    </div>
+
+
+</script>
+
+<script type="text/javascript">
+    ConfigureDialog(
+        "#addEquipmentDialog",
+        "#addEquipmentForm",
+        "Yes, add this equipment.",
+        "#addEquipment",
+        function () { return true; });
+
+    ConfigureDialog(
+        "#removeEquipmentDialog",
+        "#removeEquipmentForm",
+        "Yes, remove this equipment.",
+        "#removeEquipment",
+        function () { return true; });
+    
+</script>
+
+<div data-bind='template: "template"' />

@@ -389,6 +389,10 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Areas\Facilities\Views\Room\Index.cshtml" />
+    <Content Include="Areas\Facilities\Views\Equipment\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\Facilities\Views\Equipment\Index.cshtml" />
     <None Include="Content\images\buildings\A1.svg" />
     <None Include="Content\images\buildings\A2.svg" />
     <None Include="Content\images\buildings\B1.svg" />
