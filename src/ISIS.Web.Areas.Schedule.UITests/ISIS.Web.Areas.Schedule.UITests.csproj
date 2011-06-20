@@ -31,16 +31,108 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.2.5.2\lib\NET35\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip.Reduced">
+      <HintPath>..\packages\SeleniumDotNet.2.0.3\lib\net20\Ionic.Zip.Reduced.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\SeleniumDotNet.2.0.3\lib\net20\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.mocks, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="pnunit.framework, Version=1.0.4109.34242, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\pnunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Selenium.WebDriverBackedSelenium">
+      <HintPath>..\packages\SeleniumDotNet.2.0.3\lib\net20\Selenium.WebDriverBackedSelenium.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpTestsEx">
+      <HintPath>..\packages\SharpTestsEx.1.1.1\lib\SharpTestsEx.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpTestsEx.Mvc">
+      <HintPath>..\packages\SharpTestsEx.1.1.1\lib\SharpTestsEx.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="TechTalk.SpecFlow">
+      <HintPath>..\packages\SpecFlow.1.6.1\lib\net35\TechTalk.SpecFlow.dll</HintPath>
+    </Reference>
+    <Reference Include="ThoughtWorks.Selenium.Core">
+      <HintPath>..\packages\SeleniumDotNet.2.0.3\lib\net20\ThoughtWorks.Selenium.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Chrome">
+      <HintPath>..\packages\SeleniumDotNet.2.0.3\lib\net20\WebDriver.Chrome.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Common">
+      <HintPath>..\packages\SeleniumDotNet.2.0.3\lib\net20\WebDriver.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Firefox">
+      <HintPath>..\packages\SeleniumDotNet.2.0.3\lib\net20\WebDriver.Firefox.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.IE">
+      <HintPath>..\packages\SeleniumDotNet.2.0.3\lib\net20\WebDriver.IE.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Remote">
+      <HintPath>..\packages\SeleniumDotNet.2.0.3\lib\net20\WebDriver.Remote.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Remote.Common">
+      <HintPath>..\packages\SeleniumDotNet.2.0.3\lib\net20\WebDriver.Remote.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Webdriver.Support">
+      <HintPath>..\packages\SeleniumDotNet.2.0.3\lib\net20\Webdriver.Support.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PageGiven.cs" />
+    <Compile Include="PageThen.cs" />
+    <Compile Include="ISISHomePage.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ISISHomePage.feature</DependentUpon>
+    </Compile>
+    <Compile Include="IsisHomePageWhen.cs" />
+    <Compile Include="PageWhen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SchedulingHomePage.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SchedulingHomePage.feature</DependentUpon>
+    </Compile>
+    <Compile Include="SeleniumFixture.cs" />
+    <Compile Include="SeleniumTag.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="ISISHomePage.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ISISHomePage.feature.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+    <None Include="SchedulingHomePage.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SchedulingHomePage.feature.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ISIS.Web\ISIS.Web.csproj">
+      <Project>{A3B588E6-11F4-4989-BB1A-1BDC67B0AAB8}</Project>
+      <Name>ISIS.Web</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
