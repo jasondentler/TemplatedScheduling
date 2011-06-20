@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using SharpTestsEx;
+using TechTalk.SpecFlow;
 
 namespace ISIS.Web.Areas.Schedule.UITests
 {
@@ -18,6 +19,13 @@ namespace ISIS.Web.Areas.Schedule.UITests
             GoTo("~/Schedule");
         }
 
+
+        [Given(@"I navigate to ~(.+)")]
+        public void GivenINavigateTo(string relativeUrlWithoutTilde)
+        {
+            var relativeUrl = "~" + relativeUrlWithoutTilde;
+            GoTo(relativeUrl);
+        }
 
     }
 }

@@ -71,6 +71,12 @@ namespace ISIS.Web.Areas.Schedule.UITests
             UrlIs(relativeUrl).Should().Be.True();
         }
 
+        [Then(@"the page has a hint ""(.*)""")]
+        public void ThenThePageHasAHint(string hintText)
+        {
+            var hint = Driver.FindElement(By.ClassName("hint"));
+            hint.Text.Should().Be.EqualTo(hintText);
+        }
 
     }
 }
