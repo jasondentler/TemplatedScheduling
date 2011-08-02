@@ -7,10 +7,10 @@
 Scenario: Scheduling home page
 	When I navigate to the scheduling area
 	Then the page has breadcrumbs as follows
-		| Text					| Url							|
-		| ISIS					| /								|
-		| Course Scheduling		| /Schedule						|
-		| Home					|								|
+		| Text              | Url                            |
+		| ISIS              | http://localhost:1481/         |
+		| Course Scheduling | http://localhost:1481/Schedule |
+		| Home				|							     |
 	And the page has a link to Instructors
 	And the page has a link to Templates
 	And the page has a link to Sections

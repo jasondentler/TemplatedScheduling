@@ -4,7 +4,7 @@
 	I want to enter new instructors
 	
 @selenium
-Scenario: Dialog displays
+Scenario: Create Instructor dialog displays
 	Given I navigate to ~/Schedule/Instructor
 	When I click Create an instructor
 	Then the Create Instructor dialog is displayed

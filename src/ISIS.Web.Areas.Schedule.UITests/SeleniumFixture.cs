@@ -26,9 +26,9 @@ namespace ISIS.Web.Areas.Schedule.UITests
             Driver.Navigate().GoToUrl(absoluteUrl);
         }
 
-        public virtual IRenderedWebElement LinkByText(string text)
+        public virtual IWebElement LinkByText(string text)
         {
-            return (IRenderedWebElement) Driver.FindElement(By.LinkText(text));
+            return (IWebElement)Driver.FindElement(By.LinkText(text));
         }
 
         public virtual string GetAbsoluteUrl(string relativeUrl)

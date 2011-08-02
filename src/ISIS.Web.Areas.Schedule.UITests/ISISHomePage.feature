@@ -8,7 +8,7 @@ Scenario: ISIS home page
 	When I navigate to the ISIS home page
 	Then the page has breadcrumbs as follows
 		| Text			| Url							|
-		| ISIS			| /								|
+		| ISIS			| http://localhost:1481/		|
 		| Home			|								|
 	And the page has a link to Course Scheduling
 	And the page has a link to Facilities

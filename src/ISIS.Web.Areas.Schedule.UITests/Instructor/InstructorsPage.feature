@@ -7,10 +7,10 @@
 Scenario: Instructors page
 	When I navigate to ~/Schedule/Instructor
 	Then the page has breadcrumbs as follows
-		| Text					| Url							|
-		| ISIS					| /								|
-		| Course Scheduling		| /Schedule						|
-		| Instructors			|								|
+		| Text              | Url                            |
+		| ISIS              | http://localhost:1481/         |
+		| Course Scheduling | http://localhost:1481/Schedule |
+		| Instructors       |                                |
 	And the page has a list of instructors
 	And the page has a hint "Choose an instructor from the left"
 
