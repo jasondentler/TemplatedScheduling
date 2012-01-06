@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISIS.Web.Areas.Facilities.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISIS.Web.Areas.Facilities.Models", "ISIS.Web.Areas.Facilities.Models\ISIS.Web.Areas.Facilities.Models.csproj", "{DC4ECEF7-1934-48DD-AB4E-35EDF6C02596}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISIS.Web.Areas.Schedule.UITests", "ISIS.Web.Areas.Schedule.UITests\ISIS.Web.Areas.Schedule.UITests.csproj", "{967A620F-46FC-4CE6-92C4-A70E22E73A19}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9946C8EB-B718-4C9D-940D-9F2F98102F70}"
 EndProject
 Global
@@ -53,15 +51,8 @@ Global
 		{DC4ECEF7-1934-48DD-AB4E-35EDF6C02596}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC4ECEF7-1934-48DD-AB4E-35EDF6C02596}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC4ECEF7-1934-48DD-AB4E-35EDF6C02596}.Release|Any CPU.Build.0 = Release|Any CPU
-		{967A620F-46FC-4CE6-92C4-A70E22E73A19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{967A620F-46FC-4CE6-92C4-A70E22E73A19}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{967A620F-46FC-4CE6-92C4-A70E22E73A19}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{967A620F-46FC-4CE6-92C4-A70E22E73A19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{967A620F-46FC-4CE6-92C4-A70E22E73A19} = {9946C8EB-B718-4C9D-940D-9F2F98102F70}
 	EndGlobalSection
 EndGlobal
